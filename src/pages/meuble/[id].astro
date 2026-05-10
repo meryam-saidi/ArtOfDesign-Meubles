@@ -1,0 +1,157 @@
+---
+// src/pages/meuble/[id].astro
+import Layout from '../../layouts/Layout.astro';
+import meublesData from '../../data/meubles.json';
+
+// CETTE FONCTION EST OBLIGATOIRE POUR LES ROUTES DYNAMIQUES
+export async function getStaticPaths() {
+  return meublesData.map((meuble) => {
+    return {
+      params: { id: meuble.id.toString() }, // L'ID qui sera dans l'URL (ex: /meuble/cui-001)
+      props: { meuble },                    // Les données complètes envoyées à la page
+    };
+  });
+}
+
+// Récupération des données passées via les props ci-dessus
+const { meuble } = Astro.props;
+---
+
+<Layout title={`${meuble.nom} | Détails AD meuble`}>
+ <main class="pt-32 pb-20 max-w-7xl mx-auto px-6">
+  
+  <nav class="flex mb-12 text-[10px] uppercase tracking-[0.2em] text-gray-400">
+      <a href="/" class="hover:text-black transition-colors">Accueil</a>
+      <span class="mx-3">/</span>
+      <a href="/meubles" class="hover:text-black transition-colors">meubles</a>
+      <span class="mx-3">/</span>
+      <span class="text-black font-bold">{meuble.nom}</span>
+  </nav>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+    
+    <div class="lg:col-span-8">
+      <div class="relative overflow-hidden bg-gray-50 aspect-[16/9] group cursor-zoom-in">
+        <img 
+          id="main-visual"
+          src={meuble.image} 
+          alt={meuble.nom} 
+          class="w-full h-full object-cover transition-all duration-700 ease-in-out"
+        />
+        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+      </div>
+
+      <div class="flex gap-4 mt-6 overflow-x-auto pb-2 no-scrollbar">
+        <button class="thumb-btn active-thumb" data-full={meuble.image}>
+           <img src={meuble.image} class="w-24 h-24 object-cover" />
+        </button>
+        {meuble.variantes?.map((v) => (
+          <button class="thumb-btn" data-full={v.image}>
+            <img src={v.image} class="w-24 h-24 object-cover" />
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div class="lg:col-span-4 flex flex-col justify-start">
+      <div class="border-b border-gray-100 pb-8 mb-8">
+        <span class="text-[var(--color-gold)] font-bold text-[10px] uppercase tracking-[0.3em] mb-2 block">Exclusivité AD meuble</span>
+        <h1 class="font-serif text-4xl md:text-5xl mb-4 italic leading-tight">{meuble.nom}</h1>
+        <p class="text-2xl font-light text-gray-900">{meuble.prix_initial} <span class="text-xs text-gray-400 uppercase tracking-widest ml-2">TTC</span></p>
+      </div>
+      
+      <p class="text-gray-500 font-light leading-relaxed mb-10 text-sm">
+        {meuble.description || "Une conception architecturale qui redéfinit l'espace. Chaque détail a été pensé pour allier performance technique et esthétique intemporelle."}
+      </p>
+
+      <div class="mb-12 p-6 bg-gray-50 rounded-sm">
+        <h3 class="text-[10px] uppercase tracking-[0.2em] font-bold mb-6 flex justify-between">
+          Nuancier disponible 
+          <span id="color-label" class="text-[var(--color-gold)] font-normal italic lowercase">Original</span>
+        </h3>
+        <div class="flex flex-wrap gap-4">
+           {/* Option par défaut */}
+           <button 
+              class="color-swatch ring-2 ring-[var(--color-gold)] ring-offset-2 w-8 h-8 rounded-full bg-center bg-cover" 
+              style={`background-image: url(${meuble.image})`}
+              data-image={meuble.image} 
+              title="Finition Originale">
+           </button>
+           
+           {/* Variantes du JSON */}
+           {meuble.variantes?.map((v) => (
+            <button 
+              class="color-swatch w-8 h-8 rounded-full border border-gray-200 transition-all hover:scale-110"
+              style={`background-color: ${v.code}`}
+              data-image={v.image}
+              title={v.couleur}
+            >
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <button class="w-full bg-black text-white py-5 uppercase text-[10px] font-bold tracking-[0.2em] hover:bg-[var(--color-gold)] transition-all shadow-lg hover:shadow-xl">
+        Réserver mon étude gratuite
+      </button>
+    </div>
+  </div>
+  <div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-gray-100 pt-16">
+        <div>
+            <h4 class="font-bold text-[10px] uppercase tracking-widest mb-4">Matériaux</h4>
+            <p class="text-sm text-gray-500 font-light">Façades en polymère haute densité, plan de travail en quartz ou granit au choix.</p>
+        </div>
+        <div>
+            <h4 class="font-bold text-[10px] uppercase tracking-widest mb-4">Équipements</h4>
+            <p class="text-sm text-gray-500 font-light">Charnières avec amortisseurs intégrés, tiroirs à sortie totale, éclairage LED sous meubles.</p>
+        </div>
+        <div>
+            <h4 class="font-bold text-[10px] uppercase tracking-widest mb-4">Garantie</h4>
+            <p class="text-sm text-gray-500 font-light">Structure garantie 10 ans. Pièces d'usure et quincaillerie garanties 5 ans.</p>
+        </div>
+    </div>
+</main>
+</Layout>
+
+<script is:inline>
+  const mainImg = document.getElementById('main-visual');
+  const colorSwatches = document.querySelectorAll('.color-swatch');
+  const thumbButtons = document.querySelectorAll('.thumb-btn');
+  const colorLabel = document.getElementById('color-label');
+
+  function updateGallery(newSrc, title = null) {
+    if (!mainImg || !newSrc) return;
+    
+    mainImg.style.opacity = '0';
+    setTimeout(() => {
+      mainImg.src = newSrc;
+      mainImg.style.opacity = '1';
+      if (title) colorLabel.textContent = title;
+    }, 250);
+  }
+
+  // Clic sur les pastilles de couleur
+  colorSwatches.forEach(swatch => {
+    swatch.addEventListener('click', () => {
+      const img = swatch.getAttribute('data-image');
+      const name = swatch.getAttribute('title');
+      
+      updateGallery(img, name);
+
+      // Gestion du cercle de sélection
+      colorSwatches.forEach(s => s.classList.remove('ring-2', 'ring-[var(--color-gold)]', 'ring-offset-2'));
+      swatch.classList.add('ring-2', 'ring-[var(--color-gold)]', 'ring-offset-2');
+    });
+  });
+
+  // Clic sur les miniatures
+  thumbButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const img = btn.getAttribute('data-full');
+      updateGallery(img);
+
+      thumbButtons.forEach(b => b.classList.remove('active-thumb'));
+      btn.classList.add('active-thumb');
+    });
+  });
+</script>

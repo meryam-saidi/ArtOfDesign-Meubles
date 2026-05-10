@@ -1,11 +1,296 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import cuisinesData from '../data/cuisines.json';
+import dressingData from '../data/dressing.json';
+import meublesData from '../data/meubles.json';
+import projetsData from '../data/projets.json';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// On sépare les catégories (si vous en ajoutez d'autres dans le JSON plus tard)
+const cuisines = cuisinesData.filter(item => item.categorie === "Nos Cuisines");
+const dressing = dressingData;
+const meubles = meublesData;
+const projets = projetsData;
+
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="AD Cuisine | Accueil">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" is:inline></script>
+  
+
+
+  <main>
+    <section class="relative hero-slider-height bg-gray-900 overflow-hidden">
+    <div class="swiper mySwiper h-full w-full">
+        <div class="swiper-wrapper">
+        
+        <div class="swiper-slide relative">
+            <img src="/images/cuisine1.jpg" alt="Cuisine Moderne" class="w-full h-full object-cover" />
+            <div class="swiper-slide-content">
+            <h2 class="text-4xl md:text-7xl font-serif mb-4 leading-tight">L'art de la cuisine</h2>
+            <p class="max-w-xl text-lg md:text-xl text-gray-100 font-light tracking-wide">
+                Conception et installation sur mesure en Tunisie.
+            </p>
+            </div>
+        </div>
+
+        <div class="swiper-slide relative">
+            <img src="/images/cuisine2.jpg" alt="Design Italien" class="w-full h-full object-cover" />
+            <div class="swiper-slide-content">
+            <h2 class="text-4xl md:text-7xl font-serif mb-4 leading-tight">Élégance Intemporelle</h2>
+            <p class="max-w-xl text-lg md:text-xl text-gray-100 font-light tracking-wide">
+                Des matériaux nobles pour un résultat d'exception.
+            </p>
+            </div>
+        </div>
+
+        <div class="swiper-slide relative">
+            <img src="/images/cuisine3.jpg" alt="Espace Optimisé" class="w-full h-full object-cover opacity-70" />
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-4">
+            <h2 class="text-4xl md:text-6xl font-serif mb-4">Votre projet en 3D</h2>
+            <p class="max-w-xl text-lg text-gray-200 font-light">Visualisez votre future cuisine avant la pose.</p>
+            </div>
+        </div>
+
+        </div>
+        
+        <div class="swiper-pagination"></div>
+    </div>
+    </section>
+
+    <section id="cuisines" class="max-w-7xl mx-auto px-6 py-16 overflow-hidden">
+        <div class="flex items-center gap-4 mb-12">
+            <h2 class="bg-[#d4c38d] text-black px-6 py-2 font-bold uppercase tracking-widest text-sm">
+            <a href="/cuisines" >Cuisines</a>
+            </h2>
+            <div class="flex-1 h-[1px] bg-gray-200"></div>
+            
+            <div class="flex gap-2">
+            <button class="swiper-prev-cuisine p-2 border border-gray-200 hover:bg-[#d4c38d] transition-colors rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button class="swiper-next-cuisine p-2 border border-gray-200 hover:bg-[#d4c38d] transition-colors rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+            </div>
+        </div>
+
+        <div class="swiper cuisineSwiper px-2 py-4">
+            <div class="swiper-wrapper">
+            {cuisines.map((item) => (
+                <div class="swiper-slide h-auto">
+                <Card 
+                    type="cuisine"
+                    id={item.id}
+                    nom={item.nom} 
+                    prix={item.prix_initial} 
+                    promo={item.reduction} 
+                    image={item.image} 
+                />
+                </div>
+            ))}
+            </div>
+        </div>
+    </section>
+    
+    <section id="dressing" class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center gap-4 mb-12">
+            <h2 class="bg-[#d4c38d] text-black px-6 py-2 font-bold uppercase tracking-widest text-sm">
+            Dressing
+            </h2>
+            <div class="flex-1 h-[1px] bg-gray-200"></div>
+            
+            <div class="flex gap-2">
+            <button class="swiper-prev-cuisine p-2 border border-gray-200 hover:bg-[#d4c38d] transition-colors rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button class="swiper-next-cuisine p-2 border border-gray-200 hover:bg-[#d4c38d] transition-colors rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+            </div>
+        </div>
+
+        <div class="swiper cuisineSwiper px-2 py-4">
+            <div class="swiper-wrapper">
+            {dressing.map((item) => (
+                <div class="swiper-slide h-auto">
+                <Card 
+                    type="dressing"
+                    id={item.id}
+                    nom={item.nom} 
+                    prix={item.prix_initial} 
+                    promo={item.reduction} 
+                    image={item.image} 
+                />
+                </div>
+            ))}
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="meubles" class="max-w-7xl mx-auto px-6 py-16">
+        <div class="flex items-center gap-4 mb-12">
+            <h2 class="bg-[#d4c38d] text-black px-6 py-2 font-bold uppercase tracking-widest text-sm">
+            Meubles En Kit
+            </h2>
+            <div class="flex-1 h-[1px] bg-gray-200"></div>
+            
+            <div class="flex gap-2">
+            <button class="swiper-prev-cuisine p-2 border border-gray-200 hover:bg-[#d4c38d] transition-colors rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button class="swiper-next-cuisine p-2 border border-gray-200 hover:bg-[#d4c38d] transition-colors rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+            </div>
+        </div>
+
+        <div class="swiper cuisineSwiper px-2 py-4">
+            <div class="swiper-wrapper">
+            {meubles.map((item) => (
+                <div class="swiper-slide h-auto">
+                <Card 
+                    type="meuble"
+                    id={item.id}
+                    nom={item.nom} 
+                    prix={item.prix_initial} 
+                    promo={item.reduction} 
+                    image={item.image} 
+                />
+                </div>
+            ))}
+            </div>
+        </div>
+    </section>
+
+    <section class="relative hero-slider-height2 bg-gray-900 overflow-hidden">
+    <div class="swiper mySwiper h-full w-full">
+        <div class="swiper-wrapper">
+        
+        <div class="swiper-slide relative">
+            <img src="/images/imm.jpg" alt="Cuisine Moderne" class="w-full h-full object-cover" />
+            <div class="swiper-slide-content">
+            <h2 class="text-4xl md:text-7xl font-serif mb-4 leading-tight">L'art de la cuisine</h2>
+            <p class="max-w-xl text-lg md:text-xl text-gray-100 font-light tracking-wide">
+                Conception et installation sur mesure en Tunisie.
+            </p>
+            </div>
+        </div>
+
+        <div class="swiper-slide relative">
+            <img src="/images/imm.jpg" alt="Espace Optimisé" class="w-full h-full object-cover opacity-70" />
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-4">
+            <h2 class="text-4xl md:text-6xl font-serif mb-4">Votre projet en 3D</h2>
+            <p class="max-w-xl text-lg text-gray-200 font-light">Visualisez votre future cuisine avant la pose.</p>
+            </div>
+        </div>
+
+        </div>
+        
+        <div class="swiper-pagination"></div>
+    </div>
+    </section>
+
+
+    <section id="projets" class="max-w-7xl mx-auto px-6 py-16">
+        <div class="flex items-center gap-4 mb-12">
+            <h2 class="bg-[#d4c38d] text-black px-6 py-2 font-bold uppercase tracking-widest text-sm">
+            Projets
+            </h2>
+            <div class="flex-1 h-[1px] bg-gray-200"></div>
+            
+            <div class="flex gap-2">
+            <button class="swiper-prev-cuisine p-2 border border-gray-200 hover:bg-[#d4c38d] transition-colors rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button class="swiper-next-cuisine p-2 border border-gray-200 hover:bg-[#d4c38d] transition-colors rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+            </div>
+        </div>
+
+        <div class="swiper cuisineSwiper px-2 py-4">
+            <div class="swiper-wrapper">
+            {projets.map((item) => (
+                <div class="swiper-slide h-auto">
+                <Card 
+                    type="projet"
+                    id={item.id}
+                    nom={item.nom} 
+                    prix={item.prix_initial} 
+                    promo={item.reduction} 
+                    image={item.image} 
+                />
+                </div>
+            ))}
+            </div>
+        </div>
+    </section>
+
+  </main>
+
+  <section id="contact" class="bg-gray-50 py-24">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="section-title mb-4">Demande de devis</h2>
+      <p class="text-gray-500 italic">Réponse sous 48h maximum</p>
+    </div>
+
+    <form action="https://formspree.io/f/VOTRE_ID_ICI" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <input type="text" name="nom" placeholder="Votre Nom" required class="p-4 border border-gray-200 outline-none focus:border-[var(--color-gold)]" />
+      <input type="email" name="email" placeholder="Votre Email" required class="p-4 border border-gray-200 outline-none focus:border-[var(--color-gold)]" />
+      <input type="text" name="telephone" placeholder="Téléphone" class="p-4 border border-gray-200 outline-none focus:border-[var(--color-gold)] md:col-span-2" />
+      <textarea name="message" placeholder="Parlez-nous de votre projet..." rows="4" class="p-4 border border-gray-200 outline-none focus:border-[var(--color-gold)] md:col-span-2"></textarea>
+      
+      <button type="submit" class="md:col-span-2 bg-black text-white py-4 font-bold uppercase tracking-widest hover:bg-[var(--color-gold)] transition-colors">
+        Envoyer ma demande
+      </button>
+    </form>
+  </div>
+  </section>
+
 </Layout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const swiper = new Swiper(".mySwiper", {
+      loop: true,
+      autoplay: {
+        delay: 3500, // Change d'image toutes les 5 secondes
+        disableOnInteraction: false,
+      },
+      effect: "fade", // Effet de fondu élégant pour le luxe
+      fadeEffect: {
+        crossFade: true
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+  const cuisineSwiper = new Swiper(".cuisineSwiper", {
+    slidesPerView: 1, // Par défaut sur mobile
+    spaceBetween: 30,
+    loop: true,
+    navigation: {
+      nextEl: ".swiper-next-cuisine",
+      prevEl: ".swiper-prev-cuisine",
+    },
+    breakpoints: {
+      // Sur tablettes (md)
+      768: {
+        slidesPerView: 2,
+      },
+      // Sur desktop (lg)
+      1024: {
+        slidesPerView: 3,
+      },
+    },
+  });
+});
+</script>
+

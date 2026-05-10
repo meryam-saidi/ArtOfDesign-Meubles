@@ -1,0 +1,122 @@
+[
+  {
+    "id": "cui-001",
+    "nom": "Cuisine Aurora-M | 320cm",
+    "slug": "cuisine-aurora-m",
+    "forme": "L",
+    "description": "",
+    "categorie": "Nos Cuisines",
+    "prix_initial": 4500,
+    "reduction": 25,
+    "image": "/images/cuisine.webp",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/cuisine-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/cuisine-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/cuisine-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "cui-002",
+    "nom": "Cuisine Roma D-L | 400cm",
+    "slug": "cuisine-roma-dl",
+    "forme": "L",
+    "description": "",
+    "categorie": "Nos Cuisines",
+    "prix_initial": 5200,
+    "reduction": 15,
+    "image": "/images/cuisine.webp",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/cuisine-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/cuisine-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/cuisine-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "cui-002",
+    "nom": "Cuisine Roma D-L | 400cm",
+    "slug": "cuisine-roma-dl",
+    "forme": "L",
+    "description": "",
+    "categorie": "Nos Cuisines",
+    "prix_initial": 5200,
+    "reduction": 15,
+    "image": "/images/cuisine.webp",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/cuisine-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/cuisine-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/cuisine-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "cui-002",
+    "nom": "Cuisine Roma D-L | 400cm",
+    "slug": "cuisine-roma-dl",
+    "forme": "L",
+    "description": "",
+    "categorie": "Nos Cuisines",
+    "prix_initial": 5200,
+    "reduction": 15,
+    "image": "/images/cuisine.webp",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/cuisine-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/cuisine-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/cuisine-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "cui-002",
+    "nom": "Cuisine Roma D-L | 400cm",
+    "slug": "cuisine-roma-dl",
+    "forme": "L",
+    "description": "",
+    "categorie": "Nos Cuisines",
+    "prix_initial": 5200,
+    "reduction": 15,
+    "image": "/images/cuisine.webp",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/cuisine-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/cuisine-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/cuisine-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "cui-003",
+    "nom": "Cuisine Verveine-G | 450cm",
+    "slug": "cuisine-verveine-g",
+    "forme": "U",
+    "description": "",
+    "categorie": "Nos Cuisines",
+    "prix_initial": 6100,
+    "reduction": 20,
+    "image": "/images/cuisine.webp",
+    "en_stock": false,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/cuisine-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/cuisine-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/cuisine-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "cui-004",
+    "nom": "Cuisine forme-L | 750cm",
+    "slug": "cuisine-forme-l",
+    "forme": "I",
+    "description": "",
+    "categorie": "Nos Cuisines",
+    "prix_initial": 5800,
+    "reduction": 10,
+    "image": "/images/cuisine.webp",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/cuisine-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/cuisine-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/cuisine-blanc.jpg" }
+    ]
+  }
+  
+]

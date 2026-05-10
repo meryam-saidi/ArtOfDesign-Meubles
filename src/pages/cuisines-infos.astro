@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import cuisinesData from '../data/cuisines.json';
+
+// On définit les sections que l'on veut afficher
+const sectionsInfos = [
+  {
+    id: "forme-i-infos",
+    title: "La Cuisine en Forme de I (Linéaire)",
+    image: "/images/cuisine-i-info.png",
+    description: "Idéale pour les espaces étroits ou les studios, la cuisine en I concentre tous les éléments sur un seul pan de mur. C'est la solution gain de place par excellence qui offre un design épuré et minimaliste.",
+    avantages: ["Optimisation maximale de l'espace", "Coût d'installation réduit", "Idéal pour les cuisines ouvertes"],
+    labelBouton: "en Forme de I"
+  },
+  {
+    id: "forme-l-infos",
+    title: "La Cuisine en Forme de L",
+    image: "/images/cuisine-l-info.png",
+    description: "C'est la disposition la plus populaire. Elle occupe deux murs adjacents, créant un angle de travail naturel. Elle permet d'intégrer facilement une table à manger au centre de la pièce.",
+    avantages: ["Respect du triangle d'activité", "S'adapte à toutes les tailles de pièces", "Facilite la circulation"],
+    labelBouton: "en Forme de L"
+  },
+  {
+    id: "forme-u-infos",
+    title: "La Cuisine en Forme de U",
+    image: "/images/cuisine-u-info.png",
+    description: "Utilisant trois murs, la cuisine en U offre une surface de plan de travail généreuse et de nombreuses solutions de rangement. C'est le choix des passionnés de gastronomie qui veulent tout à portée de main.",
+    avantages: ["Volume de rangement exceptionnel", "Grande surface de préparation", "Espace de travail sécurisé"],
+    labelBouton: "en Forme de U"
+  },
+  {
+    id: "ilot-infos",
+    title: "La Cuisine avec Îlot Central",
+    image: "/images/cuisine-i-info.png",
+    description: "Véritable cœur de la maison, l'îlot central apporte convivialité et modernité. Il sert à la fois de zone de préparation, de coin repas et d'espace de rangement supplémentaire.",
+    avantages: ["Design haut de gamme", "Convivialité (cuisine spectacle)", "Polyvalence d'utilisation"],
+    labelBouton: "avec Îlot"
+  }
+];
+---
+
+<Layout title="Conseils d'Aménagement | AD Cuisine">
+  <main class="pt-10">
+    <section class="bg-gray-50 py-20 border-b border-gray-100">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h1 class="font-serif text-4xl md:text-5xl mb- italic">
+          Bien choisir la <span class="text-[var(--color-gold)]">forme de sa cuisine</span>
+        </h1>
+        <p class="text-gray-500 leading-relaxed font-light">
+          L'implantation est la clé d'une cuisine fonctionnelle. Découvrez nos conseils pour choisir la configuration qui sublimera votre intérieur selon vos besoins.
+        </p>
+      </div>
+    </section>
+
+    <div class="py-">
+      {sectionsInfos.map((item, index) => (
+        <section id={item.id} class={`py-20 scroll-mt-24 ${index % 2 !== 0 ? 'bg-gray-50' : 'bg-white'}`}>
+          <div class="max-w-7xl mx-auto px-6">
+            <div class={`flex flex-col md:flex-row items-center gap-12 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
+              
+              <div class="w-full md:w-1/2 relative group">
+                <div class="absolute -inset-4 border border-[var(--color-gold)]/20 translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500"></div>
+                <img 
+                  src={item.image} 
+                  alt={item.title} 
+                  class="relative w-full object-cover shadow-2xl rounded-sm"
+                />
+              </div>
+
+              <div class="w-full md:w-1/2">
+                <span class="text-[var(--color-gold)] font-bold text-xs uppercase tracking-[0.3em] mb-4 block">Configuration</span>
+                <h2 class="font-serif text-3xl md:text-4xl mb-6 italic text-gray-900">{item.title}</h2>
+                <p class="text-gray-600 mb-8 leading-relaxed font-light text-lg">
+                  {item.description}
+                </p>
+                
+                <div class="space-y-4">
+                  <h4 class="font-bold text-xs uppercase tracking-widest text-black">Points forts :</h4>
+                  <ul class="space-y-3">
+                    {item.avantages.map((adv) => (
+                      <li class="flex items-center gap-3 text-sm text-gray-500">
+                        <span class="w-1.5 h-1.5 bg-[var(--color-gold)] rounded-full"></span>
+                        {adv}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <a href={`/cuisines#${item.id.replace('-infos', '')}`} class="inline-block mt-10 px-8 py-3 bg-black text-white text-[10px] uppercase font-bold tracking-[0.2em] hover:bg-[var(--color-gold)] transition-colors">
+                Voir nos modèles {item.labelBouton}
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <section class="py-24 bg-white text-center border-t border-gray-100">
+      <div class="max-w-2xl mx-auto px-6">
+        <h3 class="font-serif text-3xl mb-6 italic">Vous hésitez encore ?</h3>
+        <p class="text-gray-500 mb-10 font-light">Nos experts concepteurs réalisent pour vous un plan 3D gratuit pour visualiser votre future cuisine.</p>
+        <button class="border-2 border-black px-10 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-black hover:text-white transition-all">
+          Demander une étude gratuite
+        </button>
+      </div>
+    </section>
+  </main>
+</Layout>

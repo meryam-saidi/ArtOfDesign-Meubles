@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import cuisinesData from '../data/cuisines.json';
+import dressingData from '../data/dressing.json';
+import meublesData from '../data/meubles.json';
+import projetsData from '../data/projets.json';
+
+// Note: On combine toutes les données pour la recherche globale
+const allProducts = [
+  ...cuisinesData.map(item => ({ ...item, type: 'cuisine' })),
+  ...dressingData.map(item => ({ ...item, type: 'dressing' })),
+  ...meublesData.map(item => ({ ...item, type: 'meubles' })),
+  ...projetsData.map(item => ({ ...item, type: 'projets' })),
+];
+---
+
+<Layout title="Résultats de recherche | AD Cuisine">
+  <main class="pt-32 pb-20 max-w-7xl mx-auto px-6">
+    <h1 class="font-serif text-3xl mb-8 italic">
+      Résultats pour : <span id="search-query" class="text-[var(--color-gold)]">...</span>
+    </h1>
+
+    <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      </div>
+
+    <div id="no-results" class="hidden text-center py-20">
+      <p class="text-gray-500 italic">Aucun modèle ne correspond à votre recherche.</p>
+      <a href="/cuisines" class="inline-block mt-6 text-[10px] uppercase tracking-widest font-bold border-b border-black">Voir tout le catalogue</a>
+    </div>
+  </main>
+</Layout>
+
+<script is:inline define:vars={{ allProducts }}>
+  // 1. Récupérer le terme de recherche dans l'URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const query = urlParams.get('q')?.toLowerCase() || "";
+  
+  const queryDisplay = document.getElementById('search-query');
+  const resultsGrid = document.getElementById('results-grid');
+  const noResults = document.getElementById('no-results');
+
+  if (queryDisplay) queryDisplay.textContent = query;
+
+  // 2. Filtrage multi-critères des produits
+  const filtered = allProducts.filter(p => 
+    p.nom.toLowerCase().includes(query) || 
+    (p.description && p.description.toLowerCase().includes(query)) ||
+    p.forme?.toLowerCase().includes(query)
+  );
+
+  // 3. Afficher les résultats
+  if (filtered.length > 0) {
+    resultsGrid.innerHTML = ""; // Vide la grille
+    filtered.forEach(p => {
+      // Génération du lien dynamique : /cuisine/id ou /dressing/id
+      const detailUrl = `/${p.type}/${p.id}`;
+      
+      const card = `
+        <div class="group bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100">
+          <div class="relative overflow-hidden aspect-[4/3]">
+            <img src="${p.image}" alt="${p.nom}" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-xl mb-2">${p.nom}</h3>
+            <p class="text-[var(--color-gold)] font-bold mb-4">${p.prix_initial} €</p>
+            <a href="${detailUrl}" class="block w-full py-3 border border-[#b5a264] text-[#b5a264] text-center rounded-md text-[10px] font-bold uppercase tracking-widest hover:bg-[#b5a264] hover:text-white transition-all">
+              Voir le projet
+            </a>
+          </div>
+        </div>
+      `;
+      resultsGrid.innerHTML += card;
+    });
+  } else {
+    noResults.classList.remove('hidden');
+  }
+</script>

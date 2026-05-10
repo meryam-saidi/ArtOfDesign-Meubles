@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import projetsData from '../data/projets.json';
+
+// On définit les sections que l'on veut afficher
+const sections = [
+  { id: "forme-i", label: "Dressing Forme I", valeur: "I" },
+  { id: "forme-l", label: "Dressing Forme L", valeur: "L" },
+  { id: "aLaFr", label: "A La Française", valeur: "Fr" },
+  { id: "coulissant", label: "Projets", valeur: "C" }
+];
+---
+
+<Layout title="Nos Modèles de Cuisines | AD Cuisine">
+<main class="pt- pb-20">
+    
+    <section class="max-w-7xl mx-auto px-6 py-8">
+      
+      <nav class="flex mb-6 text-[10px] uppercase tracking-widest text-gray-400">
+        <a href="/" class="hover:text-[var(--color-gold)] transition-colors">Accueil</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-800">projets</span>
+      </nav>
+      
+      <div class="relative w-full h-64 md:h-[400px] overflow-hidden rounded-sm shadow-lg mb- group">
+        
+        <img 
+          src="/images/imm.jpg" 
+          alt="Catalogue AD Cuisine" 
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+        />
+        
+        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-500"></div>
+        
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8 z-10">
+          <h1 class="font-serif text-4xl md:text-6xl text-white mb-3 italic leading-tight drop-shadow-md">
+            L'excellence <span class="text-[var(--color-gold)]">sur mesure</span>
+          </h1>
+          <p class="text-gray-100 font-light tracking-widest uppercase text-[10px] md:text-xs opacity-90 drop-shadow">
+            Découvrez notre collection complète
+          </p>
+          
+          <div class="w-16 h-px bg-[var(--color-gold)] mt-6"></div>
+        </div>
+      </div>
+    </section>
+
+    {sections.map((section) => {
+      // On filtre directement par forme dans le JSON complet
+      const produitsParForme = projetsData.filter(item => item.forme === section.valeur);
+
+      return produitsParForme.length > 0 && (
+        <section id={section.id} class="max-w-7xl mx-auto px-6 py-12 scroll-mt-32">
+          
+          <div class="flex items-center gap-4 mb-12">
+            <a 
+          href={`/cuisines-infos#${section.id}-infos`} 
+          class="group/title flex items-center transition-transform hover:translate-x-2"
+        >
+          <h2 class="bg-[#d4c38d] text-black px-6 py-2 font-bold uppercase tracking-widest text-sm group-hover/title:bg-black group-hover/title:text-white transition-colors duration-300">
+            {section.label}
+          </h2>
+        </a>
+            <div class="flex-1 h-[1px] bg-gray-200"></div>
+          </div>
+        
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {produitsParForme.map((item) => (
+              <Card 
+                type="projet"
+                id={item.id}
+                nom={item.nom} 
+                prix={item.prix_initial} 
+                promo={item.reduction} 
+                image={item.image} 
+              />
+            ))}
+          </div>
+        </section>
+      );
+    })}
+
+  </main>
+</Layout>

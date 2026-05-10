@@ -1,0 +1,168 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Le doré de votre logo AD */
+    --color-gold: #b5a264; 
+    --color-gold-light: #d4c38d;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  
+  .header-responsive {
+    @apply sticky top-0 z-50 w-full transition-all duration-300;
+    /*
+    background-image: url('/images/header-texture.jpg');
+    background-size: cover;
+    background-position: center;
+    */
+  }
+
+  .header-responsive.is-scrolled {
+    /*height: 4rem; */
+    @apply shadow-md backdrop-blur-md;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  /* Ajustement automatique du logo au scroll */
+  /*
+  .header-responsive.is-scrolled .logo-img {
+    @apply h-8 md:h-10;
+  }
+  */
+
+  /* Ajustement des liens au scroll */
+  .header-responsive.is-scrolled .nav-link {
+    @apply py-2 text-gray-900;
+  }
+
+.nav-item-dropdown {
+  /*    @apply relative py-4 flex items-center gap-1 cursor-pointer group; */
+    @apply relative py-4 flex items-center gap-1 cursor-pointer;
+  }
+
+  /* Le sous-menu (Dropdown) */
+  .dropdown-menu {
+    @apply absolute top-full left-0 w-48 bg-white shadow-xl border-t-2 border-[var(--color-gold)] 
+           opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 
+           transition-all duration-300 z-50 flex flex-col py-2;
+  }
+
+  /* Les liens à l'intérieur du sous-menu */
+  .dropdown-link {
+    @apply px-4 py-2 text-[10px] text-gray-600 hover:bg-gray-50 hover:text-[var(--color-gold)] transition-colors;
+  }
+
+  /* Petit indicateur flèche (optionnel) */
+  .dropdown-arrow {
+    @apply w-2 h-2 border-b border-r border-gray-400 rotate-45 mb-1 transition-transform group-hover:rotate-[225deg] group-hover:border-[var(--color-gold)];
+  }
+
+  /* Menu Mobile (caché par défaut sur petit écran, affiché sur desktop) */
+  .nav-menu {
+    @apply hidden md:flex gap-8 items-center;
+  }
+
+  /* État du menu mobile quand il est "ouvert" */
+  .nav-menu.active {
+    @apply flex flex-col absolute top-full left-0 w-full bg-white border-b border-gray-100 p-6 gap-6 shadow-xl;
+  }
+
+  /* Logo : on réduit sa taille sur mobile */
+  .logo-img {
+    @apply h-10 md:h-24 w-auto object-contain;
+  }
+  
+  .logo-img:hover {
+    @apply scale-105;
+  }
+
+  /* Bouton Burger (visible uniquement sur mobile) */
+  .burger-menu {
+    @apply flex md:hidden flex-col gap-1.5 cursor-pointer p-2;
+  }
+
+  .burger-bar {
+    @apply w-6 h-0.5 bg-black transition-all;
+  }
+  
+  .hero-slider-height {
+    height: 80vh; /* Ajustez cette valeur selon votre préférence (ex: 80vh, 90vh ou 600px) */
+  }
+
+  /*Ajustement pour mobile pour que l'image ne soit pas trop haute */
+  @media (max-width: 768px) {
+    .hero-slider-height {
+      height: 60vh;
+    }
+  }
+
+  /* Style pour centrer le contenu du slide Swiper */
+  .swiper-slide-content {
+    @apply absolute inset-0 flex flex-col items-center justify-center text-white text-center p-6 z-10;
+    background: rgba(0, 0, 0, 0.3); /* Overlay léger intégré */
+  }
+
+  /* Animation pour les cartes produits */
+  .card-hover {
+    @apply transition-all duration-500 ease-out;
+  }
+  
+  .card-hover:hover {
+    @apply -translate-y-2 shadow-2xl;
+  }
+
+  /* Style pour les titres de section (le ruban doré) */
+  .section-title {
+    @apply bg-[var(--color-gold-light)] text-black px-8 py-3 font-bold uppercase tracking-[0.2em] text-xs inline-block;
+  }
+}
+
+  .swiper-pagination-bullet-active {
+    background: #b5a264 !important;
+  }
+  .swiper-pagination-bullet {
+    background: #fff;
+    opacity: 0.7;
+  }
+
+  
+  .hero-slider-height2 {
+    height: 60vh; /* Ajustez cette valeur selon votre préférence (ex: 80vh, 90vh ou 600px) */
+  }
+/*
+  .footer-bg-custom {
+    background-image: url('/images/header-texture.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+*/
+  .footer-column {
+    @apply flex flex-col gap-4 text-[11px] uppercase tracking-widest text-gray-700;
+  }
+
+  .footer-link {
+    @apply hover:text-[var(--color-gold)] transition-colors duration-300;
+  }
+
+  .footer-title {
+    @apply font-bold text-black mb-2 text-xs;
+  }
+
+  .thumb-btn {
+    @apply flex-shrink-0 border-2 border-transparent transition-all opacity-60 hover:opacity-100 rounded-sm overflow-hidden;
+  }
+  .active-thumb {
+    @apply border-[var(--color-gold)] opacity-100 scale-95;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }

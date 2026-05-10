@@ -1,0 +1,122 @@
+[
+  {
+    "id": "dr-001",
+    "nom": "dressing Aurora-M | 320cm",
+    "slug": "dressing-aurora-m",
+    "forme": "L",
+    "description": "",
+    "categorie": "Nos dressings",
+    "prix_initial": 4500,
+    "reduction": 25,
+    "image": "/images/dressing.jpg",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/dressing-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/dressing-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/dressing-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "dr-002",
+    "nom": "dressing Roma D-L | 400cm",
+    "slug": "dressing-roma-dl",
+    "forme": "L",
+    "description": "",
+    "categorie": "Nos dressings",
+    "prix_initial": 5200,
+    "reduction": 15,
+    "image": "/images/dressing.jpg",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/dressing-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/dressing-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/dressing-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "dr-002",
+    "nom": "dressing Roma D-L | 400cm",
+    "slug": "dressing-roma-dl",
+    "forme": "L",
+    "description": "",
+    "categorie": "Nos dressings",
+    "prix_initial": 5200,
+    "reduction": 15,
+    "image": "/images/dressing.jpg",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/dressing-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/dressing-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/dressing-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "dr-002",
+    "nom": "dressing Roma D-L | 400cm",
+    "slug": "dressing-roma-dl",
+    "forme": "L",
+    "description": "",
+    "categorie": "Nos dressings",
+    "prix_initial": 5200,
+    "reduction": 15,
+    "image": "/images/dressing.jpg",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/dressing-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/dressing-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/dressing-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "dr-002",
+    "nom": "dressing Roma D-L | 400cm",
+    "slug": "dressing-roma-dl",
+    "forme": "L",
+    "description": "",
+    "categorie": "Nos dressings",
+    "prix_initial": 5200,
+    "reduction": 15,
+    "image": "/images/dressing.jpg",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/dressing-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/dressing-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/dressing-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "dr-003",
+    "nom": "dressing Verveine-G | 450cm",
+    "slug": "dressing-verveine-g",
+    "forme": "U",
+    "description": "",
+    "categorie": "Nos dressings",
+    "prix_initial": 6100,
+    "reduction": 20,
+    "image": "/images/dressing.jpg",
+    "en_stock": false,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/dressing-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/dressing-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/dressing-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "dr-004",
+    "nom": "dressing forme-L | 750cm",
+    "slug": "dressing-forme-l",
+    "forme": "I",
+    "description": "",
+    "categorie": "Nos dressings",
+    "prix_initial": 5800,
+    "reduction": 10,
+    "image": "/images/dressing.jpg",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/dressing-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/dressing-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/dressing-blanc.jpg" }
+    ]
+  }
+  
+]

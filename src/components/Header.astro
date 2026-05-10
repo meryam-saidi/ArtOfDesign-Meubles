@@ -1,0 +1,116 @@
+---
+import '../styles/global.css';
+---
+
+<header id="main-header" class="header-responsive border-b border-gray-100">
+  <nav class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-24 flex items-center justify-between">
+    
+    <a href="/" class="z-20">
+      <img src="/images/logo.png" alt="Logo AD" class="logo-img" />
+    </a>
+
+    <div class="md:hidden mt- px-2">
+      <form action="/search" method="GET" class="relative">
+        <input 
+          type="text" 
+          name="q" 
+          placeholder="Recherche..." 
+          class="w-40 focus:w-64 bg-transparent border-b border-gray-200 py-1 pr-8 text-[10px] uppercase tracking-widest focus:outline-none focus:border-[var(--color-gold)] transition-all duration-300"
+        />
+        <button type="submit" class="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </button>
+      </form>
+    </div>
+    
+    <div id="menu" class="nav-menu">
+      <div class="flex flex-col md:flex-row gap-6 md:gap-8 text-[11px] uppercase tracking-[0.2em] font-bold text-gray-800">
+        
+        <div class="group relative py-4 flex items-center gap-1 cursor-pointer">
+          <a href="/cuisines" class="hover:text-[var(--color-gold)]">Cuisines</a>
+          <span class="dropdown-arrow"></span>
+          <div class="dropdown-menu">
+            <a href="/cuisines#forme-i" class="dropdown-link">Cuisine Forme I</a>
+            <a href="/cuisines#forme-l" class="dropdown-link">Cuisine Forme L</a>
+            <a href="/cuisines#forme-u" class="dropdown-link">Cuisine Forme U</a>
+            <a href="/cuisines#ilot" class="dropdown-link">Îlot Central</a>
+          </div>
+        </div>
+
+        <div class="group relative py-4 flex items-center gap-1 cursor-pointer">
+          <a href="/dressing" class="hover:text-[var(--color-gold)]">Dressing</a>
+          <span class="dropdown-arrow"></span>
+          <div class="dropdown-menu">
+            <a href="/dressing#forme-i" class="dropdown-link">Dressing Forme I</a>
+            <a href="/dressing#forme-l" class="dropdown-link">Dressing Forme L</a>
+          </div>
+        </div>
+
+        <div class="group relative py-4 flex items-center gap-1 cursor-pointer">
+          <a href="/meubles" class="hover:text-[var(--color-gold)]">Meubles</a>
+          <span class="dropdown-arrow"></span>
+          <div class="dropdown-menu">
+            <a href="/meubles#colonnes" class="dropdown-link">Kit Cuisine</a>
+            <a href="/meubles#meuble-dressing" class="dropdown-link">Kit Dressing</a>
+          </div>
+        </div>
+
+        <a href="/projets" class="py-4 hover:text-[var(--color-gold)] self-center">Projets</a>
+      </div>
+
+      <div class="mt-auto pt-10 md:hidden">
+        <p class="text-[9px] uppercase tracking-widest text-gray-400 mb-2">Besoin d'aide ?</p>
+        <a href="tel:+216XXXXXX" class="text-[11px] font-bold">+216 XX XXX XXX</a>
+      </div>
+
+    </div>
+
+    <div class="hidden lg:block mr-4">
+      <form action="/search" method="GET" class="relative">
+        <input 
+          type="text" 
+          name="q" 
+          placeholder="Recherche..." 
+          class="w-40 focus:w-64 bg-transparent border-b border-gray-200 py-1 pr-8 text-[10px] uppercase tracking-widest focus:outline-none focus:border-[var(--color-gold)] transition-all duration-300"
+        />
+        <button type="submit" class="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <div id="burger" class="burger-menu md:hidden">
+      <span class="burger-bar"></span>
+      <span class="burger-bar"></span>
+      <span class="burger-bar"></span>
+    </div>
+    
+  </nav>
+</header>
+
+<script is:inline>
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('menu');
+
+    burger?.addEventListener('click', () => {
+        menu?.classList.toggle('active');
+        burger?.classList.toggle('open');
+    });
+</script>
+
+<script is:inline>
+    const header = document.getElementById('main-header');
+
+    window.addEventListener('scroll', () => {
+        // Si on scrolle de plus de 50px, on active l'état réduit
+        if (window.scrollY > 50) {
+        header.classList.add('is-scrolled');
+        } else {
+        header.classList.remove('is-scrolled');
+        }
+    });
+</script>

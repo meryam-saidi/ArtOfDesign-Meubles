@@ -1,0 +1,122 @@
+[
+  {
+    "id": "proj-001",
+    "nom": "projet Aurora-M | 320cm",
+    "slug": "projet-aurora-m",
+    "forme": "C",
+    "description": "",
+    "categorie": "Nos projets",
+    "prix_initiaC": 4500,
+    "reduction": 25,
+    "image": "/images/projet.jpg",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/projet-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/projet-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "proj-002",
+    "nom": "projet Roma D-L | 400cm",
+    "slug": "projet-roma-dl",
+    "forme": "C",
+    "description": "",
+    "categorie": "Nos projets",
+    "prix_initial": 5200,
+    "reduction": 15,
+    "image": "/images/projet.jpg",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/projet-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/projet-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "proj-002",
+    "nom": "projet Roma D-L | 400cm",
+    "slug": "projet-roma-dl",
+    "forme": "C",
+    "description": "",
+    "categorie": "Nos projets",
+    "prix_initial": 5200,
+    "reduction": 15,
+    "image": "/images/projet.jpg",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/projet-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/projet-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "proj-002",
+    "nom": "projet Roma D-L | 400cm",
+    "slug": "projet-roma-dl",
+    "forme": "D",
+    "description": "",
+    "categorie": "Nos projets",
+    "prix_initial": 5200,
+    "reduction": 15,
+    "image": "/images/projet.jpg",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/projet-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/projet-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "proj-002",
+    "nom": "projet Roma D-L | 400cm",
+    "slug": "projet-roma-dl",
+    "forme": "H",
+    "description": "",
+    "categorie": "Nos projets",
+    "prix_initial": 5200,
+    "reduction": 15,
+    "image": "/images/projet.jpg",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/projet-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/projet-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "proj-003",
+    "nom": "projet Verveine-G | 450cm",
+    "slug": "projet-verveine-g",
+    "forme": "D",
+    "description": "",
+    "categorie": "Nos projets",
+    "prix_initial": 6100,
+    "reduction": 20,
+    "image": "/images/projet.jpg",
+    "en_stock": false,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/projet-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/projet-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "proj-004",
+    "nom": "projet forme-L | 750cm",
+    "slug": "projet-forme-l",
+    "forme": "B",
+    "description": "",
+    "categorie": "Nos projets",
+    "prix_initial": 5800,
+    "reduction": 10,
+    "image": "/images/projet.jpg",
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/projet-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/projet-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
+    ]
+  }
+  
+]
