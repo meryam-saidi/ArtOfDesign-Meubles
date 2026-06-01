@@ -1,0 +1,575 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import cuisinesData from '../data/cuisines.json';
+import dressingData from '../data/dressing.json';
+import meublesData from '../data/meubles.json';
+import projetsData from '../data/projets.json';
+
+const cuisines = cuisinesData.filter(item => item.categorie === "Nos Cuisines");
+const dressing = dressingData;
+const meubles = meublesData;
+const projets = projetsData;
+
+const categories = [
+  { id: 'cuisines',  label: 'Cuisines',    sub: 'Sur mesure',       image: '/images/cuisine1.jpg',  link: '/cuisines' },
+  { id: 'dressings', label: 'Dressings',   sub: 'Élégance pure',    image: '/images/cuisine2.jpg',  link: '/dressings' },
+  { id: 'meubles',   label: 'Mobilier',    sub: 'Design exclusif',  image: '/images/cuisine3.jpg',  link: '/meubles' },
+  { id: 'tv',        label: 'Unités TV',   sub: 'Art & fonction',   image: '/images/imm.jpg',       link: '/tv' },
+  { id: 'chambres',  label: 'Chambres',    sub: 'Intimité raffinée',image: '/images/cuisine1.jpg',  link: '/chambres' },
+  { id: 'bureaux',   label: 'Home Office', sub: 'Espace & clarté',  image: '/images/cuisine2.jpg',  link: '/bureaux' },
+];
+---
+
+<Layout title="Art Of Design | Meubles sur Mesure">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" is:inline></script>
+
+  <style is:global>
+    :root {
+      --cream:   #f5f0e8;
+      --cream2:  #ede7d9;
+      --sand:    #d9cfc0;
+      --walnut:  #3d2b1f;
+      --clay:    #7a3d2a;
+      --terra:   #9c5035;
+      --olive:   #5a5e3f;
+      --grey:    #8a8378;
+      --white:   #faf8f4;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--walnut);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* CURSOR */
+    .cur      { position:fixed; width:8px; height:8px; background:var(--clay); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); }
+    .cur-ring { position:fixed; width:30px; height:30px; border:1px solid rgba(122,61,42,.4); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all .14s ease; }
+
+    /* LOADER */
+    #loader { position:fixed; inset:0; z-index:2000; background:var(--walnut); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.2rem; }
+    .ld-logo { font-family:'DM Serif Display',serif; font-size:clamp(2rem,7vw,4.5rem); color:var(--cream); letter-spacing:.15em; opacity:0; animation:ldF 1s ease .2s forwards; }
+    .ld-logo em { font-style:italic; color:var(--sand); }
+    .ld-bar  { width:0; height:1px; background:var(--sand); animation:ldB 1.4s ease .7s forwards; }
+    .ld-sub  { font-size:.5rem; letter-spacing:.5em; text-transform:uppercase; color:rgba(217,207,192,.5); opacity:0; animation:ldF .8s ease 1.4s forwards; }
+    @keyframes ldF { to { opacity:1; } }
+    @keyframes ldB { to { width:160px; } }
+
+    /* NAV */
+    nav { position:fixed; top:0; left:0; right:0; z-index:500; display:flex; align-items:center; justify-content:space-between; padding:2rem 3.5rem; transition:all .4s ease; }
+    nav.scrolled { background:rgba(245,240,232,.93); backdrop-filter:blur(16px); padding:1.1rem 3.5rem; border-bottom:1px solid var(--sand); }
+    .nav-logo { font-family:'DM Serif Display',serif; font-size:1.2rem; letter-spacing:.1em; color:var(--walnut); text-decoration:none; }
+    .nav-logo em { font-style:italic; color:var(--terra); }
+    .nav-links { display:flex; gap:2.5rem; list-style:none; }
+    .nav-links a { font-size:.58rem; letter-spacing:.22em; text-transform:uppercase; color:var(--grey); text-decoration:none; transition:color .3s; }
+    .nav-links a:hover { color:var(--walnut); }
+    .nav-cta { font-size:.55rem; letter-spacing:.25em; text-transform:uppercase; font-weight:500; color:var(--white); background:var(--walnut); padding:.6rem 1.6rem; text-decoration:none; transition:background .3s; }
+    .nav-cta:hover { background:var(--clay); }
+    .nav-burger { display:none; flex-direction:column; gap:5px; cursor:none; }
+    .nav-burger span { width:22px; height:1px; background:var(--walnut); display:block; }
+    @media(max-width:768px){ nav { padding:1.25rem 1.5rem; } nav.scrolled { padding:1rem 1.5rem; } .nav-links,.nav-cta{ display:none; } .nav-burger{ display:flex; } }
+
+    /* HERO */
+    #hero { min-height:100svh; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr auto; background:var(--white); overflow:hidden; }
+    .hero-img { grid-column:1; grid-row:1/3; position:relative; overflow:hidden; }
+    .hero-img img { width:100%; height:100%; object-fit:cover; transform:scale(1.07); animation:hz 9s ease forwards; }
+    @keyframes hz { to { transform:scale(1); } }
+    .hero-img::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom,rgba(61,43,31,.08),rgba(61,43,31,.32)); }
+    .hero-text { grid-column:2; grid-row:1; display:flex; flex-direction:column; justify-content:flex-end; padding:6rem 4rem 3rem; background:var(--white); }
+    .hero-eye  { font-size:.52rem; letter-spacing:.45em; text-transform:uppercase; color:var(--terra); margin-bottom:1.5rem; opacity:0; animation:su .8s ease 2.2s forwards; }
+    .hero-h1   { font-family:'DM Serif Display',serif; font-size:clamp(2.6rem,5vw,5.2rem); line-height:1.0; color:var(--walnut); opacity:0; animation:su 1s ease 2.4s forwards; }
+    .hero-h1 em { font-style:italic; color:var(--clay); }
+    .hero-rule { width:36px; height:1px; background:var(--sand); margin:2rem 0; opacity:0; animation:su .6s ease 2.7s forwards; }
+    .hero-p    { font-size:.8rem; line-height:2; color:var(--grey); max-width:340px; opacity:0; animation:su .8s ease 2.9s forwards; }
+    .hero-btns { display:flex; gap:1rem; margin-top:2.5rem; opacity:0; animation:su .8s ease 3.1s forwards; }
+    .hero-bar  { grid-column:2; grid-row:2; background:var(--cream2); display:flex; align-items:center; justify-content:space-between; padding:1.4rem 4rem; border-top:1px solid var(--sand); opacity:0; animation:fi .8s ease 3.4s forwards; }
+    .hb-stat   { text-align:center; }
+    .hb-num    { font-family:'DM Serif Display',serif; font-size:1.8rem; color:var(--walnut); }
+    .hb-lbl    { font-size:.48rem; letter-spacing:.22em; text-transform:uppercase; color:var(--grey); margin-top:.2rem; }
+    .hb-sep    { width:1px; height:28px; background:var(--sand); }
+    @keyframes su { from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none} }
+    @keyframes fi { to{opacity:1} }
+    .btn-w { font-size:.55rem; letter-spacing:.28em; text-transform:uppercase; font-weight:500; background:var(--walnut); color:var(--cream); padding:.9rem 2.2rem; text-decoration:none; transition:background .3s; }
+    .btn-w:hover { background:var(--clay); }
+    .btn-o { font-size:.55rem; letter-spacing:.28em; text-transform:uppercase; border:1px solid var(--sand); color:var(--walnut); padding:.9rem 1.8rem; text-decoration:none; transition:border-color .3s; }
+    .btn-o:hover { border-color:var(--walnut); }
+    @media(max-width:768px){ #hero{ grid-template-columns:1fr; grid-template-rows:50vh 1fr auto; } .hero-img{ grid-column:1; grid-row:1; } .hero-text{ grid-column:1; grid-row:2; padding:3rem 1.5rem 2rem; } .hero-bar{ grid-column:1; grid-row:3; padding:1.2rem 1.5rem; } }
+
+    /* MARQUEE */
+    .mq      { background:var(--walnut); padding:.85rem 0; overflow:hidden; }
+    .mq-trk  { display:flex; gap:2.5rem; width:max-content; animation:mqs 30s linear infinite; }
+    .mq-item { font-size:.52rem; letter-spacing:.35em; text-transform:uppercase; color:var(--sand); white-space:nowrap; font-weight:300; }
+    .mq-dot  { color:var(--terra); }
+    @keyframes mqs { from{transform:translateX(0)}to{transform:translateX(-50%)} }
+
+    /* SHARED */
+    .s-lbl  { font-size:.5rem; letter-spacing:.45em; text-transform:uppercase; color:var(--terra); display:block; margin-bottom:.8rem; }
+    .s-ttl  { font-family:'DM Serif Display',serif; font-size:clamp(1.8rem,3.5vw,3.2rem); line-height:1.1; color:var(--walnut); }
+    .s-ttl em { font-style:italic; color:var(--clay); }
+    .s-rule { width:36px; height:1px; background:var(--sand); margin:1.5rem 0; }
+
+    /* PHILOSOPHY */
+    #phil { background:var(--white); display:grid; grid-template-columns:1fr 1fr; min-height:75vh; }
+    .phil-imgs { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:3px; overflow:hidden; }
+    .phil-imgs img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s ease; }
+    .phil-imgs img:hover { transform:scale(1.04); }
+    .phil-img1 { grid-column:1; grid-row:1/3; }
+    .phil-img2 { grid-column:2; grid-row:1; }
+    .phil-badge { grid-column:2; grid-row:2; background:var(--clay); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.35rem; }
+    .phil-badge strong { font-family:'DM Serif Display',serif; font-size:3rem; color:var(--cream); line-height:1; }
+    .phil-badge span   { font-size:.48rem; letter-spacing:.28em; text-transform:uppercase; color:rgba(245,240,232,.65); text-align:center; }
+    .phil-txt { padding:5rem 4rem 5rem 4rem; display:flex; flex-direction:column; justify-content:center; }
+    .phil-txt p { font-size:.8rem; line-height:2; color:var(--grey); max-width:360px; margin-top:1rem; }
+    @media(max-width:768px){ #phil{ grid-template-columns:1fr; } .phil-imgs{ min-height:320px; } .phil-txt{ padding:3rem 1.5rem; } }
+
+    /* CATEGORIES */
+    #cats { background:var(--cream); padding:7rem 3.5rem; }
+    .cats-hd { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3rem; }
+    .cats-mosaic { display:grid; grid-template-columns:1.4fr 1fr 1fr; grid-template-rows:300px 300px; gap:3px; }
+    .ct { position:relative; overflow:hidden; display:block; text-decoration:none; cursor:none; }
+    .ct:nth-child(1) { grid-row:1/3; }
+    .ct img { width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.25,.46,.45,.94); filter:brightness(.75); display:block; }
+    .ct:hover img { transform:scale(1.05); filter:brightness(.52); }
+    .ct-body { position:absolute; bottom:0; left:0; right:0; padding:2rem; background:linear-gradient(to top,rgba(61,43,31,.88),transparent); }
+    .ct-sub  { font-size:.46rem; letter-spacing:.35em; text-transform:uppercase; color:var(--sand); display:block; margin-bottom:.3rem; }
+    .ct-name { font-family:'DM Serif Display',serif; font-size:1.7rem; color:var(--white); line-height:1.1; }
+    .ct-cta  { font-size:.48rem; letter-spacing:.18em; text-transform:uppercase; color:var(--sand); display:flex; align-items:center; gap:.4rem; margin-top:.6rem; opacity:0; transform:translateY(5px); transition:all .4s ease; }
+    .ct:hover .ct-cta { opacity:1; transform:translateY(0); }
+    @media(max-width:768px){ #cats{ padding:4rem 1rem; } .cats-hd{ flex-direction:column; gap:1.5rem; align-items:flex-start; } .cats-mosaic{ grid-template-columns:1fr 1fr; grid-template-rows:repeat(4,180px); } .ct:nth-child(1){ grid-row:1; } }
+
+    /* EDITORIAL BAND */
+    .ed-band { background:var(--cream2); padding:5rem 3.5rem; display:grid; grid-template-columns:1fr 2fr 1fr; gap:3rem; align-items:center; border-top:1px solid var(--sand); border-bottom:1px solid var(--sand); }
+    .ed-ghost { font-family:'DM Serif Display',serif; font-size:clamp(5rem,13vw,11rem); font-style:italic; line-height:.85; color:rgba(61,43,31,.06); text-align:center; user-select:none; }
+    .ed-mid   { text-align:center; }
+    .ed-quote { font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(.95rem,1.8vw,1.35rem); line-height:1.75; color:var(--walnut); max-width:420px; margin:1rem auto 0; }
+    .ed-right { display:flex; flex-direction:column; gap:3px; }
+    .ed-right img { width:100%; aspect-ratio:1; object-fit:cover; display:block; }
+    @media(max-width:768px){ .ed-band{ grid-template-columns:1fr; padding:3rem 1.5rem; } .ed-right{ display:none; } }
+
+    /* PRODUCT BLOCKS */
+    .pb { padding:5rem 3.5rem; }
+    .pb:nth-of-type(odd)  { background:var(--white); }
+    .pb:nth-of-type(even) { background:var(--cream); }
+    .pb-hd  { display:flex; align-items:center; justify-content:space-between; margin-bottom:2.5rem; }
+    .pb-tag { display:flex; align-items:center; gap:1.5rem; }
+    .pb-lbl { font-size:.52rem; letter-spacing:.3em; text-transform:uppercase; font-weight:500; color:var(--white); background:var(--walnut); padding:.35rem 1rem; }
+    .pb-line{ flex:1 1 60px; height:1px; background:var(--sand); }
+    .pb-nav { display:flex; gap:.5rem; }
+    .pb-btn { width:40px; height:40px; border:1px solid var(--sand); background:transparent; color:var(--walnut); display:flex; align-items:center; justify-content:center; cursor:none; transition:all .3s; }
+    .pb-btn:hover { background:var(--walnut); color:var(--cream); border-color:var(--walnut); }
+    @media(max-width:768px){ .pb{ padding:3rem 1rem; } }
+
+    /* PROCESS */
+    #proc { background:var(--walnut); padding:7rem 3.5rem; }
+    #proc .s-lbl  { color:var(--sand); }
+    #proc .s-ttl  { color:var(--cream); }
+    #proc .s-ttl em { color:var(--sand); }
+    #proc .s-rule { background:rgba(217,207,192,.25); }
+    .proc-grid { display:grid; grid-template-columns:repeat(4,1fr); margin-top:4rem; }
+    .ps { padding:2rem; border-left:1px solid rgba(217,207,192,.12); }
+    .ps-n { font-family:'DM Serif Display',serif; font-size:3rem; color:rgba(245,240,232,.1); line-height:1; margin-bottom:1.2rem; }
+    .ps-t { font-family:'DM Serif Display',serif; font-size:1.2rem; color:var(--cream); margin-bottom:.6rem; }
+    .ps-d { font-size:.73rem; line-height:1.9; color:rgba(217,207,192,.5); }
+    @media(max-width:768px){ #proc{ padding:4rem 1.5rem; } .proc-grid{ grid-template-columns:1fr 1fr; gap:2rem; } }
+
+    /* TESTIMONIALS */
+    #testi { background:var(--cream2); padding:7rem 3.5rem; border-top:1px solid var(--sand); }
+    .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:4rem; }
+    .tc { background:var(--white); padding:2.5rem; transition:background .3s; }
+    .tc:hover { background:var(--cream); }
+    .tc-stars { color:var(--terra); letter-spacing:.12em; margin-bottom:1rem; }
+    .tc-q { font-family:'Playfair Display',serif; font-style:italic; font-size:.95rem; line-height:1.75; color:var(--walnut); margin-bottom:1.5rem; }
+    .tc-who { font-size:.52rem; letter-spacing:.2em; text-transform:uppercase; color:var(--grey); }
+    .tc-who strong { color:var(--clay); font-weight:500; }
+    @media(max-width:768px){ #testi{ padding:4rem 1.5rem; } .testi-grid{ grid-template-columns:1fr; gap:2px; } }
+
+    /* CONTACT */
+    #contact { background:var(--white); display:grid; grid-template-columns:1fr 1fr; }
+    .cv { position:relative; overflow:hidden; min-height:500px; }
+    .cv img { width:100%; height:100%; object-fit:cover; display:block; }
+    .cv-ov { position:absolute; inset:0; background:rgba(61,43,31,.52); display:flex; flex-direction:column; justify-content:flex-end; padding:4rem; }
+    .cv-h { font-family:'DM Serif Display',serif; font-size:clamp(2rem,4vw,3.8rem); color:var(--cream); line-height:1.1; }
+    .cv-h em { font-style:italic; color:var(--sand); }
+    .cv-s { font-size:.55rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(245,240,232,.6); margin-top:.8rem; }
+    .cfw { padding:5rem 4rem; background:var(--cream); display:flex; flex-direction:column; justify-content:center; }
+    .cf { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+    .cfr { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .cfg { display:flex; flex-direction:column; gap:.35rem; }
+    .cfl { font-size:.48rem; letter-spacing:.3em; text-transform:uppercase; color:var(--grey); }
+    .cfi,.cft,.cfs { background:var(--white); border:1px solid var(--sand); padding:.9rem 1.1rem; font-family:'Jost'; font-size:.8rem; font-weight:300; color:var(--walnut); outline:none; transition:border-color .3s; width:100%; }
+    .cfi::placeholder,.cft::placeholder { color:var(--sand); }
+    .cfi:focus,.cft:focus,.cfs:focus { border-color:var(--walnut); }
+    .cft { resize:vertical; min-height:110px; }
+    .cfs { appearance:none; cursor:none; }
+    .cfs option { background:var(--white); }
+    .cf-sub { background:var(--walnut); border:none; padding:1rem 2.5rem; font-family:'Jost'; font-size:.52rem; letter-spacing:.28em; text-transform:uppercase; font-weight:500; color:var(--cream); cursor:none; transition:background .3s; align-self:flex-start; }
+    .cf-sub:hover { background:var(--clay); }
+    @media(max-width:768px){ #contact{ grid-template-columns:1fr; } .cv{ min-height:280px; } .cfw{ padding:3rem 1.5rem; } .cfr{ grid-template-columns:1fr; } }
+
+    /* FOOTER */
+    footer { background:var(--walnut); padding:4rem 3.5rem 2.5rem; }
+    .ft { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; padding-bottom:3rem; border-bottom:1px solid rgba(217,207,192,.1); }
+    .ft-logo { font-family:'DM Serif Display',serif; font-size:1.3rem; letter-spacing:.1em; color:var(--cream); text-decoration:none; display:block; margin-bottom:.8rem; }
+    .ft-logo em { font-style:italic; color:var(--sand); }
+    .ft-tag { font-size:.68rem; line-height:1.8; color:rgba(217,207,192,.4); max-width:200px; }
+    .fc-t { font-size:.48rem; letter-spacing:.35em; text-transform:uppercase; color:var(--sand); margin-bottom:1.2rem; }
+    .fc-l { list-style:none; display:flex; flex-direction:column; gap:.7rem; }
+    .fc-l a { font-size:.7rem; color:rgba(217,207,192,.4); text-decoration:none; transition:color .3s; }
+    .fc-l a:hover { color:var(--sand); }
+    .fb { padding-top:2rem; display:flex; align-items:center; justify-content:space-between; }
+    .fb-copy { font-size:.52rem; letter-spacing:.15em; color:rgba(217,207,192,.2); }
+    .fb-soc { display:flex; gap:.8rem; }
+    .soc { width:34px; height:34px; border:1px solid rgba(217,207,192,.18); display:flex; align-items:center; justify-content:center; color:rgba(217,207,192,.35); text-decoration:none; font-size:.58rem; transition:all .3s; }
+    .soc:hover { border-color:var(--sand); color:var(--sand); }
+    @media(max-width:768px){ footer{ padding:3rem 1.5rem 2rem; } .ft{ grid-template-columns:1fr 1fr; gap:2rem; } .ft-brand{ grid-column:span 2; } .fb{ flex-direction:column; gap:1rem; } }
+
+    /* REVEAL */
+    .rv  { opacity:0; transform:translateY(28px); transition:opacity .7s ease,transform .7s ease; }
+    .rvl { opacity:0; transform:translateX(-28px); transition:opacity .7s ease,transform .7s ease; }
+    .rvr { opacity:0; transform:translateX(28px);  transition:opacity .7s ease,transform .7s ease; }
+    .rv.in,.rvl.in,.rvr.in { opacity:1; transform:none; }
+  </style>
+
+  <div class="cur" id="cur"></div>
+  <div class="cur-ring" id="curRing"></div>
+
+  <!-- LOADER -->
+  <div id="loader">
+    <p class="ld-logo">Art <em>Of</em> Design</p>
+    <div class="ld-bar"></div>
+    <p class="ld-sub">Meubles de luxe sur mesure · Tunisie</p>
+  </div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="/" class="nav-logo">Art <em>Of</em> Design</a>
+    <ul class="nav-links">
+      <li><a href="/cuisines">Cuisines</a></li>
+      <li><a href="/dressings">Dressings</a></li>
+      <li><a href="/meubles">Mobilier</a></li>
+      <li><a href="/projets">Projets</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Devis Gratuit</a>
+    <div class="nav-burger" id="burger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-img">
+      <img src="/images/cuisine-modif3.jpg" alt="Art Of Design" />
+    </div>
+    <div class="hero-text">
+      <p class="hero-eye">Art Of Design Meubles — Fondé 2012</p>
+      <h1 class="hero-h1">Le beau<br />à l'état <em>pur.</em></h1>
+      <div class="hero-rule"></div>
+      <p class="hero-p">Cuisines, dressings, chambres, home office — chaque espace conçu avec précision, en alliant bois naturel, savoir-faire artisanal et design intemporel.</p>
+      <div class="hero-btns">
+        <a href="#cats" class="btn-w">Nos univers</a>
+        <a href="#contact" class="btn-o">Prendre RDV</a>
+      </div>
+    </div>
+    <div class="hero-bar">
+      <div class="hb-stat"><div class="hb-num">12+</div><div class="hb-lbl">Années d'expérience</div></div>
+      <div class="hb-sep"></div>
+      <div class="hb-stat"><div class="hb-num">800+</div><div class="hb-lbl">Projets réalisés</div></div>
+      <div class="hb-sep"></div>
+      <div class="hb-stat"><div class="hb-num">100%</div><div class="hb-lbl">Sur mesure</div></div>
+      <div class="hb-sep"></div>
+      <div class="hb-stat"><div class="hb-num">48h</div><div class="hb-lbl">Délai de réponse</div></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="mq">
+    <div class="mq-trk">
+      {['Cuisines','Dressings','Unités TV','Chambres','Home Office','Mobilier Kit','Design 3D Offert','Sur Mesure'].flatMap(t=>[
+        <span class="mq-item">{t}</span>,
+        <span class="mq-item mq-dot"> · </span>
+      ])}
+      {['Cuisines','Dressings','Unités TV','Chambres','Home Office','Mobilier Kit','Design 3D Offert','Sur Mesure'].flatMap(t=>[
+        <span class="mq-item">{t}</span>,
+        <span class="mq-item mq-dot"> · </span>
+      ])}
+    </div>
+  </div>
+
+  <!-- PHILOSOPHY -->
+  <section id="phil">
+    <div class="phil-imgs rvl">
+      <img class="phil-img1" src="/images/cuisine1.jpg" alt="Savoir-faire" />
+      <img class="phil-img2" src="/images/cuisine2.jpg" alt="Matériaux" />
+      <div class="phil-badge">
+        <strong>800+</strong>
+        <span>Projets<br/>réalisés</span>
+      </div>
+    </div>
+    <div class="phil-txt rvr">
+      <span class="s-lbl">Notre philosophie</span>
+      <h2 class="s-ttl">Le mobilier comme<br /><em>art de vivre</em></h2>
+      <div class="s-rule"></div>
+      <p>Chez Art Of Design, chaque meuble est une déclaration. Nous travaillons le bois, le métal et les matériaux nobles avec un soin obsessionnel pour créer des intérieurs qui traversent les modes.</p>
+      <p>De la première esquisse au rendu 3D gratuit, jusqu'à l'installation par nos équipes, votre projet est entre des mains expertes.</p>
+      <div style="margin-top:2.5rem"><a href="/projets" class="btn-w">Voir les réalisations</a></div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES MOSAIC -->
+  <section id="cats">
+    <div class="cats-hd rv">
+      <div>
+        <span class="s-lbl">Nos univers</span>
+        <h2 class="s-ttl">Chaque espace,<br /><em>réinventé</em></h2>
+      </div>
+      <a href="/projets" class="btn-o">Tous les projets</a>
+    </div>
+    <div class="cats-mosaic rv">
+      {categories.map(cat => (
+        <a href={cat.link} class="ct">
+          <img src={cat.image} alt={cat.label} loading="lazy" />
+          <div class="ct-body">
+            <span class="ct-sub">{cat.sub}</span>
+            <h3 class="ct-name">{cat.label}</h3>
+            <div class="ct-cta">Découvrir →</div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- EDITORIAL BAND -->
+  <div class="ed-band">
+    <div class="ed-ghost rv">Less<br/>is<br/>more</div>
+    <div class="ed-mid rv">
+      <span class="s-lbl">Notre approche</span>
+      <p class="ed-quote">« La beauté d'un espace bien conçu ne réside pas dans ce qu'on y ajoute, mais dans ce qu'on choisit de laisser respirer. »</p>
+    </div>
+    <div class="ed-right rvr">
+      <img src="/images/cuisine3.jpg" alt="Détail" />
+    </div>
+  </div>
+
+  <!-- PRODUCT SWIPERS -->
+  <section class="pb">
+    <div class="pb-hd">
+      <div class="pb-tag">
+        <span class="pb-lbl"><a href="/cuisines" style="color:inherit;text-decoration:none">Cuisines</a></span>
+        <div class="pb-line"></div>
+      </div>
+      <div class="pb-nav">
+        <button class="pb-btn pc-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg></button>
+        <button class="pb-btn pc-next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+    </div>
+    <div class="swiper sw-c">
+      <div class="swiper-wrapper">
+        {cuisines.map(item=>(
+          <div class="swiper-slide"><Card type="cuisine" id={item.id} nom={item.nom} prix={item.prix_initial} promo={item.reduction} image={item.image} /></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pb">
+    <div class="pb-hd">
+      <div class="pb-tag"><span class="pb-lbl">Dressings</span><div class="pb-line"></div></div>
+      <div class="pb-nav">
+        <button class="pb-btn pd-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg></button>
+        <button class="pb-btn pd-next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+    </div>
+    <div class="swiper sw-d">
+      <div class="swiper-wrapper">
+        {dressing.map(item=>(
+          <div class="swiper-slide"><Card type="dressing" id={item.id} nom={item.nom} prix={item.prix_initial} promo={item.reduction} image={item.image} /></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pb">
+    <div class="pb-hd">
+      <div class="pb-tag"><span class="pb-lbl">Mobilier En Kit</span><div class="pb-line"></div></div>
+      <div class="pb-nav">
+        <button class="pb-btn pm-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg></button>
+        <button class="pb-btn pm-next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+    </div>
+    <div class="swiper sw-m">
+      <div class="swiper-wrapper">
+        {meubles.map(item=>(
+          <div class="swiper-slide"><Card type="meuble" id={item.id} nom={item.nom} prix={item.prix_initial} promo={item.reduction} image={item.image} /></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pb">
+    <div class="pb-hd">
+      <div class="pb-tag"><span class="pb-lbl">Projets Réalisés</span><div class="pb-line"></div></div>
+      <div class="pb-nav">
+        <button class="pb-btn pp-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg></button>
+        <button class="pb-btn pp-next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+    </div>
+    <div class="swiper sw-p">
+      <div class="swiper-wrapper">
+        {projets.map(item=>(
+          <div class="swiper-slide"><Card type="projet" id={item.id} nom={item.nom} prix={item.prix_initial} promo={item.reduction} image={item.image} /></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="proc">
+    <div style="text-align:center; max-width:460px; margin:0 auto;" class="rv">
+      <span class="s-lbl">Notre méthode</span>
+      <h2 class="s-ttl">Votre projet en<br /><em>4 étapes</em></h2>
+      <div class="s-rule" style="margin:1.5rem auto"></div>
+    </div>
+    <div class="proc-grid">
+      {[
+        { n:'01', t:'Consultation',  d:'Écoute approfondie de vos besoins, de votre style et de votre espace de vie.' },
+        { n:'02', t:'Design 3D',     d:'Rendu photoréaliste gratuit de votre projet avant toute décision.' },
+        { n:'03', t:'Fabrication',   d:'Réalisation artisanale avec des matériaux nobles soigneusement sélectionnés.' },
+        { n:'04', t:'Installation',  d:'Pose par nos équipes et suivi post-livraison pour votre satisfaction totale.' },
+      ].map(s=>(
+        <div class="ps rv">
+          <div class="ps-n">{s.n}</div>
+          <h3 class="ps-t">{s.t}</h3>
+          <p class="ps-d">{s.d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testi">
+    <div style="text-align:center" class="rv">
+      <span class="s-lbl">Ils nous font confiance</span>
+      <h2 class="s-ttl">Ce que disent<br /><em>nos clients</em></h2>
+    </div>
+    <div class="testi-grid">
+      {[
+        { q:'La cuisine sur mesure qu\'ils ont réalisée dépasse tout ce que j\'avais imaginé. Un travail d\'une précision rare.', a:'Sonia B.', l:'Tunis' },
+        { q:'L\'équipe a su transformer notre salon en quelque chose d\'exceptionnel. Le suivi fut irréprochable du début à la fin.', a:'Karim A.', l:'Sousse' },
+        { q:'Notre dressing est maintenant une vraie pièce à vivre. Les matériaux, les finitions — tout respire la qualité.', a:'Leila M.', l:'Sfax' },
+      ].map(t=>(
+        <div class="tc rv">
+          <div class="tc-stars">★★★★★</div>
+          <p class="tc-q">« {t.q} »</p>
+          <p class="tc-who"><strong>{t.a}</strong> — {t.l}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="cv rvl">
+      <img src="/images/cuisine-modif3.jpg" alt="Showroom" />
+      <div class="cv-ov">
+        <h2 class="cv-h">Parlons de<br />votre <em>projet</em></h2>
+        <p class="cv-s">Réponse garantie sous 48h</p>
+      </div>
+    </div>
+    <div class="cfw rvr">
+      <span class="s-lbl">Devis gratuit</span>
+      <h3 class="s-ttl" style="font-size:clamp(1.5rem,2.5vw,2.2rem)">Votre vision,<br /><em>notre savoir-faire</em></h3>
+      <form action="https://formspree.io/f/VOTRE_ID_ICI" method="POST" class="cf">
+        <div class="cfr">
+          <div class="cfg"><label class="cfl">Prénom & Nom</label><input type="text" name="nom" placeholder="Votre nom" required class="cfi" /></div>
+          <div class="cfg"><label class="cfl">Email</label><input type="email" name="email" placeholder="votre@email.com" required class="cfi" /></div>
+        </div>
+        <div class="cfr">
+          <div class="cfg"><label class="cfl">Téléphone</label><input type="tel" name="telephone" placeholder="+216 XX XXX XXX" class="cfi" /></div>
+          <div class="cfg">
+            <label class="cfl">Type de projet</label>
+            <select name="categorie" class="cfs">
+              <option value="">Sélectionner…</option>
+              <option>Cuisine sur mesure</option>
+              <option>Dressing</option>
+              <option>Mobilier / Kit</option>
+              <option>Unité TV</option>
+              <option>Chambre</option>
+              <option>Home Office</option>
+            </select>
+          </div>
+        </div>
+        <div class="cfg"><label class="cfl">Décrivez votre projet</label><textarea name="message" placeholder="Dimensions, style, matériaux, budget indicatif…" class="cft"></textarea></div>
+        <button type="submit" class="cf-sub">Envoyer ma demande →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ft">
+      <div class="ft-brand">
+        <a href="/" class="ft-logo">Art <em>Of</em> Design</a>
+        <p class="ft-tag">Meubles de luxe sur mesure. Conception, fabrication et installation en Tunisie depuis 2012.</p>
+      </div>
+      <div>
+        <p class="fc-t">Collections</p>
+        <ul class="fc-l"><li><a href="/cuisines">Cuisines</a></li><li><a href="/dressings">Dressings</a></li><li><a href="/meubles">Mobilier</a></li><li><a href="/projets">Projets</a></li></ul>
+      </div>
+      <div>
+        <p class="fc-t">Espaces</p>
+        <ul class="fc-l"><li><a href="/tv">Unités TV</a></li><li><a href="/chambres">Chambres</a></li><li><a href="/bureaux">Home Office</a></li><li><a href="/production">Production</a></li></ul>
+      </div>
+      <div>
+        <p class="fc-t">Info</p>
+        <ul class="fc-l"><li><a href="/about">À propos</a></li><li><a href="#contact">Devis gratuit</a></li><li><a href="/guide">Guide</a></li><li><a href="/mentions">Mentions</a></li></ul>
+      </div>
+    </div>
+    <div class="fb">
+      <p class="fb-copy">© 2024 Art Of Design Meubles · Tunisie</p>
+      <div class="fb-soc">
+        <a href="#" class="soc" aria-label="Instagram">ig</a>
+        <a href="#" class="soc" aria-label="Facebook">fb</a>
+        <a href="#" class="soc" aria-label="Pinterest">pt</a>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Cursor
+  const cur = document.getElementById('cur');
+  const ring = document.getElementById('curRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+  (function a(){ rx+=(mx-rx)*.1; ry+=(my-ry)*.1; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(a); })();
+
+  // Loader
+  const loader=document.getElementById('loader');
+  setTimeout(()=>{ loader.style.transition='opacity .7s ease'; loader.style.opacity='0'; setTimeout(()=>loader.style.display='none',700); },2200);
+
+  // Nav scroll
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+
+  // Scroll reveal
+  const io=new IntersectionObserver(entries=>{ entries.forEach((e,i)=>{ if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('in'),i*80); io.unobserve(e.target); } }); },{ threshold:.1 });
+  document.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>io.observe(el));
+
+  // Swipers
+  const cfg={ spaceBetween:20, slidesPerView:1, loop:true, breakpoints:{ 768:{slidesPerView:2}, 1100:{slidesPerView:3} } };
+  new Swiper('.sw-c',{ ...cfg, navigation:{ nextEl:'.pc-next', prevEl:'.pc-prev' } });
+  new Swiper('.sw-d',{ ...cfg, navigation:{ nextEl:'.pd-next', prevEl:'.pd-prev' } });
+  new Swiper('.sw-m',{ ...cfg, navigation:{ nextEl:'.pm-next', prevEl:'.pm-prev' } });
+  new Swiper('.sw-p',{ ...cfg, navigation:{ nextEl:'.pp-next', prevEl:'.pp-prev' } });
+});
+</script>
