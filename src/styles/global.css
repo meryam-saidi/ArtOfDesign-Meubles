@@ -1808,15 +1808,13 @@
 
 /* ── BARRE DE DÉTAILS (BAS) ── */
 .contact-details {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-top: 4rem;
+  max-width: fit-content;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1rem;
   width: 100%;
-}
+} 
 
 .contact-detail {
   display: flex;
@@ -1956,7 +1954,7 @@
     }
     .footer-inner {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr ;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 3rem;
       margin-bottom: 3rem;
     }
@@ -1987,6 +1985,12 @@
     }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
     .footer-links a {
+      font-size: 0.75rem;
+      color: var(--stone);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-links p {
       font-size: 0.75rem;
       color: var(--stone);
       text-decoration: none;
