@@ -13,11 +13,12 @@ const meubles = meublesData;
 const projets = projetsData;
 
 const categories = [
-  { id: 'cuisines',    label: 'Cuisines',       sub: 'Sur mesure',       image: '/images/kitchen_categorie.jpg',   link: '/cuisines' },
-  { id: 'dressings',  label: 'Dressings',       sub: 'Élégance pure',    image: '/images/dressing_categorie.jpg',   link: '/dressings' },
-  { id: 'meubles',    label: 'Mobilier',        sub: 'Design exclusif',  image: '/images/meubles_categorie.png',   link: '/meubles' },
-  { id: 'projets',    label: 'Projets',         sub: 'Découvrir Nos Projets',  image: '/images/project_categorie.jpg',   link: '/projets' },
-];
+  { id: 'cuisines',    label: 'Cuisines',       sub: 'Design exclusif',       image: '/images/kitchen.png',   link: '/cuisines' },
+  { id: 'dressings',  label: 'Dressings',       sub: 'Élégance pure',    image: '/images/dressing.png',   link: '/dressings' },
+  { id: 'meubles',    label: 'Mobilier',        sub: 'Sur mesure',  image: '/images/meubles_categorie.png',   link: '/meubles' },
+  /*{ id: 'projets',    label: 'Projets',         sub: 'Découvrir Nos Projets',  image: '/images/project_categorie.jpg',   link: '/projets' },
+*/
+  ];
 
 const stats = [
   { number: '12+', label: 'Années d\'excellence' },
@@ -44,7 +45,7 @@ const stats = [
   <div class="cursor-ring" id="cursorRing"></div>
 
   <div id="loader">
-    <p class="loader-logo">Art <em>Of</em> Design</p>
+    <p id="loader-logo-animated" class="loader-logo">Art <em>Of</em> Design</p>
     <div class="loader-line"></div>
     <p class="loader-sub">Meubles de luxe sur mesure — Tunisie</p>
   </div>
@@ -57,12 +58,14 @@ const stats = [
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
+      <!-- 
       <div class="hero-left">
-        <p class="hero-eyebrow">Art Of Design — Fondé 2012</p>
+        <p class="hero-eyebrow">Art Of Design — Fondé 2016</p>
         <h1 class="hero-headline">
-          L'art du<br /><em>beau</em><br />intérieur
+          l'art du beau intérieur
         </h1>
       </div>
+      
       <div class="hero-right">
         <p class="hero-desc">
           Chaque espace mérite d'être pensé avec soin. Nous créons des meubles sur mesure qui allient matériaux nobles, savoir-faire artisanal et esthétique intemporelle.
@@ -72,196 +75,141 @@ const stats = [
           <a href="#contact" class="btn-ghost">Prendre RDV</a>
         </div>
       </div>
+      -->
     </div>
     <div class="hero-scroll">
-      <span>Défiler</span>
+      <span>l'art du beau intérieur</span> 
       <div class="scroll-line"></div>
     </div>
   </section>
 
-  
+<!-- On crée un wrapper qui gère l'effet de calque sans toucher à la structure globale -->
+<section id="philosophy-premium" class="w-full">
+  <div class="philosophy-container">
+    
+    <div class="philosophy-media">
+      <div class="image-wrapper">
+        <img src="/images/philo_section.png" alt="Moodboard matières" />
+      </div>
+    </div>
 
-  <section id="philosophy">
-    <div class="philosophy-image reveal-left">
-      <img src="/images/philo_section.png" alt="Savoir-faire artisanal" />
-
-    </div> 
-    <div class="reveal-right">
-      <p class="section-label">Notre philosophie</p>
+    <div class="philosophy-content">
+      <span class="section-label">— Notre philosophie —</span> 
       <h2 class="section-title">
-       <br /><em> Le mobilier comme expression de soi</em>
+        Le mobilier comme <br />
+        <div class="div-title-serif">
+          <span class="title-serif">expression de soi</span>
+        </div>
       </h2>
-      <div class="philosophy-divider"></div>
-      <p>
-        Chez Art Of Design, nous croyons que votre interior est le reflet de votre personnalité. Chaque projet commence par une écoute approfondie — vos envies, votre mode de vie, vos contraintes — pour aboutir à une création unique qui vous ressemble.
-      </p>
-      <p>
-        De la première esquisse au rendu 3D, jusqu'à l'installation finale, notre équipe vous accompagne à chaque étape avec passion et précision.
-      </p>
-      <br />
-      <a href="/projets" class="btn-primary">Voir nos réalisations</a>
+      <div class="philosophy-text">
+        <p>Chez <strong>Art Of Design</strong>, votre intérieur est le reflet de votre personnalité. Chaque projet naît d'une écoute approfondie de votre mode de vie pour aboutir à une création unique.</p>
+        <p>Notre philosophie prend vie à travers ce dialogue subtil entre vos aspirations et la matière brute.</p>
+      </div>
+      <div class="philosophy-action">
+        <a href="#categories-pin-container" class="btn-text-flip"> 
+          <span class="text-default">Explorer nos univers</span>
+          <span class="text-hover">Explorer nos univers</span>
+        </a>
+        <a href="#contact" class="btn-text-flip">
+          <span class="text-default">Prendre RDV</span>
+          <span class="text-hover">Prendre RDV</span>
+        </a>
+      </div>
     </div>
-  </section>
 
+  </div>
+</section>
+
+<!-- Ta section catégorie redevient totalement standard dans le flux pour le JS -->
 <section id="categories-pin-container" class="w-full overflow-hidden">
-    <div class="h-screen w-full flex flex-col justify-center relative py-12">
-      
-      <div class="px-12 max-w-7xl mx-auto w-full mb-12">
-
-      </div>
-
-      <div class="categories-horizontal-track">
-        {categories.map((cat) => (
-          <a href={cat.link} class="cat-card group">
-            <div class="cat-card-img-wrapper">
-              <img 
-                src={cat.image} 
-                alt={cat.label} 
-                loading="lazy" 
-              />
-              <div class="cat-card-overlay-gradient"></div>
-            </div>
-            
-            <div class="cat-card-text-content">
-              <span class="cat-card-sub-label">{cat.sub}</span>
-              <h3 class="cat-card-title-label">{cat.label}</h3>
-              <div class="cat-card-action">
-                Découvrir <span>→</span>
-              </div>
-            </div>
-          </a>
-        ))}
-      </div>
-
-    </div>
-  </section>
-
-  <section id="stats">
-    {stats.map((s) => (
-      <div class="stat-item reveal">
-        <div class="stat-number">{s.number}</div>
-        <div class="stat-label">{s.label}</div>
-      </div>
-    ))}
-  </section>
-
-  <section class="product-section">
-    <div class="product-section-header">
-      <div class="section-tag">
-        <span class="section-tag-label"><a href="/cuisines" style="color:inherit;text-decoration:none">Cuisines</a></span>
-        <div class="section-line"></div>
-      </div>
-      <div class="swiper-controls">
-        <button class="swiper-btn swiper-prev-cuisine" aria-label="Précédent">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg>
-        </button>
-        <button class="swiper-btn swiper-next-cuisine" aria-label="Suivant">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg>
-        </button>
-      </div>
-    </div>
-    <div class="swiper cuisineSwiper">
-      <div class="swiper-wrapper">
-        {cuisines.map((item) => (
-          <div class="swiper-slide">
-            <Card type="cuisine" id={item.id} nom={item.nom} prix={item.prix_initial} promo={item.reduction} image={item.image} />
+  <div class="categories-inner-wrapper">    
+  <!-- 
+    <div class="px-6 md:px-12 max-w-full mx-auto w-full mb-12 flex flex-col items-center text-center">        
+      <h1 class="section-label reveal">— Nos univers —</h1>
+      <h2 class="section-title reveal"><em>Trois collections,<br />une exigence</em></h2>
+    </div> 
+    -->  
+    <div class="categories-horizontal-track">
+      {categories.map((cat) => (
+        <a href={cat.link} class="cat-card group">
+          <div class="cat-card-img-wrapper">
+            <img src={cat.image} alt={cat.label} loading="lazy" />
+            <div class="cat-card-overlay-gradient"></div>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="product-section">
-    <div class="product-section-header">
-      <div class="section-tag">
-        <span class="section-tag-label">Dressings</span>
-        <div class="section-line"></div>
-      </div>
-      <div class="swiper-controls">
-        <button class="swiper-btn swiper-prev-dressing" aria-label="Précédent">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg>
-        </button>
-        <button class="swiper-btn swiper-next-dressing" aria-label="Suivant">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg>
-        </button>
-      </div>
-    </div>
-    <div class="swiper dressingSwiper">
-      <div class="swiper-wrapper">
-        {dressing.map((item) => (
-          <div class="swiper-slide">
-            <Card type="dressing" id={item.id} nom={item.nom} prix={item.prix_initial} promo={item.reduction} image={item.image} />
+          <div class="cat-card-text-content">
+            <span class="cat-card-sub-label">{cat.sub}</span>
+             <h3 class="cat-card-title-label">{cat.label}</h3>
+            <div class="btn-text-flip"><span class="text-default">Découvrir</span><span class="text-hover">Découvrir</span></div>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="product-section">
-    <div class="product-section-header">
-      <div class="section-tag">
-        <span class="section-tag-label">Mobilier En Kit</span>
-        <div class="section-line"></div>
-      </div>
-      <div class="swiper-controls">
-        <button class="swiper-btn swiper-prev-meuble" aria-label="Précédent">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg>
-        </button>
-        <button class="swiper-btn swiper-next-meuble" aria-label="Suivant">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg>
-        </button>
-      </div>
-    </div>
-    <div class="swiper meubleSwiper">
-      <div class="swiper-wrapper">
-        {meubles.map((item) => (
-          <div class="swiper-slide">
-            <Card type="meuble" id={item.id} nom={item.nom} prix={item.prix_initial} promo={item.reduction} image={item.image} />
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="product-section">
-    <div class="product-section-header">
-      <div class="section-tag">
-        <span class="section-tag-label">Projets Réalisés</span>
-        <div class="section-line"></div>
-      </div>
-      <div class="swiper-controls">
-        <button class="swiper-btn swiper-prev-projet" aria-label="Précédent">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg>
-        </button>
-        <button class="swiper-btn swiper-next-projet" aria-label="Suivant">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg>
-        </button>
-      </div>
-    </div>
-    <div class="swiper projetSwiper">
-      <div class="swiper-wrapper">
-        {projets.map((item) => (
-          <div class="swiper-slide">
-            <Card type="projet" id={item.id} nom={item.nom} prix={item.prix_initial} promo={item.reduction} image={item.image} />
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <div class="marquee-section">
-    <div class="marquee-track">
-      {['Cuisines', 'Dressings', 'Unités TV', 'Chambres', 'Home Office', 'Mobilier Kit', 'Design 3D Offert', 'Sur Mesure', 'Fabrication Locale'].flatMap(t => [
-        <span class="marquee-item">{t}</span>,
-        <span class="marquee-item marquee-dot">✦</span>
-      ])}
-      {['Cuisines', 'Dressings', 'Unités TV', 'Chambres', 'Home Office', 'Mobilier Kit', 'Design 3D Offert', 'Sur Mesure', 'Fabrication Locale'].flatMap(t => [
-        <span class="marquee-item">{t}</span>,
-        <span class="marquee-item marquee-dot">✦</span>
-      ])}
+        </a>
+      ))}
     </div>
   </div>
+</section>
 
+<section id="process-premium">
+  <div class="process-minimal-container">
+    
+/**titre */
+
+    <div class="process-split-layout">
+      
+      <div class="process-raw-list">
+        <div class="process-header reveal">
+          <span class="section-label">— le Processus —<br /></span> 
+          <h2 class="section-title">De l'idée à la matière
+            <!-- <span class="title-serif">matière</span> -->
+            </h2>
+        </div>
+        {[
+          { n: 'I', title: 'Consultation', desc: 'Comprendre votre style de vie et vos aspirations.' },
+          { n: 'II', title: 'Design 3D', desc: 'Modélisation et ajustement des volumes et textures.' },
+          { n: 'III', title: 'Fabrication', desc: 'Raffinement des matériaux et confection.' },
+          { n: 'IV', title: 'Installation', desc: 'Ajustement ultime in situ pour un rendu parfait.' },
+        ].map((step) => (
+          <div class="process-raw-item reveal">
+            <div class="item-meta">
+              <span class="item-roman">{step.n}</span>
+              <!-- <div class="item-dot"></div> -->
+            </div>
+            <div class="item-body">
+              <h3 class="item-title">{step.title}</h3>
+              <p class="item-desc">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="process-media-column reveal">
+        <div class="comparison-slider" id="project-slider">
+          
+          <img class="image-after" src="/images/kitchen_categorie.jpg" alt="Projet Réalisé" />
+          
+          <div class="image-before-wrapper">
+            <img class="image-before" src="/images/sketch.png" alt="Conception 3D" />
+          </div>
+          
+          <div class="slider-handle">
+            <div class="handle-line"></div>
+            <div class="handle-button">
+              <span>↔</span>
+            </div>
+          </div>
+          
+          <span class="badge-slider badge-before">Avant (3D)</span>
+          <span class="badge-slider badge-after">Après (Réel)</span>
+          
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+  
+
+  <!-- 
   <section id="testimonials">
     <div class="reveal" style="text-align:center">
       <p class="section-label">Ils nous font confiance</p>
@@ -281,66 +229,20 @@ const stats = [
       ))}
     </div>
   </section>
-
-  <section id="process">
-    <div class="reveal" style="text-align:center">
-      <p class="section-label">Comment ça marche</p>
-      <h2 class="section-title">Votre projet en<br /><em>4 étapes</em></h2>
-    </div>
-    <div class="process-grid">
-      {[
-        { n: '01', title: 'Consultation', desc: 'Rendez-vous découverte pour comprendre vos besoins, votre style et votre espace.' },
-        { n: '02', title: 'Design 3D', desc: 'Visualisation complète de votre projet avant le début de la fabrication.' },
-        { n: '03', title: 'Fabrication', desc: 'Réalisation en atelier avec des matériaux sélectionnés pour leur qualité et durabilité.' },
-        { n: '04', title: 'Installation', desc: 'Pose soignée par nos équipes et suivi post-installation pour votre satisfaction totale.' },
-      ].map((step) => (
-        <div class="process-step reveal">
-          <div class="process-num">{step.n}</div>
-          <h3 class="process-step-title">{step.title}</h3>
-          <p class="process-step-desc">{step.desc}</p>
-        </div>
-      ))}
-    </div>
-  </section>
+  -->
+  
 
   <section id="contact">
+  <div class="contact-wrapper">
+    
     <div class="contact-info reveal-left">
-      <p class="section-label">Parlons de votre projet</p>
-      <h2 class="section-title">Demande de<br /><em>devis gratuit</em></h2>
-      <p>
+      <p class="section-label">— Parlons de votre projet —</p> 
+      <h2 class="section-title">Demande de<br />devis gratuit</h2>
+      <p class="contact-description">
         Chaque grand intérieur commence par une conversation. Décrivez-nous votre vision et nous vous répondrons sous 48 heures avec une première proposition.
       </p>
-      <div class="contact-details">
-        <div class="contact-detail">
-          <span class="contact-detail-icon">✦</span>
-          <div>
-            <p class="contact-detail-label">Showroom</p>
-            <p class="contact-detail-value">Tunis, Tunisie</p>
-          </div>
-        </div>
-        <div class="contact-detail">
-          <span class="contact-detail-icon">✦</span>
-          <div>
-            <p class="contact-detail-label">Téléphone</p>
-            <p class="contact-detail-value">+216 XX XXX XXX</p>
-          </div>
-        </div>
-        <div class="contact-detail">
-          <span class="contact-detail-icon">✦</span>
-          <div>
-            <p class="contact-detail-label">Email</p>
-            <p class="contact-detail-value">contact@artofdesign.tn</p>
-          </div>
-        </div>
-        <div class="contact-detail">
-          <span class="contact-detail-icon">✦</span>
-          <div>
-            <p class="contact-detail-label">Horaires</p>
-            <p class="contact-detail-value">Lun – Sam, 9h – 18h</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    
+    
     <form action="https://formspree.io/f/VOTRE_ID_ICI" method="POST" class="contact-form reveal-right">
       <div class="form-row">
         <div class="form-group">
@@ -352,6 +254,7 @@ const stats = [
           <input type="email" name="email" placeholder="votre@email.com" required class="form-input" />
         </div>
       </div>
+      
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Téléphone</label>
@@ -359,70 +262,107 @@ const stats = [
         </div>
         <div class="form-group">
           <label class="form-label">Type de projet</label>
-          <select name="categorie" class="form-select form-input">
-            <option value="">Sélectionner…</option>
-            <option>Cuisine sur mesure</option>
-            <option>Dressing</option>
-            <option>Mobilier / Kit</option>
-            <option>Unité TV</option>
-            <option>Chambre</option>
-            <option>Home Office</option>
-          </select>
+          <div class="select-wrapper">
+            <select name="categorie" class="form-select form-input">
+              <option value="">Sélectionner…</option>
+              <option>Cuisine sur mesure</option>
+              <option>Dressing sur mesure</option>
+              <option>Mobilier / Kit</option>
+              <option>Autre</option>
+            </select>
+          </div>
         </div>
       </div>
+      
       <div class="form-group">
         <label class="form-label">Votre projet</label>
         <textarea name="message" placeholder="Décrivez votre espace, vos envies, votre budget indicatif…" class="form-textarea"></textarea>
       </div>
-      <button type="submit" class="form-submit">Envoyer ma demande →</button>
+      
+      <button type="submit" class="btn-text-flip">
+        <span class="text-default">Envoyer ma demande</span>
+        <span class="text-hover">Envoyer ma demande</span>
+      </button>
     </form>
+    
+  </div>
+
+  <div class="contact-map-container">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d130.63961485170347!2d10.1620527!3d36.6714608!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd3b9dd89a8567%3A0x5a652ae19dc72053!2sArt%20of%20Design!5e1!3m2!1sfr!2stn!4v1782305828017!5m2!1sfr!2stn"
+      width="100%" 
+      height="100%" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+ </div> 
+<!-- 
+  <div class="contact-details">
+    <div class="contact-detail">
+      <span class="contact-detail-icon">✦</span>
+      <div>
+        <p class="contact-detail-label">Showroom</p>
+        <p class="contact-detail-value">Tunis, Tunisie</p>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <span class="contact-detail-icon">✦</span>
+      <div>
+        <p class="contact-detail-label">Téléphone</p>
+        <p class="contact-detail-value">+216 XX XXX XXX</p>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <span class="contact-detail-icon">✦</span>
+      <div>
+        <p class="contact-detail-label">Email</p>
+        <p class="contact-detail-value">contact@artofdesign.tn</p>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <span class="contact-detail-icon">✦</span>
+      <div>
+        <p class="contact-detail-label">Horaires</p>
+        <p class="contact-detail-value">Lun – Sam, 9h – 18h</p>
+      </div>
+    </div>
+  </div>
+-->
+</section>
+
+  <!-- 
+  <section id="stats">
+    {stats.map((s) => (
+      <div class="stat-item reveal">
+        <div class="stat-number">{s.number}</div>
+        <div class="stat-label">{s.label}</div>
+      </div>
+    ))}
   </section>
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <a href="/" class="footer-logo">Art <em>Of</em> Design</a>
-        <p class="footer-tagline">Meubles de luxe sur mesure. Conception, fabrication et installation en Tunisie depuis 2012.</p>
-      </div>
-      <div>
-        <p class="footer-col-title">Navigation</p>
-        <ul class="footer-links">
-          <li><a href="/cuisines">Cuisines</a></li>
-          <li><a href="/dressings">Dressings</a></li>
-          <li><a href="/meubles">Mobilier</a></li>
-          <li><a href="/projets">Projets</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="footer-col-title">Univers</p>
-        <ul class="footer-links">
-          <li><a href="/tv">Unités TV</a></li>
-          <li><a href="/chambres">Chambres</a></li>
-          <li><a href="/bureaux">Home Office</a></li>
-          <li><a href="/guide">Guide</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="footer-col-title">Informations</p>
-        <ul class="footer-links">
-          <li><a href="/about">À propos</a></li>
-          <li><a href="/production">Production</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="/mentions">Mentions légales</a></li>
-        </ul>
-      </div>
+  
+  <div class="marquee-section">
+    <div class="marquee-track">
+      {['Cuisines', 'Dressings', 'Unités TV', 'Chambres', 'Home Office', 'Mobilier Kit', 'Design 3D Offert', 'Sur Mesure', 'Fabrication Locale'].flatMap(t => [
+        <span class="marquee-item">{t}</span>,
+        <span class="marquee-item marquee-dot">✦</span>
+      ])}
+      {['Cuisines', 'Dressings', 'Unités TV', 'Chambres', 'Home Office', 'Mobilier Kit', 'Design 3D Offert', 'Sur Mesure', 'Fabrication Locale'].flatMap(t => [
+        <span class="marquee-item">{t}</span>,
+        <span class="marquee-item marquee-dot">✦</span>
+      ])}
     </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2024 Art Of Design Meubles. Tous droits réservés.</p>
-      <div class="footer-socials">
-        <a href="#" class="social-link" aria-label="Instagram">ig</a>
-        <a href="#" class="social-link" aria-label="Facebook">fb</a>
-        <a href="#" class="social-link" aria-label="Pinterest">pt</a>
-      </div>
-    </div>
-  </footer>
+  </div>
+  -->
+  
+  
 
 </Layout>
+
+
 
 <script is:inline>
 document.addEventListener('DOMContentLoaded', () => {
@@ -488,41 +428,57 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+
 <script is:inline>
   function initHorizontalScroll() {
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       
       gsap.registerPlugin(ScrollTrigger);
 
+      // On récupère les éléments des deux sections
+      const philosophySection = document.querySelector('#philosophy-premium');
       const track = document.querySelector('.categories-horizontal-track');
       const container = document.querySelector('#categories-pin-container');
-      const cards = gsap.utils.toArray('.cat-card'); // Récupère toutes tes cartes sous forme de tableau
+      const cards = gsap.utils.toArray('.cat-card'); 
       
+      // Sécurité : si l'un des blocs manque, on ne fait rien
       if (!track || !container || cards.length === 0) return;
 
-      // ÉTAPE 1 : Le calcul de distance pour du 100% plein écran
-      // On doit glisser de la largeur totale des cartes MOINS la première qui est déjà visible à l'écran.
+      // ==========================================
+      // AJOUT : ÉTAPE 0 - L'effet rideau (Recouvrement)
+      // ==========================================
+      if (philosophySection) {
+        ScrollTrigger.create({
+          trigger: philosophySection,
+          start: "bottom bottom",    
+          end: "+=100%",    
+          pin: true,
+          pinSpacing: false, // Laisse la section catégorie monter par-dessus
+          invalidateOnRefresh: true,
+        });
+      }
+
+      // ==========================================
+      // TON CODE EXISTANT (Inchangé et protégé)
+      // ==========================================
       const getScrollAmount = () => {
         return -(track.scrollWidth - window.innerWidth);
       };
 
-      // ÉTAPE 2 : Création de l'animation
       gsap.to(track, {
         x: getScrollAmount,
         ease: "none", 
         scrollTrigger: {
           trigger: container,
-          start: "top top",      // Épingle dès que le conteneur touche le haut de l'écran
-          end: () => `+=${track.scrollWidth}`, // Durée du scroll proportionnelle à la frise entière
-          pin: true,             // Bloque le scroll vertical
-          scrub: 1,              // Fluidité de suivi du mouvement (1 = 1 seconde d'inertie douce)
+          start: "bottom bottom",      
+          end: () => `+=${track.scrollWidth}`, 
+          pin: true,             
+          scrub: 1,              
           invalidateOnRefresh: true,
           
-          // ÉTAPE 3 : L'aimantage (Snap) - Indispensable pour le 100% de largeur
-          // Permet de forcer la carte à se caler parfaitement à l'écran si l'utilisateur s'arrête entre deux images
           snap: {
-            snapTo: 1 / (cards.length - 1), // Divise la progression du scroll équitablement par carte
-            duration: { min: 0.2, max: 0.6 }, // Vitesse de l'ajustement automatique
+            snapTo: 1 / (cards.length - 1), 
+            duration: { min: 0.2, max: 0.6 }, 
             ease: "power1.inOut"
           }
         }
@@ -535,5 +491,59 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialisation au chargement de la page et des médias
   window.addEventListener('load', () => {
     setTimeout(initHorizontalScroll, 250);
+  });
+</script>
+
+<script is:inline>
+  // --- ANIMATION INTERACTIVE DU SLIDER AVANT/APRÈS ---
+const slider = document.querySelector('#project-slider');
+  if (slider) {
+    const moveSlider = (e) => {
+      // Récupère les coordonnées du slider à l'écran
+      const rect = slider.getBoundingClientRect();
+      // Calcule la position X de la souris par rapport au conteneur (en %)
+      let x = e.clientX - rect.left;
+      let percentage = (x / rect.width) * 100;
+      
+      // Sécurité pour pas que ça sorte du cadre (entre 0% et 100%)
+      if (percentage < 0) percentage = 0;
+      if (percentage > 100) percentage = 100;
+      
+      // Injecte la valeur directement dans le CSS
+      slider.style.setProperty('--slider-pos', `${percentage}%`);
+    };
+
+    // S'active simplement au mouvement de la souris sur l'image
+    slider.addEventListener('mousemove', moveSlider);
+    // Support pour les écrans tactiles sur mobile
+    slider.addEventListener('touchmove', (e) => moveSlider(e.touches[0]));
+  }
+
+  function initProcessContactScroll() {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      
+      gsap.registerPlugin(ScrollTrigger);
+
+      const processSection = document.querySelector('#process-premium');
+      const contactSection = document.querySelector('#contact');
+      
+      if (!processSection || !contactSection) return;
+
+      // EFFET RIDEAU CORRIGÉ
+      ScrollTrigger.create({
+        trigger: processSection,
+        start: "bottom bottom", // MODIFICATION : On attend que le BAS du process touche le BAS de l'écran
+        end: "+=100%",          // Laisse un temps de pause ou d'ancrage
+        pin: true,
+        pinSpacing: false,      // Permet au contact de glisser par-dessus
+        invalidateOnRefresh: true,
+      });
+
+      ScrollTrigger.refresh();
+    }
+  }
+
+  window.addEventListener('load', () => {
+    setTimeout(initProcessContactScroll, 300);
   });
 </script>

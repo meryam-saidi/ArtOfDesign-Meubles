@@ -5,6 +5,7 @@ import cuisinesData from '../data/cuisines.json';
 import dressingData from '../data/dressing.json';
 import meublesData from '../data/meubles.json';
 import projetsData from '../data/projets.json';
+import Header from '../components/Header.astro';
 
 const cuisines = cuisinesData.filter(item => item.categorie === "Nos Cuisines");
 const dressing = dressingData;
@@ -12,564 +13,932 @@ const meubles = meublesData;
 const projets = projetsData;
 
 const categories = [
-  { id: 'cuisines',  label: 'Cuisines',    sub: 'Sur mesure',       image: '/images/cuisine1.jpg',  link: '/cuisines' },
-  { id: 'dressings', label: 'Dressings',   sub: 'Élégance pure',    image: '/images/cuisine2.jpg',  link: '/dressings' },
-  { id: 'meubles',   label: 'Mobilier',    sub: 'Design exclusif',  image: '/images/cuisine3.jpg',  link: '/meubles' },
-  { id: 'tv',        label: 'Unités TV',   sub: 'Art & fonction',   image: '/images/imm.jpg',       link: '/tv' },
-  { id: 'chambres',  label: 'Chambres',    sub: 'Intimité raffinée',image: '/images/cuisine1.jpg',  link: '/chambres' },
-  { id: 'bureaux',   label: 'Home Office', sub: 'Espace & clarté',  image: '/images/cuisine2.jpg',  link: '/bureaux' },
+  { id: 'cuisines',    label: 'Cuisines',       sub: 'Design exclusif',       image: '/images/kitchen_categorie.jpg',   link: '/cuisines' },
+  { id: 'dressings',  label: 'Dressings',       sub: 'Élégance pure',    image: '/images/dressing_categorie.jpg',   link: '/dressings' },
+  { id: 'meubles',    label: 'Mobilier',        sub: 'Sur mesure',  image: '/images/meubles_categorie.png',   link: '/meubles' },
+  { id: 'projets',    label: 'Projets',         sub: 'Découvrir Nos Projets',  image: '/images/project_categorie.jpg',   link: '/projets' },
+];
+
+const stats = [
+  { number: '12+', label: 'Années d\'excellence' },
+  { number: '800+', label: 'Projets réalisés' },
+  { number: '100%', label: 'Sur mesure' },
+  { number: '48h', label: 'Délai de réponse' },
 ];
 ---
 
-<Layout title="Art Of Design | Meubles sur Mesure">
+<Layout title="Art Of Design | Meubles de Luxe sur Mesure">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;1,300;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet" />
+  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" is:inline></script>
 
-  <style is:global>
-    :root {
-      --cream:   #f5f0e8;
-      --cream2:  #ede7d9;
-      --sand:    #d9cfc0;
-      --walnut:  #3d2b1f;
-      --clay:    #7a3d2a;
-      --terra:   #9c5035;
-      --olive:   #5a5e3f;
-      --grey:    #8a8378;
-      --white:   #faf8f4;
-    }
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" is:inline></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" is:inline></script>
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--cream);
-      color: var(--walnut);
-      font-family: 'Jost', sans-serif;
-      font-weight: 300;
-      overflow-x: hidden;
-      cursor: none;
-    }
 
-    /* CURSOR */
-    .cur      { position:fixed; width:8px; height:8px; background:var(--clay); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); }
-    .cur-ring { position:fixed; width:30px; height:30px; border:1px solid rgba(122,61,42,.4); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all .14s ease; }
 
-    /* LOADER */
-    #loader { position:fixed; inset:0; z-index:2000; background:var(--walnut); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.2rem; }
-    .ld-logo { font-family:'DM Serif Display',serif; font-size:clamp(2rem,7vw,4.5rem); color:var(--cream); letter-spacing:.15em; opacity:0; animation:ldF 1s ease .2s forwards; }
-    .ld-logo em { font-style:italic; color:var(--sand); }
-    .ld-bar  { width:0; height:1px; background:var(--sand); animation:ldB 1.4s ease .7s forwards; }
-    .ld-sub  { font-size:.5rem; letter-spacing:.5em; text-transform:uppercase; color:rgba(217,207,192,.5); opacity:0; animation:ldF .8s ease 1.4s forwards; }
-    @keyframes ldF { to { opacity:1; } }
-    @keyframes ldB { to { width:160px; } }
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-    /* NAV */
-    nav { position:fixed; top:0; left:0; right:0; z-index:500; display:flex; align-items:center; justify-content:space-between; padding:2rem 3.5rem; transition:all .4s ease; }
-    nav.scrolled { background:rgba(245,240,232,.93); backdrop-filter:blur(16px); padding:1.1rem 3.5rem; border-bottom:1px solid var(--sand); }
-    .nav-logo { font-family:'DM Serif Display',serif; font-size:1.2rem; letter-spacing:.1em; color:var(--walnut); text-decoration:none; }
-    .nav-logo em { font-style:italic; color:var(--terra); }
-    .nav-links { display:flex; gap:2.5rem; list-style:none; }
-    .nav-links a { font-size:.58rem; letter-spacing:.22em; text-transform:uppercase; color:var(--grey); text-decoration:none; transition:color .3s; }
-    .nav-links a:hover { color:var(--walnut); }
-    .nav-cta { font-size:.55rem; letter-spacing:.25em; text-transform:uppercase; font-weight:500; color:var(--white); background:var(--walnut); padding:.6rem 1.6rem; text-decoration:none; transition:background .3s; }
-    .nav-cta:hover { background:var(--clay); }
-    .nav-burger { display:none; flex-direction:column; gap:5px; cursor:none; }
-    .nav-burger span { width:22px; height:1px; background:var(--walnut); display:block; }
-    @media(max-width:768px){ nav { padding:1.25rem 1.5rem; } nav.scrolled { padding:1rem 1.5rem; } .nav-links,.nav-cta{ display:none; } .nav-burger{ display:flex; } }
-
-    /* HERO */
-    #hero { min-height:100svh; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr auto; background:var(--white); overflow:hidden; }
-    .hero-img { grid-column:1; grid-row:1/3; position:relative; overflow:hidden; }
-    .hero-img img { width:100%; height:100%; object-fit:cover; transform:scale(1.07); animation:hz 9s ease forwards; }
-    @keyframes hz { to { transform:scale(1); } }
-    .hero-img::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom,rgba(61,43,31,.08),rgba(61,43,31,.32)); }
-    .hero-text { grid-column:2; grid-row:1; display:flex; flex-direction:column; justify-content:flex-end; padding:6rem 4rem 3rem; background:var(--white); }
-    .hero-eye  { font-size:.52rem; letter-spacing:.45em; text-transform:uppercase; color:var(--terra); margin-bottom:1.5rem; opacity:0; animation:su .8s ease 2.2s forwards; }
-    .hero-h1   { font-family:'DM Serif Display',serif; font-size:clamp(2.6rem,5vw,5.2rem); line-height:1.0; color:var(--walnut); opacity:0; animation:su 1s ease 2.4s forwards; }
-    .hero-h1 em { font-style:italic; color:var(--clay); }
-    .hero-rule { width:36px; height:1px; background:var(--sand); margin:2rem 0; opacity:0; animation:su .6s ease 2.7s forwards; }
-    .hero-p    { font-size:.8rem; line-height:2; color:var(--grey); max-width:340px; opacity:0; animation:su .8s ease 2.9s forwards; }
-    .hero-btns { display:flex; gap:1rem; margin-top:2.5rem; opacity:0; animation:su .8s ease 3.1s forwards; }
-    .hero-bar  { grid-column:2; grid-row:2; background:var(--cream2); display:flex; align-items:center; justify-content:space-between; padding:1.4rem 4rem; border-top:1px solid var(--sand); opacity:0; animation:fi .8s ease 3.4s forwards; }
-    .hb-stat   { text-align:center; }
-    .hb-num    { font-family:'DM Serif Display',serif; font-size:1.8rem; color:var(--walnut); }
-    .hb-lbl    { font-size:.48rem; letter-spacing:.22em; text-transform:uppercase; color:var(--grey); margin-top:.2rem; }
-    .hb-sep    { width:1px; height:28px; background:var(--sand); }
-    @keyframes su { from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none} }
-    @keyframes fi { to{opacity:1} }
-    .btn-w { font-size:.55rem; letter-spacing:.28em; text-transform:uppercase; font-weight:500; background:var(--walnut); color:var(--cream); padding:.9rem 2.2rem; text-decoration:none; transition:background .3s; }
-    .btn-w:hover { background:var(--clay); }
-    .btn-o { font-size:.55rem; letter-spacing:.28em; text-transform:uppercase; border:1px solid var(--sand); color:var(--walnut); padding:.9rem 1.8rem; text-decoration:none; transition:border-color .3s; }
-    .btn-o:hover { border-color:var(--walnut); }
-    @media(max-width:768px){ #hero{ grid-template-columns:1fr; grid-template-rows:50vh 1fr auto; } .hero-img{ grid-column:1; grid-row:1; } .hero-text{ grid-column:1; grid-row:2; padding:3rem 1.5rem 2rem; } .hero-bar{ grid-column:1; grid-row:3; padding:1.2rem 1.5rem; } }
-
-    /* MARQUEE */
-    .mq      { background:var(--walnut); padding:.85rem 0; overflow:hidden; }
-    .mq-trk  { display:flex; gap:2.5rem; width:max-content; animation:mqs 30s linear infinite; }
-    .mq-item { font-size:.52rem; letter-spacing:.35em; text-transform:uppercase; color:var(--sand); white-space:nowrap; font-weight:300; }
-    .mq-dot  { color:var(--terra); }
-    @keyframes mqs { from{transform:translateX(0)}to{transform:translateX(-50%)} }
-
-    /* SHARED */
-    .s-lbl  { font-size:.5rem; letter-spacing:.45em; text-transform:uppercase; color:var(--terra); display:block; margin-bottom:.8rem; }
-    .s-ttl  { font-family:'DM Serif Display',serif; font-size:clamp(1.8rem,3.5vw,3.2rem); line-height:1.1; color:var(--walnut); }
-    .s-ttl em { font-style:italic; color:var(--clay); }
-    .s-rule { width:36px; height:1px; background:var(--sand); margin:1.5rem 0; }
-
-    /* PHILOSOPHY */
-    #phil { background:var(--white); display:grid; grid-template-columns:1fr 1fr; min-height:75vh; }
-    .phil-imgs { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:3px; overflow:hidden; }
-    .phil-imgs img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s ease; }
-    .phil-imgs img:hover { transform:scale(1.04); }
-    .phil-img1 { grid-column:1; grid-row:1/3; }
-    .phil-img2 { grid-column:2; grid-row:1; }
-    .phil-badge { grid-column:2; grid-row:2; background:var(--clay); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.35rem; }
-    .phil-badge strong { font-family:'DM Serif Display',serif; font-size:3rem; color:var(--cream); line-height:1; }
-    .phil-badge span   { font-size:.48rem; letter-spacing:.28em; text-transform:uppercase; color:rgba(245,240,232,.65); text-align:center; }
-    .phil-txt { padding:5rem 4rem 5rem 4rem; display:flex; flex-direction:column; justify-content:center; }
-    .phil-txt p { font-size:.8rem; line-height:2; color:var(--grey); max-width:360px; margin-top:1rem; }
-    @media(max-width:768px){ #phil{ grid-template-columns:1fr; } .phil-imgs{ min-height:320px; } .phil-txt{ padding:3rem 1.5rem; } }
-
-    /* CATEGORIES */
-    #cats { background:var(--cream); padding:7rem 3.5rem; }
-    .cats-hd { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3rem; }
-    .cats-mosaic { display:grid; grid-template-columns:1.4fr 1fr 1fr; grid-template-rows:300px 300px; gap:3px; }
-    .ct { position:relative; overflow:hidden; display:block; text-decoration:none; cursor:none; }
-    .ct:nth-child(1) { grid-row:1/3; }
-    .ct img { width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.25,.46,.45,.94); filter:brightness(.75); display:block; }
-    .ct:hover img { transform:scale(1.05); filter:brightness(.52); }
-    .ct-body { position:absolute; bottom:0; left:0; right:0; padding:2rem; background:linear-gradient(to top,rgba(61,43,31,.88),transparent); }
-    .ct-sub  { font-size:.46rem; letter-spacing:.35em; text-transform:uppercase; color:var(--sand); display:block; margin-bottom:.3rem; }
-    .ct-name { font-family:'DM Serif Display',serif; font-size:1.7rem; color:var(--white); line-height:1.1; }
-    .ct-cta  { font-size:.48rem; letter-spacing:.18em; text-transform:uppercase; color:var(--sand); display:flex; align-items:center; gap:.4rem; margin-top:.6rem; opacity:0; transform:translateY(5px); transition:all .4s ease; }
-    .ct:hover .ct-cta { opacity:1; transform:translateY(0); }
-    @media(max-width:768px){ #cats{ padding:4rem 1rem; } .cats-hd{ flex-direction:column; gap:1.5rem; align-items:flex-start; } .cats-mosaic{ grid-template-columns:1fr 1fr; grid-template-rows:repeat(4,180px); } .ct:nth-child(1){ grid-row:1; } }
-
-    /* EDITORIAL BAND */
-    .ed-band { background:var(--cream2); padding:5rem 3.5rem; display:grid; grid-template-columns:1fr 2fr 1fr; gap:3rem; align-items:center; border-top:1px solid var(--sand); border-bottom:1px solid var(--sand); }
-    .ed-ghost { font-family:'DM Serif Display',serif; font-size:clamp(5rem,13vw,11rem); font-style:italic; line-height:.85; color:rgba(61,43,31,.06); text-align:center; user-select:none; }
-    .ed-mid   { text-align:center; }
-    .ed-quote { font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(.95rem,1.8vw,1.35rem); line-height:1.75; color:var(--walnut); max-width:420px; margin:1rem auto 0; }
-    .ed-right { display:flex; flex-direction:column; gap:3px; }
-    .ed-right img { width:100%; aspect-ratio:1; object-fit:cover; display:block; }
-    @media(max-width:768px){ .ed-band{ grid-template-columns:1fr; padding:3rem 1.5rem; } .ed-right{ display:none; } }
-
-    /* PRODUCT BLOCKS */
-    .pb { padding:5rem 3.5rem; }
-    .pb:nth-of-type(odd)  { background:var(--white); }
-    .pb:nth-of-type(even) { background:var(--cream); }
-    .pb-hd  { display:flex; align-items:center; justify-content:space-between; margin-bottom:2.5rem; }
-    .pb-tag { display:flex; align-items:center; gap:1.5rem; }
-    .pb-lbl { font-size:.52rem; letter-spacing:.3em; text-transform:uppercase; font-weight:500; color:var(--white); background:var(--walnut); padding:.35rem 1rem; }
-    .pb-line{ flex:1 1 60px; height:1px; background:var(--sand); }
-    .pb-nav { display:flex; gap:.5rem; }
-    .pb-btn { width:40px; height:40px; border:1px solid var(--sand); background:transparent; color:var(--walnut); display:flex; align-items:center; justify-content:center; cursor:none; transition:all .3s; }
-    .pb-btn:hover { background:var(--walnut); color:var(--cream); border-color:var(--walnut); }
-    @media(max-width:768px){ .pb{ padding:3rem 1rem; } }
-
-    /* PROCESS */
-    #proc { background:var(--walnut); padding:7rem 3.5rem; }
-    #proc .s-lbl  { color:var(--sand); }
-    #proc .s-ttl  { color:var(--cream); }
-    #proc .s-ttl em { color:var(--sand); }
-    #proc .s-rule { background:rgba(217,207,192,.25); }
-    .proc-grid { display:grid; grid-template-columns:repeat(4,1fr); margin-top:4rem; }
-    .ps { padding:2rem; border-left:1px solid rgba(217,207,192,.12); }
-    .ps-n { font-family:'DM Serif Display',serif; font-size:3rem; color:rgba(245,240,232,.1); line-height:1; margin-bottom:1.2rem; }
-    .ps-t { font-family:'DM Serif Display',serif; font-size:1.2rem; color:var(--cream); margin-bottom:.6rem; }
-    .ps-d { font-size:.73rem; line-height:1.9; color:rgba(217,207,192,.5); }
-    @media(max-width:768px){ #proc{ padding:4rem 1.5rem; } .proc-grid{ grid-template-columns:1fr 1fr; gap:2rem; } }
-
-    /* TESTIMONIALS */
-    #testi { background:var(--cream2); padding:7rem 3.5rem; border-top:1px solid var(--sand); }
-    .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:4rem; }
-    .tc { background:var(--white); padding:2.5rem; transition:background .3s; }
-    .tc:hover { background:var(--cream); }
-    .tc-stars { color:var(--terra); letter-spacing:.12em; margin-bottom:1rem; }
-    .tc-q { font-family:'Playfair Display',serif; font-style:italic; font-size:.95rem; line-height:1.75; color:var(--walnut); margin-bottom:1.5rem; }
-    .tc-who { font-size:.52rem; letter-spacing:.2em; text-transform:uppercase; color:var(--grey); }
-    .tc-who strong { color:var(--clay); font-weight:500; }
-    @media(max-width:768px){ #testi{ padding:4rem 1.5rem; } .testi-grid{ grid-template-columns:1fr; gap:2px; } }
-
-    /* CONTACT */
-    #contact { background:var(--white); display:grid; grid-template-columns:1fr 1fr; }
-    .cv { position:relative; overflow:hidden; min-height:500px; }
-    .cv img { width:100%; height:100%; object-fit:cover; display:block; }
-    .cv-ov { position:absolute; inset:0; background:rgba(61,43,31,.52); display:flex; flex-direction:column; justify-content:flex-end; padding:4rem; }
-    .cv-h { font-family:'DM Serif Display',serif; font-size:clamp(2rem,4vw,3.8rem); color:var(--cream); line-height:1.1; }
-    .cv-h em { font-style:italic; color:var(--sand); }
-    .cv-s { font-size:.55rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(245,240,232,.6); margin-top:.8rem; }
-    .cfw { padding:5rem 4rem; background:var(--cream); display:flex; flex-direction:column; justify-content:center; }
-    .cf { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
-    .cfr { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-    .cfg { display:flex; flex-direction:column; gap:.35rem; }
-    .cfl { font-size:.48rem; letter-spacing:.3em; text-transform:uppercase; color:var(--grey); }
-    .cfi,.cft,.cfs { background:var(--white); border:1px solid var(--sand); padding:.9rem 1.1rem; font-family:'Jost'; font-size:.8rem; font-weight:300; color:var(--walnut); outline:none; transition:border-color .3s; width:100%; }
-    .cfi::placeholder,.cft::placeholder { color:var(--sand); }
-    .cfi:focus,.cft:focus,.cfs:focus { border-color:var(--walnut); }
-    .cft { resize:vertical; min-height:110px; }
-    .cfs { appearance:none; cursor:none; }
-    .cfs option { background:var(--white); }
-    .cf-sub { background:var(--walnut); border:none; padding:1rem 2.5rem; font-family:'Jost'; font-size:.52rem; letter-spacing:.28em; text-transform:uppercase; font-weight:500; color:var(--cream); cursor:none; transition:background .3s; align-self:flex-start; }
-    .cf-sub:hover { background:var(--clay); }
-    @media(max-width:768px){ #contact{ grid-template-columns:1fr; } .cv{ min-height:280px; } .cfw{ padding:3rem 1.5rem; } .cfr{ grid-template-columns:1fr; } }
-
-    /* FOOTER */
-    footer { background:var(--walnut); padding:4rem 3.5rem 2.5rem; }
-    .ft { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; padding-bottom:3rem; border-bottom:1px solid rgba(217,207,192,.1); }
-    .ft-logo { font-family:'DM Serif Display',serif; font-size:1.3rem; letter-spacing:.1em; color:var(--cream); text-decoration:none; display:block; margin-bottom:.8rem; }
-    .ft-logo em { font-style:italic; color:var(--sand); }
-    .ft-tag { font-size:.68rem; line-height:1.8; color:rgba(217,207,192,.4); max-width:200px; }
-    .fc-t { font-size:.48rem; letter-spacing:.35em; text-transform:uppercase; color:var(--sand); margin-bottom:1.2rem; }
-    .fc-l { list-style:none; display:flex; flex-direction:column; gap:.7rem; }
-    .fc-l a { font-size:.7rem; color:rgba(217,207,192,.4); text-decoration:none; transition:color .3s; }
-    .fc-l a:hover { color:var(--sand); }
-    .fb { padding-top:2rem; display:flex; align-items:center; justify-content:space-between; }
-    .fb-copy { font-size:.52rem; letter-spacing:.15em; color:rgba(217,207,192,.2); }
-    .fb-soc { display:flex; gap:.8rem; }
-    .soc { width:34px; height:34px; border:1px solid rgba(217,207,192,.18); display:flex; align-items:center; justify-content:center; color:rgba(217,207,192,.35); text-decoration:none; font-size:.58rem; transition:all .3s; }
-    .soc:hover { border-color:var(--sand); color:var(--sand); }
-    @media(max-width:768px){ footer{ padding:3rem 1.5rem 2rem; } .ft{ grid-template-columns:1fr 1fr; gap:2rem; } .ft-brand{ grid-column:span 2; } .fb{ flex-direction:column; gap:1rem; } }
-
-    /* REVEAL */
-    .rv  { opacity:0; transform:translateY(28px); transition:opacity .7s ease,transform .7s ease; }
-    .rvl { opacity:0; transform:translateX(-28px); transition:opacity .7s ease,transform .7s ease; }
-    .rvr { opacity:0; transform:translateX(28px);  transition:opacity .7s ease,transform .7s ease; }
-    .rv.in,.rvl.in,.rvr.in { opacity:1; transform:none; }
-  </style>
-
-  <div class="cur" id="cur"></div>
-  <div class="cur-ring" id="curRing"></div>
-
-  <!-- LOADER -->
   <div id="loader">
-    <p class="ld-logo">Art <em>Of</em> Design</p>
-    <div class="ld-bar"></div>
-    <p class="ld-sub">Meubles de luxe sur mesure · Tunisie</p>
+    <p class="loader-logo">Art <em>Of</em> Design</p>
+    <div class="loader-line"></div>
+    <p class="loader-sub">Meubles de luxe sur mesure — Tunisie</p>
   </div>
 
-  <!-- NAV -->
-  <nav id="nav">
-    <a href="/" class="nav-logo">Art <em>Of</em> Design</a>
-    <ul class="nav-links">
-      <li><a href="/cuisines">Cuisines</a></li>
-      <li><a href="/dressings">Dressings</a></li>
-      <li><a href="/meubles">Mobilier</a></li>
-      <li><a href="/projets">Projets</a></li>
-    </ul>
-    <a href="#contact" class="nav-cta">Devis Gratuit</a>
-    <div class="nav-burger" id="burger"><span></span><span></span><span></span></div>
-  </nav>
-
-  <!-- HERO -->
   <section id="hero">
-    <div class="hero-img">
-      <img src="/images/cuisine-modif3.jpg" alt="Art Of Design" />
+    <div class="hero-bg">
+      <video autoplay muted loop playsinline>
+        <source src="/videos/hero_video.mp4" type="video/mp4" />
+        Votre navigateur ne supporte pas la vidéo.
     </div>
-    <div class="hero-text">
-      <p class="hero-eye">Art Of Design Meubles — Fondé 2012</p>
-      <h1 class="hero-h1">Le beau<br />à l'état <em>pur.</em></h1>
-      <div class="hero-rule"></div>
-      <p class="hero-p">Cuisines, dressings, chambres, home office — chaque espace conçu avec précision, en alliant bois naturel, savoir-faire artisanal et design intemporel.</p>
-      <div class="hero-btns">
-        <a href="#cats" class="btn-w">Nos univers</a>
-        <a href="#contact" class="btn-o">Prendre RDV</a>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <p class="hero-eyebrow">Art Of Design — Fondé 2016</p>
+        <h1 class="hero-headline">
+          <!-- L'art du<br /><em>beau</em><br />intérieur -->
+          L'art <br />du <em>beau</em><br />intérieur
+        </h1>
+      </div>
+      <div class="hero-right">
+        <p class="hero-desc">
+          Chaque espace mérite d'être pensé avec soin. Nous créons des meubles sur mesure qui allient matériaux nobles, savoir-faire artisanal et esthétique intemporelle.
+        </p>
+        <div class="hero-actions">
+          <a href="#categories-pin-container" class="btn-primary">Explorer nos univers</a>
+          <a href="#contact" class="btn-ghost">Prendre RDV</a>
+        </div>
       </div>
     </div>
-    <div class="hero-bar">
-      <div class="hb-stat"><div class="hb-num">12+</div><div class="hb-lbl">Années d'expérience</div></div>
-      <div class="hb-sep"></div>
-      <div class="hb-stat"><div class="hb-num">800+</div><div class="hb-lbl">Projets réalisés</div></div>
-      <div class="hb-sep"></div>
-      <div class="hb-stat"><div class="hb-num">100%</div><div class="hb-lbl">Sur mesure</div></div>
-      <div class="hb-sep"></div>
-      <div class="hb-stat"><div class="hb-num">48h</div><div class="hb-lbl">Délai de réponse</div></div>
+    <div class="hero-scroll">
+      <span>Défiler</span>
+      <div class="scroll-line"></div>
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="mq">
-    <div class="mq-trk">
-      {['Cuisines','Dressings','Unités TV','Chambres','Home Office','Mobilier Kit','Design 3D Offert','Sur Mesure'].flatMap(t=>[
-        <span class="mq-item">{t}</span>,
-        <span class="mq-item mq-dot"> · </span>
-      ])}
-      {['Cuisines','Dressings','Unités TV','Chambres','Home Office','Mobilier Kit','Design 3D Offert','Sur Mesure'].flatMap(t=>[
-        <span class="mq-item">{t}</span>,
-        <span class="mq-item mq-dot"> · </span>
-      ])}
-    </div>
-  </div>
+  
 
-  <!-- PHILOSOPHY -->
-  <section id="phil">
-    <div class="phil-imgs rvl">
-      <img class="phil-img1" src="/images/cuisine1.jpg" alt="Savoir-faire" />
-      <img class="phil-img2" src="/images/cuisine2.jpg" alt="Matériaux" />
-      <div class="phil-badge">
-        <strong>800+</strong>
-        <span>Projets<br/>réalisés</span>
-      </div>
-    </div>
-    <div class="phil-txt rvr">
-      <span class="s-lbl">Notre philosophie</span>
-      <h2 class="s-ttl">Le mobilier comme<br /><em>art de vivre</em></h2>
-      <div class="s-rule"></div>
-      <p>Chez Art Of Design, chaque meuble est une déclaration. Nous travaillons le bois, le métal et les matériaux nobles avec un soin obsessionnel pour créer des intérieurs qui traversent les modes.</p>
-      <p>De la première esquisse au rendu 3D gratuit, jusqu'à l'installation par nos équipes, votre projet est entre des mains expertes.</p>
-      <div style="margin-top:2.5rem"><a href="/projets" class="btn-w">Voir les réalisations</a></div>
+  <section id="philosophy">
+    <div class="philosophy-image reveal-left">
+      <img src="/images/philo_section.png" alt="Savoir-faire artisanal" />
+
+    </div> 
+    <div class="reveal-right">
+      <p class="section-label">Notre philosophie</p>
+      <h2 class="section-title">
+       <em>Le mobilier comme expression de soi</em>
+      </h2>
+      <div class="philosophy-divider"></div>
+      <p>
+        Chez <span class="text-white font-bold">Art Of Design</span>, nous croyons que votre intérieur est le reflet de votre personnalité. Chaque projet commence par une écoute approfondie — vos envies, votre mode de vie, vos contraintes — pour aboutir à une création unique qui vous ressemble. 
+      </p><br />
+      <p>
+        Notre philosophie prend vie à travers ce dialogue subtil entre vos aspirations et la matière brute.
+      </p><br />
+      <p>
+        De la première esquisse au rendu 3D, jusqu'à l'installation finale, notre équipe vous accompagne à chaque étape avec passion et précision.
+      </p>
+      <br />
+      <a href="/projets" class="btn-primary">Voir nos réalisations</a>
     </div>
   </section>
 
-  <!-- CATEGORIES MOSAIC -->
-  <section id="cats">
-    <div class="cats-hd rv">
-      <div>
-        <span class="s-lbl">Nos univers</span>
-        <h2 class="s-ttl">Chaque espace,<br /><em>réinventé</em></h2>
+  <section id="categories-pin-container" class="w-full overflow-hidden">
+    <div class="h-screen w-full flex flex-col justify-center relative py-12">
+      
+      <div class="px-12 max-w-7xl mx-auto w-full mb-12">
+
       </div>
-      <a href="/projets" class="btn-o">Tous les projets</a>
+
+      <div class="categories-horizontal-track">
+        {categories.map((cat) => (
+          <a href={cat.link} class="cat-card group">
+            <div class="cat-card-img-wrapper">
+              <img 
+                src={cat.image} 
+                alt={cat.label} 
+                loading="lazy" 
+              />
+              <div class="cat-card-overlay-gradient"></div>
+            </div>
+            
+            <div class="cat-card-text-content">
+              <span class="cat-card-sub-label">{cat.sub}</span>
+              <h3 class="cat-card-title-label">{cat.label}</h3>
+              <div class="cat-card-action">
+                Découvrir <span>→</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
     </div>
-    <div class="cats-mosaic rv">
-      {categories.map(cat => (
-        <a href={cat.link} class="ct">
-          <img src={cat.image} alt={cat.label} loading="lazy" />
-          <div class="ct-body">
-            <span class="ct-sub">{cat.sub}</span>
-            <h3 class="ct-name">{cat.label}</h3>
-            <div class="ct-cta">Découvrir →</div>
+  </section>
+
+
+
+  <section id="stats">
+    {stats.map((s) => (
+      <div class="stat-item reveal">
+        <div class="stat-number">{s.number}</div>
+        <div class="stat-label">{s.label}</div>
+      </div>
+    ))}
+  </section>
+
+  <section class="product-section">
+    <div class="product-section-header">
+      <div class="section-tag">
+        <span class="section-tag-label"><a href="/cuisines" style="color:inherit;text-decoration:none">Cuisines</a></span>
+        <div class="section-line"></div>
+      </div>
+      <div class="swiper-controls">
+        <button class="swiper-btn swiper-prev-cuisine" aria-label="Précédent">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="swiper-btn swiper-next-cuisine" aria-label="Suivant">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="swiper cuisineSwiper">
+      <div class="swiper-wrapper">
+        {cuisines.map((item) => (
+          <div class="swiper-slide">
+            <Card type="cuisine" id={item.id} nom={item.nom} prix={item.prix_initial} promo={item.reduction} image={item.image} />
           </div>
-        </a>
-      ))}
+        ))}
+      </div>
     </div>
   </section>
 
-  <!-- EDITORIAL BAND -->
-  <div class="ed-band">
-    <div class="ed-ghost rv">Less<br/>is<br/>more</div>
-    <div class="ed-mid rv">
-      <span class="s-lbl">Notre approche</span>
-      <p class="ed-quote">« La beauté d'un espace bien conçu ne réside pas dans ce qu'on y ajoute, mais dans ce qu'on choisit de laisser respirer. »</p>
+  <section class="product-section">
+    <div class="product-section-header">
+      <div class="section-tag">
+        <span class="section-tag-label">Dressings</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="swiper-controls">
+        <button class="swiper-btn swiper-prev-dressing" aria-label="Précédent">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="swiper-btn swiper-next-dressing" aria-label="Suivant">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
     </div>
-    <div class="ed-right rvr">
-      <img src="/images/cuisine3.jpg" alt="Détail" />
+    <div class="swiper dressingSwiper">
+      <div class="swiper-wrapper">
+        {dressing.map((item) => (
+          <div class="swiper-slide">
+            <Card type="dressing" id={item.id} nom={item.nom} prix={item.prix_initial} promo={item.reduction} image={item.image} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="product-section">
+    <div class="product-section-header">
+      <div class="section-tag">
+        <span class="section-tag-label">Mobilier En Kit</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="swiper-controls">
+        <button class="swiper-btn swiper-prev-meuble" aria-label="Précédent">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="swiper-btn swiper-next-meuble" aria-label="Suivant">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="swiper meubleSwiper">
+      <div class="swiper-wrapper">
+        {meubles.map((item) => (
+          <div class="swiper-slide">
+            <Card type="meuble" id={item.id} nom={item.nom} prix={item.prix_initial} promo={item.reduction} image={item.image} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="product-section">
+    <div class="product-section-header">
+      <div class="section-tag">
+        <span class="section-tag-label">Projets Réalisés</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="swiper-controls">
+        <button class="swiper-btn swiper-prev-projet" aria-label="Précédent">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="swiper-btn swiper-next-projet" aria-label="Suivant">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="swiper projetSwiper">
+      <div class="swiper-wrapper">
+        {projets.map((item) => (
+          <div class="swiper-slide">
+            <Card type="projet" id={item.id} nom={item.nom} prix={item.prix_initial} promo={item.reduction} image={item.image} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee-section">
+    <div class="marquee-track">
+      {['Cuisines', 'Dressings', 'Unités TV', 'Chambres', 'Home Office', 'Mobilier Kit', 'Design 3D Offert', 'Sur Mesure', 'Fabrication Locale'].flatMap(t => [
+        <span class="marquee-item">{t}</span>,
+        <span class="marquee-item marquee-dot">✦</span>
+      ])}
+      {['Cuisines', 'Dressings', 'Unités TV', 'Chambres', 'Home Office', 'Mobilier Kit', 'Design 3D Offert', 'Sur Mesure', 'Fabrication Locale'].flatMap(t => [
+        <span class="marquee-item">{t}</span>,
+        <span class="marquee-item marquee-dot">✦</span>
+      ])}
     </div>
   </div>
 
-  <!-- PRODUCT SWIPERS -->
-  <section class="pb">
-    <div class="pb-hd">
-      <div class="pb-tag">
-        <span class="pb-lbl"><a href="/cuisines" style="color:inherit;text-decoration:none">Cuisines</a></span>
-        <div class="pb-line"></div>
-      </div>
-      <div class="pb-nav">
-        <button class="pb-btn pc-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg></button>
-        <button class="pb-btn pc-next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg></button>
-      </div>
+  <section id="testimonials">
+    <div class="reveal" style="text-align:center">
+      <p class="section-label">Ils nous font confiance</p>
+      <h2 class="section-title">Ce que disent<br /><em>nos clients</em></h2>
     </div>
-    <div class="swiper sw-c">
-      <div class="swiper-wrapper">
-        {cuisines.map(item=>(
-          <div class="swiper-slide"><Card type="cuisine" id={item.id} nom={item.nom} prix={item.prix_initial} promo={item.reduction} image={item.image} /></div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="pb">
-    <div class="pb-hd">
-      <div class="pb-tag"><span class="pb-lbl">Dressings</span><div class="pb-line"></div></div>
-      <div class="pb-nav">
-        <button class="pb-btn pd-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg></button>
-        <button class="pb-btn pd-next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg></button>
-      </div>
-    </div>
-    <div class="swiper sw-d">
-      <div class="swiper-wrapper">
-        {dressing.map(item=>(
-          <div class="swiper-slide"><Card type="dressing" id={item.id} nom={item.nom} prix={item.prix_initial} promo={item.reduction} image={item.image} /></div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="pb">
-    <div class="pb-hd">
-      <div class="pb-tag"><span class="pb-lbl">Mobilier En Kit</span><div class="pb-line"></div></div>
-      <div class="pb-nav">
-        <button class="pb-btn pm-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg></button>
-        <button class="pb-btn pm-next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg></button>
-      </div>
-    </div>
-    <div class="swiper sw-m">
-      <div class="swiper-wrapper">
-        {meubles.map(item=>(
-          <div class="swiper-slide"><Card type="meuble" id={item.id} nom={item.nom} prix={item.prix_initial} promo={item.reduction} image={item.image} /></div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="pb">
-    <div class="pb-hd">
-      <div class="pb-tag"><span class="pb-lbl">Projets Réalisés</span><div class="pb-line"></div></div>
-      <div class="pb-nav">
-        <button class="pb-btn pp-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg></button>
-        <button class="pb-btn pp-next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg></button>
-      </div>
-    </div>
-    <div class="swiper sw-p">
-      <div class="swiper-wrapper">
-        {projets.map(item=>(
-          <div class="swiper-slide"><Card type="projet" id={item.id} nom={item.nom} prix={item.prix_initial} promo={item.reduction} image={item.image} /></div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- PROCESS -->
-  <section id="proc">
-    <div style="text-align:center; max-width:460px; margin:0 auto;" class="rv">
-      <span class="s-lbl">Notre méthode</span>
-      <h2 class="s-ttl">Votre projet en<br /><em>4 étapes</em></h2>
-      <div class="s-rule" style="margin:1.5rem auto"></div>
-    </div>
-    <div class="proc-grid">
+    <div class="testimonials-grid">
       {[
-        { n:'01', t:'Consultation',  d:'Écoute approfondie de vos besoins, de votre style et de votre espace de vie.' },
-        { n:'02', t:'Design 3D',     d:'Rendu photoréaliste gratuit de votre projet avant toute décision.' },
-        { n:'03', t:'Fabrication',   d:'Réalisation artisanale avec des matériaux nobles soigneusement sélectionnés.' },
-        { n:'04', t:'Installation',  d:'Pose par nos équipes et suivi post-livraison pour votre satisfaction totale.' },
-      ].map(s=>(
-        <div class="ps rv">
-          <div class="ps-n">{s.n}</div>
-          <h3 class="ps-t">{s.t}</h3>
-          <p class="ps-d">{s.d}</p>
+        { text: "Un travail d'une précision remarquable. La cuisine sur mesure qu'ils ont réalisée est exactement ce que j'avais imaginé, voire au-delà.", author: "Sonia B.", loc: "Tunis", stars: "★★★★★" },
+        { text: "L'équipe a su transformer notre espace en quelque chose de véritablement exceptionnel. Le suivi du projet était irréprochable.", author: "Karim A.", loc: "Sousse", stars: "★★★★★" },
+        { text: "Notre dressing est maintenant une pièce à vivre. Les matériaux choisis, les finitions… tout respire la qualité et le raffinement.", author: "Leila M.", loc: "Sfax", stars: "★★★★★" },
+      ].map((t) => (
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">{t.stars}</div>
+          <p class="testimonial-text">« {t.text} »</p>
+          <p class="testimonial-author"><strong>{t.author}</strong> — {t.loc}</p>
         </div>
       ))}
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section id="testi">
-    <div style="text-align:center" class="rv">
-      <span class="s-lbl">Ils nous font confiance</span>
-      <h2 class="s-ttl">Ce que disent<br /><em>nos clients</em></h2>
+  <section id="process">
+    <div class="reveal" style="text-align:center">
+      <p class="section-label">Comment ça marche</p>
+      <h2 class="section-title">Votre projet en<br /><em>4 étapes</em></h2>
     </div>
-    <div class="testi-grid">
+    <div class="process-grid">
       {[
-        { q:'La cuisine sur mesure qu\'ils ont réalisée dépasse tout ce que j\'avais imaginé. Un travail d\'une précision rare.', a:'Sonia B.', l:'Tunis' },
-        { q:'L\'équipe a su transformer notre salon en quelque chose d\'exceptionnel. Le suivi fut irréprochable du début à la fin.', a:'Karim A.', l:'Sousse' },
-        { q:'Notre dressing est maintenant une vraie pièce à vivre. Les matériaux, les finitions — tout respire la qualité.', a:'Leila M.', l:'Sfax' },
-      ].map(t=>(
-        <div class="tc rv">
-          <div class="tc-stars">★★★★★</div>
-          <p class="tc-q">« {t.q} »</p>
-          <p class="tc-who"><strong>{t.a}</strong> — {t.l}</p>
+        { n: '01', title: 'Consultation', desc: 'Rendez-vous découverte pour comprendre vos besoins, votre style et votre espace.' },
+        { n: '02', title: 'Design 3D', desc: 'Visualisation complète de votre projet avant le début de la fabrication.' },
+        { n: '03', title: 'Fabrication', desc: 'Réalisation en atelier avec des matériaux sélectionnés pour leur qualité et durabilité.' },
+        { n: '04', title: 'Installation', desc: 'Pose soignée par nos équipes et suivi post-installation pour votre satisfaction totale.' },
+      ].map((step) => (
+        <div class="process-step reveal">
+          <div class="process-num">{step.n}</div>
+          <h3 class="process-step-title">{step.title}</h3>
+          <p class="process-step-desc">{step.desc}</p>
         </div>
       ))}
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
-    <div class="cv rvl">
-      <img src="/images/cuisine-modif3.jpg" alt="Showroom" />
-      <div class="cv-ov">
-        <h2 class="cv-h">Parlons de<br />votre <em>projet</em></h2>
-        <p class="cv-s">Réponse garantie sous 48h</p>
-      </div>
-    </div>
-    <div class="cfw rvr">
-      <span class="s-lbl">Devis gratuit</span>
-      <h3 class="s-ttl" style="font-size:clamp(1.5rem,2.5vw,2.2rem)">Votre vision,<br /><em>notre savoir-faire</em></h3>
-      <form action="https://formspree.io/f/VOTRE_ID_ICI" method="POST" class="cf">
-        <div class="cfr">
-          <div class="cfg"><label class="cfl">Prénom & Nom</label><input type="text" name="nom" placeholder="Votre nom" required class="cfi" /></div>
-          <div class="cfg"><label class="cfl">Email</label><input type="email" name="email" placeholder="votre@email.com" required class="cfi" /></div>
-        </div>
-        <div class="cfr">
-          <div class="cfg"><label class="cfl">Téléphone</label><input type="tel" name="telephone" placeholder="+216 XX XXX XXX" class="cfi" /></div>
-          <div class="cfg">
-            <label class="cfl">Type de projet</label>
-            <select name="categorie" class="cfs">
-              <option value="">Sélectionner…</option>
-              <option>Cuisine sur mesure</option>
-              <option>Dressing</option>
-              <option>Mobilier / Kit</option>
-              <option>Unité TV</option>
-              <option>Chambre</option>
-              <option>Home Office</option>
-            </select>
+    <div class="contact-info reveal-left">
+      <p class="section-label">Parlons de votre projet</p>
+      <h2 class="section-title">Demande de<br /><em>devis gratuit</em></h2>
+      <p>
+        Chaque grand intérieur commence par une conversation. Décrivez-nous votre vision et nous vous répondrons sous 48 heures avec une première proposition.
+      </p>
+      <div class="contact-details">
+        <div class="contact-detail">
+          <span class="contact-detail-icon">✦</span>
+          <div>
+            <p class="contact-detail-label">Showroom</p>
+            <p class="contact-detail-value">Tunis, Tunisie</p>
           </div>
         </div>
-        <div class="cfg"><label class="cfl">Décrivez votre projet</label><textarea name="message" placeholder="Dimensions, style, matériaux, budget indicatif…" class="cft"></textarea></div>
-        <button type="submit" class="cf-sub">Envoyer ma demande →</button>
-      </form>
+        <div class="contact-detail">
+          <span class="contact-detail-icon">✦</span>
+          <div>
+            <p class="contact-detail-label">Téléphone</p>
+            <p class="contact-detail-value">+216 XX XXX XXX</p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-icon">✦</span>
+          <div>
+            <p class="contact-detail-label">Email</p>
+            <p class="contact-detail-value">contact@artofdesign.tn</p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-icon">✦</span>
+          <div>
+            <p class="contact-detail-label">Horaires</p>
+            <p class="contact-detail-value">Lun – Sam, 9h – 18h</p>
+          </div>
+        </div>
+      </div>
     </div>
+    <form action="https://formspree.io/f/VOTRE_ID_ICI" method="POST" class="contact-form reveal-right">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Prénom & Nom</label>
+          <input type="text" name="nom" placeholder="Votre nom" required class="form-input" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" name="email" placeholder="votre@email.com" required class="form-input" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Téléphone</label>
+          <input type="tel" name="telephone" placeholder="+216 XX XXX XXX" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Type de projet</label>
+          <select name="categorie" class="form-select form-input">
+            <option value="">Sélectionner…</option>
+            <option>Cuisine sur mesure</option>
+            <option>Dressing</option>
+            <option>Mobilier / Kit</option>
+            <option>Unité TV</option>
+            <option>Chambre</option>
+            <option>Home Office</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Votre projet</label>
+        <textarea name="message" placeholder="Décrivez votre espace, vos envies, votre budget indicatif…" class="form-textarea"></textarea>
+      </div>
+      <button type="submit" class="form-submit">Envoyer ma demande →</button>
+    </form>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <div class="ft">
-      <div class="ft-brand">
-        <a href="/" class="ft-logo">Art <em>Of</em> Design</a>
-        <p class="ft-tag">Meubles de luxe sur mesure. Conception, fabrication et installation en Tunisie depuis 2012.</p>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">Art <em>Of</em> Design</a>
+        <p class="footer-tagline">Meubles de luxe sur mesure. Conception, fabrication et installation en Tunisie depuis 2012.</p>
       </div>
       <div>
-        <p class="fc-t">Collections</p>
-        <ul class="fc-l"><li><a href="/cuisines">Cuisines</a></li><li><a href="/dressings">Dressings</a></li><li><a href="/meubles">Mobilier</a></li><li><a href="/projets">Projets</a></li></ul>
+        <p class="footer-col-title">Navigation</p>
+        <ul class="footer-links">
+          <li><a href="/cuisines">Cuisines</a></li>
+          <li><a href="/dressings">Dressings</a></li>
+          <li><a href="/meubles">Mobilier</a></li>
+          <li><a href="/projets">Projets</a></li>
+        </ul>
       </div>
       <div>
-        <p class="fc-t">Espaces</p>
-        <ul class="fc-l"><li><a href="/tv">Unités TV</a></li><li><a href="/chambres">Chambres</a></li><li><a href="/bureaux">Home Office</a></li><li><a href="/production">Production</a></li></ul>
+        <p class="footer-col-title">Univers</p>
+        <ul class="footer-links">
+          <li><a href="/tv">Unités TV</a></li>
+          <li><a href="/chambres">Chambres</a></li>
+          <li><a href="/bureaux">Home Office</a></li>
+          <li><a href="/guide">Guide</a></li>
+        </ul>
       </div>
       <div>
-        <p class="fc-t">Info</p>
-        <ul class="fc-l"><li><a href="/about">À propos</a></li><li><a href="#contact">Devis gratuit</a></li><li><a href="/guide">Guide</a></li><li><a href="/mentions">Mentions</a></li></ul>
+        <p class="footer-col-title">Informations</p>
+        <ul class="footer-links">
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/production">Production</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="/mentions">Mentions légales</a></li>
+        </ul>
       </div>
     </div>
-    <div class="fb">
-      <p class="fb-copy">© 2024 Art Of Design Meubles · Tunisie</p>
-      <div class="fb-soc">
-        <a href="#" class="soc" aria-label="Instagram">ig</a>
-        <a href="#" class="soc" aria-label="Facebook">fb</a>
-        <a href="#" class="soc" aria-label="Pinterest">pt</a>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2024 Art Of Design Meubles. Tous droits réservés.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-link" aria-label="Instagram">ig</a>
+        <a href="#" class="social-link" aria-label="Facebook">fb</a>
+        <a href="#" class="social-link" aria-label="Pinterest">pt</a>
       </div>
     </div>
   </footer>
+
 </Layout>
 
 <script is:inline>
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Cursor
-  const cur = document.getElementById('cur');
-  const ring = document.getElementById('curRing');
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
-  (function a(){ rx+=(mx-rx)*.1; ry+=(my-ry)*.1; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(a); })();
+  // ── CURSOR ──
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
 
-  // Loader
-  const loader=document.getElementById('loader');
-  setTimeout(()=>{ loader.style.transition='opacity .7s ease'; loader.style.opacity='0'; setTimeout(()=>loader.style.display='none',700); },2200);
+  // ── LOADER ──
+  const loader = document.getElementById('loader');
+  setTimeout(() => {
+    loader.style.transition = 'opacity 0.8s ease';
+    loader.style.opacity = '0';
+    setTimeout(() => loader.style.display = 'none', 800);
+  }, 2400);
 
-  // Nav scroll
-  const nav=document.getElementById('nav');
-  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+  // ── NAV SCROLL ──
+  const nav = document.getElementById('navbar');
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+  }
 
-  // Scroll reveal
-  const io=new IntersectionObserver(entries=>{ entries.forEach((e,i)=>{ if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('in'),i*80); io.unobserve(e.target); } }); },{ threshold:.1 });
-  document.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>io.observe(el));
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
 
-  // Swipers
-  const cfg={ spaceBetween:20, slidesPerView:1, loop:true, breakpoints:{ 768:{slidesPerView:2}, 1100:{slidesPerView:3} } };
-  new Swiper('.sw-c',{ ...cfg, navigation:{ nextEl:'.pc-next', prevEl:'.pc-prev' } });
-  new Swiper('.sw-d',{ ...cfg, navigation:{ nextEl:'.pd-next', prevEl:'.pd-prev' } });
-  new Swiper('.sw-m',{ ...cfg, navigation:{ nextEl:'.pm-next', prevEl:'.pm-prev' } });
-  new Swiper('.sw-p',{ ...cfg, navigation:{ nextEl:'.pp-next', prevEl:'.pp-prev' } });
+  // ── SWIPERS PRODUITS ──
+  const commonConfig = {
+    spaceBetween: 24,
+    loop: true,
+    breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+    slidesPerView: 1,
+  };
+
+  new Swiper('.cuisineSwiper', { ...commonConfig, navigation: { nextEl: '.swiper-next-cuisine', prevEl: '.swiper-prev-cuisine' } });
+  new Swiper('.dressingSwiper', { ...commonConfig, navigation: { nextEl: '.swiper-next-dressing', prevEl: '.swiper-prev-dressing' } });
+  new Swiper('.meubleSwiper', { ...commonConfig, navigation: { nextEl: '.swiper-next-meuble', prevEl: '.swiper-prev-meuble' } });
+  new Swiper('.projetSwiper', { ...commonConfig, navigation: { nextEl: '.swiper-next-projet', prevEl: '.swiper-prev-projet' } });
+
 });
 </script>
+
+<script is:inline>
+  function initHorizontalScroll() {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      
+      gsap.registerPlugin(ScrollTrigger);
+
+      const track = document.querySelector('.categories-horizontal-track');
+      const container = document.querySelector('#categories-pin-container');
+      const cards = gsap.utils.toArray('.cat-card'); // Récupère toutes tes cartes sous forme de tableau
+      
+      if (!track || !container || cards.length === 0) return;
+
+      // ÉTAPE 1 : Le calcul de distance pour du 100% plein écran
+      // On doit glisser de la largeur totale des cartes MOINS la première qui est déjà visible à l'écran.
+      const getScrollAmount = () => {
+        return -(track.scrollWidth - window.innerWidth);
+      };
+
+      // ÉTAPE 2 : Création de l'animation
+      gsap.to(track, {
+        x: getScrollAmount,
+        ease: "none", 
+        scrollTrigger: {
+          trigger: container,
+          start: "top top",      // Épingle dès que le conteneur touche le haut de l'écran
+          end: () => `+=${track.scrollWidth}`, // Durée du scroll proportionnelle à la frise entière
+          pin: true,             // Bloque le scroll vertical
+          scrub: 1,              // Fluidité de suivi du mouvement (1 = 1 seconde d'inertie douce)
+          invalidateOnRefresh: true,
+          
+          // ÉTAPE 3 : L'aimantage (Snap) - Indispensable pour le 100% de largeur
+          // Permet de forcer la carte à se caler parfaitement à l'écran si l'utilisateur s'arrête entre deux images
+          snap: {
+            snapTo: 1 / (cards.length - 1), // Divise la progression du scroll équitablement par carte
+            duration: { min: 0.2, max: 0.6 }, // Vitesse de l'ajustement automatique
+            ease: "power1.inOut"
+          }
+        }
+      });
+
+      ScrollTrigger.refresh();
+    }
+  }
+
+  // Initialisation au chargement de la page et des médias
+  window.addEventListener('load', () => {
+    setTimeout(initHorizontalScroll, 250);
+  });
+</script>
+
+
+
+************************************************************************************************
+
+    
+    /* ── BRAND PHILOSOPHY ── */
+    #philosophy {
+      background: var(--obsidian);
+      padding: 8rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #philosophy::before {
+      content: 'AD';
+      position: absolute;
+      right: -2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18rem;
+      font-weight: 600;
+      color: rgba(201,168,76,0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .philosophy-image {
+      position: relative;
+    }
+    .philosophy-image img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: fill;
+    }
+    .philosophy-image::before {
+      content: '';
+      position: absolute;
+      inset: -1.5rem -1.5rem 1.5rem 1.5rem;
+      border: 1px solid rgba(201,168,76,0.25);
+      z-index: -1;
+    }
+    .philosophy-badge {
+      position: absolute;
+      bottom: -2rem;
+      right: -2rem;
+      width: 120px;
+      height: 120px;
+      background: var(--gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.2rem;
+    }
+    .philosophy-badge strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      color: var(--obsidian);
+      line-height: 1;
+      font-weight: 600;
+    }
+    .philosophy-badge span {
+      font-size: 0.5rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--obsidian);
+      text-align: center;
+      padding: 0 0.5rem;
+    }
+    .philosophy-text p {
+      font-size: 0.9rem;
+      line-height: 2;
+      color: rgba(247,245,240,0.55);
+      margin-top: 1.5rem;
+      max-width: 440px;
+    }
+    .philosophy-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.5rem 0;
+    }
+    @media (max-width: 768px) {
+      #philosophy { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 4rem; }
+      .philosophy-image::before { display: none; }
+      .philosophy-badge { right: 1rem; bottom: -1.5rem; width: 90px; height: 90px; }
+      .philosophy-badge strong { font-size: 1.6rem; }
+    }
+
+    ************************************************************************************************
+
+    <section id="philosophy-creative">
+  <!-- 
+  <div class="bg-watermark">AD</div>
+  -->
+
+  <!-- Bloc central fixe au milieu (Z-INDEX: 10) -->
+  <div class="philosophy-center-content">
+    <p class="section-label">Notre philosophie</p>
+    <h2 class="section-title">
+      Le mobilier comme <br />
+      <span class="title-italic">expression de soi</span>
+    </h2>
+    <div class="philosophy-divider"></div>
+    
+    <div class="philosophy-text-blocks">
+      <p>
+          Chez Art Of Design, votre intérieur est le reflet de votre personnalité. Chaque projet naît d'une écoute approfondie de votre mode de vie pour aboutir à une création unique. Notre philosophie prend vie à travers ce dialogue subtil entre vos aspirations et la matière brute.      
+      </p>
+    </div>
+    
+    <a href="/projets" class="btn-primary">Voir nos réalisations</a>
+  </div>
+
+  <!-- LES IMAGES QUI FILENT DE DROITE À GAUCHE -->
+  
+  <!-- Image 1 : En ARRIÈRE-PLAN (Z-INDEX: 5) - Passe sous le titre - Défilement lent -->
+  <div class="stream-img img-layer-back bg-slide-slow cache-mobile">
+    <img src="/images/philo_section.png" alt="Matière brute" />
+  </div>
+
+  <!-- Image 2 : Au PREMIER PLAN (Z-INDEX: 15) - Passe devant le titre - Défilement rapide -->
+  <div class="stream-img img-layer-front bg-slide-fast">
+    <img src="/images/philo_section.png" alt="Savoir-faire artisanal" />
+    <!-- <div class="mini-badge-gold">EST. 2026</div> -->
+  </div>
+
+  <!-- Image 3 : Plan INTERMÉDIAIRE (Z-INDEX: 6) - Légèrement décalée vers le bas - Défilement moyen -->
+  <div class="stream-img img-layer-mid bg-slide-medium cache-mobile">
+    <img src="/images/philo_section.png" alt="Textures de luxe" />
+  </div>
+</section>
+
+
+ /* Philosophie section */
+    #philosophy-creative {
+      background: var(--obsidian);
+      min-height: 100vh;
+      padding: 8rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden; /* INDISPENSABLE pour masquer les images quand elles sortent de l'écran */
+    }
+
+    /* Conteneur Central de Contenu fixe */
+    .philosophy-center-content {
+      position: relative;
+      max-width: full;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 10; /* Bloqué au milieu des couches d'images */
+    }
+
+    /* STYLE DE BASE DES IMAGES EN MOUVEMENT */
+    .stream-img {
+      position: absolute;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+      pointer-events: none;
+      /* On les positionne par défaut hors de l'écran à droite */
+      left: 100vw; 
+    }
+
+    .stream-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* CONFIGURATION DES AVANT/ARRIÈRE PLANS (STRATES) */
+
+    /* 1. L'Image d'Arrière-plan (Passe sous le texte) */
+    .img-layer-back {
+      width: 340px;
+      aspect-ratio: 4/5;
+      top: 15%;
+      z-index: 5; /* En dessous de 10 */
+      opacity: 0.35;
+      filter: blur(1px) grayscale(20%);
+    }
+
+    /* 2. L'Image de Premier Plan (Passe devant le texte) */
+    .img-layer-front {
+      width: 290px;
+      aspect-ratio: 3/4;
+      top: 35%;
+      z-index: 15; /* Au-dessus de 10 */
+      border: 0px solid rgba(201, 168, 76, 0.3);
+    }
+
+    /* 3. L'Image Intermédiaire Basse (Passe sous le bouton) */
+    .img-layer-mid {
+      width: 260px;
+      aspect-ratio: 1/1;
+      bottom: 12%;
+      z-index: 7; /* En dessous de 10 */
+      opacity: 0.5;
+    }
+
+    /* LES ANIMATIONS HORIZONTALES (De droite à gauche) */
+
+    .bg-slide-fast {
+      animation: flyToLeft 16s linear infinite;
+    }
+
+    .bg-slide-medium {
+      animation: flyToLeft 24s linear infinite;
+      animation-delay: 4s; /* Décale l'entrée pour ne pas télescoper l'autre image */
+    }
+
+    .bg-slide-slow {
+      animation: flyToLeft 32s linear infinite;
+      animation-delay: -8s; /* Démarre immédiatement au milieu du cycle au premier chargement */
+    }
+
+    @keyframes flyToLeft {
+      0% {
+        left: 100vw;
+        transform: translateX(0) scale(0.95);
+      }
+      /* Optionnel : légère ondulation verticale pendant qu'elle avance pour faire plus naturel */
+      50% {
+        transform: translateY(-15px) scale(1);
+      }
+      100% {
+        left: -400px; /* Sort complètement à gauche (ajusté selon la largeur max de l'image) */
+        transform: translateX(0) scale(0.95);
+      }
+    }
+
+    /* RESTE DU STYLE (Inchangé pour le luxe) */
+    .philosophy-center-content .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: #f7f5f0;
+      text-transform: uppercase;
+    }
+    .philosophy-center-content .title-italic {
+      font-style: italic;
+      color: var(--gold);
+      text-transform: none;
+    }
+    .philosophy-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 2.5rem 0;
+    }
+    .philosophy-text-blocks p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: rgba(247, 245, 240, 0.65);
+      margin-bottom: 1.5rem;
+    }
+    .mini-badge-gold {
+      position: absolute;
+      bottom: -1rem;
+      left: -1rem;
+      background: var(--gold);
+      color: var(--obsidian);
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 0.6rem 1rem;
+    }
+   
+    /* RESPONSIVE TAILLES MOBILES */
+    @media (max-width: 1024px) {
+      .cache-mobile {
+        display: none !important;
+      }
+      .img-layer-front {
+        position: relative;
+        left: auto;
+        top: auto;
+        margin: 3rem auto 0 auto;
+        width: 100%;
+        max-width: 360px;
+        animation: none; /* On stoppe le mouvement sur mobile pour le confort de lecture */
+        z-index: 11;
+      }
+    }
+
+    ************************************************************************************************
+      
+      font-family: 'Cormorant Garamond', serif;
+      text-transform: uppercase;
+      font-size: clamp(3rem, 6vw, 5.4rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      color: white;
+      opacity: 0;
+      animation: slideUp 1s ease 2.7s forwards;
+
+    ************************************************************************************************
+loader script
+<script>
+  import { gsap } from 'gsap';
+
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const loader = document.getElementById('loader');
+      const loaderLogo = document.getElementById('loader-logo-animated');
+      const headerLogo = document.getElementById('header-logo-target');
+      const loaderSub = document.querySelector('.loader-sub');
+      const loaderLine = document.querySelector('.loader-line');
+
+      if (!loader || !loaderLogo || !headerLogo) return;
+
+      // 1. CALCUL DES COORDONNÉES (On calcule l'écart pour ramener le header au centre)
+      const targetRect = headerLogo.getBoundingClientRect();
+      const currentRect = loaderLogo.getBoundingClientRect();
+
+      // Centres exacts
+      const currentCenterX = currentRect.left + currentRect.width / 2;
+      const currentCenterY = currentRect.top + currentRect.height / 2;
+      const targetCenterX = targetRect.left + targetRect.width / 2;
+      const targetCenterY = targetRect.top + targetRect.height / 2;
+
+      // Distance pour déplacer le logo du HEADER vers le CENTRE du loader
+      const startX = currentCenterX - targetCenterX;
+      const startY = currentCenterY - targetCenterY;
+
+      // Ratios d'échelle inverse (combien de fois le logo du header doit grandir pour imiter le loader)
+      const startScale = currentRect.width / targetRect.width;
+
+      // 2. CONFIGURATION INITIALE DE GSAP
+      // On place instantanément le logo du header au centre, géant, invisible pour l'instant
+      gsap.set(headerLogo, {
+        x: startX,
+        y: startY,
+        scale: startScale,
+        transformOrigin: "50% 50%",
+        opacity: 0
+      });
+
+      // 3. LA TIMELINE D'ANIMATION
+      const tl = gsap.timeline({
+        onComplete: () => {
+          loader.style.display = 'none';
+          // Nettoyage complet pour que le header redevienne normal et responsive
+          gsap.set(headerLogo, { clearProps: "all" });
+        }
+      });
+
+      // Séquence classique du loader
+      tl.fromTo([loaderLogo, loaderSub], 
+        { opacity: 0}, 
+        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", stagger: 0.15 }
+      )
+      .fromTo(loaderLine, 
+        { scaleX: 0 }, 
+        { scaleX: 1, duration: 1.2, ease: "power2.inOut", transformOrigin: "center center" },
+        "-=0.2"
+      )
+      .to([loaderSub, loaderLine], {
+        opacity: 0,
+        duration: 0.3,
+        ease: "power2.in"
+      })
+      
+      // 4. LE TWIST VISUEL (FONDU CROISÉ SUR PLACE)
+      // On affiche le logo du header au centre et on cache celui du loader simultanément
+      .to(headerLogo, { opacity: 1, duration: 0.1 })
+      .to(loaderLogo, { opacity: 0, duration: 0.1 }, "-=0.1")
+
+      // 5. L'ENVOL VERS SA POSITION FINALE (Le logo du header rentre à la maison)
+      .to(headerLogo, {
+        x: 0,
+        y: 0,
+        scale: 1,
+        duration: 1.4,
+        ease: "power4.inOut"
+      }, "voyage") // Un micro-arrêt au centre pour stabiliser le regard
+
+      // Le fond noir s'efface pendant le voyage
+      .to(loader, {
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.inOut"
+      }, "voyage+=0.4");
+
+    }, 100);
+  });
+</script>
+
+    ************************************************************************************************
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d130.63961485170347!2d10.1620527!3d36.6714608!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd3b9dd89a8567%3A0x5a652ae19dc72053!2sArt%20of%20Design!5e1!3m2!1sfr!2stn!4v1782305828017!5m2!1sfr!2stn" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
