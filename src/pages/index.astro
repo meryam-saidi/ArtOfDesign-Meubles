@@ -40,10 +40,11 @@ const stats = [
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" is:inline></script>
 
 
-
+<!--
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursorRing"></div>
-
+-->
+  
   <div id="loader">
     <p id="loader-logo-animated" class="loader-logo">Art <em>Of</em> Design</p>
     <div class="loader-line"></div>
@@ -87,25 +88,28 @@ const stats = [
 <section id="philosophy-premium" class="w-full">
   <div class="philosophy-container">
     
-    <div class="philosophy-media">
+    <div class="philosophy-media reveal-left">
       <div class="image-wrapper">
         <img src="/images/philo_section.png" alt="Moodboard matières" />
       </div>
     </div>
 
     <div class="philosophy-content">
-      <span class="section-label">— Notre philosophie —</span> 
-      <h2 class="section-title">
-        Le mobilier comme <br />
-        <div class="div-title-serif">
-          <span class="title-serif">expression de soi</span>
-        </div>
-      </h2>
-      <div class="philosophy-text">
+      <div class="philosophy-header reveal">  
+        <span class="section-label">Notre philosophie</span> <!-- — --> 
+        <h2 class="section-title">
+          Le mobilier comme <br />
+          <div class="div-title-serif">
+            <span class="title-serif">expression de soi</span>
+          </div>
+        </h2>
+      </div>
+      
+      <div class="philosophy-text reveal-right">
         <p>Chez <strong>Art Of Design</strong>, votre intérieur est le reflet de votre personnalité. Chaque projet naît d'une écoute approfondie de votre mode de vie pour aboutir à une création unique.</p>
         <p>Notre philosophie prend vie à travers ce dialogue subtil entre vos aspirations et la matière brute.</p>
       </div>
-      <div class="philosophy-action">
+      <div class="philosophy-action reveal-right">
         <a href="#categories-pin-container" class="btn-text-flip"> 
           <span class="text-default">Explorer nos univers</span>
           <span class="text-hover">Explorer nos univers</span>
@@ -136,7 +140,7 @@ const stats = [
             <img src={cat.image} alt={cat.label} loading="lazy" />
             <div class="cat-card-overlay-gradient"></div>
           </div>
-          <div class="cat-card-text-content">
+          <div class="cat-card-text-content reveal">
             <span class="cat-card-sub-label">{cat.sub}</span>
              <h3 class="cat-card-title-label">{cat.label}</h3>
             <div class="btn-text-flip"><span class="text-default">Découvrir</span><span class="text-hover">Découvrir</span></div>
@@ -147,19 +151,17 @@ const stats = [
   </div>
 </section>
 
+
 <section id="process-premium">
   <div class="process-minimal-container">
-    
-/**titre */
-
     <div class="process-split-layout">
       
       <div class="process-raw-list">
         <div class="process-header reveal">
-          <span class="section-label">— le Processus —<br /></span> 
+          <span class="section-label">le Processus<br /></span> 
           <h2 class="section-title">De l'idée à la matière
             <!-- <span class="title-serif">matière</span> -->
-            </h2>
+          </h2>
         </div>
         {[
           { n: 'I', title: 'Consultation', desc: 'Comprendre votre style de vie et vos aspirations.' },
@@ -236,14 +238,14 @@ const stats = [
   <div class="contact-wrapper">
     
     <div class="contact-info reveal-left">
-      <p class="section-label">— Parlons de votre projet —</p> 
+      <p class="section-label">Parlons de votre projet</p> 
       <h2 class="section-title">Demande de<br />devis gratuit</h2>
       <p class="contact-description">
         Chaque grand intérieur commence par une conversation. Décrivez-nous votre vision et nous vous répondrons sous 48 heures avec une première proposition.
       </p>
     
     
-    <form action="https://formspree.io/f/VOTRE_ID_ICI" method="POST" class="contact-form reveal-right">
+    <form action="https://formspree.io/f/xykqlqjo" method="POST" class="contact-form reveal-right" id="ajax-contact-form">
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Prénom & Nom</label>
@@ -258,7 +260,7 @@ const stats = [
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Téléphone</label>
-          <input type="tel" name="telephone" placeholder="+216 XX XXX XXX" class="form-input" />
+          <input type="tel" name="telephone" placeholder="+216 52 205 530" class="form-input" />
         </div>
         <div class="form-group">
           <label class="form-label">Type de projet</label>
@@ -283,6 +285,8 @@ const stats = [
         <span class="text-default">Envoyer ma demande</span>
         <span class="text-hover">Envoyer ma demande</span>
       </button>
+
+      <div id="form-status" class="form-status-message"></div>
     </form>
     
   </div>
@@ -365,67 +369,67 @@ const stats = [
 
 
 <script is:inline>
-document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
+/*
+    // ── CURSOR ──
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    });
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+*/
+    // ── LOADER ──
+    const loader = document.getElementById('loader');
+    setTimeout(() => {
+      loader.style.transition = 'opacity 0.8s ease';
+      loader.style.opacity = '0';
+      setTimeout(() => loader.style.display = 'none', 800);
+    }, 2400);
 
-  // ── CURSOR ──
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX; mouseY = e.clientY;
-    cursor.style.left = mouseX + 'px';
-    cursor.style.top = mouseY + 'px';
+    // ── NAV SCROLL ──
+    const nav = document.getElementById('navbar');
+    if (nav) {
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+      });
+    }
+
+    // ── SCROLL REVEAL ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+    // ── SWIPERS PRODUITS ──
+    const commonConfig = {
+      spaceBetween: 24,
+      loop: true,
+      breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+      slidesPerView: 1,
+    };
+
+    new Swiper('.cuisineSwiper', { ...commonConfig, navigation: { nextEl: '.swiper-next-cuisine', prevEl: '.swiper-prev-cuisine' } });
+    new Swiper('.dressingSwiper', { ...commonConfig, navigation: { nextEl: '.swiper-next-dressing', prevEl: '.swiper-prev-dressing' } });
+    new Swiper('.meubleSwiper', { ...commonConfig, navigation: { nextEl: '.swiper-next-meuble', prevEl: '.swiper-prev-meuble' } });
+    new Swiper('.projetSwiper', { ...commonConfig, navigation: { nextEl: '.swiper-next-projet', prevEl: '.swiper-prev-projet' } });
+
   });
-  function animateRing() {
-    ringX += (mouseX - ringX) * 0.12;
-    ringY += (mouseY - ringY) * 0.12;
-    ring.style.left = ringX + 'px';
-    ring.style.top = ringY + 'px';
-    requestAnimationFrame(animateRing);
-  }
-  animateRing();
-
-  // ── LOADER ──
-  const loader = document.getElementById('loader');
-  setTimeout(() => {
-    loader.style.transition = 'opacity 0.8s ease';
-    loader.style.opacity = '0';
-    setTimeout(() => loader.style.display = 'none', 800);
-  }, 2400);
-
-  // ── NAV SCROLL ──
-  const nav = document.getElementById('navbar');
-  if (nav) {
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-    });
-  }
-
-  // ── SCROLL REVEAL ──
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
-
-  // ── SWIPERS PRODUITS ──
-  const commonConfig = {
-    spaceBetween: 24,
-    loop: true,
-    breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
-    slidesPerView: 1,
-  };
-
-  new Swiper('.cuisineSwiper', { ...commonConfig, navigation: { nextEl: '.swiper-next-cuisine', prevEl: '.swiper-prev-cuisine' } });
-  new Swiper('.dressingSwiper', { ...commonConfig, navigation: { nextEl: '.swiper-next-dressing', prevEl: '.swiper-prev-dressing' } });
-  new Swiper('.meubleSwiper', { ...commonConfig, navigation: { nextEl: '.swiper-next-meuble', prevEl: '.swiper-prev-meuble' } });
-  new Swiper('.projetSwiper', { ...commonConfig, navigation: { nextEl: '.swiper-next-projet', prevEl: '.swiper-prev-projet' } });
-
-});
 </script>
 
 
@@ -496,54 +500,114 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <script is:inline>
   // --- ANIMATION INTERACTIVE DU SLIDER AVANT/APRÈS ---
-const slider = document.querySelector('#project-slider');
-  if (slider) {
-    const moveSlider = (e) => {
-      // Récupère les coordonnées du slider à l'écran
-      const rect = slider.getBoundingClientRect();
-      // Calcule la position X de la souris par rapport au conteneur (en %)
-      let x = e.clientX - rect.left;
-      let percentage = (x / rect.width) * 100;
+  const slider = document.querySelector('#project-slider');
+    if (slider) {
+      const moveSlider = (e) => {
+        // Récupère les coordonnées du slider à l'écran
+        const rect = slider.getBoundingClientRect();
+        // Calcule la position X de la souris par rapport au conteneur (en %)
+        let x = e.clientX - rect.left;
+        let percentage = (x / rect.width) * 100;
+        
+        // Sécurité pour pas que ça sorte du cadre (entre 0% et 100%)
+        if (percentage < 0) percentage = 0;
+        if (percentage > 100) percentage = 100;
+        
+        // Injecte la valeur directement dans le CSS
+        slider.style.setProperty('--slider-pos', `${percentage}%`);
+      };
+
+      // S'active simplement au mouvement de la souris sur l'image
+      slider.addEventListener('mousemove', moveSlider);
+      // Support pour les écrans tactiles sur mobile
+      slider.addEventListener('touchmove', (e) => moveSlider(e.touches[0]));
+    }
+
+    function initProcessContactScroll() {
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        
+        gsap.registerPlugin(ScrollTrigger);
+
+        const processSection = document.querySelector('#process-premium');
+        const contactSection = document.querySelector('#contact');
+        
+        if (!processSection || !contactSection) return;
+
+        // EFFET RIDEAU CORRIGÉ
+        ScrollTrigger.create({
+          trigger: processSection,
+          start: "bottom bottom", // MODIFICATION : On attend que le BAS du process touche le BAS de l'écran
+          end: "+=100%",          // Laisse un temps de pause ou d'ancrage
+          pin: true,
+          pinSpacing: false,      // Permet au contact de glisser par-dessus
+          invalidateOnRefresh: true,
+        });
+
+        ScrollTrigger.refresh();
+      }
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(initProcessContactScroll, 300);
+    });
+</script>
+
+
+<!-- script formulaire   -->
+
+<script is:inline>
+  // On utilise une fonction auto-exécutée pour isoler le scope
+  (() => {
+    const initForm = () => {
+      const form = document.getElementById('ajax-contact-form');
+      const status = document.getElementById('form-status');
       
-      // Sécurité pour pas que ça sorte du cadre (entre 0% et 100%)
-      if (percentage < 0) percentage = 0;
-      if (percentage > 100) percentage = 100;
-      
-      // Injecte la valeur directement dans le CSS
-      slider.style.setProperty('--slider-pos', `${percentage}%`);
+      if (!form || !status) return;
+
+      form.addEventListener('submit', async (e) => {
+        // Bloque immédiatement la redirection native
+        e.preventDefault(); 
+        e.stopPropagation();
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
+
+        // Affichage de l'état de chargement
+        status.style.display = 'block';
+        status.className = 'form-status-message sending';
+        status.innerText = 'Transmission de votre projet...';
+
+        const data = new FormData(form);
+
+        try {
+          const response = await fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            status.className = 'form-status-message success';
+            status.innerText = 'Votre message a bien été transmis. Notre équipe vous répondra sous 48 heures.';
+            form.reset();
+          } else {
+            const responseData = await response.json();
+            status.className = 'form-status-message error';
+            status.innerText = responseData.error || 'Une erreur est survenue.';
+            if (submitBtn) submitBtn.disabled = false;
+          }
+        } catch (error) {
+          status.className = 'form-status-message error';
+          status.innerText = 'Impossible de joindre le serveur. Veuillez réessayer.';
+          if (submitBtn) submitBtn.disabled = false;
+        }
+      });
     };
 
-    // S'active simplement au mouvement de la souris sur l'image
-    slider.addEventListener('mousemove', moveSlider);
-    // Support pour les écrans tactiles sur mobile
-    slider.addEventListener('touchmove', (e) => moveSlider(e.touches[0]));
-  }
-
-  function initProcessContactScroll() {
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      
-      gsap.registerPlugin(ScrollTrigger);
-
-      const processSection = document.querySelector('#process-premium');
-      const contactSection = document.querySelector('#contact');
-      
-      if (!processSection || !contactSection) return;
-
-      // EFFET RIDEAU CORRIGÉ
-      ScrollTrigger.create({
-        trigger: processSection,
-        start: "bottom bottom", // MODIFICATION : On attend que le BAS du process touche le BAS de l'écran
-        end: "+=100%",          // Laisse un temps de pause ou d'ancrage
-        pin: true,
-        pinSpacing: false,      // Permet au contact de glisser par-dessus
-        invalidateOnRefresh: true,
-      });
-
-      ScrollTrigger.refresh();
-    }
-  }
-
-  window.addEventListener('load', () => {
-    setTimeout(initProcessContactScroll, 300);
-  });
+    // Gestion du cycle de vie Astro (DOMContentLoaded + transitions de pages éventuelles)
+    document.addEventListener('DOMContentLoaded', initForm);
+    initForm(); // Exécution immédiate au cas où le DOM est déjà prêt
+  })();
 </script>

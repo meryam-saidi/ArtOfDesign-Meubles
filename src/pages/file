@@ -942,3 +942,956 @@ loader script
     ************************************************************************************************
 
 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d130.63961485170347!2d10.1620527!3d36.6714608!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd3b9dd89a8567%3A0x5a652ae19dc72053!2sArt%20of%20Design!5e1!3m2!1sfr!2stn!4v1782305828017!5m2!1sfr!2stn" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+
+**************************************************************************************************************
+
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import dressingData from '../data/dressing.json';
+
+// On définit les sections que l'on veut afficher
+const sections = [
+  { id: "forme-i", label: "Dressing Forme I", valeur: "I" },
+  { id: "forme-l", label: "Dressing Forme L", valeur: "L" },
+  { id: "aLaFr", label: "A La Française", valeur: "Fr" },
+  { id: "coulissant", label: "Coulissant", valeur: "C" }
+];
+---
+
+<Layout title="Nos Modèles de Cuisines | AD Cuisine">
+<main class="pt- pb-20">
+    
+    <section class="max-w-7xl mx-auto px-6 py-8">
+      
+      <nav class="flex mb-6 text-[10px] uppercase tracking-widest text-gray-400">
+        <a href="/" class="hover:text-[var(--color-gold)] transition-colors">Accueil</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-800">dressing</span>
+      </nav>
+      
+      <div class="relative w-full h-64 md:h-[400px] overflow-hidden rounded-sm shadow-lg mb- group">
+        
+        <img 
+          src="/images/imm.jpg" 
+          alt="Catalogue AD Cuisine" 
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+        />
+        
+        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-500"></div>
+        
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8 z-10">
+          <h1 class="font-serif text-4xl md:text-6xl text-white mb-3 italic leading-tight drop-shadow-md">
+            L'excellence <span class="text-[var(--color-gold)]">sur mesure</span>
+          </h1>
+          <p class="text-gray-100 font-light tracking-widest uppercase text-[10px] md:text-xs opacity-90 drop-shadow">
+            Découvrez notre collection complète
+          </p>
+          
+          <div class="w-16 h-px bg-[var(--color-gold)] mt-6"></div>
+        </div>
+      </div>
+    </section>
+
+    {sections.map((section) => {
+      // On filtre directement par forme dans le JSON complet
+      const produitsParForme = dressingData.filter(item => item.forme === section.valeur);
+
+      return produitsParForme.length > 0 && (
+        <section id={section.id} class="max-w-7xl mx-auto px-6 py-12 scroll-mt-32">
+          <div class="flex items-center gap-4 mb-12">
+            <a 
+          href={`/cuisines-infos#${section.id}-infos`} 
+          class="group/title flex items-center transition-transform hover:translate-x-2"
+        >
+          <h2 class="bg-[#d4c38d] text-black px-6 py-2 font-bold uppercase tracking-widest text-sm group-hover/title:bg-black group-hover/title:text-white transition-colors duration-300">
+            {section.label}
+          </h2>
+        </a>
+            <div class="flex-1 h-[1px] bg-gray-200"></div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {produitsParForme.map((item) => (
+              <Card 
+                type="dressing"
+                id={item.id}
+                nom={item.nom} 
+                prix={item.prix_initial} 
+                promo={item.reduction} 
+                image={item.image} 
+              />
+            ))}
+          </div>
+        </section>
+      );
+    })}
+
+  </main>
+</Layout>
+
+*************************************************************************************************************
+
+ty    ---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import meublesData from '../data/meubles.json';
+
+// On définit les sections que l'on veut afficher
+const sections = [
+  { id: "colonnes", label: "Meubles Colonne de Cuisine", valeur: "C" },
+  { id: "meuble-bas", label: "Meubles Bas de Cuisine", valeur: "B" },
+  { id: "meuble-haut", label: "Meubles Haut de Cuisine", valeur: "H" },
+  { id: "meuble-dressing", label: "Meubles Dressing", valeur: "D" }
+];
+---
+
+<Layout title="Nos Modèles de Cuisines | AD Cuisine">
+<main class="pt- pb-20">
+    
+    <section class="max-w-7xl mx-auto px-6 py-8">
+      
+      <nav class="flex mb-6 text-[10px] uppercase tracking-widest text-gray-400">
+        <a href="/" class="hover:text-[var(--color-gold)] transition-colors">Accueil</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-800">meubles</span>
+      </nav>
+      
+      <div class="relative w-full h-64 md:h-[400px] overflow-hidden rounded-sm shadow-lg mb- group">
+        
+        <img 
+          src="/images/imm.jpg" 
+          alt="Catalogue AD Cuisine" 
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+        />
+        
+        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-500"></div>
+        
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8 z-10">
+          <h1 class="font-serif text-4xl md:text-6xl text-white mb-3 italic leading-tight drop-shadow-md">
+            L'excellence <span class="text-[var(--color-gold)]">sur mesure</span>
+          </h1>
+          <p class="text-gray-100 font-light tracking-widest uppercase text-[10px] md:text-xs opacity-90 drop-shadow">
+            Découvrez notre collection complète
+          </p>
+          
+          <div class="w-16 h-px bg-[var(--color-gold)] mt-6"></div>
+        </div>
+      </div>
+    </section>
+
+    {sections.map((section) => {
+      // On filtre directement par forme dans le JSON complet
+      const produitsParForme = meublesData.filter(item => item.forme === section.valeur);
+
+      return produitsParForme.length > 0 && (
+        <section id={section.id} class="max-w-7xl mx-auto px-6 py-12 scroll-mt-32">
+          <div class="flex items-center gap-4 mb-12">
+            <a 
+          href={`/cuisines-infos#${section.id}-infos`} 
+          class="group/title flex items-center transition-transform hover:translate-x-2"
+        >
+          <h2 class="bg-[#d4c38d] text-black px-6 py-2 font-bold uppercase tracking-widest text-sm group-hover/title:bg-black group-hover/title:text-white transition-colors duration-300">
+            {section.label}
+          </h2>
+        </a>
+            <div class="flex-1 h-[1px] bg-gray-200"></div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {produitsParForme.map((item) => (
+              <Card 
+                type="meuble"
+                id={item.id}
+                nom={item.nom} 
+                prix={item.prix_initial} 
+                promo={item.reduction} 
+                image={item.image} 
+              />
+            ))}
+          </div>
+        </section>
+      );
+    })}
+
+  </main>
+</Layout>
+
+**********************************************************************************************************
+
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import projetsData from '../data/projets.json';
+
+// On définit les sections que l'on veut afficher
+const sections = [
+  { id: "forme-i", label: "Dressing Forme I", valeur: "I" },
+  { id: "forme-l", label: "Dressing Forme L", valeur: "L" },
+  { id: "aLaFr", label: "A La Française", valeur: "Fr" },
+  { id: "coulissant", label: "Projets", valeur: "C" }
+];
+---
+
+<Layout title="Nos Modèles de Cuisines | AD Cuisine">
+<main class="pt- pb-20">
+    
+    <section class="max-w-7xl mx-auto px-6 py-8">
+      
+      <nav class="flex mb-6 text-[10px] uppercase tracking-widest text-gray-400">
+        <a href="/" class="hover:text-[var(--color-gold)] transition-colors">Accueil</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-800">projets</span>
+      </nav>
+      
+      <div class="relative w-full h-64 md:h-[400px] overflow-hidden rounded-sm shadow-lg mb- group">
+        
+        <img 
+          src="/images/imm.jpg" 
+          alt="Catalogue AD Cuisine" 
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+        />
+        
+        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-500"></div>
+        
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8 z-10">
+          <h1 class="font-serif text-4xl md:text-6xl text-white mb-3 italic leading-tight drop-shadow-md">
+            L'excellence <span class="text-[var(--color-gold)]">sur mesure</span>
+          </h1>
+          <p class="text-gray-100 font-light tracking-widest uppercase text-[10px] md:text-xs opacity-90 drop-shadow">
+            Découvrez notre collection complète
+          </p>
+          
+          <div class="w-16 h-px bg-[var(--color-gold)] mt-6"></div>
+        </div>
+      </div>
+    </section>
+
+    {sections.map((section) => {
+      // On filtre directement par forme dans le JSON complet
+      const produitsParForme = projetsData.filter(item => item.forme === section.valeur);
+
+      return produitsParForme.length > 0 && (
+        <section id={section.id} class="max-w-7xl mx-auto px-6 py-12 scroll-mt-32">
+          
+          <div class="flex items-center gap-4 mb-12">
+            <a 
+          href={`/cuisines-infos#${section.id}-infos`} 
+          class="group/title flex items-center transition-transform hover:translate-x-2"
+        >
+          <h2 class="bg-[#d4c38d] text-black px-6 py-2 font-bold uppercase tracking-widest text-sm group-hover/title:bg-black group-hover/title:text-white transition-colors duration-300">
+            {section.label}
+          </h2>
+        </a>
+            <div class="flex-1 h-[1px] bg-gray-200"></div>
+          </div>
+        
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {produitsParForme.map((item) => (
+              <Card 
+                type="projet"
+                id={item.id}
+                nom={item.nom} 
+                prix={item.prix_initial} 
+                promo={item.reduction} 
+                image={item.image} 
+              />
+            ))}
+          </div>
+        </section>
+      );
+    })}
+
+  </main>
+</Layout>
+
+*****************************************************************************************************************
+
+<section class="projects-list">
+    <div class="section-header reveal visible" style="margin-bottom:3rem">
+      <div class="section-eyebrow">Portfolio</div>
+      <h2 class="section-title">Nos projets réalisés</h2>
+      <p class="section-desc">De gauche : le rendu 3D validé par le client. De droite : la réalisation finale dans son intérieur.</p>
+    </div>
+    <div id="projects-list"><div class="project-item reveal visible">
+        <div class="project-item-gallery">
+          <div class="before-after">
+            <div class="before-after-side">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&amp;q=80" alt="3D Villa Marsa — Cuisine Impériale" loading="lazy" data-lightbox="pp-01">
+              <div class="before-after-badge badge-3d">Vue 3D</div>
+            </div>
+            <div class="before-after-side">
+              <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&amp;q=80" alt="Réalisation Villa Marsa — Cuisine Impériale" loading="lazy" data-lightbox="pp-01">
+              <div class="before-after-badge badge-real">Réalisation</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-item-info">
+          <div class="project-item-type">Cuisine forme U avec îlot</div>
+          <div class="project-item-name">Villa Marsa — Cuisine Impériale</div>
+          <div class="project-item-desc">Transformation complète d'une cuisine 18m². Du relevé de côtes au rendu 3D, jusqu'à la pose finale en 12 jours.</div>
+          <div class="project-meta">
+            <div class="project-meta-item">
+              <div class="project-meta-label">Durée</div>
+              <div class="project-meta-value">12 jours</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Type</div>
+              <div class="project-meta-value">Cuisine forme U avec îlot</div>
+            </div>
+          </div>
+          <div class="project-steps-grid">
+        <div class="project-step-mini">
+          <strong>📐 Visite &amp; Relevé</strong>
+          <span>Mesures précises, analyse des contraintes, conseil personnalisé.</span>
+        </div>
+        <div class="project-step-mini">
+          <strong>🎨 Conception 3D</strong>
+          <span>Rendu photoréaliste sous 48h pour validation client.</span>
+        </div>
+        <div class="project-step-mini">
+          <strong>🔨 Fabrication</strong>
+          <span>Production en atelier avec matériaux sélectionnés.</span>
+        </div>
+        <div class="project-step-mini">
+          <strong>✨ Pose &amp; Finitions</strong>
+          <span>Installation par nos menuisiers, contrôle qualité final.</span>
+        </div></div>
+        </div></div><div class="project-item reveal visible">
+        <div class="project-item-gallery">
+          <div class="before-after">
+            <div class="before-after-side">
+              <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=800&amp;q=80" alt="3D Appartement Lac — Dressing Suite" loading="lazy" data-lightbox="pp-02">
+              <div class="before-after-badge badge-3d">Vue 3D</div>
+            </div>
+            <div class="before-after-side">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&amp;q=80" alt="Réalisation Appartement Lac — Dressing Suite" loading="lazy" data-lightbox="pp-02">
+              <div class="before-after-badge badge-real">Réalisation</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-item-info">
+          <div class="project-item-type">Dressing forme L</div>
+          <div class="project-item-name">Appartement Lac — Dressing Suite</div>
+          <div class="project-item-desc">Dressing sur mesure en forme L, 8m². Intérieur en noyer, îlot central, éclairage scénographique.</div>
+          <div class="project-meta">
+            <div class="project-meta-item">
+              <div class="project-meta-label">Durée</div>
+              <div class="project-meta-value">8 jours</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Type</div>
+              <div class="project-meta-value">Dressing forme L</div>
+            </div>
+          </div>
+          <div class="project-steps-grid">
+        <div class="project-step-mini">
+          <strong>📐 Visite &amp; Relevé</strong>
+          <span>Mesures précises, analyse des contraintes, conseil personnalisé.</span>
+        </div>
+        <div class="project-step-mini">
+          <strong>🎨 Conception 3D</strong>
+          <span>Rendu photoréaliste sous 48h pour validation client.</span>
+        </div>
+        <div class="project-step-mini">
+          <strong>🔨 Fabrication</strong>
+          <span>Production en atelier avec matériaux sélectionnés.</span>
+        </div>
+        <div class="project-step-mini">
+          <strong>✨ Pose &amp; Finitions</strong>
+          <span>Installation par nos menuisiers, contrôle qualité final.</span>
+        </div></div>
+        </div></div><div class="project-item reveal visible">
+        <div class="project-item-gallery">
+          <div class="before-after">
+            <div class="before-after-side">
+              <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=800&amp;q=80" alt="3D Résidence Gammarth — Cuisine Alba" loading="lazy" data-lightbox="pp-03">
+              <div class="before-after-badge badge-3d">Vue 3D</div>
+            </div>
+            <div class="before-after-side">
+              <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&amp;q=80" alt="Réalisation Résidence Gammarth — Cuisine Alba" loading="lazy" data-lightbox="pp-03">
+              <div class="before-after-badge badge-real">Réalisation</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-item-info">
+          <div class="project-item-type">Cuisine forme I</div>
+          <div class="project-item-name">Résidence Gammarth — Cuisine Alba</div>
+          <div class="project-item-desc">Cuisine linéaire 4,2m. Laqué blanc mat, plan quartz, éclairage LED filaire. Résultat époustouflant.</div>
+          <div class="project-meta">
+            <div class="project-meta-item">
+              <div class="project-meta-label">Durée</div>
+              <div class="project-meta-value">7 jours</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Type</div>
+              <div class="project-meta-value">Cuisine forme I</div>
+            </div>
+          </div>
+          <div class="project-steps-grid">
+        <div class="project-step-mini">
+          <strong>📐 Visite &amp; Relevé</strong>
+          <span>Mesures précises, analyse des contraintes, conseil personnalisé.</span>
+        </div>
+        <div class="project-step-mini">
+          <strong>🎨 Conception 3D</strong>
+          <span>Rendu photoréaliste sous 48h pour validation client.</span>
+        </div>
+        <div class="project-step-mini">
+          <strong>🔨 Fabrication</strong>
+          <span>Production en atelier avec matériaux sélectionnés.</span>
+        </div>
+        <div class="project-step-mini">
+          <strong>✨ Pose &amp; Finitions</strong>
+          <span>Installation par nos menuisiers, contrôle qualité final.</span>
+        </div></div>
+        </div></div></div>
+</section>
+
+********************************************************************
+
+.json
+
+    "slug": "cuisine-forme-i",
+
+
+************************************************
+
+---
+// src/pages/cuisine/[id].astro
+import Layout from '../../layouts/Layout.astro';
+import cuisinesData from '../../data/cuisines.json';
+
+export async function getStaticPaths() {
+  return cuisinesData.map((cuisine) => {
+    return {
+      params: { id: cuisine.id.toString().toLowerCase() },
+      props: { cuisine },
+    };
+  });
+}
+
+const { cuisine } = Astro.props;
+
+const prixFinal = cuisine.reduction 
+  ? cuisine.prix_initial * (1 - cuisine.reduction / 100) 
+  : cuisine.prix_initial;
+
+// Séparation équitable de la composition type en deux colonnes pour affichage horizontal
+const milieuComposition = Math.ceil(cuisine.caracteristiques_techniques.composition_type.length / 2);
+const compoCol1 = cuisine.caracteristiques_techniques.composition_type.slice(0, milieuComposition);
+const compoCol2 = cuisine.caracteristiques_techniques.composition_type.slice(milieuComposition);
+---
+
+<Layout title={`${cuisine.nom} | Détails AD Cuisine`}>
+  <main class="details-page">
+    <section class="details-hero">
+      <div class="details-hero-viewport">
+        <img 
+          src={cuisine.catalogue_images?.[3]} 
+          alt={`Art Of Design - Haute Cuisine ${cuisine.nom}`} 
+          class="details-hero-media"
+        />
+        <div class="details-hero-overlay"></div>
+      </div>
+      
+      <div class="details-hero-container">
+        <span class="details-hero-subtitle">Haute Cuisine d'Exception</span>
+        <h1 class="details-hero-title">
+          {cuisine.nom}
+        </h1>
+        <div class="details-hero-line"></div>
+      </div>
+    </section>
+
+    <div class="product-container">
+      <nav class="breadcrumb">
+          <a href="/">Accueil</a>
+          <span>/</span>
+          <a href="/cuisines">Cuisines</a>
+          <span>/</span>
+          <span class="active-crumb-text">{cuisine.nom}</span>
+      </nav>
+
+      <div class="main-product-grid">     
+        <div class="visuals-zone">
+
+          <div class="main-visual-wrapper">
+            <img 
+              id="main-visual"
+              src={cuisine.catalogue_images?.[0]} 
+              alt={cuisine.nom} 
+            />
+            <div class="visual-overlay"></div>
+          </div>
+
+          <div class="slider-wrapper-relative">
+            <button id="slide-prev" class="slider-arrow prev-arrow" aria-label="Précédent">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+
+            <div class="slider-container" id="slider-mask">
+              <div class="thumbnails-slider-rail" id="thumb-rail">
+                {cuisine.catalogue_images?.map((img, index) => (
+                  <button class={`thumb-btn ${index === 0 ? 'active-thumb' : ''}`} data-full={img}>
+                    <img src={img} alt={`Aperçu ${index + 1}`} />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <button id="slide-next" class="slider-arrow next-arrow" aria-label="Suivant">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+
+        <div class="details-zone">
+          <div class="header-details">
+            <span class="brand-badge">Exclusivité AD Cuisine</span>
+            <h1 class="product-title">{cuisine.nom}</h1>
+            
+            <div class="price-wrapper">
+              {cuisine.reduction ? (
+                <div class="price-flex">
+                  <p class="price-old">{cuisine.prix_initial} TTC</p>
+                  <p class="price-current">{prixFinal} TTC</p>                
+                  <span class="discount-tag">-{cuisine.reduction}%</span>
+                </div>
+              ) : (
+                <p class="price-current">{cuisine.prix_initial} TTC</p>
+              )}
+            </div>
+          </div>
+          
+          <div class="specs-block">
+            <p><strong class="spec-paragraph">Dimensions caisson bas </strong> <br /> hauteur {cuisine.dimensions.caisson_bas.hauteur} <br /> profondeur {cuisine.dimensions.caisson_bas.profondeur}</p>
+            <p><strong class="spec-paragraph">Dimensions caisson haut </strong> <br /> hauteur {cuisine.dimensions.caisson_haut.hauteur} <br /> profondeur {cuisine.dimensions.caisson_haut.profondeur}</p>
+          </div>
+
+          <div class="nuancier-block">
+            <div class="nuancier-header">
+              <h3 class="nuancier-title">Nuancier disponible</h3>
+              <span id="color-label" class="color-current-name"></span>
+            </div>
+
+            <div class="swatches-row">
+              {cuisine.couleurs?.map((v) => (
+                <button 
+                  class={`color-swatch ${v.nom === "Chêne naturel" ? "active-swatch" : ""}`}
+                  style={`background-image: url(${v.image_presentation}); background-size: cover; background-position: center;`}
+                  data-value={v.image_presentation}
+                  title={v.nom}
+                >
+                </button>
+              ))}
+            </div>
+
+            <div class="preview-card-wrapper">
+              <div id="texture-preview-card" class="preview-card-el"></div>
+            </div>
+          </div>
+
+          <div class="cta-wrapper">
+            <a href="/#contact" class="btn-text-flip"> 
+              <span class="text-default">Réserver mon étude gratuite</span>
+              <span class="text-hover">Réserver mon étude gratuite</span>
+            </a> 
+          </div>
+        </div>
+      </div>
+
+      <div class="technical-section">
+        <h3 class="technical-main-title">Caractéristiques techniques des éléments</h3>
+        
+        <div class="tech-dropdowns">
+          
+          {/* DROPDOWN : COMPOSITION TYPE */}
+          <div class="tech-item dropdown active" id="dropdown-composition">
+            <button class="tech-header dropdown-toggle">
+              <span class="tech-item-number reveal">I</span>
+              <h4>Composition type</h4>
+              <div class="dropdown-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+              </div>
+            </button>
+            <div class="tech-content dropdown-pane">
+              <div class="tech-content-inner">
+                <div class="tech-composition-cols">
+                  <ul class="tech-list">
+                    {compoCol1.map((item) => (
+                      <li><span>•</span> {item}</li>
+                    ))}
+                  </ul>
+                  <ul class="tech-list">
+                    {compoCol2.map((item) => (
+                      <li><span>•</span> {item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* DROPDOWN : FINITION PRODUIT */}
+          <div class="tech-item dropdown" id="dropdown-finition">
+            <button class="tech-header dropdown-toggle">
+              <span class="tech-item-number">II</span>
+              <h4>Finition produit</h4>
+              <div class="dropdown-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+              </div>
+            </button>
+            <div class="tech-content dropdown-pane">
+              <div class="tech-content-inner">
+                <div class="tech-finition-details">
+                  <div class="tech-finition-item">
+                    <strong class="sub-label">Caisson</strong>
+                    <p class="tech-paragraph">{cuisine.caracteristiques_techniques.finition_produit.caisson}</p>
+                  </div>
+                  <div class="tech-finition-item">
+                    <strong class="sub-label">Façade</strong>
+                    <p class="tech-paragraph">{cuisine.caracteristiques_techniques.finition_produit.facade}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+
+        <div class="nb-footer-container">
+          <p><strong>NB :</strong> {cuisine.nb}</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script is:inline>
+  // Script pour gérer l'ouverture/fermeture des dropdowns
+  const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const dropdownItem = toggle.closest('.tech-item');
+      dropdownItem.classList.toggle('active');
+    });
+  });
+</script>
+
+
+<script>
+  import { gsap } from 'gsap';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const swatches = document.querySelectorAll('.color-swatch');
+    const colorLabel = document.getElementById('color-label') as HTMLElement | null;
+    const previewCard = document.getElementById('texture-preview-card') as HTMLElement | null;
+    const defaultSwatch = Array.from(swatches).find(s => s.getAttribute('title') === "Chêne naturel") as HTMLElement | null;
+
+    // SI L'ÉLÉMENT N'EXISTE PAS SUR CETTE PAGE, ON QUITTE SILENCIEUSEMENT SANS ERREUR
+    if (!previewCard) return;
+
+    let activeSwatch: HTMLElement | null = null;
+
+    if (defaultSwatch) {
+      const defaultImg = defaultSwatch.getAttribute('data-value');
+      const defaultTitle = defaultSwatch.getAttribute('title') || '';
+
+      if (defaultImg && previewCard) {
+        // 1. On applique directement le titre et la texture en arrière-plan
+        if (colorLabel) colorLabel.textContent = defaultTitle;
+        previewCard.style.backgroundImage = `url(${defaultImg})`;
+        
+        // 2. On fait descendre le rectangle instantanément ou via une transition douce
+        gsap.to(previewCard, {
+          y: "0%",
+          duration: 0.45,
+          ease: "power3.out"
+        });
+
+        // 3. On l'enregistre comme la pastille active en mémoire
+        activeSwatch = defaultSwatch;
+      }
+    }
+
+    function closePreview() {
+      if (!previewCard) return;
+      
+      gsap.to(previewCard, {
+        y: "-100%",
+        duration: 0.3,
+        ease: "power2.in",
+        onComplete: () => {
+          if (colorLabel) colorLabel.textContent = "";
+          swatches.forEach(s => s.classList.remove('active-swatch'));
+          activeSwatch = null;
+        }
+      });
+    }
+
+    function openOrChangePreview(currentSwatch: HTMLElement, imageUrl: string, title: string) {
+      if (!previewCard) return;
+      
+      const tl = gsap.timeline();
+
+      if (activeSwatch && activeSwatch !== currentSwatch) {
+        tl.to(previewCard, {
+          y: "-100%",
+          duration: 0.2,
+          ease: "power2.in",
+          onComplete: () => {
+            if (colorLabel) colorLabel.textContent = title;
+            previewCard.style.backgroundImage = `url(${imageUrl})`;
+          }
+        });
+      } else {
+        if (colorLabel) colorLabel.textContent = title;
+        previewCard.style.backgroundImage = `url(${imageUrl})`;
+      }
+
+      tl.to(previewCard, {
+        y: "0%",
+        duration: 0.45,
+        ease: "power3.out"
+      });
+
+      swatches.forEach(s => s.classList.remove('active-swatch'));
+      currentSwatch.classList.add('active-swatch');
+      activeSwatch = currentSwatch;
+    }
+
+    swatches.forEach(swatch => {
+      swatch.addEventListener('click', (e) => {
+        const currentSwatch = e.currentTarget as HTMLElement;
+        const imageUrl = currentSwatch.getAttribute('data-value');
+        const title = currentSwatch.getAttribute('title') || '';
+
+        if (!imageUrl) return;
+
+        if (activeSwatch === currentSwatch) {
+          closePreview();
+        } else {
+          openOrChangePreview(currentSwatch, imageUrl, title);
+        }
+      });
+    });
+  });
+</script>
+
+
+<script>
+  import { gsap } from 'gsap';
+  import { Draggable } from 'gsap/Draggable';
+
+  gsap.registerPlugin(Draggable);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const mainImg = document.getElementById('main-visual') as HTMLImageElement;
+    const thumbButtons = document.querySelectorAll('.thumb-btn');
+    const rail = document.getElementById('thumb-rail');
+    const mask = document.getElementById('slider-mask');
+    const prevBtn = document.getElementById('slide-prev');
+    const nextBtn = document.getElementById('slide-next');
+
+    if (!rail || !mask) return;
+
+    // 1. INITIALISATION DU DRAGGABLE
+    const dragInstance = Draggable.create(rail, {
+      type: "x",
+      bounds: mask,
+      edgeResistance: 0.65,
+      inertia: true,
+    })[0]; // On récupère l'instance indexée 0
+
+    // 2. LOGIQUE DE NAVIGATION VIA LES FLÈCHES
+    // Largeur d'une miniature (9rem = 144px) + gap (0.5rem = 8px) = ~152px
+    const stepWidth = 152; 
+
+    function moveSlider(direction: 'next' | 'prev') {
+      // On calcule la position cible X actuelle
+      let currentX = gsap.getProperty(rail, "x") as number;
+      let targetX = direction === 'next' ? currentX - stepWidth : currentX + stepWidth;
+
+      // Force GSAP à respecter les limites physiques (bounds) du masque de défilement
+      const minX = dragInstance.minX;
+      const maxX = dragInstance.maxX;
+
+      if (targetX < minX) targetX = minX;
+      if (targetX > maxX) targetX = maxX;
+
+      // Animation fluide du rail vers la nouvelle position
+      gsap.to(rail, {
+        x: targetX,
+        duration: 0.4,
+        ease: "power2.out",
+        onUpdate: () => dragInstance.update() // Synchronise l'état interne du Drag de GSAP
+      });
+    }
+
+    nextBtn?.addEventListener('click', () => moveSlider('next'));
+    prevBtn?.addEventListener('click', () => moveSlider('prev'));
+
+    // 3. LOGIQUE DE CHANGEMENT DE GALERIE (FADE)
+    function updateGallery(newSrc: string | null) {
+      if (!mainImg || !newSrc) return;
+      
+      gsap.to(mainImg, {
+        opacity: 0,
+        duration: 0.2,
+        onComplete: () => {
+          mainImg.src = newSrc;
+          gsap.to(mainImg, { opacity: 1, duration: 0.2 });
+        }
+      });
+    }
+
+    thumbButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const currentBtn = e.currentTarget as HTMLElement;
+        const img = currentBtn.getAttribute('data-full');
+        
+        updateGallery(img);
+
+        thumbButtons.forEach(b => b.classList.remove('active-thumb'));
+        currentBtn.classList.add('active-thumb');
+      });
+    });
+  });
+</script>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // ── SCROLL REVEAL ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+  });
+</script>
+
+
+<style>
+  
+  .details-page {
+    background-color: #fcfaf8 !important;
+  }
+
+  .details-hero {
+    position: relative;
+    width: 100%;
+    height: 65vh; /* Occupe 85% de la hauteur de l'écran (idéal pour voir qu'il y a du contenu en bas) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #fcfaf8 !important;
+  }
+
+  /* Conteneur média pour sécuriser le zoom ou les futurs effets parallaxes */
+  .details-hero-viewport {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .details-hero-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    /* Petit effet d'échelle subtil par défaut */
+    transform: scale(1.02); 
+    will-change: transform;
+  }
+
+  /* Overlay sombre premium (plus dense en bas pour l'élégance) */
+  .details-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(252, 250, 248, 0.1) 0%,   /* Haut : Transparence presque totale */
+      rgba(252, 250, 248, 0.45) 50%, /* Milieu : Léger voile pour détacher ton texte */
+      rgba(252, 250, 248, 1) 100%    /* Bas : Opaque à 100% pour se fondre dans le site */
+    );
+  }
+
+  /* Conteneur de texte centré */
+  .details-hero-container {
+    position: relative;
+    z-index: 2; /* Passe au-dessus de l'overlay */
+    text-align: center;
+    color: #000000;
+    padding: 0 1.5rem;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Petit sous-titre de luxe */
+  .details-hero-subtitle {
+    font-size: 0.75rem;
+    text-transform: uppercase; 
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-weight: 500;
+    opacity: 0.9;
+  }
+
+  /* Titre principal majestueux */
+  .details-hero-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    line-height: 1.3;
+  }
+
+  @media (min-width: 768px) {
+    .luxury-main-title { font-size: 1.75rem; }
+  }
+
+  /* Ligne de séparation minimaliste dorée */
+  .details-hero-line {
+    width: 40px;
+    height: 1px;
+    background-color: var(--gold);
+    margin-top: 2rem;
+    opacity: 0.7;
+  }
+
+  /* Adaptation Responsive pour petits écrans */
+  @media (max-width: 640px) {
+    .details-hero {
+      height: 70vh; /* Légèrement plus court sur mobile */
+    }
+    .details-hero-subtitle {
+      letter-spacing: 0.2em;
+      font-size: 0.65rem;
+    }
+  }
+</style>

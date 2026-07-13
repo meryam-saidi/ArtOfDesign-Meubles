@@ -1,0 +1,69 @@
+---
+/* src/components/CustomCursor.astro */
+---
+
+<!-- Structure HTML du double curseur -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Logique JavaScript unifiée et sécurisée -->
+<script>
+  const setupCustomCursor = () => {
+    const cursor = document.getElementById('cursor');
+    const cursorRing = document.getElementById('cursorRing');
+
+    // Sécurité : si les éléments n'existent pas sur la page, on stoppe immédiatement
+    if (!cursor || !cursorRing) return;
+
+    // 1. Suivi des mouvements de la souris
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+      cursorRing.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+    });
+
+    // 2. Gestion des états de survol (Hover States)
+    const addHover = () => {
+      cursorRing.classList.add('cursor-hover');
+      cursor.classList.add('cursor-hover-dot');
+    };
+
+    const removeHover = () => {
+      cursorRing.classList.remove('cursor-hover');
+      cursor.classList.remove('cursor-hover-dot');
+    };
+
+    // 3. Application des écouteurs sur les éléments interactifs
+    const applyHoverListeners = () => {
+      const interactiveElements = document.querySelectorAll(
+        'a, button, select, input, textarea, .cat-card, [role="button"]'
+      );
+      
+      interactiveElements.forEach((el) => {
+        // Nettoyage préventif pour éviter les doublons d'écouteurs
+        el.removeEventListener('mouseenter', addHover);
+        el.removeEventListener('mouseleave', removeHover);
+        
+        // Ajout des écouteurs fonctionnels
+        el.addEventListener('mouseenter', addHover);
+        el.addEventListener('mouseleave', removeHover);
+      });
+    };
+
+    // Initialisation au chargement
+    applyHoverListeners();
+
+    // 4. MutationObserver : Recalcule les éléments interactifs si le DOM change dynamiquement
+    const observer = new MutationObserver(applyHoverListeners);
+    observer.observe(document.body, { childList: true, subtree: true });
+  };
+
+  // Lancement sécurisé de la fonction globale
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setupCustomCursor();
+  } else {
+    document.addEventListener('DOMContentLoaded', setupCustomCursor);
+  }
+
+  // Optionnel : Si tu ajoutes Astro View Transitions plus tard, décommenter la ligne suivante :
+  // document.addEventListener('astro:page-load', setupCustomCursor);
+</script>

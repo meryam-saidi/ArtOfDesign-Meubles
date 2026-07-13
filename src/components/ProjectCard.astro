@@ -1,0 +1,62 @@
+---
+// src/components/ProjectCard.astro
+interface Props {
+  id: string;
+  nom: string;
+  description: string;
+  image3d: string;
+  image: string;
+  forme: string;
+}
+
+const { id, nom, description, image3d, image, forme } = Astro.props;
+
+// Résolution propre du label lisible selon la forme
+const labelsForme: Record<string, string> = {
+  "I": "Configuration en Forme I",
+  "L": "Configuration en Forme L",
+  "Fr": "Style À La Française",
+  "C": "Meuble Coulissant / Projet Spécial"
+};
+const typeLabel = labelsForme[forme] || "Projet Sur Mesure";
+---
+
+<div class="project-item reveal visible" data-id={id}>
+  <div class="project-item-gallery">
+    <div class="before-after">
+      <div class="before-after-side">
+        <img src={image3d} alt={`Conception 3D — ${nom}`} loading="lazy" />
+        <div class="before-after-badge badge-3d">Vue 3D</div>
+      </div>
+      <div class="before-after-side">
+        <img src={image} alt={`Réalisation — ${nom}`} loading="lazy" />
+        <div class="before-after-badge badge-real">Réalisation</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-item-info">
+    <div class="project-item-type">{typeLabel}</div>
+    <div class="project-item-name">{nom}</div>
+    <div class="project-item-desc">{description}</div>
+    
+    <div class="project-steps-grid">
+      <div class="project-step-mini">
+        <strong>📐 Visite & Relevé</strong>
+        <span>Mesures précises, analyse des contraintes et conseil personnalisé.</span>
+      </div>
+      <div class="project-step-mini">
+        <strong>🎨 Conception 3D</strong>
+        <span>Rendu photoréaliste sous 48h pour validation client.</span>
+      </div>
+      <div class="project-step-mini">
+        <strong>🔨 Fabrication</strong>
+        <span>Production en atelier avec matériaux rigoureusement sélectionnés.</span>
+      </div>
+      <div class="project-step-mini">
+        <strong>✨ Pose & Finitions</strong>
+        <span>Installation au millimètre par nos menuisiers qualifiés.</span>
+      </div>
+    </div>
+  </div>
+</div>

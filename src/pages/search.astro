@@ -16,12 +16,12 @@ const allProducts = [
 ---
 
 <Layout title="Résultats de recherche | AD Cuisine">
-  <main class="pt-32 pb-20 max-w-7xl mx-auto px-6">
+  <main class="pt-32 pb-10 max-w-7xl mx-auto px-6">
     <h1 class="font-serif text-3xl mb-8 italic">
       Résultats pour : <span id="search-query" class="text-[var(--color-gold)]">...</span>
     </h1>
 
-    <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+    <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
       </div>
 
     <div id="no-results" class="hidden text-center py-20">
@@ -57,13 +57,13 @@ const allProducts = [
       const detailUrl = `/${p.type}/${p.id}`;
       
       const card = `
-        <div class="group bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100">
+        <div class="group bg-white  overflow-hidden shadow-sm border border-gray-100">
           <div class="relative overflow-hidden aspect-[4/3]">
             <img src="${p.image}" alt="${p.nom}" class="w-full h-full object-cover" />
           </div>
           <div class="p-6">
             <h3 class="font-serif text-xl mb-2">${p.nom}</h3>
-            <p class="text-[var(--color-gold)] font-bold mb-4">${p.prix_initial} €</p>
+            <p class="text-[var(--color-gold)] font-bold mb-4">${p.prix_initial} DT</p>
             <a href="${detailUrl}" class="block w-full py-3 border border-[#b5a264] text-[#b5a264] text-center rounded-md text-[10px] font-bold uppercase tracking-widest hover:bg-[#b5a264] hover:text-white transition-all">
               Voir le projet
             </a>
@@ -76,3 +76,9 @@ const allProducts = [
     noResults.classList.remove('hidden');
   }
 </script>
+
+<style>
+  #main-header {
+    background-color: var(--color-gold);
+}
+</style>

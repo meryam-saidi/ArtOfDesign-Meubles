@@ -1,0 +1,90 @@
+---
+---
+
+<section id="process-premium">
+  <div class="process-minimal-container">
+    <div class="process-split-layout">
+      
+      <div class="process-raw-list">
+        <div class="process-header">
+          <span class="section-label">le Processus<br /></span> 
+          <h2 class="section-title">De l'idée à la matière
+            <!-- <span class="title-serif">matière</span> -->
+          </h2>
+        </div>
+        {[
+          { n: 'I', title: 'Consultation', desc: 'Comprendre votre style de vie et vos aspirations.' },
+          { n: 'II', title: 'Design 3D', desc: 'Modélisation et ajustement des volumes et textures.' },
+          { n: 'III', title: 'Fabrication', desc: 'Raffinement des matériaux et confection.' },
+          { n: 'IV', title: 'Installation', desc: 'Ajustement ultime in situ pour un rendu parfait.' },
+        ].map((step) => (
+          <div class="process-raw-item">
+            <div class="item-meta">
+              <span class="item-roman">{step.n}</span>
+              <!-- <div class="item-dot"></div> -->
+            </div>
+            <div class="item-body">
+              <h3 class="item-title">{step.title}</h3>
+              <p class="item-desc">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="process-media-column">
+        <div class="comparison-slider" id="project-slider">
+          
+          <img class="image-after" src="/images/kitchen_categorie.jpg" alt="Projet Réalisé" />
+          
+          <div class="image-before-wrapper">
+            <img class="image-before" src="/images/sketch.png" alt="Conception 3D" />
+          </div>
+          
+          <div class="slider-handle">
+            <div class="handle-line"></div>
+            <div class="handle-button">
+              <span>↔</span>
+            </div>
+          </div>
+          
+          <span class="badge-slider badge-before">Avant (3D)</span>
+          <span class="badge-slider badge-after">Après (Réel)</span>
+          
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script is:inline>
+  // --- ANIMATION INTERACTIVE DU SLIDER AVANT/APRÈS ---
+  const slider = document.querySelector('#project-slider');
+    if (slider) {
+      const moveSlider = (e) => {
+        // Récupère les coordonnées du slider à l'écran
+        const rect = slider.getBoundingClientRect();
+        // Calcule la position X de la souris par rapport au conteneur (en %)
+        let x = e.clientX - rect.left;
+        let percentage = (x / rect.width) * 100;
+        
+        // Sécurité pour pas que ça sorte du cadre (entre 0% et 100%)
+        if (percentage < 0) percentage = 0;
+        if (percentage > 100) percentage = 100;
+        
+        // Injecte la valeur directement dans le CSS
+        slider.style.setProperty('--slider-pos', `${percentage}%`);
+      };
+
+      // S'active simplement au mouvement de la souris sur l'image
+      slider.addEventListener('mousemove', moveSlider);
+      // Support pour les écrans tactiles sur mobile
+      slider.addEventListener('touchmove', (e) => moveSlider(e.touches[0]));
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(initProcessContactScroll, 300);
+    });
+</script>
+

@@ -1,122 +1,520 @@
 [
   {
-    "id": "cui-001",
-    "nom": "Cuisine Aurora-M | 320cm",
-    "slug": "cuisine-aurora-m",
-    "forme": "L",
-    "description": "",
-    "categorie": "Nos Cuisines",
-    "prix_initial": 4500,
-    "reduction": 25,
-    "image": "/images/cuisine.webp",
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/cuisine-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/cuisine-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/cuisine-blanc.jpg" }
-    ]
-  },
-  {
-    "id": "cui-002",
-    "nom": "Cuisine Roma D-L | 400cm",
-    "slug": "cuisine-roma-dl",
-    "forme": "L",
-    "description": "",
-    "categorie": "Nos Cuisines",
-    "prix_initial": 5200,
-    "reduction": 15,
-    "image": "/images/cuisine.webp",
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/cuisine-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/cuisine-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/cuisine-blanc.jpg" }
-    ]
-  },
-  {
-    "id": "cui-002",
-    "nom": "Cuisine Roma D-L | 400cm",
-    "slug": "cuisine-roma-dl",
-    "forme": "L",
-    "description": "",
-    "categorie": "Nos Cuisines",
-    "prix_initial": 5200,
-    "reduction": 15,
-    "image": "/images/cuisine.webp",
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/cuisine-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/cuisine-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/cuisine-blanc.jpg" }
-    ]
-  },
-  {
-    "id": "cui-002",
-    "nom": "Cuisine Roma D-L | 400cm",
-    "slug": "cuisine-roma-dl",
-    "forme": "L",
-    "description": "",
-    "categorie": "Nos Cuisines",
-    "prix_initial": 5200,
-    "reduction": 15,
-    "image": "/images/cuisine.webp",
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/cuisine-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/cuisine-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/cuisine-blanc.jpg" }
-    ]
-  },
-  {
-    "id": "cui-002",
-    "nom": "Cuisine Roma D-L | 400cm",
-    "slug": "cuisine-roma-dl",
-    "forme": "L",
-    "description": "",
-    "categorie": "Nos Cuisines",
-    "prix_initial": 5200,
-    "reduction": 15,
-    "image": "/images/cuisine.webp",
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/cuisine-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/cuisine-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/cuisine-blanc.jpg" }
-    ]
-  },
-  {
-    "id": "cui-003",
-    "nom": "Cuisine Verveine-G | 450cm",
-    "slug": "cuisine-verveine-g",
-    "forme": "U",
-    "description": "",
-    "categorie": "Nos Cuisines",
-    "prix_initial": 6100,
-    "reduction": 20,
-    "image": "/images/cuisine.webp",
-    "en_stock": false,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/cuisine-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/cuisine-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/cuisine-blanc.jpg" }
-    ]
-  },
-  {
-    "id": "cui-004",
-    "nom": "Cuisine forme-L | 750cm",
-    "slug": "cuisine-forme-l",
+    "id": "ci205",
+    "categorie": "Cuisines",
     "forme": "I",
-    "description": "",
-    "categorie": "Nos Cuisines",
-    "prix_initial": 5800,
-    "reduction": 10,
-    "image": "/images/cuisine.webp",
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/cuisine-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/cuisine-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/cuisine-blanc.jpg" }
+    "nom": "Cuisine Forme de I | 205cm",
+    "prix_initial": 2490.000,
+    "reduction": 20,
+    "description": "Une cuisine moderne alliant la pureté du High Gloss et la chaleur des textures stratifiées.",
+    "dimensions": {
+      "caisson_bas": {
+        "hauteur": "72cm",
+        "profondeur": "58cm"
+      },
+      "caisson_haut": {
+        "hauteur": "72cm",
+        "profondeur": "33cm"
+      }
+    },
+    "catalogue_images": [
+      "/images/cuisines/Forme I/Forme I 205/cuisine 205 decor1.jpg",
+      "/images/cuisines/Forme I/Forme I 205/cuisine 205 decor2.jpg",
+      "/images/cuisines/Forme I/Forme I 205/cuisine 205 decor3.jpg",
+      "/images/cuisines/Forme I/Forme I 205/cuisine 205 decor4.jpg",
+      "/images/cuisines/Forme I/Forme I 205/cuisine 205 decor5.jpg",
+      "/images/cuisines/Forme I/Forme I 205/cuisine 205 decor6.jpg",
+      "/images/cuisines/Forme I/Forme I 205/cuisine 205 decor7.jpg",
+      "/images/cuisines/Forme I/Forme I 205/cuisine 205 decor8.jpg",
+      "/images/cuisines/Forme I/Forme I 205/Forme I 205.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Grège",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/grège.jpg"
+      },
+      {
+        "nom": "Gris",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/gris.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Beige",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/beige.jpg"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Caisson bas sous évier 60 cm",
+        "1 Caisson bas 3 tiroirs 45 cm",
+        "1 Caisson bas four 60 cm",
+        "1 Caisson bas 40 cm",
+        "1 élément haut 60cm",
+        "1 élément haut 30cm",
+        "1 élément haut 40cm",
+        "1 Fausse façade pour meuble bas",
+        "2 Fausse façade pour meuble haut",
+        "Poignées incluses",
+        "Tiroirs Metabox Blum",
+        "Plinthes incluses",
+        "Pieds réglables",
+        "Charnières Blum",
+        "Boîtiers de suspension Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "High Gloss et stratifiée, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    },
+    "nb": "sans plan de travail et sans Electroménager."
+  },
+  {
+    "id": "ci250",
+    "categorie": "Cuisines",
+    "forme": "I",
+    "nom": "Cuisine Forme de I | 250cm",
+    "prix_initial": 3100.000,
+    "reduction": 20,
+    "description": "Une cuisine moderne alliant la pureté du High Gloss et la chaleur des textures stratifiées.",
+    "dimensions": {
+      "caisson_bas": {
+        "hauteur": "72cm",
+        "profondeur": "58cm"
+      },
+      "caisson_haut": {
+        "hauteur": "72cm",
+        "profondeur": "33cm"
+      }
+    },
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Grège",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/grège.jpg"
+      },
+      {
+        "nom": "Gris",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/gris.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Beige",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/beige.jpg"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Caisson bas sous évier 60 cm",
+        "1 Caisson bas 3 tiroirs 45 cm",
+        "1 Caisson bas four 60 cm",
+        "1 Caisson bas 40 cm",
+        "1 élément haut 60cm",
+        "1 élément haut 30cm",
+        "1 élément haut 40cm",
+        "1 Fausse façade pour meuble bas",
+        "2 Fausse façade pour meuble haut",
+        "Poignées incluses",
+        "Tiroirs Metabox Blum",
+        "Plinthes incluses",
+        "Pieds réglables",
+        "Charnières Blum",
+        "Boîtiers de suspension Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "High Gloss et stratifiée, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    },
+    "nb": "sans plan de travail et sans Electroménager.",
+    "catalogue_images": [
+      "/images/cuisines/Forme I/Forme I 250/cuisine 250 decor1.jpg",
+      "/images/cuisines/Forme I/Forme I 250/cuisine 250 decor2.jpg",
+      "/images/cuisines/Forme I/Forme I 250/cuisine 250 decor3.jpg",
+      "/images/cuisines/Forme I/Forme I 250/cuisine 250 decor4.jpg",
+      "/images/cuisines/Forme I/Forme I 250/cuisine 250 decor5.jpg",
+      "/images/cuisines/Forme I/Forme I 250/cuisine 250 decor6.jpg",
+      "/images/cuisines/Forme I/Forme I 250/cuisine 250 decor7.jpg",
+      "/images/cuisines/Forme I/Forme I 250/cuisine 250 decor8.jpg",
+      "/images/cuisines/Forme I/Forme I 250/cuisine 250 decor9.jpg",
+      "/images/cuisines/Forme I/Forme I 250/cuisine 250 decor10.jpg",
+      "/images/cuisines/Forme I/Forme I 250/Forme I 250.jpg"
+    ]
+  },
+  {
+    "id": "ci300",
+    "categorie": "Cuisines",
+    "forme": "I",
+    "nom": "Cuisine Forme de I | 300cm",
+    "prix_initial": 3365.000,
+    "reduction": 20,
+    "description": "Une cuisine moderne alliant la pureté du High Gloss et la chaleur des textures stratifiées.",
+    "dimensions": {
+      "caisson_bas": {
+        "hauteur": "72cm",
+        "profondeur": "58cm"
+      },
+      "caisson_haut": {
+        "hauteur": "72cm",
+        "profondeur": "33cm"
+      }
+    },
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Grège",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/grège.jpg"
+      },
+      {
+        "nom": "Gris",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/gris.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Beige",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/beige.jpg"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Caisson bas sous évier 60 cm",
+        "1 Caisson bas 3 tiroirs 45 cm",
+        "1 Caisson bas four 60 cm",
+        "1 Caisson bas 40 cm",
+        "1 élément haut 60cm",
+        "1 élément haut 30cm",
+        "1 élément haut 40cm",
+        "1 Fausse façade pour meuble bas",
+        "2 Fausse façade pour meuble haut",
+        "Poignées incluses",
+        "Tiroirs Metabox Blum",
+        "Plinthes incluses",
+        "Pieds réglables",
+        "Charnières Blum",
+        "Boîtiers de suspension Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "High Gloss et stratifiée, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    },
+    "nb": "sans plan de travail et sans Electroménager.",
+    "catalogue_images": [
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor1.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor2.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor3.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor4.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor5.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor6.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor7.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor8.jpg",
+      "/images/cuisines/Forme I/Forme I 300/Forme I 300.jpg"
+    ]
+  },
+  {
+    "id": "cuisine-3",
+    "categorie": "Cuisines",
+    "forme": "I",
+    "nom": "Cuisine Forme de I | 300cm",
+    "prix_initial": 3365.000,
+    "reduction": 20,
+    "description": "Une cuisine moderne alliant la pureté du High Gloss et la chaleur des textures stratifiées.",
+    "dimensions": {
+      "caisson_bas": {
+        "hauteur": "72cm",
+        "profondeur": "58cm"
+      },
+      "caisson_haut": {
+        "hauteur": "72cm",
+        "profondeur": "33cm"
+      }
+    },
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Grège",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/grège.jpg"
+      },
+      {
+        "nom": "Gris",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/gris.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Beige",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/beige.jpg"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Caisson bas sous évier 60 cm",
+        "1 Caisson bas 3 tiroirs 45 cm",
+        "1 Caisson bas four 60 cm",
+        "1 Caisson bas 40 cm",
+        "1 élément haut 60cm",
+        "1 élément haut 30cm",
+        "1 élément haut 40cm",
+        "1 Fausse façade pour meuble bas",
+        "2 Fausse façade pour meuble haut",
+        "Poignées incluses",
+        "Tiroirs Metabox Blum",
+        "Plinthes incluses",
+        "Pieds réglables",
+        "Charnières Blum",
+        "Boîtiers de suspension Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "High Gloss et stratifiée, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    },
+    "nb": "sans plan de travail et sans Electroménager.",
+    "catalogue_images": [
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor1.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor2.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor3.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor4.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor5.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor6.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor7.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor8.jpg",
+      "/images/cuisines/Forme I/Forme I 300/Forme I 300.jpg"
+    ]
+  },
+  {
+    "id": "cuisine-3",
+    "categorie": "Cuisines",
+    "forme": "I",
+    "nom": "Cuisine Forme de I | 300cm",
+    "prix_initial": 3365.000,
+    "reduction": 20,
+    "description": "Une cuisine moderne alliant la pureté du High Gloss et la chaleur des textures stratifiées.",
+    "dimensions": {
+      "caisson_bas": {
+        "hauteur": "72cm",
+        "profondeur": "58cm"
+      },
+      "caisson_haut": {
+        "hauteur": "72cm",
+        "profondeur": "33cm"
+      }
+    },
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Grège",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/grège.jpg"
+      },
+      {
+        "nom": "Gris",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/gris.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Beige",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/beige.jpg"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Caisson bas sous évier 60 cm",
+        "1 Caisson bas 3 tiroirs 45 cm",
+        "1 Caisson bas four 60 cm",
+        "1 Caisson bas 40 cm",
+        "1 élément haut 60cm",
+        "1 élément haut 30cm",
+        "1 élément haut 40cm",
+        "1 Fausse façade pour meuble bas",
+        "2 Fausse façade pour meuble haut",
+        "Poignées incluses",
+        "Tiroirs Metabox Blum",
+        "Plinthes incluses",
+        "Pieds réglables",
+        "Charnières Blum",
+        "Boîtiers de suspension Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "High Gloss et stratifiée, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    },
+    "nb": "sans plan de travail et sans Electroménager.",
+    "catalogue_images": [
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor1.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor2.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor3.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor4.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor5.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor6.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor7.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor8.jpg",
+      "/images/cuisines/Forme I/Forme I 300/Forme I 300.jpg"
+    ]
+  },
+  {
+    "id": "cuisine-3",
+    "categorie": "Cuisines",
+    "forme": "I",
+    "nom": "Cuisine Forme de I | 300cm",
+    "prix_initial": 3365.000,
+    "reduction": 20,
+    "description": "Une cuisine moderne alliant la pureté du High Gloss et la chaleur des textures stratifiées.",
+    "dimensions": {
+      "caisson_bas": {
+        "hauteur": "72cm",
+        "profondeur": "58cm"
+      },
+      "caisson_haut": {
+        "hauteur": "72cm",
+        "profondeur": "33cm"
+      }
+    },
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Grège",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/grège.jpg"
+      },
+      {
+        "nom": "Gris",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/gris.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Beige",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/beige.jpg"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Caisson bas sous évier 60 cm",
+        "1 Caisson bas 3 tiroirs 45 cm",
+        "1 Caisson bas four 60 cm",
+        "1 Caisson bas 40 cm",
+        "1 élément haut 60cm",
+        "1 élément haut 30cm",
+        "1 élément haut 40cm",
+        "1 Fausse façade pour meuble bas",
+        "2 Fausse façade pour meuble haut",
+        "Poignées incluses",
+        "Tiroirs Metabox Blum",
+        "Plinthes incluses",
+        "Pieds réglables",
+        "Charnières Blum",
+        "Boîtiers de suspension Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "High Gloss et stratifiée, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    },
+    "nb": "sans plan de travail et sans Electroménager.",
+    "catalogue_images": [
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor1.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor2.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor3.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor4.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor5.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor6.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor7.jpg",
+      "/images/cuisines/Forme I/Forme I 300/cuisine 300 decor8.jpg",
+      "/images/cuisines/Forme I/Forme I 300/Forme I 300.jpg"
     ]
   }
-  
 ]
