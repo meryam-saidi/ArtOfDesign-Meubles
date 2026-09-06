@@ -1,28 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
-import meublesData from '../data/meubles.json';
+import meublesData from '../data/meuble.json';
 
 // On définit les sections que l'on veut afficher
 const sections = [
-  { id: "colonnes", label: "Meubles Colonne de Cuisine", valeur: "C" },
-  { id: "meuble-bas", label: "Meubles Bas de Cuisine", valeur: "B" },
-  { id: "meuble-haut", label: "Meubles Haut de Cuisine", valeur: "H" },
-  { id: "meuble-dressing", label: "Meubles Dressing", valeur: "D" }
+  { id: "colonnes", label: "meubles Colonne de meuble", valeur: "C" },
+  { id: "meubles-bas", label: "meubles Bas de meuble", valeur: "B" },
+  { id: "meubles-haut", label: "meubles Haut de meuble", valeur: "H" },
+  { id: "meubles-dressing", label: "meubles Dressing", valeur: "D" }
 ];
 
 const toutesLesDressingMixees = [...meublesData].sort(() => 0.5 - Math.random());
 ---
 
-<Layout title="Nos Modèles de Cuisines | Art Of Design">
+<Layout title="Nos Modèles de meubles | Art Of Design">
   <main class="luxury-catalog">
     
     <!-- LUXURY HERO -->
     <section class="luxury-hero">
       <div class="luxury-hero-bg">
         <img 
-          src="/images/1.jpg" 
-          alt="Art Of Design Haute Cuisine" 
+          src="/images/autres/1.jpg" 
+          alt="Art Of Design Haute meuble" 
           class="luxury-hero-img"
         />
         <div class="luxury-hero-overlay"></div>
@@ -30,9 +30,9 @@ const toutesLesDressingMixees = [...meublesData].sort(() => 0.5 - Math.random())
       
       <div class="luxury-hero-content">
         <h1 class="luxury-main-title">
-          Meubles Configurables
+          Éléments Configurables
         </h1>
-        <p class="luxury-text">Colonnes, meubles hauts, meubles bas — <br/>composez votre cuisine ou dressing module par module avec la même qualité que nos réalisations complètes.</p>
+        <p class="luxury-text">Colonnes, Meubles hauts, Meubles bas — <br/>composez votre meuble ou dressing module par module avec la même qualité que nos réalisations complètes.</p>
         <p class="luxury-subtitle">Collection Meubles</p>
       </div>
     </section>
@@ -49,7 +49,7 @@ const toutesLesDressingMixees = [...meublesData].sort(() => 0.5 - Math.random())
         <button class="filter-btn active" data-filter="all">Tous</button>
         {sections.map((section) => (
           <button class="filter-btn" data-filter={section.id}>
-            {section.label.replace("Cuisines ", "")}
+            {section.label.replace("Meubles ", "")}
           </button>
         ))}
       </div>
@@ -71,12 +71,12 @@ const toutesLesDressingMixees = [...meublesData].sort(() => 0.5 - Math.random())
           {toutesLesDressingMixees.map((item) => (
             <div class="luxury-card-container">
               <Card 
-                type="cuisine"
+                type="meuble"
                 id={item.id}
                 nom={item.nom} 
                 prix={item.prix_initial} 
                 promo={item.reduction} 
-                image={item.image} 
+                image={item.catalogue_images[0]} 
               />
             </div>
           ))}
@@ -105,12 +105,12 @@ const toutesLesDressingMixees = [...meublesData].sort(() => 0.5 - Math.random())
               {produitsParForme.map((item) => (
                 <div class="luxury-card-container">
                   <Card 
-                    type="cuisine"
+                    type="meuble"
                     id={item.id}
                     nom={item.nom} 
                     prix={item.prix_initial} 
                     promo={item.reduction} 
-                    image={item.image} 
+                    image={item.catalogue_images[0]} 
                   />
                 </div>
               ))}

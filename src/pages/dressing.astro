@@ -3,37 +3,42 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import dressingData from '../data/dressing.json';
 
-// On définit les sections que l'on veut afficher
-const sections = [
+// Structure des filtres principaux (Formes)
+const formes = [
   { id: "forme-i", label: "Dressing Forme I", valeur: "I" },
-  { id: "forme-l", label: "Dressing Forme L", valeur: "L" },
-  { id: "aLaFr", label: "A La Française", valeur: "Fr" },
-  { id: "coulissant", label: "Coulissant", valeur: "C" }
+  { id: "forme-l", label: "Dressing Forme L", valeur: "L" }
 ];
 
-// Création d'une liste unique mixée de tous les produits pour l'affichage "Tous"
+// Séparation des données Forme I par type d'ouverture
+const formeIFr = dressingData.filter(item => item.forme === "I" && (item.type_ouverture === "Fr"));
+const formeICoulissant = dressingData.filter(item => item.forme === "I" && (item.type_ouverture === "C"));
+
+// Autres formes (Forme L)
+const formeL = dressingData.filter(item => item.forme === "L");
+
+// Collection mixée pour le filtre "Tous"
 const toutesLesDressingMixees = [...dressingData].sort(() => 0.5 - Math.random());
 ---
 
-<Layout title="Nos Modèles de Cuisines | Art Of Design">
+<Layout title="Nos Modèles de Dressings | Art Of Design">
   <main class="luxury-catalog">
-    
+
     <!-- LUXURY HERO -->
     <section class="luxury-hero">
       <div class="luxury-hero-bg">
         <img 
-          src="/images/1.jpg" 
-          alt="Art Of Design Haute Cuisine" 
+          src="/images/autres/1.jpg" 
+          alt="Art Of Design Haute Couture" 
           class="luxury-hero-img"
         />
         <div class="luxury-hero-overlay"></div>
       </div>
-      
+
       <div class="luxury-hero-content">
         <h1 class="luxury-main-title">
           Dressings sur mesure
         </h1>
-        <p class="luxury-text">Rangez avec élégance. Chaque dressing est pensé pour maximiser votre espace tout en sublimant votre chambre. <br/>Formes I, L et U.</p>
+        <p class="luxury-text">Rangez avec élégance. Chaque dressing est pensé pour maximiser votre espace tout en sublimant votre chambre.</p>
         <p class="luxury-subtitle">Collection Dressings</p>
       </div>
     </section>
@@ -48,83 +53,107 @@ const toutesLesDressingMixees = [...dressingData].sort(() => 0.5 - Math.random()
 
       <div class="filter-controls">
         <button class="filter-btn active" data-filter="all">Tous</button>
-        {sections.map((section) => (
-          <button class="filter-btn" data-filter={section.id}>
-            {section.label.replace("Cuisines ", "")}
+        {formes.map((forme) => (
+          <button class="filter-btn" data-filter={forme.id}>
+            {forme.label}
           </button>
         ))}
       </div>
     </div>
 
-    <!-- CONTENU DES COLLECTIONS -->
+    <!-- CONTENU DU CATALOGUE -->
     <div class="luxury-content-wrapper">
-      
-      <!-- 1. SECTION ALL / MIXÉE (Affichée par défaut) -->
+
+      {/* 1. VUE GLOVALE "TOUS" (Affichée par défaut) */}
       <section id="all-gallery" class="luxury-section data-catalog-section" style="display: block; opacity: 1;">
-        <!--
-        <div class="luxury-section-header">
-          <div class="header-title-block">          
-            <h2 class="luxury-section-title">Collection <span>complète</span></h2>           
-          </div>
-        </div>
-        --> 
         <div class="luxury-monumental-grid">
           {toutesLesDressingMixees.map((item) => (
             <div class="luxury-card-container">
               <Card 
-                type="cuisine"
+                type="dressing"
                 id={item.id}
                 nom={item.nom} 
                 prix={item.prix_initial} 
                 promo={item.reduction} 
-                image={item.image} 
+                image={item.catalogue_images?.[0]} 
               />
             </div>
           ))}
         </div>
       </section>
 
-      <!-- 2. SECTIONS PAR CONFIGURATION (Masquées par défaut au profit du mix global) -->
-      {sections.map((section) => {
-        const produitsParForme = dressingData.filter(item => item.forme === section.valeur);
-
-        return produitsParForme.length > 0 && (
-          <section id={section.id} class="luxury-section data-catalog-section" style="display: none; opacity: 0;">
-            
-            <div class="luxury-section-header">
-              <div class="header-title-block">
-              <!--  
-                <h2 class="luxury-section-title">
-                  {section.label.split(' ')[0]} {section.label.split(' ').slice(1).join(' ')}
-                </h2>
-              --> 
-              </div>
-              
-            </div>
-
+      {/* 2. VUE FORME I (AVEC SOUS-TITRES POUR FR ET COULISSANT) */}
+      <section id="forme-i" class="luxury-section data-catalog-section" style="display: none; opacity: 0;">
+        
+        {/* SOUS-SECTION : À LA FRANÇAISE */}
+        {formeIFr.length > 0 && (
+          <div id="francaise" class="sub-category-block">
+            <h2 class="sub-category-title">Dressings À La Française</h2>
             <div class="luxury-monumental-grid">
-              {produitsParForme.map((item) => (
+              {formeIFr.map((item) => (
                 <div class="luxury-card-container">
                   <Card 
-                    type="cuisine"
+                    type="dressing"
                     id={item.id}
                     nom={item.nom} 
                     prix={item.prix_initial} 
                     promo={item.reduction} 
-                    image={item.image} 
+                    image={item.catalogue_images?.[0]} 
                   />
                 </div>
               ))}
             </div>
-          </section>
-        );
-      })}
+          </div>
+        )}
+
+        {/* SOUS-SECTION : COULISSANT */}
+        {formeICoulissant.length > 0 && (
+          <div id="coulissant" class="sub-category-block">
+            <h2 class="sub-category-title">Dressings Coulissants</h2>
+            <div class="luxury-monumental-grid">
+              {formeICoulissant.map((item) => (
+                <div class="luxury-card-container">
+                  <Card 
+                    type="dressing"
+                    id={item.id}
+                    nom={item.nom} 
+                    prix={item.prix_initial} 
+                    promo={item.reduction} 
+                    image={item.catalogue_images?.[0]} 
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+      </section>
+
+      {/* 3. VUE FORME L */}
+      <section id="forme-l" class="luxury-section data-catalog-section" style="display: none; opacity: 0;">
+        <div class="luxury-monumental-grid">
+          {formeL.map((item) => (
+            <div class="luxury-card-container">
+              <Card 
+                type="dressing"
+                id={item.id}
+                nom={item.nom} 
+                prix={item.prix_initial} 
+                promo={item.reduction} 
+                image={item.catalogue_images?.[0]} 
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
     </div>
 
+    <!-- GUIDE INTERACTIF -->
     <div class="anatomies">
       <div class="anatomie-text">
         <h1 class="titre-anatomie">Vous ne savez pas quelle forme choisir ?</h1>
-        <p class="text-titre-anatomie">Consultez notre guide interactif des formes de cuisines.</p>
+        <p class="text-titre-anatomie">Consultez notre guide interactif des dressings.</p>
       </div>
       <a href={`/cuisines-infos`} class="btn-text-flip"> 
         <span class="text-default">Lire Le Guide <span class="arrow">→</span></span>
@@ -135,43 +164,24 @@ const toutesLesDressingMixees = [...dressingData].sort(() => 0.5 - Math.random()
   </main>
 </Layout>
 
-<script>
-  const setupFilters = () => {
-    const buttons = document.querySelectorAll('.filter-btn');
-    const sections = document.querySelectorAll('.data-catalog-section');
+<style>
+  /* ── STYLE DES SOUS-TITRES DANS FORME I ── */
+  .sub-category-block {
+    margin-bottom: 7.5rem;
+  }
 
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        const targetFilter = button.getAttribute('data-filter');
+  .sub-category-block:last-child {
+    margin-bottom: 0;
+  }
 
-        // Gestion active du bouton
-        buttons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        sections.forEach(section => {
-          const sectionElement = section as HTMLElement;
-          const isAllTarget = targetFilter === 'all' && sectionElement.id === 'all-gallery';
-          const isSpecificTarget = sectionElement.id === targetFilter;
-
-          if (isAllTarget || isSpecificTarget) {
-            // Activer la section cible
-            sectionElement.style.display = 'block';
-            setTimeout(() => {
-              sectionElement.style.opacity = '1';
-              sectionElement.style.transform = 'translateY(0)';
-            }, 50);
-          } else {
-            // Désactiver les autres
-            sectionElement.style.opacity = '0';
-            sectionElement.style.transform = 'translateY(15px)';
-            setTimeout(() => {
-              sectionElement.style.display = 'none';
-            }, 350); 
-          }
-        });
-      });
-    });
-  };
-
-  document.addEventListener('DOMContentLoaded', setupFilters);
-</script>
+  .sub-category-title {
+    font-size: 1rem;
+    font-weight: 300;
+    color: white;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    /* border-bottom: 1px solid rgba(201, 168, 76, 0.2); */
+    text-transform: uppercase;
+  }
+</style>

@@ -38,20 +38,26 @@ const { theme = 'light' } = Astro.props;
           <div class="group relative py-4 flex items-center gap-1 cursor-pointer">
             <a href="/dressing" class="nav-link">Dressing</a>
             <div class="dropdown-menu">
-              <a href="/dressing#forme-i" class="dropdown-link">Dressing Forme I</a>
+              <div class="dropdown-item-wrapper">
+                <a href="/dressing#forme-i" class="dropdown-link">Dressing Forme I</a>
+                <div class="sous-dropdown-menu">
+                  <a href="/dressing#francaise" class="dropdown-link">à la Française</a>
+                  <a href="/dressing#coulissant" class="dropdown-link">Coulissant</a>
+                </div>
+              </div>
               <a href="/dressing#forme-l" class="dropdown-link">Dressing Forme L</a>
             </div>
           </div>
 
           <div class="group relative py-4 flex items-center gap-1 cursor-pointer">
-            <a href="/meubles" class="nav-link">Kits</a>
+            <a href="/meubles" class="nav-link">meubles</a>
             <div class="dropdown-menu">
-              <a href="/meubles#colonnes" class="dropdown-link">Kit Cuisine</a>
-              <a href="/meubles#meuble-dressing" class="dropdown-link">Kit Dressing</a>
+              <a href="/meubles#colonnes" class="dropdown-link">meubles Cuisine</a>
+              <a href="/meubles#meuble-dressing" class="dropdown-link">meubles Dressing</a>
             </div>
           </div>
 
-          <a href="/projets" class="nav-link py-4">Projets</a>
+          <a href="/projets" class="nav-link py-4">Réalisations</a>
         </div>
 
         <div class="mt-auto pt-10 md:hidden w-full">
@@ -63,7 +69,7 @@ const { theme = 'light' } = Astro.props;
 
     <div class="nav-center-zone">
       <a href="/" class="z-20 block">
-        <img src="/images/logo_ADM.png" alt="Logo AD" class="logo-img" />
+        <img src="/images/autres/logo_ADM.png" alt="Logo AD" class="logo-img" />
       </a>
     </div>
 
@@ -106,63 +112,88 @@ const { theme = 'light' } = Astro.props;
   }, { passive: true });
 </script>
 
+<!--   -->
+
 <script>
-  // Ton script de filtres existant reste identique
+  // le script de filtres existant reste identique
   const setupFilters = () => {
-    const buttons = document.querySelectorAll('.filter-btn');
-    const sections = document.querySelectorAll('.data-catalog-section');
+  const buttons = document.querySelectorAll('.filter-btn');
+  const sections = document.querySelectorAll<HTMLElement>('.data-catalog-section');
 
-    const filterTo = (targetFilter: string) => {
-      buttons.forEach(btn => {
-        if (btn.getAttribute('data-filter') === targetFilter) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
-
-      sections.forEach(section => {
-        const sectionElement = section as HTMLElement;
-        const isAllTarget = targetFilter === 'all' && sectionElement.id === 'all-gallery';
-        const isSpecificTarget = sectionElement.id === targetFilter;
-
-        if (isAllTarget || isSpecificTarget) {
-          sectionElement.style.display = 'block';
-          setTimeout(() => {
-            sectionElement.style.opacity = '1';
-            sectionElement.style.transform = 'translateY(0)';
-          }, 50);
-        } else {
-          sectionElement.style.opacity = '0';
-          sectionElement.style.transform = 'translateY(15px)';
-          setTimeout(() => {
-            sectionElement.style.display = 'none';
-          }, 350); 
-        }
-      });
-    };
-
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        const targetFilter = button.getAttribute('data-filter') || 'all';
-        filterTo(targetFilter);
-        history.pushState(null, '', targetFilter === 'all' ? ' ' : `#${targetFilter}`);
-      });
+  const filterTo = (targetFilter: string | null, subBlockId: string | null = null) => {
+    // 1. Mise à jour de l'état visuel des boutons de filtres principaux
+    buttons.forEach(btn => {
+      if (btn.getAttribute('data-filter') === targetFilter) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
     });
 
-    const checkHashAndFilter = () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash && document.getElementById(hash)) {
+    // 2. Affichage / Masquage des sections principales
+    sections.forEach(section => {
+      const isAllTarget = targetFilter === 'all' && section.id === 'all-gallery';
+      const isSpecificTarget = section.id === targetFilter;
+
+      if (isAllTarget || isSpecificTarget) {
+        section.style.display = 'block';
+        section.style.opacity = '1';
+
+        // 3. Si une sous-catégorie est ciblée (francaise ou coulissant), défiler vers elle
+        if (subBlockId) {
+          requestAnimationFrame(() => {
+            const targetBlock = document.getElementById(subBlockId);
+            if (targetBlock) {
+              targetBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
+        }
+      } else {
+        section.style.display = 'none';
+        section.style.opacity = '0';
+      }
+    });
+  };
+
+  // Gestion des clics sur les boutons de filtres sur la page
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const targetFilter = button.getAttribute('data-filter') || 'all';
+      filterTo(targetFilter);
+      history.pushState(null, '', targetFilter === 'all' ? window.location.pathname : `#${targetFilter}`);
+    });
+  });
+
+  // Analyse complète de l'URL et du Hash
+  const checkHashAndFilter = () => {
+    const hash = window.location.hash.replace('#', '');
+
+    if (!hash) {
+      filterTo('all');
+      return;
+    }
+
+    // --- AJOUT : Cas spécifiques pour les sous-menus Dressing ---
+    if (hash === 'francaise' || hash === 'coulissant') {
+      filterTo('forme-i', hash); // Active la section principale "forme-i" ET scroll vers le sous-bloc
+    } 
+    // Cas standards pour les autres pages / filtres principaux
+    else {
+      // Vérifie si la section avec cet ID existe directement
+      const directSection = document.getElementById(hash);
+      if (directSection && directSection.classList.contains('data-catalog-section')) {
         filterTo(hash);
-        const filterBar = document.querySelector('.catalog-filter-bar');
-        if (filterBar) filterBar.scrollIntoView({ behavior: 'smooth' });
       } else {
         filterTo('all');
       }
-    };
+    }
+  };
 
-    checkHashAndFilter();
-    window.addEventListener('hashchange', checkHashAndFilter);
+  // Exécution initiale au chargement
+  checkHashAndFilter();
+
+  // Écoute les clics depuis le menu déroulant quand on est déjà sur la page
+  window.addEventListener('hashchange', checkHashAndFilter);
   };
 
   document.addEventListener('DOMContentLoaded', setupFilters);

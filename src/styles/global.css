@@ -124,12 +124,13 @@
   /* ==========================================================================
     ── Loader ──
    ========================================================================== */
+   /*
     #loader {
       position: fixed;
       inset: 0;
       z-index: 1000;
       background: var(--obsidian);
-      z-index: 9999; /* Par-dessus le header */
+      z-index: 9999; 
       display: flex;
       align-items: center;
       justify-content: center;
@@ -143,7 +144,7 @@
       font-weight: 300;
       letter-spacing: 0.3em;
       color: var(--mist);
-      /* animation: loaderFadeIn 1s ease 0.3s forwards; */
+      animation: loaderFadeIn 1s ease 0.3s forwards;
       will-change: transform, opacity;
     }
     .loader-logo span { color: var(--gold); font-style: italic; }
@@ -164,12 +165,108 @@
     }
     @keyframes loaderFadeIn { to { opacity: 1; } }
     @keyframes loaderLine { to { width: 200px; } }
-
+*/
     
     
 /* ==========================================================================
    ── HEADER & NAVIGATION (ART OF DESIGN) ──
    ========================================================================== */
+
+/* ── CONFIGURATION COULEUR theme dark DU HEADER ── */
+#main-header.is-dark-theme:not(.is-scrolled) .nav-link,
+#main-header.is-dark-theme:not(.is-scrolled) .search-button svg,
+#main-header.is-dark-theme:not(.is-scrolled) .burger-bar {
+  color: #1c1917 !important; /* Un anthracite/brun très chaud et élégant */
+  font-weight: bold;
+  mix-blend-mode: normal !important; /* On coupe l'inversion pour imposer notre couleur */
+}
+
+/* On ajuste aussi la bordure et le texte de l'input de recherche pour le thème clair */
+#main-header.is-dark-theme:not(.is-scrolled) .search-input {
+  color: #1c1917 !important;
+  mix-blend-mode: normal !important;
+  border-color: rgba(28, 25, 23, 0.2) !important;
+  font-weight: bold;
+}
+#main-header.is-dark-theme:not(.is-scrolled) .search-input::placeholder {
+  color: rgba(28, 25, 23, 0.5) !important;
+}
+
+#main-header.is-dark-theme.is-scrolled .nav-link,
+#main-header.is-dark-theme.is-scrolled .search-button svg,
+#main-header.is-dark-theme.is-scrolled .burger-bar {
+  color: #1c1917 !important; /* Un anthracite/brun très chaud et élégant */
+  mix-blend-mode: normal !important; /* On coupe l'inversion pour imposer notre couleur */
+  font-weight: bold;
+}
+
+/* On ajuste aussi la bordure et le texte de l'input de recherche pour le thème clair */
+#main-header.is-dark-theme.is-scrolled .search-input {
+  color: #1c1917 !important;
+  mix-blend-mode: normal !important;
+  border-color: rgba(28, 25, 23, 0.2) !important;
+  font-weight: bold;
+}
+#main-header.is-dark-theme.is-scrolled .search-input::placeholder {
+  color: rgba(28, 25, 23, 0.5) !important;
+}
+
+/* ── LOGIQUE DU DROPDOWN SELON LE THÈME ── */
+/* ÉTAT SOMBRE REQUIS : Quand le header est en mode dark et qu'on n'a pas encore scrollé */
+#main-header.is-dark-theme:not(.is-scrolled) .dropdown-menu::after {
+  /* On remplace le fond obsidian par un voile crème/blanc translucide ultra-premium */
+  background: rgba(252, 250, 248, 0.603) !important; 
+}
+
+/* On force les liens internes du dropdown en sombre */
+#main-header.is-dark-theme:not(.is-scrolled) .dropdown-link {
+  color: rgba(28, 25, 23, 0.6) !important;
+  mix-blend-mode: normal !important;
+  font-weight: bold;
+}
+
+/* Effet au survol des liens du dropdown sur page blanche */
+#main-header.is-dark-theme:not(.is-scrolled) .dropdown-link:hover {
+  color: #1c1917 !important; /* Devient complètement opaque au survol */
+  background: rgba(28, 25, 23, 0.02); /* Léger fond de survol doux */
+}
+
+/* scrolled */
+#main-header.is-dark-theme.is-scrolled .dropdown-menu::after {
+  /* On remplace le fond obsidian par un voile crème/blanc translucide ultra-premium */
+  background: rgba(252, 250, 248, 0.603) !important; 
+}
+
+/* On force les liens internes du dropdown en sombre */
+#main-header.is-dark-theme.is-scrolled .dropdown-link {
+  color: rgba(28, 25, 23, 0.6) !important;
+  mix-blend-mode: normal !important;
+  font-weight: bold;
+}
+
+/* Effet au survol des liens du dropdown sur page blanche */
+#main-header.is-dark-theme.is-scrolled .dropdown-link:hover {
+  color: #1c1917 !important; /* Devient complètement opaque au survol */
+  background: rgba(28, 25, 23, 0.02); /* Léger fond de survol doux */
+}
+
+/* search sur page blanche */
+#main-header.is-dark-theme .search-input:-webkit-autofill,
+.search-input:-webkit-autofill:hover, 
+.search-input:-webkit-autofill:focus, 
+.search-input:-webkit-autofill:active {
+  /* Annule le fond bleu en le remplaçant par une ombre interne transparente */
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  box-shadow: 0 0 0px 1000px transparent inset !important;
+  
+  /* Conserve la couleur du texte souhaitée (ex: noir ou blanc selon votre thème) */
+  -webkit-text-fill-color: #000000 !important; /**/
+  
+  /* Désactive le changement de fond forcé */
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+
 
 /* ── CONFIGURATION STRUCTURELLE DU HEADER ── */
 /* 1. Isolation du parent pour que la fusion traverse le header et touche la page */
@@ -348,8 +445,8 @@
   position: absolute;
   inset: 0; /* Prend toute la taille du dropdown */
   background: rgba(18, 18, 18, 0.4) !important; /* Léger voile obsidian pour le contraste */
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
+  /*backdrop-filter: blur(8px) !important;*/
+  /*-webkit-backdrop-filter: blur(8px) !important;*/
   z-index: -1; /* Se place derrière les liens du menu */
   pointer-events: none;
 }
@@ -388,11 +485,96 @@
   height: 2rem;
 }
 
+/* ── CONTENEUR DU LIEN ET DU SOUS-MENU ── */
+.dropdown-item-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* ── STYLE DU SOUS-DROPDOWN ── */
+.sous-dropdown-menu {
+  position: absolute;
+  top: 0;
+  left: 100%; /* S'affiche à droite du dropdown principal */
+  min-width: 200px;
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  /* Logique de transition d'affichage */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-5px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 61;
+}
+
+/* Pont invisible à gauche pour éviter la fermeture au survol en diagonale */
+.sous-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -1rem;
+  width: 1rem;
+  height: 100%;
+  background: transparent;
+  pointer-events: auto;
+}
+
+/* Fond du sous-menu (identique au menu principal) */
+.sous-dropdown-menu::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 18, 18, 0.4) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ── ACTIVATION AU HOVER ── */
+.dropdown-item-wrapper:hover .sous-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+
 
 /* ── MINIMALIST SEARCH FORM ── */
 .search-form {
   display: flex;
   align-items: center;
+    background: transparent;
+
+}
+
+/* --- NEUTRALISATION DE L'AUTOFILL BLEU DU NAVIGATEUR --- */
+
+/* Pour Chrome, Safari, Edge et navigateurs WebKit */
+.search-input:-webkit-autofill,
+.search-input:-webkit-autofill:hover, 
+.search-input:-webkit-autofill:focus, 
+.search-input:-webkit-autofill:active {
+  /* Annule le fond bleu en le remplaçant par une ombre interne transparente */
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  box-shadow: 0 0 0px 1000px transparent inset !important;
+  
+  /* Conserve la couleur du texte souhaitée (ex: noir ou blanc selon votre thème) */
+  -webkit-text-fill-color: #ffffff !important; /**/
+  
+  /* Désactive le changement de fond forcé */
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+/* Pour Firefox */
+.search-input:autofill {
+  background-color: transparent !important;
+  color: #ffffff !important;
 }
 
 .search-input {
@@ -802,7 +984,8 @@
       animation: fadeIn 1s ease 3.5s forwards;
     }
     .hero-scroll span {
-      font-size: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
       color: rgba(247,245,240,0.4);
@@ -887,10 +1070,11 @@
   }
 */
   .footer-logo-img {
-      width: 80px;
+      width: 88px;
       height: auto;
       object-fit: contain;
       display: block;
+      padding-bottom: 1rem;
   }
 
   .footer-column {
@@ -1009,11 +1193,133 @@
     .section-title em { font-style: italic; color: var(--gold-light); }
 
 
+  /* ── BANDEAU À PROPOS ── */
+  .about-band-section {
+    width: 100%;
+    /* Hauteur condensée pour un effet bandeau chic */
+    padding: 10rem 2rem; 
+    background-color: var(--charcoal); /* obsidian */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .about-band-container {
+    max-width: fit-content; /* Largeur maximale restreinte pour garder le texte centré lisible */
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Sous-titre doré */
+  .about-band-subtitle {
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    /*text-transform: uppercase;*/
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+
+  /* Titre épuré */
+  .about-band-title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+  }
+
+  /* Mot clé en italique orné */
+  .serif-italic-gold {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    text-transform: lowercase;
+    color: var(--color-gold, #c9a84c);
+    font-size: 1.1em;
+  }
+
+  /* Texte descriptif centré */
+  .about-band-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(247, 245, 240, 0.6);
+    margin-bottom: 2rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    max-width: 46rem;
+  }
+
+  /* ── ZONE CHIFFRES HORIZONTALE ── */
+  .about-band-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 1.5rem;
+    width: 100%;
+    max-width: 32rem; /* Aligne la bordure sur la largeur des chiffres */
+  }
+
+  .band-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .band-stat-number {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+
+  .band-stat-label {
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* Séparateur fin vertical entre les chiffres */
+  .band-stat-divider {
+    width: 1px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Version Mobile ultra-fluide */
+  @media (max-width: 640px) {
+    .about-band-section {
+      padding: 4rem 1.25rem;
+    }
+    .about-band-stats {
+      gap: 1rem;
+    }
+    .band-stat-number {
+      font-size: 1.5rem;
+    }
+    .band-stat-label {
+      font-size: 7.5px;
+    }
+  }  
+
 /* ── PHILOSOPHIE DESIGN IMMERSIF ── */
 #philosophy-premium {
   background: var(--obsidian);
   width: 100%;
-  padding: 14rem 4rem; 
+  padding: 10rem 2rem; 
   display: flex;
   align-items: center;
   position: relative;
@@ -1022,7 +1328,7 @@
 }
 
 .philosophy-container {
-  max-width: 1200px; /* Fixé pour stabiliser le grid de manière premium */
+  max-width: fit-content; /* Fixé pour stabiliser le grid de manière premium */
   margin: 0 auto; 
   display: grid;
   grid-template-columns: 1fr 1fr; 
@@ -1051,7 +1357,7 @@
   max-width: 420px; 
   aspect-ratio: 3/4;
   overflow: hidden;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  /*box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);*/
   z-index: 1;
 }
 
@@ -1061,7 +1367,7 @@
   object-fit: cover;
 }
 
-/* Cadre décoratif asymétrique */
+/* Cadre décoratif asymétrique 
 .philosophy-media::before {
   content: '';
   position: absolute;
@@ -1073,7 +1379,7 @@
   border: 1px solid rgba(201, 168, 76, 0.15); 
   z-index: 0;
   pointer-events: none;
-}
+}*/
 
 /* Colonne Contenu / Texte */
 .philosophy-content {
@@ -1084,25 +1390,26 @@
 }
 
 .philosophy-content .section-label {
-  font-style: italic;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.4em;
-  color: var(--gold);
-  margin-bottom: 1.5rem;
-  font-weight: 300;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    /*text-transform: uppercase;*/
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    font-weight: 500;
 }
 
 .philosophy-content .section-title {
-  font-family: 'Montserrat', serif;
-  font-size: 2rem;
-  font-weight: 300;
-  line-height: 1.25;
-  color: #f7f5f0;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  margin-bottom: 3rem;
-  padding: 0;
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+    text-align: start; 
 }
 
 .philosophy-content .div-title-serif {
@@ -1123,9 +1430,9 @@
   font-size: 1rem;
   line-height: 1.8;
   color: rgba(247, 245, 240, 0.6);
-  margin-bottom: 2rem;
   font-weight: 300;
   max-width: 560px;
+  margin-bottom: 2rem;
   text-align:  start; 
   margin-left: auto;         
   margin-right: auto;
@@ -1217,7 +1524,7 @@
     width: 100%;
     position: relative;
     display: block;
-    overflow: visible !important;
+    overflow: hidden !important;
     z-index: 2; /* Couche supérieure : passe AU-DESSUS du z-index 1 */
     background: var(--charcoal); /* Requis pour masquer la philosophie quand elle passe en dessous */
     box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.5); /* Ombre subtile pour marquer le recouvrement */
@@ -1234,31 +1541,74 @@
     /*padding-top: 12rem; */
   }
   
+  .categories-header {
+    /*width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding-top: 10rem;
+    padding-bottom: 4rem;*/
+    position: absolute;
+    /*top: 10rem;*/
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10; /* Reste au-dessus des images qui défilent */
+    text-align: center;
+    padding-bottom: 10rem;
+    width: 100%;
+    pointer-events: none; /* Laisse passer le clic vers les cartes en dessous */
+  }
+
+  .categories-header .section-label {
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    /*text-transform: uppercase;*/
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+
+  .categories-header .section-title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    /*color: #ffffff;*/
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+  }
+
   /* 1. Force l'alignement horizontal infini sans aucune exception */
   .categories-horizontal-track {
     display: flex !important;
     flex-direction: row !important;
-    flex-wrap: nowrap !important;
+    flex-wrap: nowrap !important; 
     width: max-content !important;
     /*padding: 12rem 0 0 0 !important;*/
+    will-change: transform; /* Aide cruciale pour GSAP au moment du pin */
   }
 
   /* 2. La Carte : Un bloc rigide en position relative */
   .cat-card {
     flex-shrink: 0 !important; /* Interdit au navigateur de rétrécir la carte */
-    width: 100vw !important; /* Prend exactement toute la largeur de la fenêtre */    
+    width: 100vw !important; /* Prend exactement toute la largeur de la fenêtre */  
     height: 100vh !important; /* CORRECTION : 100% de la hauteur écran */
     position: relative !important;
     overflow: hidden;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-    background-color: #111; /* Fond noir en cas de chargement lent de l'image */
+    background-color: var(--charcoal); /* Fond noir en cas de chargement lent de l'image */
     display: block;
   }
 
   /* 3. L'image prend 100% de la carte en arrière-plan */
   .cat-card-img-wrapper {
     position: absolute;
-    inset: 0;
+    inset: 0; 
     width: 100%;
     height: 100%;
     z-index: 1;
@@ -1287,27 +1637,34 @@
   /* 5. Le texte : Toujours forcé en absolu au-dessus (z-index: 3) */
   .cat-card-text-content {
     position: absolute !important;
-    bottom: 19rem;
-    /*right: 14rem;*/
-    width: 100%;
-    padding: 2.5rem;
-    z-index: 3; /* Passe obligatoirement au-dessus de l'image et de l'overlay */
-    color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Aligne tout le contenu sur le bord gauche */
-  text-align: center;        /* Force le texte à s'écrire vers la gauche */
+    inset: 0 !important; /* Recouvre toute la carte : top:0, right:0, bottom:0, left:0 */
+    z-index: 3; /* Passe bien au-dessus de l'image et de l'overlay */
+    
+    /* Centrage Flexbox vertical et horizontal */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; 
+    align-items: center !important;
+    text-align: center !important;
+    
+    /* Marge interne pour éviter que le texte ne touche les bords sur mobile */
+    padding: 2rem 1.5rem !important; 
+    color: #ffffff;
+    pointer-events: none; /* Laisse le clic passer vers le lien de la carte */
   }
-
+  
+  /* Rétablissement du clic sur les éléments interactifs si besoin */
+  .cat-card-text-content * {
+    pointer-events: auto;
+  }
+  
   .cat-card-sub-label {
     font-family: 'Cormorant Garamond', serif;
-    color: white;
-    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
     letter-spacing: 0.2em;
     display: block;
     margin-bottom: 0.5rem;
-  text-align: center; /* Aligne le label à droite */
-  align-self: center; /* Aligne le label à droite dans le conteneur flex */
   }
 
   .cat-card-title-label {
@@ -1315,9 +1672,11 @@
     text-transform: uppercase;
     font-weight: 400;
     font-size: 1.85rem;
-    letter-spacing: 0.02em;
-    margin-bottom: 1.5rem;
+    letter-spacing: 0.09em;
+    /*margin-bottom: 1.5rem;*/
     line-height: 1.2;
+    color: #ffffff;
+    margin-top: 2em;
   }
 
   .cat-card-action {
@@ -1585,7 +1944,7 @@
 }
 
 .process-minimal-container {
-  max-width: 1200px;
+  max-width: fit-content;
   margin: 0 auto;
 }
 
@@ -1595,11 +1954,24 @@
   align-items: center;
 }
 
-.process-header .title-serif {
+.process-header .section-label {
   font-style: italic;
   font-family: 'Cormorant Garamond', serif;
-  text-transform: none;
+  font-size: 1.1rem;
+  /*text-transform: uppercase;*/
+  letter-spacing: 0.35em;
   color: var(--gold);
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+
+.process-header .section-title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #ffffff;
 }
 
 .process-split-layout {
@@ -1786,6 +2158,7 @@
   background: var(--charcoal);
   /*padding: 10rem 0rem;*/
   width: 100%;
+  box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.5);
 }
 
 .contact-wrapper {
@@ -1808,23 +2181,23 @@
 }
 
 .contact-info .section-label {
-  font-style: italic;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.4em;
-  color: var(--gold);
-  margin-bottom: 1.5rem;
-  font-weight: 300;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    /*text-transform: uppercase;*/
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    font-weight: 500;
 }
 
 .contact-info .section-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 300;
-  line-height: 1.3;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+  font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #ffffff;
   margin-bottom: 2rem;
   text-align: left;
 }
@@ -2084,7 +2457,7 @@ button[type="submit"]:disabled {
 /* ── AJUSTEMENT RESPONSIVE MOBILE ── */
 @media (max-width: 992px) {
   .contact-map-container {
-    margin-top: 2rem;
+    margin-top: 0rem;
     height: 300px; /* Un peu plus compacte sur mobile */
     border-left: none;
     border-right: none; /* Pleine largeur sur mobile pour casser les lignes */
@@ -2142,7 +2515,7 @@ button[type="submit"]:disabled {
       text-decoration: none;
       transition: color 0.3s;
     }
-    .footer-links a:hover { color: var(--gold-light); }
+    .footer-links a:hover { color: var(--gold); }
     .footer-bottom {
       border-top: 1px solid rgba(201,168,76,0.1);
       padding-top: 2rem;
@@ -2979,7 +3352,7 @@ button[type="submit"]:disabled {
       letter-spacing: 0.35em;
       text-transform: uppercase;
       color: rgba(0, 0, 0, 0.7);
-      margin-bottom: 1rem;
+      /*margin-bottom: 9rem;*/
   }
   .scroll-details-line {
     width: 2px;
@@ -3115,7 +3488,7 @@ button[type="submit"]:disabled {
     position: relative;
     overflow: hidden;
     background-color: #f9fafb;
-     aspect-ratio: 16 / 12; 
+    /*aspect-ratio: 16 / 12;*/
     cursor: zoom-in;
   }
   #main-visual {

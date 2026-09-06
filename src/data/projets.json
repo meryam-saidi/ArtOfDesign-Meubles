@@ -3,17 +3,19 @@
     "id": "proj-001",
     "nom": "projet Aurora-M | 320cm",
     "slug": "projet-aurora-m",
-    "forme": "C",
+    "forme": "Cuisine",
     "description": "Transformation complète d'une cuisine 18m². Du relevé de côtes au rendu 3D, jusqu'à la pose finale en 12 jours.",
-    "categorie": "Nos projets",
+    "categorie": "Projets",
     "prix_initiaC": 4500,
     "reduction": 25,
-    "image3d": "/images/sketch.png",
-    "image": "/images/projet.jpg",
+    "catalogue_images": [
+      {"image3d": "/images/autres/sketch.png"},
+      {"image": "/images/Projets/cuisines/6cuisine finition modif 6.jpg"}
+    ],
     "en_stock": true,
     "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/projet-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/projet-chene.jpg" },
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
     { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
     ]
   },
@@ -21,17 +23,19 @@
     "id": "proj-002",
     "nom": "projet Roma D-L | 400cm",
     "slug": "projet-roma-dl",
-    "forme": "C",
+    "forme": "Cuisine",
     "description": "Dressing sur mesure en forme L, 8m². Intérieur en noyer, îlot central, éclairage scénographique.",
-    "categorie": "Nos projets",
+    "categorie": "Projets",
     "prix_initial": 5200,
     "reduction": 15,
-    "image3d": "/images/sketch.png",
-    "image": "/images/projet.jpg",
+    "catalogue_images": [
+      {"image3d": "/images/autres/sketch.png"},
+      {"image": "/images/Projets/cuisines/cuisine 2eme etage 1.jpg"}
+    ],
     "en_stock": true,
     "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/projet-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/projet-chene.jpg" },
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
     { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
     ]
   },
@@ -39,17 +43,19 @@
     "id": "proj-002",
     "nom": "projet Roma D-L | 400cm",
     "slug": "projet-roma-dl",
-    "forme": "C",
+    "forme": "Cuisine",
     "description": "Cuisine linéaire 4,2m. Laqué blanc mat, plan quartz, éclairage LED filaire. Résultat époustouflant.",
-    "categorie": "Nos projets",
+    "categorie": "Projets",
     "prix_initial": 5200,
     "reduction": 15,
-    "image3d": "/images/sketch.png",
-    "image": "/images/projet.jpg",
+    "catalogue_images": [
+      {"image3d": "/images/autres/sketch.png"},
+      {"image": "/images/Projets/cuisines/cuisine 10.png"}
+    ],
     "en_stock": true,
     "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/projet-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/projet-chene.jpg" },
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
     { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
     ]
   },
@@ -57,17 +63,19 @@
     "id": "proj-002",
     "nom": "projet Roma D-L | 400cm",
     "slug": "projet-roma-dl",
-    "forme": "D",
+    "forme": "Cuisine",
     "description": "Dressing sur mesure en forme L, 8m². Intérieur en noyer, îlot central, éclairage scénographique.",
-    "categorie": "Nos projets",
+    "categorie": "Projets",
     "prix_initial": 5200,
     "reduction": 15,
-    "image3d": "/images/sketch.png",
-    "image": "/images/projet.jpg",
+    "catalogue_images": [
+      {"image3d": "/images/autres/sketch.png"},
+      {"image": "/images/Projets/cuisines/cuisine 11.png"}
+    ],
     "en_stock": true,
     "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/projet-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/projet-chene.jpg" },
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
     { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
     ]
   },
@@ -75,17 +83,19 @@
     "id": "proj-002",
     "nom": "projet Roma D-L | 400cm",
     "slug": "projet-roma-dl",
-    "forme": "H",
+    "forme": "Cuisine",
     "description": "Cuisine linéaire 4,2m. Laqué blanc mat, plan quartz, éclairage LED filaire. Résultat époustouflant.",
-    "categorie": "Nos projets",
+    "categorie": "Projets",
     "prix_initial": 5200,
     "reduction": 15,
-    "image3d": "/images/sketch.png",
-    "image": "/images/projet.jpg",
+    "catalogue_images": [
+      {"image3d": "/images/autres/sketch.png"},
+      {"image": "/images/Projets/cuisines/cuisine 12.png"}
+    ],
     "en_stock": true,
     "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/projet-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/projet-chene.jpg" },
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
     { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
     ]
   },
@@ -93,36 +103,80 @@
     "id": "proj-003",
     "nom": "projet Verveine-G | 450cm",
     "slug": "projet-verveine-g",
-    "forme": "D",
+    "forme": "Cuisine",
     "description": "Transformation complète d'une cuisine 18m². Du relevé de côtes au rendu 3D, jusqu'à la pose finale en 12 jours.",
-    "categorie": "Nos projets",
+    "categorie": "Projets",
     "prix_initial": 6100,
     "reduction": 20,
-    "image3d": "/images/sketch.png",
-    "image": "/images/projet.jpg",
+    "catalogue_images": [
+      {"image3d": "/images/autres/sketch.png"},
+      {"image": "/images/Projets/cuisines/cuisine modif3.jpg"}
+    ],
     "en_stock": false,
     "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/projet-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/projet-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/autres/projet-blanc.jpg" }
     ]
   },
   {
     "id": "proj-004",
     "nom": "projet forme-L | 750cm",
     "slug": "projet-forme-l",
-    "forme": "B",
+    "forme": "Cuisine",
     "description": "Dressing sur mesure en forme L, 8m². Intérieur en noyer, îlot central, éclairage scénographique.",
-    "categorie": "Nos projets",
+    "categorie": "Projets",
     "prix_initial": 5800,
     "reduction": 10,
-    "image3d": "/images/sketch.png",
-    "image": "/images/projet.jpg",
+    "catalogue_images": [
+      {"image3d": "/images/autres/sketch.png"},
+      {"image": "/images/Projets/cuisines/salon 8 badr.jpg"}
+    ],
     "en_stock": true,
     "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/projet-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/projet-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/autres/projet-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "proj-004",
+    "nom": "projet forme-L | 750cm",
+    "slug": "projet-forme-l",
+    "forme": "Dressing",
+    "description": "Dressing sur mesure en forme L, 8m². Intérieur en noyer, îlot central, éclairage scénographique.",
+    "categorie": "Projets",
+    "prix_initial": 5800,
+    "reduction": 10,
+    "catalogue_images": [
+      {"image3d": "/images/autres/sketch.png"},
+      {"image": "/images/Projets/dressings/dress6.jpg"}
+    ],
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/autres/projet-blanc.jpg" }
+    ]
+  },
+  {
+    "id": "proj-004",
+    "nom": "projet forme-L | 750cm",
+    "slug": "projet-forme-l",
+    "forme": "Dressing",
+    "description": "Dressing sur mesure en forme L, 8m². Intérieur en noyer, îlot central, éclairage scénographique.",
+    "categorie": "Projets",
+    "prix_initial": 5800,
+    "reduction": 10,
+    "catalogue_images": [
+      {"image3d": "/images/autres/sketch.png"},
+      {"image": "/images/Projets/dressings/dress3.jpg"}
+    ],
+    "en_stock": true,
+    "variantes": [
+    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
+    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
+    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/autres/projet-blanc.jpg" }
     ]
   }
   

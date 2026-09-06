@@ -1,0 +1,430 @@
+---
+// SwipableGallery.astro
+interface GalleryItem {
+  src: string;
+  alt: string;
+  title?: string;
+  category?: string;
+}
+
+interface CatalogueImageItem {
+  image?: string;
+  image3d?: string;
+}
+
+interface Props {
+  images?: (CatalogueImageItem | GalleryItem)[];
+} 
+
+const { images = [] } = Astro.props;
+
+// Normalisation et filtrage : On rejette systématiquement les images 3D
+const formattedImages = images
+  .filter((img) => {
+    if ('image3d' in img && !img.image) return false; // Ignore les éléments purement 3D
+    return true;
+  })
+  .map((img) => {
+    if ('src' in img) return img; // Déjà formaté
+
+    return {
+      src: img.image || '',
+      alt: 'Photo de réalisation',
+      title: 'Réalisation',
+      category: 'Projet Réel'
+    };
+  })
+  .filter((img) => img.src !== ''); // S'assure que l'URL d'image est valide
+---
+
+<section class="gallery-wrapper">
+  <!-- Header de section minimaliste sans flèches -->
+  <div class="gallery-header">
+    <div class="header-text">
+      <span class="subtitle">Aperçu des Projets</span>
+      <h2 class="title">Galerie & Détails</h2>
+    </div>
+  </div>
+
+  <!-- Container récepteur pour l'effet de survol du curseur -->
+  <div class="gallery-interactive-zone" id="interactive-zone">
+    <div class="gallery-track" id="gallery-track">
+      {formattedImages.map((img, index) => (
+        <figure class="gallery-slide" data-index={index}>
+          <div class="img-wrapper">
+            <img src={img.src} alt={img.alt} loading="lazy" class="slide-img" />
+            <div class="img-overlay">
+              <button class="zoom-trigger" data-index={index} aria-label="Agrandir">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+              </button>
+            </div>
+          </div>
+          <figcaption class="slide-meta">
+            {img.category && <span class="slide-cat">{img.category}</span>}
+            {img.title && <h3 class="slide-title">{img.title}</h3>}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+
+  <!-- Modal Lightbox sur-mesure -->
+  <div id="lightbox-modal" class="custom-lightbox" aria-hidden="true">
+    <div class="lightbox-overlay"></div>
+    <button id="close-btn" class="lb-control close-btn" aria-label="Fermer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <button id="prev-btn" class="lb-control prev-btn" aria-label="Précédent">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    
+    <div class="lightbox-body">
+      <img id="lightbox-img" src="" alt="" />
+      <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
+    <button id="next-btn" class="lb-control next-btn" aria-label="Suivant">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+</section>
+
+<script>
+  const track = document.getElementById('gallery-track') as HTMLElement;
+  const zone = document.getElementById('interactive-zone') as HTMLElement;
+
+  let animationFrameId: number | null = null;
+  let scrollSpeed = 0;
+
+  if (track && zone) {
+    zone.addEventListener('mousemove', (e) => {
+      const rect = zone.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const zoneWidth = rect.width;
+      
+      const centerDeadZone = 0.2;
+      const normalizedX = (mouseX / zoneWidth) - 0.5;
+
+      if (Math.abs(normalizedX) > centerDeadZone / 2) {
+        const factor = (Math.abs(normalizedX) - centerDeadZone / 2) / (0.5 - centerDeadZone / 2);
+        const direction = Math.sign(normalizedX);
+        const maxSpeed = 16;
+        scrollSpeed = direction * factor * maxSpeed;
+
+        if (!animationFrameId) {
+          startScrolling();
+        }
+      } else {
+        stopScrolling();
+      }
+    });
+
+    zone.addEventListener('mouseleave', () => {
+      stopScrolling();
+    });
+  }
+
+  function startScrolling() {
+    if (track) {
+      track.scrollLeft += scrollSpeed;
+      animationFrameId = requestAnimationFrame(startScrolling);
+    }
+  }
+
+  function stopScrolling() {
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+    }
+    scrollSpeed = 0;
+  }
+
+  const slideElements = Array.from(document.querySelectorAll('.gallery-slide'));
+  const slides = slideElements.map(slide => {
+    const img = slide.querySelector('.slide-img') as HTMLImageElement;
+    const title = slide.querySelector('.slide-title')?.textContent || '';
+    return { src: img.src, alt: img.alt, title };
+  });
+
+  const modal = document.getElementById('lightbox-modal') as HTMLElement;
+  const lbImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const lbCaption = document.getElementById('lightbox-caption') as HTMLDivElement;
+  const closeBtn = document.getElementById('close-btn');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const overlay = modal?.querySelector('.lightbox-overlay');
+
+  let currentIndex = 0;
+
+  function openLightbox(index: number) {
+    stopScrolling();
+    currentIndex = index;
+    updateModalContent();
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function updateModalContent() {
+    currentIndex = (currentIndex + slides.length) % slides.length;
+    const item = slides[currentIndex];
+    if (item && lbImg && lbCaption) {
+      lbImg.src = item.src;
+      lbImg.alt = item.alt;
+      lbCaption.textContent = item.title || item.alt;
+    }
+  }
+
+  document.querySelectorAll('.zoom-trigger, .img-wrapper').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLElement;
+      const index = parseInt(target.closest('.gallery-slide')?.getAttribute('data-index') || '0', 10);
+      openLightbox(index);
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeLightbox);
+  overlay?.addEventListener('click', closeLightbox);
+  prevBtn?.addEventListener('click', () => { currentIndex--; updateModalContent(); });
+  nextBtn?.addEventListener('click', () => { currentIndex++; updateModalContent(); });
+
+  window.addEventListener('keydown', (e) => {
+    if (!modal.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') { currentIndex--; updateModalContent(); }
+    if (e.key === 'ArrowRight') { currentIndex++; updateModalContent(); }
+  });
+</script>
+
+<style>
+  .gallery-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+  }
+
+  .gallery-header {
+    margin-bottom: 2rem;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #888;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .gallery-interactive-zone {
+    position: relative;
+    width: 100%;
+  }
+
+  .gallery-track {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 1.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  }
+
+  .gallery-track::-webkit-scrollbar {
+    height: 3px;
+  }
+
+  .gallery-track::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 0px;
+  }
+
+  .gallery-slide {
+    flex: 0 0 85%;
+    max-width: 520px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  @media (min-width: 768px) {
+    .gallery-slide {
+      flex: 0 0 460px;
+    }
+  }
+
+  .img-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 0px;
+    overflow: hidden;
+    background-color: #121212;
+    cursor: inherit;
+  }
+
+  .slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .img-wrapper:hover .slide-img {
+    transform: scale(1.04);
+  }
+
+  .img-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+  }
+
+  .img-wrapper:hover .img-overlay {
+    opacity: 1;
+  }
+
+  .zoom-trigger {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    color: #000;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: inherit;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+  }
+
+  .img-wrapper:hover .zoom-trigger {
+    transform: translateY(0);
+  }
+
+  .slide-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .slide-cat {
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .slide-title {
+    font-size: 1.05rem;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .custom-lightbox,
+  .custom-lightbox * {
+    cursor: inherit !important;
+  }
+
+  .custom-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+
+  .custom-lightbox.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .lightbox-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.94);
+    backdrop-filter: blur(12px);
+  }
+
+  .lightbox-body {
+    position: relative;
+    z-index: 2;
+    max-width: 88vw;
+    max-height: 82vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lightbox-body img {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 0px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    user-select: none;
+  }
+
+  .lightbox-caption {
+    margin-top: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+  }
+
+  .lb-control {
+    position: absolute;
+    z-index: 3;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: inherit;
+    transition: background 0.25s ease;
+  }
+
+  .lb-control:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .close-btn { top: 2rem; right: 2rem; }
+  .prev-btn { left: 2rem; top: 50%; transform: translateY(-50%); }
+  .next-btn { right: 2rem; top: 50%; transform: translateY(-50%); }
+
+  @media (max-width: 768px) {
+    .prev-btn, .next-btn { display: none; }
+    .close-btn { top: 1rem; right: 1rem; }
+  }
+</style>

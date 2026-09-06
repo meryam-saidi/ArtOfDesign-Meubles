@@ -1895,3 +1895,331 @@ const compoCol2 = cuisine.caracteristiques_techniques.composition_type.slice(mil
     }
   }
 </style>
+
+/********************************************************************************************/
+
+  .about-band-subtitle {
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    /*text-transform: uppercase;*/
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+
+  .about-band-title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+  }
+
+  .about-band-text {
+    font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7); /* Blanc adouci pour le confort visuel */
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    max-width: 46rem;
+  }
+
+  .section-label {
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+      text-transform: none;
+      /*____*/
+      font-size: 0.75rem;
+      /*text-transform: uppercase;*/
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+  .section-title {
+      font-family: 'Montserrat', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      line-height: 1.25;
+      color: #f7f5f0;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 3rem;
+      padding: 0;
+      text-align: center; 
+    }
+  .philosophy-text p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(247, 245, 240, 0.6);
+    margin-bottom: 2rem;
+    font-weight: 300;
+    max-width: 560px;
+    text-align:  start; 
+    margin-left: auto;         
+    margin-right: auto;
+    }
+
+
+
+    /********************/
+
+    .about-band-subtitle {
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    /*text-transform: uppercase;*/
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+
+  .about-band-title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+  }
+
+  .about-band-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(247, 245, 240, 0.6);
+    margin-bottom: 2rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    max-width: 46rem;
+  }
+
+  /********************************************************/
+  ---
+// src/components/Card.astro
+const { type, nom, prix, promo, image, id } = Astro.props;
+
+const detailUrl = `/${type}/${id || 'demo'}`;
+const prixRemise = Math.round(prix * (1 - promo / 100));
+---
+
+<a href={detailUrl} class="editorial-card group">
+  {/* MEDIA CONTAINER */}
+  <div class="card-media-box">
+    <img src={image} alt={nom} class="card-img" loading="lazy" />
+    
+    {/* BADGE PROMO (HAUT GAUCHE) */}
+    {promo > 0 && (
+      <span class="card-promo-tag">
+        -{promo}%
+      </span>
+    )}
+
+    {/* BADGE PRIX FLOATING (HAUT DROITE) */}
+    <div class="card-prices-badge">
+      {promo > 0 && (
+        <span class="price-old">{prix} DT</span>
+      )}
+      <span class="price-current">{prixRemise} DT</span>
+    </div>
+
+    {/* OVERLAY INTERACTIF */}
+    <div class="card-hover-overlay"></div>
+  </div>
+
+  {/* CONTENU TEXTE EN DESSOUS */}
+  <div class="card-info-box">
+    <h3 class="card-title">{nom}</h3>
+  </div>
+</a>
+
+<style>
+  /* ── CARTE EDITORIALE (LAYOUT GLOBAL) ── */
+  .editorial-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+    box-sizing: border-box;
+  }
+
+  /* ── MEDIA CONTENANTS ── */
+  .card-media-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .card-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .editorial-card:hover .card-img {
+    transform: scale(1.05);
+  }
+
+  /* ── BADGE PROMO (HAUT GAUCHE) ── */
+  .card-promo-tag {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    z-index: 3;
+    background-color: rgba(207, 19, 19, 0.75);
+    color: #fdfcfc;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.35rem 0.6rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  /* ── BADGE PRIX FLOATING (HAUT DROITE) ── */
+  .card-prices-badge {
+    position: absolute;
+    bottom: 0.85rem;
+    right: 0.85rem;
+    z-index: 3;
+    background: rgba(18, 18, 18, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.35rem 0.65rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    line-height: 1;
+  }
+
+  .price-current {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+  .price-old {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.45);
+    text-decoration: line-through;
+    font-weight: 300;
+  }
+
+  /* ── OVERLAY AU HOVER ── */
+  .card-hover-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+  }
+
+  .editorial-card:hover .card-hover-overlay {
+    opacity: 1;
+  }
+
+  /* ── ZONE DE TEXTE AU DESSOUS ── */
+  .card-info-box {
+    padding-top: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: currentColor;
+    margin: 0;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+  }
+
+  .editorial-card:hover .card-title {
+    color: var(--gold, #c9a84c);
+  }
+</style>
+
+************************************************************************
+.toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .sort-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #737373;
+    font-weight: 400;
+  }
+
+  .select-wrapper {
+    position: relative;
+  }
+
+  .luxury-select {
+    appearance: none;
+    background-color: transparent;
+    font-size: 0.75rem;
+    color: #737373;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.5rem 2rem 0.5rem 0.5rem;
+    border: none;
+    border-bottom: 2px solid var(--gold);
+    border-radius: 0;
+    transition: all 0.25s ease;
+    /* cursor: pointer; */
+  }
+
+  .luxury-select:hover,
+  .luxury-select:focus {
+    outline: none;
+    border-bottom-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .select-arrow {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0.25rem;
+    display: flex;
+    align-items: center;
+    color: #737373;
+    transition: color 0.25s ease;
+  }
+
+  .luxury-select:hover ~ .select-arrow,
+  .luxury-select:focus ~ .select-arrow {
+    color: var(--gold);
+  }
+  
+  .arrow-icon {
+    width: 1rem;
+    height: 1rem;
+  }

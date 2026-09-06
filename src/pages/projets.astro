@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Process from '../components/Process.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import projetsData from '../data/projets.json';
+import ImageGallery from '../components/ImageGallery.astro';
 
 const sections = [
   { id: "forme-i", label: "Dressing Forme I", valeur: "I" },
@@ -13,6 +14,18 @@ const sections = [
 
 // Mélange des projets pour la galerie globale "Tous"
 const tousLesProjetsMixes = [...projetsData].sort(() => 0.5 - Math.random());
+
+// Extraction UNIQUEMENT des images réelles (exclusion des image3d)
+const galleryImages = tousLesProjetsMixes.flatMap((projet) => {
+  return (projet.catalogue_images || [])
+    .filter((item) => item.image) // Ne garde que les photos normales
+    .map((item) => ({
+      src: item.image || '',
+      alt: `${projet.nom} - Photo du projet`,
+      title: projet.nom,
+      category: projet.categorie || 'Projet Réel'
+    }));
+});
 ---
 
 <Layout title="Nos Projets Réalisés | Art Of Design">
@@ -20,7 +33,7 @@ const tousLesProjetsMixes = [...projetsData].sort(() => 0.5 - Math.random());
     
     <section class="luxury-hero">
       <div class="luxury-hero-bg">
-        <img src="/images/1.jpg" alt="Art Of Design Haute Cuisine" class="luxury-hero-img" />
+        <img src="/images/autres/1.jpg" alt="Art Of Design Haute Cuisine" class="luxury-hero-img" />
         <div class="luxury-hero-overlay"></div>
       </div>
       
@@ -57,8 +70,8 @@ const tousLesProjetsMixes = [...projetsData].sort(() => 0.5 - Math.random());
                 id={item.id}
                 nom={item.nom}
                 description={item.description}
-                image3d={item.image3d}
-                image={item.image}
+                image3d={item.catalogue_images[0]?.image3d ?? ''}
+                image={item.catalogue_images[1]?.image ?? ''}
                 forme={item.forme}
               />
             ))}
@@ -76,8 +89,8 @@ const tousLesProjetsMixes = [...projetsData].sort(() => 0.5 - Math.random());
                     id={item.id}
                     nom={item.nom}
                     description={item.description}
-                    image3d={item.image3d}
-                    image={item.image}
+                    image3d={item.catalogue_images[0]?.image3d ?? ''}
+                    image={item.catalogue_images[0]?.image ?? ''}
                     forme={item.forme}
                   />
                 ))}
@@ -86,6 +99,10 @@ const tousLesProjetsMixes = [...projetsData].sort(() => 0.5 - Math.random());
           );
         })}
       </div>
+    </div>
+
+    <div>
+      <ImageGallery images={galleryImages} />
     </div>
 
     <div class="anatomies">

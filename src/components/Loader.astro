@@ -1,0 +1,134 @@
+---
+// src/components/Loader.astro
+---
+
+<div id="global-loader" class="loader-overlay">
+  <p id="loader-logo-animated" class="loader-logo">
+    Art <em>Of</em> Design
+  </p>
+  <div class="loader-line"></div>
+  <p class="loader-sub">Meubles de luxe sur mesure — Tunisie</p>
+</div>
+
+<script>
+  function initLoader() {
+    const loader = document.getElementById('global-loader');
+    if (!loader) return;
+
+    // 1. Vérification dans la mémoire de session
+    const hasSeenLoader = sessionStorage.getItem('hasSeenLoader');
+
+    if (hasSeenLoader === 'true') {
+      // Déjà vu : suppression immédiate sans animation
+      loader.classList.add('is-done');
+    } else {
+      // Première visite : exécution des animations puis disparition
+      const TOTAL_DURATION = 2800; // Durée totale en ms (animations + attente)
+
+      setTimeout(() => {
+        // Déclencher le fondu de sortie CSS
+        loader.classList.add('loader-hidden');
+
+        // Retirer complètement du DOM après la transition (500ms)
+        setTimeout(() => {
+          loader.classList.add('is-done');
+          sessionStorage.setItem('hasSeenLoader', 'true');
+        }, 500);
+      }, TOTAL_DURATION);
+    }
+  }
+
+  // Chargement initial
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLoader);
+  } else {
+    initLoader();
+  }
+
+  // Compatibilité Astro ViewTransitions
+  document.addEventListener('astro:after-swap', () => {
+    const loader = document.getElementById('global-loader');
+    if (loader && sessionStorage.getItem('hasSeenLoader') === 'true') {
+      loader.classList.add('is-done');
+    }
+  });
+</script>
+
+<style>
+  /* CONTENEUR PRINCIPAL */
+  .loader-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--obsidian, #0b0b0b);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    box-sizing: border-box;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+
+  /* ÉLÉMENTS TEXTUELS ET ANIMAIONS */
+  .loader-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: var(--mist, #e5e5e5);
+    opacity: 0;
+    animation: loaderFadeIn 1s ease 0.3s forwards;
+    will-change: transform, opacity;
+  }
+
+  /* Remplacement de <span> par em pour cibler "Art Of Design" */
+  .loader-logo em {
+    color: var(--gold, #c9a84c);
+    font-style: italic;
+    font-family: inherit;
+  }
+
+  .loader-line {
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold, #c9a84c), transparent);
+    animation: loaderLine 1.5s ease 0.8s forwards;
+  }
+
+  .loader-sub {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--stone, #8e8e8e);
+    opacity: 0;
+    animation: loaderFadeIn 1s ease 1.2s forwards;
+  }
+
+  /* KEYFRAMES */
+  @keyframes loaderFadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes loaderLine {
+    to {
+      width: 200px;
+    }
+  }
+
+  /* ETATS DE SORTIE DU LOADER */
+  .loader-overlay.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .loader-overlay.is-done {
+    display: none !important;
+  }
+</style>

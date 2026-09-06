@@ -3,82 +3,685 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import cuisinesData from '../data/cuisines.json';
 import dressingData from '../data/dressing.json';
-import meublesData from '../data/meubles.json';
+import meublesData from '../data/meuble.json';
 import projetsData from '../data/projets.json';
 
-// Note: On combine toutes les données pour la recherche globale
+// Helper pour extraire L'URL textuelle (string) de l'image
+const getImageUrl = (product: any): string => {
+  if (typeof product.image === 'string' && product.image) return product.image;
+  
+  if (Array.isArray(product.catalogue_images) && product.catalogue_images.length > 0) {
+    const firstItem = product.catalogue_images[0];
+    if (typeof firstItem === 'string') return firstItem;
+    if (firstItem && typeof firstItem.image === 'string') return firstItem.image;
+    if (firstItem && typeof firstItem.image3d === 'string') return firstItem.image3d;
+  }
+  
+  return '';
+};
+
+// Helper pour convertir la catégorie en "type" au singulier pour l'URL (/cuisine/..., /dressing/...)
+const getProductType = (categorie?: string): string => {
+  if (!categorie || typeof categorie !== 'string') return 'cuisine';
+  let formatted = categorie.trim().toLowerCase();
+  if (formatted.endsWith('s')) {
+    formatted = formatted.slice(0, -1);
+  }
+  return formatted;
+};
+
+// Harmonisation des données
 const allProducts = [
-  ...cuisinesData.map(item => ({ ...item, type: 'cuisine' })),
-  ...dressingData.map(item => ({ ...item, type: 'dressing' })),
-  ...meublesData.map(item => ({ ...item, type: 'meubles' })),
-  ...projetsData.map(item => ({ ...item, type: 'projets' })),
+  ...cuisinesData.map(item => ({ ...item, categorie: item.categorie || 'Cuisines' })),
+  ...dressingData.map(item => ({ ...item, categorie: item.categorie || 'Dressing' })),
+  ...meublesData.map(item => ({ ...item, categorie: item.categorie || 'Meubles' })),
+  ...projetsData.map(item => ({ ...item, categorie: item.categorie || 'Projets' })),
 ];
 ---
 
-<Layout title="Résultats de recherche | AD Cuisine">
-  <main class="pt-32 pb-10 max-w-7xl mx-auto px-6">
-    <h1 class="font-serif text-3xl mb-8 italic">
-      Résultats pour : <span id="search-query" class="text-[var(--color-gold)]">...</span>
-    </h1>
+<Layout title="Résultats de recherche | AD Cuisine" theme="dark">
+  
+  <div class="catalog-filter-bar">
+      <nav class="luxury-breadcrumb">
+        <a href="/">Accueil</a>
+        <span class="separator">/</span>
+        <span class="current">Résultats pour <span id="search-query" class="highlight-gold">...</span></span>
+      </nav>
+    </div>
+  <main class="search-main-container">
 
-    <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+    <!-- BARRE D'OUTILS ET FILTRES DES RÉSULTATS -->
+    <div class="search-toolbar">
+      
+      <!-- À GAUCHE : COMPTEUR D'ÉLÉMENTS -->
+      <div class="toolbar-left">
+        <span id="results-count" class="count-number">0</span>
+        <span id="results-label">produit(s) trouvé(s)</span>
       </div>
 
-    <div id="no-results" class="hidden text-center py-20">
-      <p class="text-gray-500 italic">Aucun modèle ne correspond à votre recherche.</p>
-      <a href="/cuisines" class="inline-block mt-6 text-[10px] uppercase tracking-widest font-bold border-b border-black">Voir tout le catalogue</a>
+      <!-- AU CENTRE : COMMUTATEUR DE GRILLE / FORMAT D'AFFICHAGE -->
+      <div class="toolbar-center">
+        <!-- Bouton 3 Colonnes -->
+        <button 
+          id="btn-grid-3" 
+          class="grid-toggle-btn active"
+          title="Affichage 3 colonnes"
+          aria-label="3 colonnes"
+        >
+          <svg class="toolbar-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5h3v14H4V5zm6 0h3v14h-3V5zm6 0h3v14h-3V5z" />
+          </svg>
+        </button>
+
+        <!-- Bouton 4 Colonnes -->
+        <button 
+          id="btn-grid-4" 
+          class="grid-toggle-btn btn-grid-4-desktop"
+          title="Affichage 4 colonnes"
+          aria-label="4 colonnes"
+        >
+          <svg class="toolbar-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+          </svg>
+        </button>
+      </div>
+      
+      <!-- À DROITE : TRI DES PRIX SUR-MESURE -->
+    <div class="toolbar-right">
+      <span class="sort-label">Trier par :</span>
+      <div class="custom-dropdown" id="sort-dropdown">
+        <button type="button" class="dropdown-trigger" aria-expanded="false">
+          <span class="selected-text">Pertinence</span>
+          <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <ul class="dropdown-menu">
+          <li class="dropdown-item active" data-value="default">Pertinence</li>
+          <li class="dropdown-item" data-value="price-asc">Prix : Croissant</li>
+          <li class="dropdown-item" data-value="price-desc">Prix : Décroissant</li>
+        </ul>
+      </div>
+    </div>
+
+    </div>
+
+    <!-- GRILLE DE RÉSULTATS -->
+    <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {allProducts.map((product) => {
+        const typeUrl = getProductType(product.categorie);
+        const imageUrl = getImageUrl(product);
+        
+        const displayNom = product.nom || 'Modèle sans nom';
+        const displayPrix = product.prix_initial || 0;
+        const displayPromo = product.reduction || 0;
+
+        return (
+          <div 
+            class="search-item hidden" 
+            data-nom={displayNom.toLowerCase()}
+            data-description={product.description?.toLowerCase() || ''}
+            data-forme={product.forme?.toLowerCase() || ''}
+            data-categorie={product.categorie?.toLowerCase() || ''}
+          >
+            <Card 
+              id={product.id}
+              type={typeUrl}
+              nom={displayNom}
+              prix={displayPrix}
+              promo={displayPromo}
+              image={imageUrl}
+            />
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- MESSAGE AUCUN RÉSULTAT -->
+    <div id="no-results" class="no-results-container hidden">
+      <p class="no-results-text">Aucun modèle ne correspond à votre recherche.</p>
+      <a href="/cuisines" class="back-catalog-link">
+        Voir tout le catalogue
+      </a>
     </div>
   </main>
 </Layout>
 
-<script is:inline define:vars={{ allProducts }}>
-  // 1. Récupérer le terme de recherche dans l'URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const query = urlParams.get('q')?.toLowerCase() || "";
-  
-  const queryDisplay = document.getElementById('search-query');
-  const resultsGrid = document.getElementById('results-grid');
-  const noResults = document.getElementById('no-results');
+<script>
+  function handleSearch() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('q')?.trim().toLowerCase() || "";
+    
+    const queryDisplay = document.getElementById('search-query');
+    const noResults = document.getElementById('no-results');
+    const items = document.querySelectorAll<HTMLElement>('.search-item');
 
-  if (queryDisplay) queryDisplay.textContent = query;
+    const resultsCount = document.getElementById('results-count');
+    const resultsLabel = document.getElementById('results-label');
 
-  // 2. Filtrage multi-critères des produits
-  const filtered = allProducts.filter(p => 
-    p.nom.toLowerCase().includes(query) || 
-    (p.description && p.description.toLowerCase().includes(query)) ||
-    p.forme?.toLowerCase().includes(query)
-  );
+    if (queryDisplay) {
+      queryDisplay.textContent = query ? `"${query}"` : "tous les produits";
+    }
 
-  // 3. Afficher les résultats
-  if (filtered.length > 0) {
-    resultsGrid.innerHTML = ""; // Vide la grille
-    filtered.forEach(p => {
-      // Génération du lien dynamique : /cuisine/id ou /dressing/id
-      const detailUrl = `/${p.type}/${p.id}`;
-      
-      const card = `
-        <div class="group bg-white  overflow-hidden shadow-sm border border-gray-100">
-          <div class="relative overflow-hidden aspect-[4/3]">
-            <img src="${p.image}" alt="${p.nom}" class="w-full h-full object-cover" />
-          </div>
-          <div class="p-6">
-            <h3 class="font-serif text-xl mb-2">${p.nom}</h3>
-            <p class="text-[var(--color-gold)] font-bold mb-4">${p.prix_initial} DT</p>
-            <a href="${detailUrl}" class="block w-full py-3 border border-[#b5a264] text-[#b5a264] text-center rounded-md text-[10px] font-bold uppercase tracking-widest hover:bg-[#b5a264] hover:text-white transition-all">
-              Voir le projet
-            </a>
-          </div>
-        </div>
-      `;
-      resultsGrid.innerHTML += card;
+    let matchCount = 0;
+
+    items.forEach((item) => {
+      const nom = item.dataset.nom || '';
+      const description = item.dataset.description || '';
+      const forme = item.dataset.forme || '';
+      const categorie = item.dataset.categorie || '';
+
+      const isMatch = !query || 
+        nom.includes(query) || 
+        description.includes(query) || 
+        forme.includes(query) || 
+        categorie.includes(query);
+
+      if (isMatch) {
+        item.classList.remove('hidden');
+        matchCount++;
+      } else {
+        item.classList.add('hidden');
+      }
     });
-  } else {
-    noResults.classList.remove('hidden');
+
+    // MISE À JOUR DU COMPTEUR DE RÉSULTATS
+    if (resultsCount) {
+      resultsCount.textContent = matchCount.toString();
+    }
+    if (resultsLabel) {
+      resultsLabel.textContent = matchCount > 1 ? 'produits trouvés' : 'produit trouvé';
+    }
+
+    // GESTION DU BLOC "AUCUN RÉSULTAT"
+    if (noResults) {
+      if (matchCount === 0) {
+        noResults.classList.remove('hidden');
+      } else {
+        noResults.classList.add('hidden');
+      }
+    }
   }
+
+  // Exécution lors du chargement initial
+  handleSearch();
+  
+  // Support pour la navigation Astro View Transitions (si vous l'utilisez)
+  document.addEventListener('astro:page-load', handleSearch);
 </script>
 
+<script>
+  function initGridToggle() {
+  const gridContainer = document.getElementById('results-grid');
+  const btn3 = document.getElementById('btn-grid-3');
+  const btn4 = document.getElementById('btn-grid-4');
+  const btnList = document.getElementById('btn-grid-list');
+  const toggleBtns = document.querySelectorAll('.grid-toggle-btn');
+
+  if (!gridContainer) return;
+  const resultsGrid = gridContainer;
+
+  function setViewMode(mode: 'grid-3' | 'grid-4' | 'grid-list') {
+    // Suppression des anciennes classes d'affichage de la grille
+    resultsGrid.classList.remove(
+      'grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'lg:grid-cols-4',
+      'mode-grid-3', 'mode-grid-4', 'mode-list'
+    );
+
+    toggleBtns.forEach(btn => btn.classList.remove('active'));
+
+    if (mode === 'grid-3') {
+      resultsGrid.classList.add('grid', 'grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'mode-grid-3');
+      btn3?.classList.add('active');
+    } else if (mode === 'grid-4') {
+      resultsGrid.classList.add('grid', 'grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-4', 'mode-grid-4');
+      btn4?.classList.add('active');
+    } else if (mode === 'grid-list') {
+      resultsGrid.classList.add('flex', 'flex-col', 'mode-list');
+      btnList?.classList.add('active');
+    }
+
+    // Sauvegarde du choix utilisateur
+    localStorage.setItem('search_view_mode', mode);
+    }
+
+    // Écouteurs d'événements
+    btn3?.addEventListener('click', () => setViewMode('grid-3'));
+    btn4?.addEventListener('click', () => setViewMode('grid-4'));
+    btnList?.addEventListener('click', () => setViewMode('grid-list'));
+
+    // Restauration du mode préféré au chargement (par défaut grid-3)
+    const savedMode = (localStorage.getItem('search_view_mode') as 'grid-3' | 'grid-4' | 'grid-list') || 'grid-3';
+    setViewMode(savedMode);
+  }
+
+  // Exécution
+  initGridToggle();
+  document.addEventListener('astro:page-load', initGridToggle);
+</script>
+
+<script>
+  // Stockage de l'ordre d'origine des éléments de la grille
+  let originalItemsOrder: HTMLElement[] = [];
+
+  // 1. Fonction de tri et de réinitialisation des cartes produits
+  function handleSort(sortValue: string | null) {
+    const gridContainer = document.getElementById('results-grid');
+    if (!gridContainer) return;
+
+    // Si c'est le premier appel, on sauvegarde l'ordre initial du DOM
+    if (originalItemsOrder.length === 0) {
+      originalItemsOrder = Array.from(gridContainer.querySelectorAll<HTMLElement>('.search-item'));
+    }
+
+    // Cas "Pertinence" ou valeur par défaut : Restauration de l'ordre initial (efface le tri)
+    if (sortValue === 'default' || !sortValue) {
+      originalItemsOrder.forEach(item => gridContainer.appendChild(item));
+      return;
+    }
+
+    // Copie de la liste pour trier selon le prix
+    const itemsToSort = Array.from(gridContainer.querySelectorAll<HTMLElement>('.search-item'));
+
+    itemsToSort.sort((a, b) => {
+      // Récupération des prix depuis les cartes
+      const priceElA = a.querySelector('.price-new');
+      const priceElB = b.querySelector('.price-new');
+
+      // Extraction de la valeur numérique du prix (ex: "1 200 DT" -> 1200)
+      const priceA = priceElA ? parseFloat(priceElA.textContent?.replace(/[^0-9.]/g, '') || '0') : 0;
+      const priceB = priceElB ? parseFloat(priceElB.textContent?.replace(/[^0-9.]/g, '') || '0') : 0;
+
+      if (sortValue === 'price-asc') {
+        return priceA - priceB;
+      } else if (sortValue === 'price-desc') {
+        return priceB - priceA;
+      }
+
+      return 0;
+    });
+
+    // Réinjection des éléments réordonnés dans le conteneur
+    itemsToSort.forEach(item => gridContainer.appendChild(item));
+  }
+
+  // 2. Initialisation du dropdown personnalisé
+  function initCustomDropdown() {
+    const dropdown = document.getElementById('sort-dropdown');
+    if (!dropdown) return;
+
+    const trigger = dropdown.querySelector<HTMLButtonElement>('.dropdown-trigger');
+    const selectedText = dropdown.querySelector<HTMLElement>('.selected-text');
+    const items = dropdown.querySelectorAll<HTMLElement>('.dropdown-item');
+
+    // Sauvegarde de l'ordre initial dès le chargement de la page
+    const gridContainer = document.getElementById('results-grid');
+    if (gridContainer && originalItemsOrder.length === 0) {
+      originalItemsOrder = Array.from(gridContainer.querySelectorAll<HTMLElement>('.search-item'));
+    }
+
+    // Ouverture / Fermeture
+    trigger?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+    });
+
+    // Sélection d'une option
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        const value = item.getAttribute('data-value');
+        const label = item.textContent;
+
+        if (selectedText && label) selectedText.textContent = label;
+
+        items.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+
+        dropdown.classList.remove('open');
+
+        // Application du tri ou réinitialisation
+        handleSort(value);
+      });
+    });
+
+    // Fermeture lors d'un clic extérieur
+    document.addEventListener('click', () => {
+      dropdown.classList.remove('open');
+    });
+  }
+
+  // Exécution au chargement et lors de la navigation Astro
+  initCustomDropdown();
+  document.addEventListener('astro:page-load', initCustomDropdown);
+</script>
+
+
 <style>
-  #main-header {
-    background-color: var(--color-gold);
+  /* --- LAYOUT GLOBAL ET CONTENEURS --- */
+  .search-main-container {
+    padding-top: 2rem; /* pt-32 */
+    padding-bottom: 2.5rem; /* pb-10 */
+    margin-left: 4rem;
+    margin-right: 4rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .highlight-gold {
+    color: var(--gold);
+  }
+
+  /* --- BARRE D'OUTILS (TOOLBAR) --- */
+  .search-toolbar {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem; 
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  @media (min-width: 768px) {
+    .search-toolbar {
+      flex-direction: row;
+    }
+  }
+
+  /* Toolbar Gauche (Compteur) */
+  .toolbar-left {
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    color: #d1d5db;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  .toolbar-left .count-number {
+    font-weight: 600;
+    color: var(--color-gold, #c9a84c);
+  }
+
+  /* Toolbar Centre (Commutateur de Grille) */
+  /* Style 1 : Épuré & Ligne Dorée */
+  .toolbar-center {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+  }
+
+  .grid-toggle-btn {
+    padding: 0.5rem 0.75rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: #737373; /* neutral-500 */
+    border-radius: 0;
+    transition: all 0.25s ease;
+  }
+
+  .grid-toggle-btn:hover {
+    color: var(--gold);
+  }
+
+  .grid-toggle-btn.active {
+    background-color: transparent;
+    color: var(--gold) !important;
+    border-bottom-color: var(--gold);
+  }
+
+  .btn-grid-4-desktop {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .btn-grid-4-desktop {
+      display: block;
+    }
+  }
+
+  .toolbar-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  /* Toolbar Droite (Sélecteur de Tri) */
+  .toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .sort-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #000000;
+    font-weight: 500;
+  }
+
+  /* Conteneur principal */
+  .custom-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Bouton au repos : Bordure 2px var(--color-gold) et Texte Black */
+  .dropdown-trigger {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid var(--gold) !important;
+    color: #000000 !important;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.4rem 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    cursor: none !important;
+  min-width: 29ch; /* Fixe la largeur minimale exacte pour accueillir "PRIX : DÉCROISSANT" + flèche */
+  justify-content: space-between; /* Calfeutre le texte à gauche et la flèche complètement à droite */
+  box-sizing: border-box;
+  }
+.selected-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
 }
+  .arrow-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+    color: #000000;
+    transition: transform 0.2s ease;
+    pointer-events: none;
+  }
+
+  .custom-dropdown.open .arrow-icon {
+    transform: rotate(180deg);
+  }
+
+  /* Liste déroulante : Fond 100% transparent, aucune bordure externe */
+  .dropdown-menu {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+width: 100% !important;
+  min-width: 100% !important;
+  box-sizing: border-box;
+    background: transparent !important;
+    background-color: transparent !important;
+    /*
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  box-shadow: none !important;
+  */
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 0.5rem 0 0 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 999;
+  }
+
+  /* Affichage lors de l'ouverture */
+  .custom-dropdown.open .dropdown-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  /* Éléments de la liste */
+  .dropdown-item {
+    color: #000000 !important;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.6rem 0.25rem;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid transparent !important; /* Bordure sous l'élément */
+    transition: border-color 0.2s ease;
+    cursor: none !important;
+    white-space: nowrap;
+  }
+
+  /* Hover : Apparition d'une bordure dessous de 2px de couleur var(--color-gold) */
+  .dropdown-item:hover {
+    color: white !important;
+    transform: translateX(5px); 
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    /* border-bottom: 2px solid var(--gold) !important; */
+    background: transparent !important;
+  }
+
+  /* Élément actif */
+  .dropdown-item.active {
+    /* border-bottom: 2px solid var(--gold) !important; */
+  }
+
+
+  /* --- MESSAGE AUCUN RÉSULTAT --- */
+  .no-results-container {
+    text-align: center;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .no-results-text {
+    color: #6b7280;
+    font-style: italic;
+  }
+
+  .back-catalog-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    border-bottom: 1px solid #ffffff;
+  }
+
+  /* --- STYLES EXISTANTS CONSERVÉS --- */
+  .luxury-breadcrumb a {
+    color: black;
+  }
+
+  .catalog-filter-bar {
+    padding-top: 6rem;
+    border-color: rgba(20, 20, 20, 0.1);
+  }
+
+  .search-item :global(#main-header) {
+    background-color: black;
+  }
+
+  .search-item :global(.luxury-card) {
+    background-color: transparent;
+  }
+
+  .search-item :global(.luxury-card:hover .luxury-title) {
+    color: black;
+  }
+
+  .search-item :global(.luxury-card:hover .price-new) {
+    color: black;
+  }
+
+  .search-item :global(.luxury-title) {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #000000;
+  }
+
+  .search-item :global(.price-new) {
+    color: #000000;
+  }
+
+  .search-item :global(.price-old) {
+    color: rgba(75, 66, 66, 0.479);
+  }
+
+  /* --- ADAPTATION DES CARTES EN MODE LISTE --- */
+  #results-grid.mode-list {
+    gap: 1.5rem;
+  }
+
+  #results-grid.mode-list .search-item {
+    width: 100%;
+  }
+
+  #results-grid.mode-list :global(.luxury-card) {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.5rem;
+  }
+
+  #results-grid.mode-list :global(.luxury-card .image-container),
+  #results-grid.mode-list :global(.luxury-card img) {
+    width: 220px !important;
+    height: 160px !important;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  #results-grid.mode-list :global(.luxury-card .card-content) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+  }
+
+  @media (max-width: 640px) {
+    #results-grid.mode-list :global(.luxury-card) {
+      flex-direction: column !important;
+      align-items: stretch;
+    }
+
+    #results-grid.mode-list :global(.luxury-card .image-container),
+    #results-grid.mode-list :global(.luxury-card img) {
+      width: 100% !important;
+      height: 200px !important;
+    }
+  }
 </style>

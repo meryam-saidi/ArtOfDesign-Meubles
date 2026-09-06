@@ -1,0 +1,2587 @@
+[
+  {
+    "id": "md40m1",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 40cm | Modèle 1",
+    "forme": "D",
+    "prix_initial": 920.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "40cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr40-03.jpg",
+      "/images/meubles/Modules Dressing/Dr40 F.jpg",
+      "/images/meubles/Modules Dressing/Dr40 O.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Module Dressing de 40 cm",
+        "1 Façade",
+        "5 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md40m2",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 40cm | Modèle 2",
+    "forme": "D",
+    "prix_initial": 920.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "40cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr40-01.jpg",
+      "/images/meubles/Modules Dressing/Dr40 F.jpg",
+      "/images/meubles/Modules Dressing/Dr40 Om2.jpg"     
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+    "composition_type": [
+        "1 Module Dressing de 40 cm",
+        "1 Façade",
+        "2 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md40m3",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 40cm | Modèle 3",
+    "forme": "D",
+    "prix_initial": 920.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "40cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr40-02.jpg",
+      "/images/meubles/Modules Dressing/Dr40 F.jpg",
+      "/images/meubles/Modules Dressing/Dr40 Om3.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 40 cm",
+        "1 Façade",
+        "2 Etagères",
+        "2 tiroirs",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md50m1",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 50cm | Modèle 1",
+    "forme": "D",
+    "prix_initial": 880.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "50cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr40-03.jpg",
+      "/images/meubles/Modules Dressing/Dr40 F.jpg",
+      "/images/meubles/Modules Dressing/Dr40 O.jpg"
+    ],
+    "couleurs": [
+      { 
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Module Dressing de 50 cm",
+        "1 Façade",
+        "5 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md50m2",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 50cm | Modèle 2",
+    "forme": "D",
+    "prix_initial": 995.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "50cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr40-01.jpg",
+      "/images/meubles/Modules Dressing/Dr40 F.jpg",
+      "/images/meubles/Modules Dressing/Dr40 Om2.jpg"    
+    ],
+    "couleurs": [
+      { 
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Module Dressing de 50 cm",
+        "1 Façade",
+        "2 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md50m3",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 50cm | Modèle 3",
+    "forme": "D",
+    "prix_initial": 920.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "50cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr40-02.jpg",
+      "/images/meubles/Modules Dressing/Dr40 F.jpg",
+      "/images/meubles/Modules Dressing/Dr40 Om3.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 50 cm",
+        "1 Façade",
+        "2 Etagères",
+        "2 tiroirs",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md60m1",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 60cm | Modèle 1",
+    "forme": "D",
+    "prix_initial": 1080.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "60cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr60-03.jpg",
+      "/images/meubles/Modules Dressing/Dr60 F.jpg",
+      "/images/meubles/Modules Dressing/Dr60 O.jpg"
+    ],
+    "couleurs": [
+      { 
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Module Dressing de 60 cm",
+        "1 Façade",
+        "5 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md60m2",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 60cm | Modèle 2",
+    "forme": "D",
+    "prix_initial": 995.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "60cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr60-01.jpg",
+      "/images/meubles/Modules Dressing/Dr60 F.jpg",
+      "/images/meubles/Modules Dressing/Dr60 O m3.jpg"    
+    ],
+    "couleurs": [
+      { 
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Module Dressing de 60 cm",
+        "1 Façade",
+        "2 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md60m3",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 60cm | Modèle 3",
+    "forme": "D",
+    "prix_initial": 1220.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "60cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr60-02.jpg",
+      "/images/meubles/Modules Dressing/Dr60 F.jpg",
+      "/images/meubles/Modules Dressing/Dr60 O m3.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 60 cm",
+        "1 Façade",
+        "2 Etagères",
+        "2 tiroirs",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md70m1",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 70cm | Modèle 1",
+    "forme": "D",
+    "prix_initial": 1245.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "70cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr70-01.jpg",
+      "/images/meubles/Modules Dressing/Dr70 F.jpg",
+      "/images/meubles/Modules Dressing/Dr70 O.jpg"
+    ],
+    "couleurs": [
+      { 
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Module Dressing de 70 cm",
+        "2 Façades",
+        "5 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md70m2",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 70cm | Modèle 2",
+    "forme": "D",
+    "prix_initial": 1090.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "70cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr70-02.jpg",
+      "/images/meubles/Modules Dressing/Dr70 F.jpg",
+      "/images/meubles/Modules Dressing/Dr70 O m2.jpg"    
+    ],
+    "couleurs": [
+      { 
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Module Dressing de 70 cm",
+        "2 Façades",
+        "2 Etagères", 
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md70m3",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 70cm | Modèle 3",
+    "forme": "D",
+    "prix_initial": 1375.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "70cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr70-03.jpg",
+      "/images/meubles/Modules Dressing/Dr70 F.jpg",
+      "/images/meubles/Modules Dressing/Dr70 O m3.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 60 cm",
+        "1 Façade",
+        "2 Etagères",
+        "2 tiroirs",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md80m1",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 80cm | Modèle 1",
+    "forme": "D",
+    "prix_initial": 1320.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "80cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr70-01.jpg",
+      "/images/meubles/Modules Dressing/Dr70 F.jpg",  
+      "/images/meubles/Modules Dressing/Dr70 O.jpg"
+    ],
+    "couleurs": [
+      { 
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Module Dressing de 80 cm",
+        "2 Façades",
+        "5 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md80m2",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 80cm | Modèle 2",
+    "forme": "D",
+    "prix_initial": 1150.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "80cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr70-02.jpg",
+      "/images/meubles/Modules Dressing/Dr70 F.jpg",
+      "/images/meubles/Modules Dressing/Dr70 O m2.jpg"    
+    ],
+    "couleurs": [
+      { 
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Module Dressing de 80 cm",
+        "2 Façades",
+        "2 Etagères", 
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md80m3",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 80cm | Modèle 3",
+    "forme": "D",
+    "prix_initial": 1450.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "80cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr70-03.jpg",
+      "/images/meubles/Modules Dressing/Dr70 F.jpg",
+      "/images/meubles/Modules Dressing/Dr70 O m3.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 80 cm",
+        "1 Façade",
+        "2 Etagères",
+        "2 tiroirs",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md90m1",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 90cm | Modèle 1",
+    "forme": "D",
+    "prix_initial": 1400.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "90cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr90-01.jpg",
+      "/images/meubles/Modules Dressing/Dr90 F.jpg",  
+      "/images/meubles/Modules Dressing/Dr90 O.jpg"
+    ],
+    "couleurs": [
+      { 
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Module Dressing de 90 cm",
+        "2 Façades",
+        "5 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md90m2",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 90cm | Modèle 2",
+    "forme": "D",
+    "prix_initial": 1220.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "90cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr70-02.jpg",
+      "/images/meubles/Modules Dressing/Dr70 F.jpg",
+      "/images/meubles/Modules Dressing/Dr70 O m2.jpg"    
+    ],
+    "couleurs": [
+      { 
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Module Dressing de 90 cm",
+        "2 Façades",
+        "2 Etagères", 
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md90m3",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 90cm | Modèle 3",
+    "forme": "D",
+    "prix_initial": 1530.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "90cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr70-03.jpg",
+      "/images/meubles/Modules Dressing/Dr70 F.jpg",
+      "/images/meubles/Modules Dressing/Dr70 O m3.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 90 cm",
+        "1 Façade",
+        "2 Etagères",
+        "2 tiroirs",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md110m1",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing de Coin | 110cm | Modèle 1",
+    "forme": "D",
+    "prix_initial": 1395.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "110cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr110 coin.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 110 cm",
+        "1 Façade",
+        "2 Etagères",
+        "2 tiroirs",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md110m2",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing de Coin | 110cm | Modèle 2",
+    "forme": "D",
+    "prix_initial": 1595.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "110cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr110 coin.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 110 cm",
+        "1 Façade",
+        "2 Etagères",
+        "2 tiroirs",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "md110m2",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing de Coin | 110cm | Modèle 2",
+    "forme": "D",
+    "prix_initial": 1595.000,
+    "reduction": "",
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "110cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr110 coin.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 110 cm",
+        "1 Façade",
+        "2 Etagères",
+        "2 tiroirs",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "mcb15pb",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de 15cm avec une porte bouteille",
+    "forme": "B",
+    "prix_initial": 410.000,
+    "reduction": "",
+    "description": "Un module de meuble bas pour cuisine intégrant un porte-bouteille coulissant.",
+    "dimensions": {
+      "largeur": "15cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C15.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 15 cm",
+        "1 Façade",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum",
+        "Porte bouteille avec coulisses"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, équipées d'un couvre-chant de 1 mm"
+      }
+    }
+  },
+  {
+    "id": "mcb30et",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de 30cm avec étagère",
+    "forme": "B",
+    "prix_initial": 315.000,
+    "reduction": "",
+    "description": "Un module de meuble bas pour cuisine avec une porte battante et une étagère intérieure.",
+    "dimensions": {
+      "largeur": "30cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C30 Etagère.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 30 cm",
+        "1 Façade",
+        "1 Etagère",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, équipées d'un couvre-chant de 1 mm"
+      }
+    }
+  },
+  {
+    "id": "mcb30pp",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de 30cm avec porte pain",
+    "forme": "B",
+    "prix_initial": 505.000,
+    "reduction": "",
+    "description": "Un module de meuble bas pour cuisine avec panier porte-pain coulissant.",
+    "dimensions": {
+      "largeur": "30cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C30 coulissant.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 30 cm",
+        "1 Façade",
+        "1 Etagère",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum",
+        "Porte pain avec coulisses"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, équipées d'un couvre-chant de 1 mm"
+      }
+    }
+  },
+  {
+    "id": "mcb40et",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de 40cm avec étagère",
+    "forme": "B",
+    "prix_initial": 265.000,
+    "reduction": "",
+    "description": "Un module de meuble bas pour cuisine de 40 cm avec une étagère de rangement.",
+    "dimensions": {
+      "largeur": "40cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C40 Etagère.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 40 cm",
+        "1 Façade",
+        "1 Etagère",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, équipées d'un couvre-chant de 1 mm"
+      }
+    }
+  },
+  {
+    "id": "mcb40pp",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de 40cm avec porte pain",
+    "forme": "B",
+    "prix_initial": 640.000,
+    "reduction": "",
+    "description": "Un module de meuble bas pour cuisine de 40 cm équipé d'un rangement porte-pain coulissant.",
+    "dimensions": {
+      "largeur": "40cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C40 coulissant.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 40 cm",
+        "1 Façade",
+        "1 Etagère",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum",
+        "Porte pain avec coulisses"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, équipées d'un couvre-chant de 1 mm"
+      }
+    }
+  },
+  {
+    "id": "mcb45et",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de 45cm avec étagère",
+    "forme": "B",
+    "prix_initial": 280.000,
+    "reduction": "",
+    "description": "Un module de meuble bas pour cuisine de 45 cm avec une étagère centrale.",
+    "dimensions": {
+      "largeur": "45cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C45 Etagère.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 45 cm",
+        "1 Façade",
+        "1 Etagère",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, équipées d'un couvre-chant de 1 mm"
+      }
+    }
+  },
+  {
+    "id": "mcb45pp",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de 45cm avec porte pain",
+    "forme": "B",
+    "prix_initial": 660.000,
+     "reduction": "",
+    "description": "Un module de meuble bas pour cuisine de 45 cm équipé d'un système porte-pain coulissant.",
+    "dimensions": {
+      "largeur": "45cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C45 coulissant.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 45 cm",
+        "1 Façade",
+        "1 Etagère",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum",
+        "Porte pain avec coulisses"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, équipées d'un couvre-chant de 1 mm"
+      }
+    }
+  },
+  {
+    "id": "mcb60et",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de 60cm avec étagère",
+    "forme": "B",
+    "prix_initial": 315.000,
+    "reduction": "",
+    "description": "Un module de meuble bas standard de 60 cm avec porte battante et étagère interne.",
+    "dimensions": {
+      "largeur": "60cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C60 Etagère.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 60 cm",
+        "1 Façade",
+        "1 Etagère",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, équipées d'un couvre-chant de 1 mm"
+      }
+    }
+  },
+  {
+    "id": "mcb602t",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de 60cm avec deux Tiroirs",
+    "forme": "B",
+    "prix_initial": 440.000,
+     "reduction": "",
+    "description": "Un module de meuble bas pour cuisine de 60 cm équipé de 2 grands tiroirs coulissants.",
+    "dimensions": {
+      "largeur": "60cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C60 2Tiroir.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 60 cm",
+        "1 Façade",
+        "2 Tiroirs Metabox Blum",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, équipées d'un couvre-chant de 1 mm"
+      }
+    }
+  },
+  {
+    "id": "mcb603t",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de 60cm avec Trois Tiroirs",
+    "forme": "B",
+    "prix_initial": 530.000,
+    "reduction": "",
+    "description": "Un module de meuble bas de 60 cm intégrant 3 tiroirs coulissants pour optimiser le rangement.",
+    "dimensions": {
+      "largeur": "60cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C60 3Tiroir.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 60 cm",
+        "1 Façade",
+        "3 Tiroirs Metabox Blum",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, équipées d'un couvre-chant de 1 mm"
+      }
+    }
+  },
+  {
+    "id": "mcb60f",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas Four de 60cm",
+    "forme": "B",
+    "prix_initial": 205.000,
+    "reduction": "",
+    "description": "Un caisson bas spécialement conçu pour l'encastrement d'un four de 60 cm.",
+    "dimensions": {
+      "largeur": "60cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C60 four.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 60 cm",
+        "1 Façade",
+        "Pieds"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mcb80et",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de 80cm avec étagère",
+    "forme": "B",
+    "prix_initial": 405.000,
+    "reduction": "",
+    "description": "Un module de meuble bas pour cuisine de 80 cm avec 2 portes battantes et une étagère de rangement.",
+    "dimensions": {
+      "largeur": "80cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C80 Etagère.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 80 cm",
+        "2 Façades",
+        "1 Etagère",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mcb90et",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de 90cm avec étagère",
+    "forme": "B",
+    "prix_initial": 430.000,
+    "reduction": "",
+    "description": "Un module de meuble bas pour cuisine de 90 cm avec 2 portes battantes et étagère intérieure.",
+    "dimensions": {
+      "largeur": "90cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C90 Etagère.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 90 cm",
+        "2 Façades",
+        "1 Etagère",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mcb902t",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de 90cm avec deux Tiroir",
+    "forme": "B",
+    "prix_initial": 575.000,
+    "reduction": "",
+    "description": "Un grand module bas pour cuisine de 90 cm avec 2 tiroirs coulissants grand volume.",
+    "dimensions": {
+      "largeur": "90cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C90 2Tiroir.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 90 cm",
+        "2 Façades",
+        "2 Tiroirs Metabox Blum",
+        "Poignées",
+        "Pieds"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mcb903t",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de 90cm avec Trois Tiroir",
+    "forme": "B",
+    "prix_initial": 630.000,
+    "reduction": "",
+    "description": "Un module bas de cuisine de 90 cm avec 3 tiroirs coulissants pour une organisation optimale.",
+    "dimensions": {
+      "largeur": "90cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C90 3Tiroir.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 90 cm",
+        "3 Façades",
+        "3 Tiroirs Metabox Blum",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mcb120et",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de 120cm avec étagère",
+    "forme": "B",
+    "prix_initial": 525.000,
+    "reduction": "",
+    "description": "Grand meuble bas de cuisine de 120 cm avec 2 portes battantes et une étagère interne.",
+    "dimensions": {
+      "largeur": "120cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C120 Etagère.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 120 cm",
+        "2 Façades",
+        "1 Etagère",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mcbe60",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas sous Evier de 60cm",
+    "forme": "B",
+    "prix_initial": 285.000,
+    "reduction": "",
+    "description": "Un module bas sous évier de 60 cm avec une porte battante.",
+    "dimensions": {
+      "largeur": "60cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C60 evier.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 60 cm",
+        "1 Façade",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mcbe90",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas sous Evier de 90cm",
+    "forme": "B",
+    "prix_initial": 390.000,
+    "reduction": "",
+    "description": "Un module bas sous évier de 90 cm équipé de 2 portes battantes.",
+    "dimensions": {
+      "largeur": "90cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C120 evier.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 90 cm",
+        "2 Façades",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mcbe120",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas sous Evier de 120cm",
+    "forme": "B",
+    "prix_initial": 450.000,
+    "reduction": "",
+    "description": "Grand meuble bas sous évier de 120 cm avec 2 portes battantes.",
+    "dimensions": {
+      "largeur": "120cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C120 evier.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 120 cm",
+        "2 Façades",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mcbc105",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de coin de 105cm",
+    "forme": "B",
+    "prix_initial": 395.000,
+    "reduction": "",
+    "description": "Un module d'angle bas de 105 cm optimisé pour maximiser l'espace dans les coins de cuisine.",
+    "dimensions": {
+      "largeur": "105cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C 105 coin.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 105 cm",
+        "1 Façade",
+        "1 Etagère",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mcbc110",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de coin de 110cm",
+    "forme": "B",
+    "prix_initial": 400.000,
+    "reduction": "",
+    "description": "Un module d'angle bas de 110 cm optimisé pour maximiser l'espace dans les coins de cuisine.",
+    "dimensions": {
+      "largeur": "110cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C 110 coin.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 110 cm",
+        "1 Façade",
+        "1 Etagère",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mch30",
+    "categorie": "Meubles",
+    "nom": "Meuble Haut de 30cm avec étagère",
+    "forme": "H",
+    "prix_initial": 200.000,
+    "reduction": "",
+    "description": "Module de rangement haut de 30 cm avec étagère pour optimiser l'espace vertical de la cuisine.",
+    "dimensions": {
+      "largeur": "30cm",
+      "hauteur": "72cm",
+      "profondeur": "33cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meubles Haut/C 30 Haut.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Haut de 30 cm",
+        "1 Façade",
+        "1 Etagère",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mch40",
+    "categorie": "Meubles",
+    "nom": "Meuble Haut de 40cm avec étagère",
+    "forme": "H",
+    "prix_initial": 220.000,
+     "reduction": "",
+    "description": "Module de rangement haut de 40 cm avec étagère pratique et compact.",
+    "dimensions": {
+      "largeur": "40cm",
+      "hauteur": "72cm",
+      "profondeur": "33cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meubles Haut/C 40 Haut.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Haut de 40 cm",
+        "1 Façade",
+        "1 Etagère",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mch45",
+    "categorie": "Meubles",
+    "nom": "Meuble Haut de 45cm avec étagère",
+    "forme": "H",
+    "prix_initial": 235.000,
+    "reduction": "",
+    "description": "Meuble haut de 45 cm équipé d'une étagère pour le rangement quotidien.",
+    "dimensions": {
+      "largeur": "45cm",
+      "hauteur": "72cm",
+      "profondeur": "33cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meubles Haut/C 45 Haut.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Haut de 45 cm",
+        "1 Façade",
+        "1 Etagère",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mch60",
+    "categorie": "Meubles",
+    "nom": "Meuble Haut de 60cm avec étagère",
+    "forme": "H",
+    "prix_initial": 270.000,
+     "reduction": "",
+    "description": "Grand caisson haut de 60 cm une porte avec étagère interne.",
+    "dimensions": {
+      "largeur": "60cm",
+      "hauteur": "72cm",
+      "profondeur": "33cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meubles Haut/C 60 Haut.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Haut de 60 cm",
+        "1 Façade",
+        "1 Etagère",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mch60-basculante",
+    "categorie": "Meubles",
+    "nom": "Meuble Haut de 60cm Basculante",
+    "forme": "H",
+    "prix_initial": 370.000,
+     "reduction": "",
+    "description": "Meuble haut de 60 cm à ouverture basculante doté de deux façades indépendantes.",
+    "dimensions": {
+      "largeur": "60cm",
+      "hauteur": "72cm",
+      "profondeur": "33cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meubles Haut/C 60 Haut Bsc.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Haut de 60 cm",
+        "2 Façades",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mch80",
+    "categorie": "Meubles",
+    "nom": "Meuble Haut de 80cm avec étagère",
+    "forme": "H",
+    "prix_initial": 360.000,
+    "reduction": "",
+    "description": "Large meuble haut de 80 cm à deux portes battantes avec étagère centrale.",
+    "dimensions": {
+      "largeur": "80cm",
+      "hauteur": "72cm",
+      "profondeur": "33cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meubles Haut/C 80 Haut.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Haut de 80 cm",
+        "2 Façades",
+        "1 Etagère",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mch90",
+    "categorie": "Meubles",
+    "nom": "Meuble Haut de 90cm avec étagère",
+    "forme": "H",
+    "prix_initial": 385.000,
+    "reduction": "",
+    "description": "Meuble haut grande largeur de 90 cm à deux portes et étagère de rangement.",
+    "dimensions": {
+      "largeur": "90cm",
+      "hauteur": "72cm",
+      "profondeur": "33cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meubles Haut/C 90 Haut.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Haut de 90 cm",
+        "2 Façades",
+        "1 Etagère",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mch90-basculante",
+    "categorie": "Meubles",
+    "nom": "Meuble Haut de 90cm Basculante",
+    "forme": "H",
+    "prix_initial": 460.000,
+    "reduction": "",
+    "description": "Grand meuble haut de 90 cm à double portes basculantes horizontales.",
+    "dimensions": {
+      "largeur": "90cm",
+      "hauteur": "72cm",
+      "profondeur": "33cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meubles Haut/C 90 Haut Bsc.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Haut de 90 cm",
+        "2 Façades",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mch65-coin",
+    "categorie": "Meubles",
+    "nom": "Meuble Haut de coin de 65cm avec étagère",
+    "forme": "H",
+    "prix_initial": 325.000,
+    "reduction": "",
+    "description": "Caisson d'angle haut de 65 cm conçu pour optimiser l'espace d'angle supérieur.",
+    "dimensions": {
+      "largeur": "65cm",
+      "hauteur": "72cm",
+      "profondeur": "33cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meubles Haut/C 65 coin Haut.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Haut de 65 cm",
+        "1 Façade",
+        "1 Etagère",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mch60-hotte",
+    "categorie": "Meubles",
+    "nom": "Meuble Haut pour Hotte de 60cm",
+    "forme": "H",
+    "prix_initial": 190.000,
+    "reduction": "",
+    "description": "Caisson haut spécifique de 60 cm de largeur et 36 cm de hauteur pour l'intégration d'une hotte aspirante.",
+    "dimensions": {
+      "largeur": "60cm",
+      "hauteur": "36cm",
+      "profondeur": "33cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meubles Haut/C 60 Haut hotte.png" 
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Haut de 60 cm",
+        "1 Façade",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mch80-hotte",
+    "categorie": "Meubles",
+    "nom": "Meuble Haut pour Hotte de 80cm",
+    "forme": "H",
+    "prix_initial": 235.000,
+    "reduction": "",
+    "description": "Caisson haut spécifique de 80 cm de largeur et 36 cm de hauteur pour l'intégration d'une hotte aspirante.",
+    "dimensions": {
+      "largeur": "80cm",
+      "hauteur": "36cm",
+      "profondeur": "33cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meubles Haut/C 60 Haut hotte.png" 
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Haut de 80 cm",
+        "1 Façade",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mch90-hotte",
+    "categorie": "Meubles",
+    "nom": "Meuble Haut pour Hotte de 90cm",
+    "forme": "H",
+    "prix_initial": 235.000,
+    "reduction": "",
+    "description": "Caisson haut spécifique de 90 cm de largeur pour l'intégration d'une hotte aspirante.",
+    "dimensions": {
+      "largeur": "90cm",
+      "hauteur": "36cm",
+      "profondeur": "33cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meubles Haut/haut hotte 90 1p.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 90 cm",
+        "1 Façade",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mcc45-1p",
+    "categorie": "Meubles",
+    "nom": "Meuble Colonne de 45cm 1 Porte avec étagère",
+    "forme": "C",
+    "prix_initial": 665.000,
+    "reduction": "",
+    "description": "Meuble colonne de 45 cm une porte offrant un grand espace de rangement avec étagères.",
+    "dimensions": {
+      "largeur": "45cm",
+      "hauteur": "204cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Colonnes/colonne 45 1porte.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 45 cm",
+        "1 Façade",
+        "3 Etagères",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mcc45-2p",
+    "categorie": "Meubles",
+    "nom": "Meuble Colonne de 45cm 2 Portes avec étagère",
+    "forme": "C",
+    "prix_initial": 700.000,
+    "reduction": "",
+    "description": "Meuble colonne de 45 cm à 2 portes indépendantes et étagères intérieures.",
+    "dimensions": {
+      "largeur": "45cm",
+      "hauteur": "204cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Colonnes/colonne 45 2porte.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 45 cm",
+        "2 Façades",
+        "3 Etagères",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mcc60-1p",
+    "categorie": "Meubles",
+    "nom": "Meuble Colonne de 60cm 1 Porte avec étagère",
+    "forme": "C",
+    "prix_initial": 735.000,
+    "reduction": "",
+    "description": "Large colonne de 60 cm une porte optimisant le rangement vertical.",
+    "dimensions": {
+      "largeur": "60cm",
+      "hauteur": "204cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Colonnes/colonne 60 1porte.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#2C2C2C", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 60 cm",
+        "1 Façade",
+        "3 Etagères",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mcc60-2p",
+    "categorie": "Meubles",
+    "nom": "Meuble Colonne de 60cm 2 Portes avec étagère",
+    "forme": "C",
+    "prix_initial": 745.000,
+    "reduction": "",
+    "description": "Colonne de 60 cm à 2 portes offrant une division pratique des espaces de rangement.",
+    "dimensions": {
+      "largeur": "60cm",
+      "hauteur": "204cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Colonnes/colonne 60 2porte.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 60 cm",
+        "2 Façades",
+        "3 Etagères",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mccfour-60",
+    "categorie": "Meubles",
+    "nom": "Meuble Colonne Four de 60cm",
+    "forme": "C",
+    "prix_initial": 670.000,
+     "reduction": "",
+    "description": "Colonne spécialisée de 60 cm conçue pour l'encastrement d'un four standard avec rangements.",
+    "dimensions": {
+      "largeur": "60cm",
+      "hauteur": "204cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Colonnes/colonne four 60 2P.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": { 
+      "composition_type": [
+        "Caisson Bas de 60 cm",
+        "2 Façades",
+        "2 Etagères",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mccfour-mo-60",
+    "categorie": "Meubles",
+    "nom": "Meuble Colonne Four Micro onde de 60cm",
+    "forme": "C",
+    "prix_initial": 685.000,
+    "reduction": "",
+    "description": "Meuble colonne de 60 cm prévu pour intégrer un four et un four micro-ondes.",
+    "dimensions": {
+      "largeur": "60cm",
+      "hauteur": "204cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Colonnes/colonne four Micro onde 60 2P.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 60 cm",
+        "2 Façades",
+        "1 Etagère",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mccfrigo-60-2p",
+    "categorie": "Meubles",
+    "nom": "Meuble Colonne Frigo de 60cm avec 2 Portes",
+    "forme": "C",
+    "prix_initial": 735.000,
+    "reduction": "",
+    "description": "Colonne d'encastrement pour réfrigérateur de 60 cm équipée de 2 portes.",
+    "dimensions": {
+      "largeur": "60cm",
+      "hauteur": "204cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Colonnes/colonne frigo 60 2P.png" 
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 60 cm",
+        "2 Façades",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  }
+
+]

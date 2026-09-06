@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import cuisinesData from '../data/cuisines.json';
 import dressingData from '../data/dressing.json';
-import meublesData from '../data/meubles.json';
+import meublesData from '../data/meuble.json';
 import projetsData from '../data/projets.json';
 import Header from '../components/Header.astro';
 
@@ -13,10 +13,10 @@ const meubles = meublesData;
 const projets = projetsData;
 
 const categories = [
-  { id: 'cuisines',    label: 'Cuisines',       sub: 'Design exclusif',       image: '/images/kitchen.png',   link: '/cuisines' },
-  { id: 'dressings',  label: 'Dressings',       sub: 'Élégance pure',    image: '/images/dressing.png',   link: '/dressings' },
-  { id: 'meubles',    label: 'Mobilier',        sub: 'Sur mesure',  image: '/images/meubles_categorie.png',   link: '/meubles' },
-  /*{ id: 'projets',    label: 'Projets',         sub: 'Découvrir Nos Projets',  image: '/images/project_categorie.jpg',   link: '/projets' },
+  { id: 'cuisines',    label: 'Cuisines',       sub: 'Design exclusif',       image: '/images/autres/categorieKitchen.png',   link: '/cuisines' },
+  { id: 'dressings',  label: 'Dressings',       sub: 'Élégance pure',    image: '/images/autres/categorieDressing.png',   link: '/dressings' },
+  { id: 'meubles',    label: 'Meubles',        sub: 'Sur mesure',  image: '/images/autres/meubles_categorie.png',   link: '/meubles' },
+  /*{ id: 'projets',    label: 'Projets',         sub: 'Découvrir Nos Projets',  image: '/images/autres/project_categorie.jpg',   link: '/projets' },
 */
   ];
 
@@ -44,13 +44,13 @@ const stats = [
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursorRing"></div>
 -->
-  
+  <!-- 
   <div id="loader">
     <p id="loader-logo-animated" class="loader-logo">Art <em>Of</em> Design</p>
     <div class="loader-line"></div>
     <p class="loader-sub">Meubles de luxe sur mesure — Tunisie</p>
   </div>
-
+-->
   <section id="hero">
     <div class="hero-bg">
       <video autoplay muted loop playsinline>
@@ -84,13 +84,45 @@ const stats = [
     </div>
   </section>
 
+  <section id="about-band" class="about-band-section">
+    <div class="about-band-container">
+      <span class="about-band-subtitle">A propos de Art Of Design</span>
+      
+      <h2 class="about-band-title reveal-right">
+        L'harmonie absolue entre l'Art & l'ingénierie d'espace
+      </h2>
+      
+      <p class="about-band-text reveal-left">
+        Nous façonnons des cuisines de haute facture, des dressings sur mesure et du mobilier d'exception. 
+        Chaque création marie les standards de précision les plus stricts à une esthétique intemporelle et unique.
+      </p>
+      
+      <div class="about-band-stats">
+        <div class="band-stat">
+          <span class="band-stat-number">10+</span>
+          <span class="band-stat-label">Ans d'Artistry</span>
+        </div>
+        <div class="band-stat-divider"></div>
+        <div class="band-stat">
+          <span class="band-stat-number">500+</span>
+          <span class="band-stat-label">Projets Signés</span>
+        </div>
+        <div class="band-stat-divider"></div>
+        <div class="band-stat">
+          <span class="band-stat-number">100%</span>
+          <span class="band-stat-label">Sur Mesure</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
 <!-- On crée un wrapper qui gère l'effet de calque sans toucher à la structure globale -->
 <section id="philosophy-premium" class="w-full">
   <div class="philosophy-container">
     
     <div class="philosophy-media reveal-left">
       <div class="image-wrapper">
-        <img src="/images/philo_section.png" alt="Moodboard matières" />
+        <img src="/images/autres/philo_section.png" alt="Moodboard matières" />
       </div>
     </div>
 
@@ -98,16 +130,13 @@ const stats = [
       <div class="philosophy-header reveal">  
         <span class="section-label">Notre philosophie</span> <!-- — --> 
         <h2 class="section-title">
-          Le mobilier comme <br />
-          <div class="div-title-serif">
-            <span class="title-serif">expression de soi</span>
-          </div>
+          Le mobilier comme expression de soi
         </h2>
       </div>
       
       <div class="philosophy-text reveal-right">
-        <p>Chez <strong>Art Of Design</strong>, votre intérieur est le reflet de votre personnalité. Chaque projet naît d'une écoute approfondie de votre mode de vie pour aboutir à une création unique.</p>
-        <p>Notre philosophie prend vie à travers ce dialogue subtil entre vos aspirations et la matière brute.</p>
+        <p>Chez <strong>Art Of Design</strong>, votre intérieur est le reflet de votre personnalité. Chaque projet naît d'une écoute approfondie de votre mode de vie pour aboutir à une création unique.<br/>
+        Notre philosophie prend vie à travers ce dialogue subtil entre vos aspirations et la matière brute.</p>
       </div>
       <div class="philosophy-action reveal-right">
         <a href="#categories-pin-container" class="btn-text-flip"> 
@@ -127,12 +156,12 @@ const stats = [
 <!-- Ta section catégorie redevient totalement standard dans le flux pour le JS -->
 <section id="categories-pin-container" class="w-full overflow-hidden">
   <div class="categories-inner-wrapper">    
-  <!-- 
-    <div class="px-6 md:px-12 max-w-full mx-auto w-full mb-12 flex flex-col items-center text-center">        
-      <h1 class="section-label reveal">— Nos univers —</h1>
-      <h2 class="section-title reveal"><em>Trois collections,<br />une exigence</em></h2>
+    <!-- class="px-6 md:px-12 max-w-full mx-auto w-full mb-12 flex flex-col items-center text-center" -->
+    <div class="categories-header">        
+      <h1 class="section-label reveal">Nos univers</h1>
+      <h2 class="section-title reveal">Trois collections,une exigence</h2>
     </div> 
-    -->  
+    
     <div class="categories-horizontal-track">
       {categories.map((cat) => (
         <a href={cat.link} class="cat-card group">
@@ -141,9 +170,12 @@ const stats = [
             <div class="cat-card-overlay-gradient"></div>
           </div>
           <div class="cat-card-text-content reveal">
+            <!-- 
             <span class="cat-card-sub-label">{cat.sub}</span>
-             <h3 class="cat-card-title-label">{cat.label}</h3>
+            <h3 class="cat-card-title-label">{cat.label}</h3>
             <div class="btn-text-flip"><span class="text-default">Découvrir</span><span class="text-hover">Découvrir</span></div>
+            -->
+            <div class="btn-text-flip cat-card-title-label"><span class="text-default">{cat.label}</span><span class="text-hover">{cat.label}</span></div>
           </div>
         </a>
       ))}
@@ -158,7 +190,7 @@ const stats = [
       
       <div class="process-raw-list">
         <div class="process-header reveal">
-          <span class="section-label">le Processus<br /></span> 
+          <span class="section-label">Le Processus<br /></span> 
           <h2 class="section-title">De l'idée à la matière
             <!-- <span class="title-serif">matière</span> -->
           </h2>
@@ -185,10 +217,10 @@ const stats = [
       <div class="process-media-column reveal">
         <div class="comparison-slider" id="project-slider">
           
-          <img class="image-after" src="/images/kitchen_categorie.jpg" alt="Projet Réalisé" />
+          <img class="image-after" src="/images/autres/kitchen_categorie.jpg" alt="Projet Réalisé" />
           
           <div class="image-before-wrapper">
-            <img class="image-before" src="/images/sketch.png" alt="Conception 3D" />
+            <img class="image-before" src="/images/autres/sketch.png" alt="Conception 3D" />
           </div>
           
           <div class="slider-handle">
@@ -239,7 +271,7 @@ const stats = [
     
     <div class="contact-info reveal-left">
       <p class="section-label">Parlons de votre projet</p> 
-      <h2 class="section-title">Demande de<br />devis gratuit</h2>
+      <h2 class="section-title">Demande de devis gratuit</h2>
       <p class="contact-description">
         Chaque grand intérieur commence par une conversation. Décrivez-nous votre vision et nous vous répondrons sous 48 heures avec une première proposition.
       </p>
@@ -479,12 +511,13 @@ const stats = [
           pin: true,             
           scrub: 1,              
           invalidateOnRefresh: true,
-          
+          /*
           snap: {
             snapTo: 1 / (cards.length - 1), 
             duration: { min: 0.2, max: 0.6 }, 
             ease: "power1.inOut"
           }
+            */
         }
       });
 

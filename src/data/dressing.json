@@ -1,122 +1,1112 @@
 [
   {
-    "id": "dr-001",
-    "nom": "dressing Aurora-M | 320cm",
-    "slug": "dressing-aurora-m",
-    "forme": "L",
-    "description": "",
-    "categorie": "Nos dressings",
-    "prix_initial": 4500,
-    "reduction": 25,
-    "image": "/images/dressing.jpg",
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/dressing-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/dressing-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/dressing-blanc.jpg" }
-    ]
-  },
-  {
-    "id": "dr-002",
-    "nom": "dressing Roma D-L | 400cm",
-    "slug": "dressing-roma-dl",
-    "forme": "L",
-    "description": "",
-    "categorie": "Nos dressings",
-    "prix_initial": 5200,
-    "reduction": 15,
-    "image": "/images/dressing.jpg",
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/dressing-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/dressing-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/dressing-blanc.jpg" }
-    ]
-  },
-  {
-    "id": "dr-002",
-    "nom": "dressing Roma D-L | 400cm",
-    "slug": "dressing-roma-dl",
-    "forme": "L",
-    "description": "",
-    "categorie": "Nos dressings",
-    "prix_initial": 5200,
-    "reduction": 15,
-    "image": "/images/dressing.jpg",
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/dressing-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/dressing-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/dressing-blanc.jpg" }
-    ]
-  },
-  {
-    "id": "dr-002",
-    "nom": "dressing Roma D-L | 400cm",
-    "slug": "dressing-roma-dl",
-    "forme": "L",
-    "description": "",
-    "categorie": "Nos dressings",
-    "prix_initial": 5200,
-    "reduction": 15,
-    "image": "/images/dressing.jpg",
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/dressing-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/dressing-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/dressing-blanc.jpg" }
-    ]
-  },
-  {
-    "id": "dr-002",
-    "nom": "dressing Roma D-L | 400cm",
-    "slug": "dressing-roma-dl",
-    "forme": "L",
-    "description": "",
-    "categorie": "Nos dressings",
-    "prix_initial": 5200,
-    "reduction": 15,
-    "image": "/images/dressing.jpg",
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/dressing-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/dressing-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/dressing-blanc.jpg" }
-    ]
-  },
-  {
-    "id": "dr-003",
-    "nom": "dressing Verveine-G | 450cm",
-    "slug": "dressing-verveine-g",
-    "forme": "U",
-    "description": "",
-    "categorie": "Nos dressings",
-    "prix_initial": 6100,
-    "reduction": 20,
-    "image": "/images/dressing.jpg",
-    "en_stock": false,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/dressing-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/dressing-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/dressing-blanc.jpg" }
-    ]
-  },
-  {
-    "id": "dr-004",
-    "nom": "dressing forme-L | 750cm",
-    "slug": "dressing-forme-l",
+    "id": "dif100",
+    "categorie": "Dressings",
     "forme": "I",
-    "description": "",
-    "categorie": "Nos dressings",
-    "prix_initial": 5800,
-    "reduction": 10,
-    "image": "/images/dressing.jpg",
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/dressing-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/dressing-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/dressing-blanc.jpg" }
-    ]
+    "type_ouverture": "Fr",
+    "nom": "Dressing Forme de I | 100cm",
+    "prix_initial": 2130.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "100cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Française/Dr100.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "2 Modules Dressing de 50 cm",
+        "2 Façades",
+        "7 Etagères",
+        "Poignées",
+        "2 Tiroirs Metabox Blum",
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dif140",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "Fr",
+    "nom": "Dressing Forme de I | 140cm",
+    "prix_initial": 2340.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "140cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Française/Dr140.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "2 Modules Dressing de 70 cm",
+        "4 Façades",
+        "7 Etagères",
+        "Poignées",
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dif180",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "Fr",
+    "nom": "Dressing Forme de I | 180cm",
+    "prix_initial": 3400.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "180cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Française/Dr180.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "2 Modules Dressing de 90 cm",
+        "4 Façades",
+        "7 Etagères",
+        "2 Tiroirs Metabox Blum",
+        "Poignées",
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dif250",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "Fr",
+    "nom": "Dressing Forme de I | 250cm",
+    "prix_initial": 4050.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "250cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Française/Dr250 Fermé.jpg",
+      "/images/dressings/Forme I/Française/Dr250 Ouvert.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "2 Modules Dressing de 90 cm",
+        "Module Dressing de 70 cm",
+        "6 Façades",
+        "11 Etagères",
+        "2 Tiroirs Metabox Blum",
+        "Poignées",
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dif300",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "Fr",
+    "nom": "Dressing Forme de I | 300cm",
+    "prix_initial": 5220.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "300cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Française/Dr300 Fermé.jpg",
+       "/images/dressings/Forme I/Française/Dr300 Ouvert.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "2 Modules Dressing de 90 cm",
+        "2 Modules Dressing de 60 cm",
+        "6 Façades",
+        "14 Etagères",
+        "4 Tiroirs Metabox Blum",
+        "Poignées",
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dif320",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "Fr",
+    "nom": "Dressing Forme de I | 320cm",
+    "prix_initial": 7950.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "320cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Française/Dr320 Fermé.jpg",
+      "/images/dressings/Forme I/Française/Dr320 Ouvert.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "2 Modules Dressing de 90 cm",
+        "2 Modules Dressing de 70 cm",
+        "4 Façades",
+        "7 Etagères",
+        "4 Façades Vitrées",
+        "4 Tiroirs Metabox Blum",
+        "Poignées",
+        "Led",
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dif340",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "Fr",
+    "nom": "Dressing Forme de I | 340cm",
+    "prix_initial": 10850.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "340cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Française/Dr340 Fermé.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "2 Modules Dressing de 90 cm",
+        "2 Modules Dressing de 80 cm",
+        "8 Façades Vitrées",
+        "14 Etagères",
+        "4 Tiroirs Metabox Blum",
+        "Poignées", 
+        "Led",
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dif400",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "Fr",
+    "nom": "Dressing Forme de I | 400cm",
+    "prix_initial": 6700.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "400cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Française/Dr400 Fermé.jpg",
+      "/images/dressings/Forme I/Française/Dr400 Ouvert.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "2 Modules Dressing de 90 cm",
+        "2 Modules Dressing de 80 cm",
+        "10 Façades",
+        "16 Etagères",
+        "4 Tiroirs Metabox Blum",
+        "Poignées", 
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dif430",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "Fr",
+    "nom": "Dressing Forme de I | 430cm",
+    "prix_initial": 9400.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "430cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Française/Dr430 Fermé.jpg",
+      "/images/dressings/Forme I/Française/Dr430 Ouvert.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "2 Modules Dressing de 90 cm",
+        "2 Modules Dressing de 80 cm",
+        "6 Façades",
+        "4 Façades Vitrées",
+        "16 Etagères",
+        "4 Tiroirs Metabox Blum",
+        "Poignées",  
+        "Led",
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dic100",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "C",
+    "nom": "Dressing Forme de I | 100cm",
+    "prix_initial": 2740.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "100cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Coulissant/dress coulissant 140 F.jpg",
+      "/images/dressings/Forme I/Coulissant/dress coulissant 140 O.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "2 Modules Dressing de 50 cm",
+        "2 Façades",
+        "7 Etagères",
+        "2 Tiroirs Metabox Blum",
+        "Poignées",  
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dic120",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "C",
+    "nom": "Dressing Forme de I | 120cm",
+    "prix_initial": 2870.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "120cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Coulissant/dress coulissant 140 F.jpg",
+      "/images/dressings/Forme I/Coulissant/dress coulissant 140 O.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "2 Modules Dressing de 60 cm",
+        "2 Façades",
+        "7 Etagères",
+        "2 Tiroirs Metabox Blum",
+        "Poignées",  
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dic140",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "C",
+    "nom": "Dressing Forme de I | 140cm",
+    "prix_initial": 2870.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "140cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Coulissant/dress coulissant 140 F.jpg",
+      "/images/dressings/Forme I/Coulissant/dress coulissant 140 O.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "2 Modules Dressing de 70 cm",
+        "2 Façades",
+        "7 Etagères",
+        "2 Tiroirs Metabox Blum",
+        "Poignées",  
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dic160",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "C",
+    "nom": "Dressing Forme de I | 160cm",
+    "prix_initial": 3230.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "160cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Coulissant/dress coulissant 160 F.jpg",
+      "/images/dressings/Forme I/Coulissant/dress coulissant 160 O.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "2 Modules Dressing de 80 cm",
+        "2 Façades",
+        "7 Etagères",
+        "2 Tiroirs Metabox Blum",
+        "Poignées",  
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dic180",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "C",
+    "nom": "Dressing Forme de I | 180cm",
+    "prix_initial": 3400.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "180cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Coulissant/dress coulissant 180 F.jpg",
+      "/images/dressings/Forme I/Coulissant/dress coulissant 180 O.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "2 Modules Dressing de 90 cm",
+        "2 Façades",
+        "7 Etagères",
+        "2 Tiroirs Metabox Blum",
+        "Poignées",  
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dic210",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "C",
+    "nom": "Dressing Forme de I | 210cm",
+    "prix_initial": 4320.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "210cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Coulissant/dress coulissant 210 F.jpg",
+      "/images/dressings/Forme I/Coulissant/dress coulissant 210 O.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "3 Modules Dressing de 70 cm",
+        "3 Façades",
+        "9 Etagères",
+        "4 Tiroirs Metabox Blum",
+        "Poignées",  
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dic240",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "C",
+    "nom": "Dressing Forme de I | 240cm",
+    "prix_initial": 4560.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "240cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Coulissant/dress coulissant 240 F.jpg",
+      "/images/dressings/Forme I/Coulissant/dress coulissant 240 O.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "3 Modules Dressing de 80 cm",
+        "3 Façades",
+        "9 Etagères",
+        "4 Tiroirs Metabox Blum",
+        "Poignées",  
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dic270",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "C",
+    "nom": "Dressing Forme de I | 270cm",
+    "prix_initial": 4800.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "270cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Coulissant/dress coulissant 270 F.jpg",
+      "/images/dressings/Forme I/Coulissant/dress coulissant 270 O.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "3 Modules Dressing de 90 cm",
+        "3 Façades",
+        "9 Etagères",
+        "4 Tiroirs Metabox Blum",
+        "Poignées",  
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dl150x160",
+    "categorie": "Dressings",
+    "forme": "L",
+    "nom": "Dressing Forme de L | 150x160cm",
+    "prix_initial": 4400.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "150cm/160cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme L/dressing fome L 160x150 F.jpg",
+      "/images/dressings/Forme L/dressing fome L 160x150 O.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 60 cm",
+        "1 Module Dressing de 70 cm",
+        "1 Module Dressing de Coin 90 cm",
+        "5 Façades",
+        "13 Etagères",
+        "Poignées",  
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dl220x270",
+    "categorie": "Dressings",
+    "forme": "L",
+    "nom": "Dressing Forme de L | 220x270cm",
+    "prix_initial": 5410.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "220cm/270cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme L/dressing fome L 220x270.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 50 cm",
+        "1 Module Dressing de 90 cm",
+        "1 Module Dressing de Coin 90 cm",
+        "20 Etagères",
+        "Tiroirs Metabox Blum",  
+        "Plinth",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dl250x350",
+    "categorie": "Dressings",
+    "forme": "L",
+    "nom": "Dressing Forme de L | 250x350cm",
+    "prix_initial": 7230.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "250cm/350cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme L/dressing fome L 350x250 O1.jpg",
+      "/images/dressings/Forme L/dressing fome L 350x250 F1.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "2 Modules Dressing de 60 cm",
+        "2 Module Dressing de 80 cm",
+        "1 Module Dressing de Coin 70 cm",
+        "1 Module Dressing de 40 cm",
+        "1 Module Dressing de 30 cm",
+        "1 Module Dressing de Coin 110 cm",
+        "8 Façades",
+        "2 Façades Vitrée",
+        "32 Etagères",
+        "Tiroirs Metabox Blum",
+        "Poignées",  
+        "Plinth",
+        "Led",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dl270x390",
+    "categorie": "Dressings",
+    "forme": "L",
+    "nom": "Dressing Forme de L | 270x390cm",
+    "prix_initial": 11440.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "270cm/390cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme L/dressing fome L 390x270.jpg",
+      "/images/dressings/Forme L/dressing fome L 390x270 im1.jpg",
+      "/images/dressings/Forme L/dressing fome L 390x270 im2.jpg",
+      "/images/dressings/Forme L/dressing fome L 390x270 im3.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "2 Modules Dressing de 60 cm",
+        "2 Module Dressing de 80 cm",
+        "1 Module Dressing de Coin 70 cm",
+        "1 Module Dressing de 40 cm",
+        "1 Module Dressing de 30 cm",
+        "1 Module Dressing de Coin 110 cm",
+        "8 Façades",
+        "2 Façades Vitrée",
+        "32 Etagères",
+        "Tiroirs Metabox Blum",
+        "Poignées",  
+        "Plinth",
+        "Led",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
   }
-  
 ]

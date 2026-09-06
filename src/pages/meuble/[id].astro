@@ -1,157 +1,433 @@
 ---
 // src/pages/meuble/[id].astro
 import Layout from '../../layouts/Layout.astro';
-import meublesData from '../../data/meubles.json';
+import meublesData from '../../data/meuble.json';
 
-// CETTE FONCTION EST OBLIGATOIRE POUR LES ROUTES DYNAMIQUES
 export async function getStaticPaths() {
-  return meublesData.map((meuble) => {
+  return meublesData.map((item) => {
     return {
-      params: { id: meuble.id.toString() }, // L'ID qui sera dans l'URL (ex: /meuble/cui-001)
-      props: { meuble },                    // Les données complètes envoyées à la page
+      params: { id: item.id.toString().toLowerCase() },
+      props: { meuble: item },
     };
   });
 }
 
-// Récupération des données passées via les props ci-dessus
 const { meuble } = Astro.props;
+
+const prixFinal = meuble.reduction 
+  ? meuble.prix_initial * (1 - meuble.reduction / 100) 
+  : meuble.prix_initial;
+
+// Séparation équitable de la composition type en deux colonnes pour affichage horizontal
+const milieuComposition = Math.ceil(meuble.caracteristiques_techniques.composition_type.length / 2);
+const compoCol1 = meuble.caracteristiques_techniques.composition_type.slice(0, milieuComposition);
+const compoCol2 = meuble.caracteristiques_techniques.composition_type.slice(milieuComposition);
 ---
 
-<Layout title={`${meuble.nom} | Détails AD meuble`}>
- <main class="pt-32 pb-20 max-w-7xl mx-auto px-6">
-  
-  <nav class="flex mb-12 text-[10px] uppercase tracking-[0.2em] text-gray-400">
-      <a href="/" class="hover:text-black transition-colors">Accueil</a>
-      <span class="mx-3">/</span>
-      <a href="/meubles" class="hover:text-black transition-colors">meubles</a>
-      <span class="mx-3">/</span>
-      <span class="text-black font-bold">{meuble.nom}</span>
-  </nav>
-
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
-    
-    <div class="lg:col-span-8">
-      <div class="relative overflow-hidden bg-gray-50 aspect-[16/9] group cursor-zoom-in">
+<Layout title="Nos meubles | Art Of Design" theme="dark">
+  <main class="details-page">
+    <section class="details-hero">
+      <div class="details-hero-viewport">
         <img 
-          id="main-visual"
-          src={meuble.image} 
-          alt={meuble.nom} 
-          class="w-full h-full object-cover transition-all duration-700 ease-in-out"
+          src={meuble.catalogue_images?.[0]} 
+          alt={`Art Of Design - Haute meuble ${meuble.nom}`} 
+          class="details-hero-media"
         />
-        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-      </div>
-
-      <div class="flex gap-4 mt-6 overflow-x-auto pb-2 no-scrollbar">
-        <button class="thumb-btn active-thumb" data-full={meuble.image}>
-           <img src={meuble.image} class="w-24 h-24 object-cover" />
-        </button>
-        {meuble.variantes?.map((v) => (
-          <button class="thumb-btn" data-full={v.image}>
-            <img src={v.image} class="w-24 h-24 object-cover" />
-          </button>
-        ))}
-      </div>
-    </div>
-
-    <div class="lg:col-span-4 flex flex-col justify-start">
-      <div class="border-b border-gray-100 pb-8 mb-8">
-        <span class="text-[var(--color-gold)] font-bold text-[10px] uppercase tracking-[0.3em] mb-2 block">Exclusivité AD meuble</span>
-        <h1 class="font-serif text-4xl md:text-5xl mb-4 italic leading-tight">{meuble.nom}</h1>
-        <p class="text-2xl font-light text-gray-900">{meuble.prix_initial} <span class="text-xs text-gray-400 uppercase tracking-widest ml-2">TTC</span></p>
+        <div class="details-hero-overlay"></div>
       </div>
       
-      <p class="text-gray-500 font-light leading-relaxed mb-10 text-sm">
-        {meuble.description || "Une conception architecturale qui redéfinit l'espace. Chaque détail a été pensé pour allier performance technique et esthétique intemporelle."}
-      </p>
+      <div class="hero-details-scroll">
+      <!-- <span>{meuble.nom}</span>  -->
+       <span>{meuble.nom}</span>
+      <div class="scroll-details-line"></div>
+    </div>
+    </section>
 
-      <div class="mb-12 p-6 bg-gray-50 rounded-sm">
-        <h3 class="text-[10px] uppercase tracking-[0.2em] font-bold mb-6 flex justify-between">
-          Nuancier disponible 
-          <span id="color-label" class="text-[var(--color-gold)] font-normal italic lowercase">Original</span>
-        </h3>
-        <div class="flex flex-wrap gap-4">
-           {/* Option par défaut */}
-           <button 
-              class="color-swatch ring-2 ring-[var(--color-gold)] ring-offset-2 w-8 h-8 rounded-full bg-center bg-cover" 
-              style={`background-image: url(${meuble.image})`}
-              data-image={meuble.image} 
-              title="Finition Originale">
-           </button>
-           
-           {/* Variantes du JSON */}
-           {meuble.variantes?.map((v) => (
-            <button 
-              class="color-swatch w-8 h-8 rounded-full border border-gray-200 transition-all hover:scale-110"
-              style={`background-color: ${v.code}`}
-              data-image={v.image}
-              title={v.couleur}
-            >
+    <div class="product-container">
+      <nav class="breadcrumb">
+          <a href="/">Accueil</a>
+          <span>/</span>
+          <a href="/meubles">meubles</a>
+          <span>/</span>
+          <span class="active-crumb-text">{meuble.nom}</span>
+      </nav>
+
+      <div class="main-product-grid">     
+        <div class="visuals-zone">
+
+          <div class="main-visual-wrapper">
+            <img 
+              id="main-visual"
+              src={meuble.catalogue_images?.[0]} 
+              alt={meuble.nom} 
+            />
+            <div class="visual-overlay"></div>
+          </div>
+
+          <div class="slider-wrapper-relative">
+            <button id="slide-prev" class="slider-arrow prev-arrow" aria-label="Précédent">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
             </button>
-          ))}
+
+            <div class="slider-container" id="slider-mask">
+              <div class="thumbnails-slider-rail" id="thumb-rail">
+                {meuble.catalogue_images?.map((img, index) => (
+                  <button class={`thumb-btn ${index === 0 ? 'active-thumb' : ''}`} data-full={img}>
+                    <img src={img} alt={`Aperçu ${index + 1}`} />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <button id="slide-next" class="slider-arrow next-arrow" aria-label="Suivant">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+
+        <div class="details-zone">
+          <div class="header-details">
+            <span class="brand-badge">Exclusivité AD meuble</span>
+            <h1 class="product-title">{meuble.nom}</h1>
+            
+            <div class="price-wrapper">
+              {meuble.reduction ? (
+                <div class="price-flex">
+                  <p class="price-old">{meuble.prix_initial} TTC</p>
+                  <p class="price-current">{prixFinal} TTC</p>                
+                  <span class="discount-tag">-{meuble.reduction}%</span>
+                </div>
+              ) : (
+                <p class="price-current">{meuble.prix_initial} TTC</p>
+              )}
+            </div>
+          </div>
+          
+          <div class="specs-block">
+            <p><strong class="spec-paragraph">Dimensions caisson haut </strong> <br /> Largeur {meuble.dimensions.Largeur} <br /> hauteur {meuble.dimensions.hauteur} <br /> profondeur {meuble.dimensions.profondeur}</p>
+          </div>
+
+          <div class="nuancier-block">
+            <div class="nuancier-header">
+              <h3 class="nuancier-title">Nuancier disponible</h3>
+              <span id="color-label" class="color-current-name"></span>
+            </div>
+
+            <div class="swatches-row">
+              {meuble.couleurs?.map((v) => (
+                <button 
+                  class={`color-swatch ${v.nom === "Chêne naturel" ? "active-swatch" : ""}`}
+                  style={`background-image: url(${v.image_presentation}); background-size: cover; background-position: center;`}
+                  data-value={v.image_presentation}
+                  title={v.nom}
+                >
+                </button>
+              ))}
+            </div>
+
+            <div class="preview-card-wrapper">
+              <div id="texture-preview-card" class="preview-card-el"></div>
+            </div>
+          </div>
+
+          <div class="cta-wrapper">
+            <a href="/#contact" class="btn-text-flip"> 
+              <span class="text-default">Réserver mon étude gratuite</span>
+              <span class="text-hover">Réserver mon étude gratuite</span>
+            </a> 
+          </div>
         </div>
       </div>
 
-      <button class="w-full bg-black text-white py-5 uppercase text-[10px] font-bold tracking-[0.2em] hover:bg-[var(--color-gold)] transition-all shadow-lg hover:shadow-xl">
-        Réserver mon étude gratuite
-      </button>
+      <div class="technical-section">
+        <h3 class="technical-main-title">Caractéristiques techniques des éléments</h3>
+        
+        <div class="tech-dropdowns">
+          
+          {/* DROPDOWN : COMPOSITION TYPE */}
+          <div class="tech-item dropdown active" id="dropdown-composition">
+            <button class="tech-header dropdown-toggle">
+              <span class="tech-item-number reveal"></span> <!--I -->
+              <h4>Composition type</h4>
+              <div class="dropdown-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+              </div>
+            </button>
+            <div class="tech-content dropdown-pane">
+              <div class="tech-content-inner">
+                <div class="tech-composition-cols">
+                  <ul class="tech-list">
+                    {compoCol1.map((item) => (
+                      <li><span>•</span> {item}</li>
+                    ))}
+                  </ul>
+                  <ul class="tech-list">
+                    {compoCol2.map((item) => (
+                      <li><span>•</span> {item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* DROPDOWN : FINITION PRODUIT */}
+          <div class="tech-item dropdown" id="dropdown-finition">
+            <button class="tech-header dropdown-toggle">
+              <span class="tech-item-number"></span>
+              <h4>Finition produit</h4>
+              <div class="dropdown-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+              </div>
+            </button>
+            <div class="tech-content dropdown-pane">
+              <div class="tech-content-inner">
+                <div class="tech-finition-details">
+                  <div class="tech-finition-item">
+                    <strong class="sub-label">Caisson</strong>
+                    <p class="tech-paragraph">{meuble.caracteristiques_techniques.finition_produit.caisson}</p>
+                  </div>
+                  <div class="tech-finition-item">
+                    <strong class="sub-label">Façade</strong>
+                    <p class="tech-paragraph">{meuble.caracteristiques_techniques.finition_produit.facade}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-gray-100 pt-16">
-        <div>
-            <h4 class="font-bold text-[10px] uppercase tracking-widest mb-4">Matériaux</h4>
-            <p class="text-sm text-gray-500 font-light">Façades en polymère haute densité, plan de travail en quartz ou granit au choix.</p>
-        </div>
-        <div>
-            <h4 class="font-bold text-[10px] uppercase tracking-widest mb-4">Équipements</h4>
-            <p class="text-sm text-gray-500 font-light">Charnières avec amortisseurs intégrés, tiroirs à sortie totale, éclairage LED sous meubles.</p>
-        </div>
-        <div>
-            <h4 class="font-bold text-[10px] uppercase tracking-widest mb-4">Garantie</h4>
-            <p class="text-sm text-gray-500 font-light">Structure garantie 10 ans. Pièces d'usure et quincaillerie garanties 5 ans.</p>
-        </div>
-    </div>
-</main>
+  </main>
+
 </Layout>
 
-<script is:inline>
-  const mainImg = document.getElementById('main-visual');
-  const colorSwatches = document.querySelectorAll('.color-swatch');
-  const thumbButtons = document.querySelectorAll('.thumb-btn');
-  const colorLabel = document.getElementById('color-label');
-
-  function updateGallery(newSrc, title = null) {
-    if (!mainImg || !newSrc) return;
-    
-    mainImg.style.opacity = '0';
-    setTimeout(() => {
-      mainImg.src = newSrc;
-      mainImg.style.opacity = '1';
-      if (title) colorLabel.textContent = title;
-    }, 250);
+<style> 
+  .main-visual-wrapper {
+    position: relative;
+    overflow: hidden;
+    background-color: #f9fafb;
+    aspect-ratio: 16 / 16;
+    cursor: zoom-in;
   }
+</style>
 
-  // Clic sur les pastilles de couleur
-  colorSwatches.forEach(swatch => {
-    swatch.addEventListener('click', () => {
-      const img = swatch.getAttribute('data-image');
-      const name = swatch.getAttribute('title');
-      
-      updateGallery(img, name);
+<script is:inline>
+  // Script pour gérer l'ouverture/fermeture des dropdowns
+  const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
-      // Gestion du cercle de sélection
-      colorSwatches.forEach(s => s.classList.remove('ring-2', 'ring-[var(--color-gold)]', 'ring-offset-2'));
-      swatch.classList.add('ring-2', 'ring-[var(--color-gold)]', 'ring-offset-2');
-    });
-  });
-
-  // Clic sur les miniatures
-  thumbButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const img = btn.getAttribute('data-full');
-      updateGallery(img);
-
-      thumbButtons.forEach(b => b.classList.remove('active-thumb'));
-      btn.classList.add('active-thumb');
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const dropdownItem = toggle.closest('.tech-item');
+      dropdownItem.classList.toggle('active');
     });
   });
 </script>
+
+
+<script>
+  import { gsap } from 'gsap';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const swatches = document.querySelectorAll('.color-swatch');
+    const colorLabel = document.getElementById('color-label') as HTMLElement | null;
+    const previewCard = document.getElementById('texture-preview-card') as HTMLElement | null;
+    const defaultSwatch = Array.from(swatches).find(s => s.getAttribute('title') === "Chêne naturel") as HTMLElement | null;
+
+    // SI L'ÉLÉMENT N'EXISTE PAS SUR CETTE PAGE, ON QUITTE SILENCIEUSEMENT SANS ERREUR
+    if (!previewCard) return;
+
+    let activeSwatch: HTMLElement | null = null;
+
+    if (defaultSwatch) {
+      const defaultImg = defaultSwatch.getAttribute('data-value');
+      const defaultTitle = defaultSwatch.getAttribute('title') || '';
+
+      if (defaultImg && previewCard) {
+        // 1. On applique directement le titre et la texture en arrière-plan
+        if (colorLabel) colorLabel.textContent = defaultTitle;
+        previewCard.style.backgroundImage = `url(${defaultImg})`;
+        
+        // 2. On fait descendre le rectangle instantanément ou via une transition douce
+        gsap.to(previewCard, {
+          y: "0%",
+          duration: 0.45,
+          ease: "power3.out"
+        });
+
+        // 3. On l'enregistre comme la pastille active en mémoire
+        activeSwatch = defaultSwatch;
+      }
+    }
+
+    function closePreview() {
+      if (!previewCard) return;
+      
+      gsap.to(previewCard, {
+        y: "-100%",
+        duration: 0.3,
+        ease: "power2.in",
+        onComplete: () => {
+          if (colorLabel) colorLabel.textContent = "";
+          swatches.forEach(s => s.classList.remove('active-swatch'));
+          activeSwatch = null;
+        }
+      });
+    }
+
+    function openOrChangePreview(currentSwatch: HTMLElement, imageUrl: string, title: string) {
+      if (!previewCard) return;
+      
+      const tl = gsap.timeline();
+
+      if (activeSwatch && activeSwatch !== currentSwatch) {
+        tl.to(previewCard, {
+          y: "-100%",
+          duration: 0.2,
+          ease: "power2.in",
+          onComplete: () => {
+            if (colorLabel) colorLabel.textContent = title;
+            previewCard.style.backgroundImage = `url(${imageUrl})`;
+          }
+        });
+      } else {
+        if (colorLabel) colorLabel.textContent = title;
+        previewCard.style.backgroundImage = `url(${imageUrl})`;
+      }
+
+      tl.to(previewCard, {
+        y: "0%",
+        duration: 0.45,
+        ease: "power3.out"
+      });
+
+      swatches.forEach(s => s.classList.remove('active-swatch'));
+      currentSwatch.classList.add('active-swatch');
+      activeSwatch = currentSwatch;
+    }
+
+    swatches.forEach(swatch => {
+      swatch.addEventListener('click', (e) => {
+        const currentSwatch = e.currentTarget as HTMLElement;
+        const imageUrl = currentSwatch.getAttribute('data-value');
+        const title = currentSwatch.getAttribute('title') || '';
+
+        if (!imageUrl) return;
+
+        if (activeSwatch === currentSwatch) {
+          closePreview();
+        } else {
+          openOrChangePreview(currentSwatch, imageUrl, title);
+        }
+      });
+    });
+  });
+</script>
+
+
+<script>
+  import { gsap } from 'gsap';
+  import { Draggable } from 'gsap/Draggable';
+
+  gsap.registerPlugin(Draggable);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const mainImg = document.getElementById('main-visual') as HTMLImageElement;
+    const thumbButtons = document.querySelectorAll('.thumb-btn');
+    const rail = document.getElementById('thumb-rail');
+    const mask = document.getElementById('slider-mask');
+    const prevBtn = document.getElementById('slide-prev');
+    const nextBtn = document.getElementById('slide-next');
+
+    if (!rail || !mask) return;
+
+    // 1. INITIALISATION DU DRAGGABLE
+    const dragInstance = Draggable.create(rail, {
+      type: "x",
+      bounds: mask,
+      edgeResistance: 0.65,
+      inertia: true,
+    })[0]; // On récupère l'instance indexée 0
+
+    // 2. LOGIQUE DE NAVIGATION VIA LES FLÈCHES
+    // Largeur d'une miniature (9rem = 144px) + gap (0.5rem = 8px) = ~152px
+    const stepWidth = 152; 
+
+    function moveSlider(direction: 'next' | 'prev') {
+      // On calcule la position cible X actuelle
+      let currentX = gsap.getProperty(rail, "x") as number;
+      let targetX = direction === 'next' ? currentX - stepWidth : currentX + stepWidth;
+
+      // Force GSAP à respecter les limites physiques (bounds) du masque de défilement
+      const minX = dragInstance.minX;
+      const maxX = dragInstance.maxX;
+
+      if (targetX < minX) targetX = minX;
+      if (targetX > maxX) targetX = maxX;
+
+      // Animation fluide du rail vers la nouvelle position
+      gsap.to(rail, {
+        x: targetX,
+        duration: 0.4,
+        ease: "power2.out",
+        onUpdate: () => dragInstance.update() // Synchronise l'état interne du Drag de GSAP
+      });
+    }
+
+    nextBtn?.addEventListener('click', () => moveSlider('next'));
+    prevBtn?.addEventListener('click', () => moveSlider('prev'));
+
+    // 3. LOGIQUE DE CHANGEMENT DE GALERIE (FADE)
+    function updateGallery(newSrc: string | null) {
+      if (!mainImg || !newSrc) return;
+      
+      gsap.to(mainImg, {
+        opacity: 0,
+        duration: 0.2,
+        onComplete: () => {
+          mainImg.src = newSrc;
+          gsap.to(mainImg, { opacity: 1, duration: 0.2 });
+        }
+      });
+    }
+
+    thumbButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const currentBtn = e.currentTarget as HTMLElement;
+        const img = currentBtn.getAttribute('data-full');
+        
+        updateGallery(img);
+
+        thumbButtons.forEach(b => b.classList.remove('active-thumb'));
+        currentBtn.classList.add('active-thumb');
+      });
+    });
+  });
+</script>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // ── SCROLL REVEAL ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+  });
+</script>
+
+
