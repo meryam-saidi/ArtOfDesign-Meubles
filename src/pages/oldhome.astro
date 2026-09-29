@@ -1,0 +1,646 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import cuisinesData from '../data/cuisines.json';
+import dressingData from '../data/dressing.json';
+import meublesData from '../data/meuble.json';
+import projetsData from '../data/projets.json';
+import Header from '../components/Header.astro';
+
+const cuisines = cuisinesData.filter(item => item.categorie === "Nos Cuisines");
+const dressing = dressingData;
+const meubles = meublesData;
+const projets = projetsData;
+
+const categories = [
+  { id: 'cuisines',    label: 'Cuisines',       sub: 'Design exclusif',       image: '/images/autres/categorieKitchen.png',   link: '/cuisines' },
+  { id: 'dressings',  label: 'Dressings',       sub: 'Élégance pure',    image: '/images/autres/categorieDressing.png',   link: '/dressings' },
+  { id: 'meubles',    label: 'Meubles',        sub: 'Sur mesure',  image: '/images/autres/meubles_categorie.png',   link: '/meubles' },
+  /*{ id: 'projets',    label: 'Projets',         sub: 'Découvrir Nos Projets',  image: '/images/autres/project_categorie.jpg',   link: '/projets' },
+*/
+  ];
+
+const stats = [
+  { number: '12+', label: 'Années d\'excellence' },
+  { number: '800+', label: 'Projets réalisés' },
+  { number: '100%', label: 'Sur mesure' },
+  { number: '48h', label: 'Délai de réponse' },
+];
+---
+
+<Layout title="Art Of Design | Meubles de Luxe sur Mesure">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" is:inline></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" is:inline></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" is:inline></script>
+
+
+<!--
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+-->
+  <!-- 
+  <div id="loader">
+    <p id="loader-logo-animated" class="loader-logo">Art <em>Of</em> Design</p>
+    <div class="loader-line"></div>
+    <p class="loader-sub">Meubles de luxe sur mesure — Tunisie</p>
+  </div>
+-->
+  <section id="hero">
+    <div class="hero-bg">
+      <video autoplay muted loop playsinline>
+        <source src="/videos/hero_video.mp4" type="video/mp4" />
+        Votre navigateur ne supporte pas la vidéo.
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <!-- 
+      <div class="hero-left">
+        <p class="hero-eyebrow">Art Of Design — Fondé 2016</p>
+        <h1 class="hero-headline">
+          l'art du beau intérieur
+        </h1>
+      </div>
+      
+      <div class="hero-right">
+        <p class="hero-desc">
+          Chaque espace mérite d'être pensé avec soin. Nous créons des meubles sur mesure qui allient matériaux nobles, savoir-faire artisanal et esthétique intemporelle.
+        </p>
+        <div class="hero-actions">
+          <a href="#categories-pin-container" class="btn-primary">Explorer nos univers</a>
+          <a href="#contact" class="btn-ghost">Prendre RDV</a>
+        </div>
+      </div>
+      -->
+    </div>
+    <div class="hero-scroll">
+      <span>l'art du beau intérieur</span> 
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <section id="about-band" class="about-band-section">
+    <div class="about-band-container">
+      <span class="about-band-subtitle">A propos de Art Of Design</span>
+      
+      <h2 class="about-band-title reveal-right">
+        L'harmonie absolue entre l'Art & l'ingénierie d'espace
+      </h2>
+      
+      <p class="about-band-text reveal-left">
+        Nous façonnons des cuisines de haute facture, des dressings sur mesure et du mobilier d'exception. 
+        Chaque création marie les standards de précision les plus stricts à une esthétique intemporelle et unique.
+      </p>
+      
+      <div class="about-band-stats">
+        <div class="band-stat">
+          <span class="band-stat-number">10+</span>
+          <span class="band-stat-label">Ans d'Artistry</span>
+        </div>
+        <div class="band-stat-divider"></div>
+        <div class="band-stat">
+          <span class="band-stat-number">500+</span>
+          <span class="band-stat-label">Projets Signés</span>
+        </div>
+        <div class="band-stat-divider"></div>
+        <div class="band-stat">
+          <span class="band-stat-number">100%</span>
+          <span class="band-stat-label">Sur Mesure</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- On crée un wrapper qui gère l'effet de calque sans toucher à la structure globale -->
+<section id="philosophy-premium" class="w-full">
+  <div class="philosophy-container">
+    
+    <div class="philosophy-media reveal-left">
+      <div class="image-wrapper">
+        <img src="/images/autres/philo_section.png" alt="Moodboard matières" />
+      </div>
+    </div>
+
+    <div class="philosophy-content">
+      <div class="philosophy-header reveal">  
+        <span class="section-label">Notre philosophie</span> <!-- — --> 
+        <h2 class="section-title">
+          Le mobilier comme expression de soi
+        </h2>
+      </div>
+      
+      <div class="philosophy-text reveal-right">
+        <p>Chez <strong>Art Of Design</strong>, votre intérieur est le reflet de votre personnalité. Chaque projet naît d'une écoute approfondie de votre mode de vie pour aboutir à une création unique.<br/>
+        Notre philosophie prend vie à travers ce dialogue subtil entre vos aspirations et la matière brute.</p>
+      </div>
+      <div class="philosophy-action reveal-right">
+        <a href="#categories-pin-container" class="btn-text-flip"> 
+          <span class="text-default">Explorer nos univers</span>
+          <span class="text-hover">Explorer nos univers</span>
+        </a>
+        <a href="#contact" class="btn-text-flip">
+          <span class="text-default">Prendre RDV</span>
+          <span class="text-hover">Prendre RDV</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Ta section catégorie redevient totalement standard dans le flux pour le JS -->
+<section id="categories-pin-container" class="w-full overflow-hidden">
+  <div class="categories-inner-wrapper">    
+    <!-- class="px-6 md:px-12 max-w-full mx-auto w-full mb-12 flex flex-col items-center text-center" -->
+    <div class="categories-header">        
+      <h1 class="section-label reveal">Nos univers</h1>
+      <h2 class="section-title reveal">Trois collections,une exigence</h2>
+    </div> 
+    
+    <div class="categories-horizontal-track">
+      {categories.map((cat) => (
+        <a href={cat.link} class="cat-card group">
+          <div class="cat-card-img-wrapper">
+            <img src={cat.image} alt={cat.label} loading="lazy" />
+            <div class="cat-card-overlay-gradient"></div>
+          </div>
+          <div class="cat-card-text-content reveal">
+            <!-- 
+            <span class="cat-card-sub-label">{cat.sub}</span>
+            <h3 class="cat-card-title-label">{cat.label}</h3>
+            <div class="btn-text-flip"><span class="text-default">Découvrir</span><span class="text-hover">Découvrir</span></div>
+            -->
+            <div class="btn-text-flip cat-card-title-label"><span class="text-default">{cat.label}</span><span class="text-hover">{cat.label}</span></div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+<section id="process-premium">
+  <div class="process-minimal-container">
+    <div class="process-split-layout">
+      
+      <div class="process-raw-list">
+        <div class="process-header reveal">
+          <span class="section-label">Le Processus<br /></span> 
+          <h2 class="section-title">De l'idée à la matière
+            <!-- <span class="title-serif">matière</span> -->
+          </h2>
+        </div>
+        {[
+          { n: 'I', title: 'Consultation', desc: 'Comprendre votre style de vie et vos aspirations.' },
+          { n: 'II', title: 'Design 3D', desc: 'Modélisation et ajustement des volumes et textures.' },
+          { n: 'III', title: 'Fabrication', desc: 'Raffinement des matériaux et confection.' },
+          { n: 'IV', title: 'Installation', desc: 'Ajustement ultime in situ pour un rendu parfait.' },
+        ].map((step) => (
+          <div class="process-raw-item reveal">
+            <div class="item-meta">
+              <span class="item-roman">{step.n}</span>
+              <!-- <div class="item-dot"></div> -->
+            </div>
+            <div class="item-body">
+              <h3 class="item-title">{step.title}</h3>
+              <p class="item-desc">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="process-media-column reveal">
+        <div class="comparison-slider" id="project-slider">
+          
+          <img class="image-after" src="/images/autres/kitchen_categorie.jpg" alt="Projet Réalisé" />
+          
+          <div class="image-before-wrapper">
+            <img class="image-before" src="/images/autres/sketch.png" alt="Conception 3D" />
+          </div>
+          
+          <div class="slider-handle">
+            <div class="handle-line"></div>
+            <div class="handle-button">
+              <span>↔</span>
+            </div>
+          </div>
+          
+          <span class="badge-slider badge-before">Avant (3D)</span>
+          <span class="badge-slider badge-after">Après (Réel)</span>
+          
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+  
+
+  <!-- 
+  <section id="testimonials">
+    <div class="reveal" style="text-align:center">
+      <p class="section-label">Ils nous font confiance</p>
+      <h2 class="section-title">Ce que disent<br /><em>nos clients</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      {[
+        { text: "Un travail d'une précision remarquable. La cuisine sur mesure qu'ils ont réalisée est exactement ce que j'avais imaginé, voire au-delà.", author: "Sonia B.", loc: "Tunis", stars: "★★★★★" },
+        { text: "L'équipe a su transformer notre espace en quelque chose de véritablement exceptionnel. Le suivi du projet était irréprochable.", author: "Karim A.", loc: "Sousse", stars: "★★★★★" },
+        { text: "Notre dressing est maintenant une pièce à vivre. Les matériaux choisis, les finitions… tout respire la qualité et le raffinement.", author: "Leila M.", loc: "Sfax", stars: "★★★★★" },
+      ].map((t) => (
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">{t.stars}</div>
+          <p class="testimonial-text">« {t.text} »</p>
+          <p class="testimonial-author"><strong>{t.author}</strong> — {t.loc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+  -->
+  
+
+  <section id="contact">
+  <div class="contact-wrapper">
+    
+    <div class="contact-info reveal-left">
+      <p class="section-label">Parlons de votre projet</p> 
+      <h2 class="section-title">Demande de devis gratuit</h2>
+      <p class="contact-description">
+        Chaque grand intérieur commence par une conversation. Décrivez-nous votre vision et nous vous répondrons sous 48 heures avec une première proposition.
+      </p>
+    
+    
+    <form action="https://formspree.io/f/xykqlqjo" method="POST" class="contact-form reveal-right" id="ajax-contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Prénom & Nom</label>
+          <input type="text" name="nom" placeholder="Votre nom" required class="form-input" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" name="email" placeholder="votre@email.com" required class="form-input" />
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Téléphone</label>
+          <input type="tel" name="telephone" placeholder="+216 52 205 530" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Type de projet</label>
+          <div class="select-wrapper">
+            <select name="categorie" class="form-select form-input">
+              <option value="">Sélectionner…</option>
+              <option>Cuisine sur mesure</option>
+              <option>Dressing sur mesure</option>
+              <option>Mobilier / Kit</option>
+              <option>Autre</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Votre projet</label>
+        <textarea name="message" placeholder="Décrivez votre espace, vos envies, votre budget indicatif…" class="form-textarea"></textarea>
+      </div>
+      
+      <button type="submit" class="btn-text-flip">
+        <span class="text-default">Envoyer ma demande</span>
+        <span class="text-hover">Envoyer ma demande</span>
+      </button>
+
+      <div id="form-status" class="form-status-message"></div>
+    </form>
+    
+  </div>
+
+  <div class="contact-map-container">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d130.63961485170347!2d10.1620527!3d36.6714608!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd3b9dd89a8567%3A0x5a652ae19dc72053!2sArt%20of%20Design!5e1!3m2!1sfr!2stn!4v1782305828017!5m2!1sfr!2stn"
+      width="100%" 
+      height="100%" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+ </div> 
+<!-- 
+  <div class="contact-details">
+    <div class="contact-detail">
+      <span class="contact-detail-icon">✦</span>
+      <div>
+        <p class="contact-detail-label">Showroom</p>
+        <p class="contact-detail-value">Tunis, Tunisie</p>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <span class="contact-detail-icon">✦</span>
+      <div>
+        <p class="contact-detail-label">Téléphone</p>
+        <p class="contact-detail-value">+216 XX XXX XXX</p>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <span class="contact-detail-icon">✦</span>
+      <div>
+        <p class="contact-detail-label">Email</p>
+        <p class="contact-detail-value">contact@artofdesign.tn</p>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <span class="contact-detail-icon">✦</span>
+      <div>
+        <p class="contact-detail-label">Horaires</p>
+        <p class="contact-detail-value">Lun – Sam, 9h – 18h</p>
+      </div>
+    </div>
+  </div>
+-->
+</section>
+
+  <!-- 
+  <section id="stats">
+    {stats.map((s) => (
+      <div class="stat-item reveal">
+        <div class="stat-number">{s.number}</div>
+        <div class="stat-label">{s.label}</div>
+      </div>
+    ))}
+  </section>
+
+  
+  <div class="marquee-section">
+    <div class="marquee-track">
+      {['Cuisines', 'Dressings', 'Unités TV', 'Chambres', 'Home Office', 'Mobilier Kit', 'Design 3D Offert', 'Sur Mesure', 'Fabrication Locale'].flatMap(t => [
+        <span class="marquee-item">{t}</span>,
+        <span class="marquee-item marquee-dot">✦</span>
+      ])}
+      {['Cuisines', 'Dressings', 'Unités TV', 'Chambres', 'Home Office', 'Mobilier Kit', 'Design 3D Offert', 'Sur Mesure', 'Fabrication Locale'].flatMap(t => [
+        <span class="marquee-item">{t}</span>,
+        <span class="marquee-item marquee-dot">✦</span>
+      ])}
+    </div>
+  </div>
+  -->
+  
+  
+
+</Layout>
+
+
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+/*
+    // ── CURSOR ──
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    });
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+*/
+    // ── LOADER ──
+    const loader = document.getElementById('loader');
+    setTimeout(() => {
+      loader.style.transition = 'opacity 0.8s ease';
+      loader.style.opacity = '0';
+      setTimeout(() => loader.style.display = 'none', 800);
+    }, 2400);
+
+    // ── NAV SCROLL ──
+    const nav = document.getElementById('navbar');
+    if (nav) {
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+      });
+    }
+
+    // ── SCROLL REVEAL ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+    // ── SWIPERS PRODUITS ──
+    const commonConfig = {
+      spaceBetween: 24,
+      loop: true,
+      breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+      slidesPerView: 1,
+    };
+
+    new Swiper('.cuisineSwiper', { ...commonConfig, navigation: { nextEl: '.swiper-next-cuisine', prevEl: '.swiper-prev-cuisine' } });
+    new Swiper('.dressingSwiper', { ...commonConfig, navigation: { nextEl: '.swiper-next-dressing', prevEl: '.swiper-prev-dressing' } });
+    new Swiper('.meubleSwiper', { ...commonConfig, navigation: { nextEl: '.swiper-next-meuble', prevEl: '.swiper-prev-meuble' } });
+    new Swiper('.projetSwiper', { ...commonConfig, navigation: { nextEl: '.swiper-next-projet', prevEl: '.swiper-prev-projet' } });
+
+  });
+</script>
+
+
+<script is:inline>
+  function initHorizontalScroll() {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      
+      gsap.registerPlugin(ScrollTrigger);
+
+      // On récupère les éléments des deux sections
+      const philosophySection = document.querySelector('#philosophy-premium');
+      const track = document.querySelector('.categories-horizontal-track');
+      const container = document.querySelector('#categories-pin-container');
+      const cards = gsap.utils.toArray('.cat-card'); 
+      
+      // Sécurité : si l'un des blocs manque, on ne fait rien
+      if (!track || !container || cards.length === 0) return;
+
+      // ==========================================
+      // AJOUT : ÉTAPE 0 - L'effet rideau (Recouvrement)
+      // ==========================================
+      if (philosophySection) {
+        ScrollTrigger.create({
+          trigger: philosophySection,
+          start: "bottom bottom",    
+          end: "+=100%",    
+          pin: true,
+          pinSpacing: false, // Laisse la section catégorie monter par-dessus
+          invalidateOnRefresh: true,
+        });
+      }
+
+      // ==========================================
+      // TON CODE EXISTANT (Inchangé et protégé)
+      // ==========================================
+      const getScrollAmount = () => {
+        return -(track.scrollWidth - window.innerWidth);
+      };
+
+      gsap.to(track, {
+        x: getScrollAmount,
+        ease: "none", 
+        scrollTrigger: {
+          trigger: container,
+          start: "bottom bottom",      
+          end: () => `+=${track.scrollWidth}`, 
+          pin: true,             
+          scrub: 1,              
+          invalidateOnRefresh: true,
+          /*
+          snap: {
+            snapTo: 1 / (cards.length - 1), 
+            duration: { min: 0.2, max: 0.6 }, 
+            ease: "power1.inOut"
+          }
+            */
+        }
+      });
+
+      ScrollTrigger.refresh();
+    }
+  }
+
+  // Initialisation au chargement de la page et des médias
+  window.addEventListener('load', () => {
+    setTimeout(initHorizontalScroll, 250);
+  });
+</script>
+
+<script is:inline>
+  // --- ANIMATION INTERACTIVE DU SLIDER AVANT/APRÈS ---
+  const slider = document.querySelector('#project-slider');
+    if (slider) {
+      const moveSlider = (e) => {
+        // Récupère les coordonnées du slider à l'écran
+        const rect = slider.getBoundingClientRect();
+        // Calcule la position X de la souris par rapport au conteneur (en %)
+        let x = e.clientX - rect.left;
+        let percentage = (x / rect.width) * 100;
+        
+        // Sécurité pour pas que ça sorte du cadre (entre 0% et 100%)
+        if (percentage < 0) percentage = 0;
+        if (percentage > 100) percentage = 100;
+        
+        // Injecte la valeur directement dans le CSS
+        slider.style.setProperty('--slider-pos', `${percentage}%`);
+      };
+
+      // S'active simplement au mouvement de la souris sur l'image
+      slider.addEventListener('mousemove', moveSlider);
+      // Support pour les écrans tactiles sur mobile
+      slider.addEventListener('touchmove', (e) => moveSlider(e.touches[0]));
+    }
+
+    function initProcessContactScroll() {
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        
+        gsap.registerPlugin(ScrollTrigger);
+
+        const processSection = document.querySelector('#process-premium');
+        const contactSection = document.querySelector('#contact');
+        
+        if (!processSection || !contactSection) return;
+
+        // EFFET RIDEAU CORRIGÉ
+        ScrollTrigger.create({
+          trigger: processSection,
+          start: "bottom bottom", // MODIFICATION : On attend que le BAS du process touche le BAS de l'écran
+          end: "+=100%",          // Laisse un temps de pause ou d'ancrage
+          pin: true,
+          pinSpacing: false,      // Permet au contact de glisser par-dessus
+          invalidateOnRefresh: true,
+        });
+
+        ScrollTrigger.refresh();
+      }
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(initProcessContactScroll, 300);
+    });
+</script>
+
+
+<!-- script formulaire   -->
+
+<script is:inline>
+  // On utilise une fonction auto-exécutée pour isoler le scope
+  (() => {
+    const initForm = () => {
+      const form = document.getElementById('ajax-contact-form');
+      const status = document.getElementById('form-status');
+      
+      if (!form || !status) return;
+
+      form.addEventListener('submit', async (e) => {
+        // Bloque immédiatement la redirection native
+        e.preventDefault(); 
+        e.stopPropagation();
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
+
+        // Affichage de l'état de chargement
+        status.style.display = 'block';
+        status.className = 'form-status-message sending';
+        status.innerText = 'Transmission de votre projet...';
+
+        const data = new FormData(form);
+
+        try {
+          const response = await fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            status.className = 'form-status-message success';
+            status.innerText = 'Votre message a bien été transmis. Notre équipe vous répondra sous 48 heures.';
+            form.reset();
+          } else {
+            const responseData = await response.json();
+            status.className = 'form-status-message error';
+            status.innerText = responseData.error || 'Une erreur est survenue.';
+            if (submitBtn) submitBtn.disabled = false;
+          }
+        } catch (error) {
+          status.className = 'form-status-message error';
+          status.innerText = 'Impossible de joindre le serveur. Veuillez réessayer.';
+          if (submitBtn) submitBtn.disabled = false;
+        }
+      });
+    };
+
+    // Gestion du cycle de vie Astro (DOMContentLoaded + transitions de pages éventuelles)
+    document.addEventListener('DOMContentLoaded', initForm);
+    initForm(); // Exécution immédiate au cas où le DOM est déjà prêt
+  })();
+</script>

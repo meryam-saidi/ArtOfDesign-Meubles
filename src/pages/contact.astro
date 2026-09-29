@@ -1,0 +1,154 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Contact from '../components/Contact.astro';
+
+---
+
+<Layout title="Nos Modèles de Cuisines | Art Of Design">
+  <main class="luxury-catalog">
+    
+    <!-- LUXURY HERO -->
+    <section class="luxury-hero"></section>
+
+    <Contact/>
+    
+    <div class="anatomies">
+      <div class="anatomie-text">
+        <h1 class="titre-anatomie">Vous ne savez pas quelle forme choisir ?</h1>
+        <p class="text-titre-anatomie">Consultez notre guide interactif des formes de cuisines.</p>
+      </div>
+      <a href={`/cuisines-infos`} class="btn-text-flip"> 
+        <span class="text-default">Lire Le Guide <span class="arrow">→</span></span>
+        <span class="text-hover">Lire Le Guide <span class="arrow">→</span></span>                
+      </a>    
+    </div>
+
+  </main>
+</Layout>
+
+<script>
+  const setupFilters = () => {
+    const buttons = document.querySelectorAll('.filter-btn');
+    const sections = document.querySelectorAll('.data-catalog-section');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const targetFilter = button.getAttribute('data-filter');
+
+        // Gestion active du bouton
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        sections.forEach(section => {
+          const sectionElement = section as HTMLElement;
+          const isAllTarget = targetFilter === 'all' && sectionElement.id === 'all-gallery';
+          const isSpecificTarget = sectionElement.id === targetFilter;
+
+          if (isAllTarget || isSpecificTarget) {
+            // Activer la section cible
+            sectionElement.style.display = 'block';
+            setTimeout(() => {
+              sectionElement.style.opacity = '1';
+              sectionElement.style.transform = 'translateY(0)';
+            }, 50);
+          } else {
+            // Désactiver les autres
+            sectionElement.style.opacity = '0';
+            sectionElement.style.transform = 'translateY(15px)';
+            setTimeout(() => {
+              sectionElement.style.display = 'none';
+            }, 350); 
+          }
+        });
+      });
+    });
+  };
+
+  document.addEventListener('DOMContentLoaded', setupFilters);
+</script>
+
+<style is:global>
+  .luxury-hero{
+     height: 15vh;
+  }
+/* ── DISPOSITION VERTICALE ET PLEINE LARGEUR ── */
+/* 1. Passer le conteneur principal en colonne */
+#contact .contact-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  padding: 4rem 0 0 0;
+  gap: 3.5rem;
+}
+
+/* 2. Le formulaire et les textes occupent toute la largeur */
+#contact .contact-info {
+  width: 100%;
+  max-width: 1000px; /* Conserve une lisibilité optimale */
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#contact .contact-form {
+  width: 100%;
+  margin-top: 2.5rem;
+}
+
+#contact .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+#contact .form-group {
+  width: 100%;
+  margin-bottom: 1.25rem;
+}
+
+#contact .form-input,
+#contact .form-textarea,
+#contact .select-wrapper {
+  width: 100%;
+}
+
+/* 3. La carte s'affiche en bas sur 100% de la largeur */
+#contact .contact-map-container {
+  width: 100%;
+  max-width: 100%;
+  height: 480px;
+  margin-top: 1rem;
+}
+
+#contact .contact-map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ── ADAPTATION MOBILE ── */
+@media (max-width: 768px) {
+  #contact .contact-wrapper {
+    padding: 2rem 0 0 0;
+    gap: 2.5rem;
+  }
+
+  #contact .contact-info {
+    padding: 0 1.25rem;
+  }
+
+  #contact .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  #contact .contact-map-container {
+    height: 350px;
+  }
+}
+</style>

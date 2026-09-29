@@ -2,7 +2,7 @@
   {
     "id": "md40m1",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 40cm | Modèle 1",
+    "nom": "Meuble Dressing | 40 cm | Modèle 1",
     "forme": "D",
     "prix_initial": 920.000,
     "reduction": "",
@@ -52,7 +52,7 @@
   {
     "id": "md40m2",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 40cm | Modèle 2",
+    "nom": "Meuble Dressing | 40 cm | Modèle 2",
     "forme": "D",
     "prix_initial": 920.000,
     "reduction": "",
@@ -102,7 +102,7 @@
   {
     "id": "md40m3",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 40cm | Modèle 3",
+    "nom": "Meuble Dressing | 40 cm | Modèle 3",
     "forme": "D",
     "prix_initial": 920.000,
     "reduction": "",
@@ -153,7 +153,7 @@
   {
     "id": "md50m1",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 50cm | Modèle 1",
+    "nom": "Meuble Dressing | 50 cm | Modèle 1",
     "forme": "D",
     "prix_initial": 880.000,
     "reduction": "",
@@ -203,7 +203,7 @@
   {
     "id": "md50m2",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 50cm | Modèle 2",
+    "nom": "Meuble Dressing | 50 cm | Modèle 2",
     "forme": "D",
     "prix_initial": 995.000,
     "reduction": "",
@@ -253,7 +253,7 @@
   {
     "id": "md50m3",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 50cm | Modèle 3",
+    "nom": "Meuble Dressing | 50 cm | Modèle 3",
     "forme": "D",
     "prix_initial": 920.000,
     "reduction": "",
@@ -304,7 +304,7 @@
   {
     "id": "md60m1",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 60cm | Modèle 1",
+    "nom": "Meuble Dressing | 60 cm | Modèle 1",
     "forme": "D",
     "prix_initial": 1080.000,
     "reduction": "",
@@ -354,7 +354,7 @@
   {
     "id": "md60m2",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 60cm | Modèle 2",
+    "nom": "Meuble Dressing | 60 cm | Modèle 2",
     "forme": "D",
     "prix_initial": 995.000,
     "reduction": "",
@@ -404,7 +404,7 @@
   {
     "id": "md60m3",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 60cm | Modèle 3",
+    "nom": "Meuble Dressing | 60 cm | Modèle 3",
     "forme": "D",
     "prix_initial": 1220.000,
     "reduction": "",
@@ -455,7 +455,7 @@
   {
     "id": "md70m1",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 70cm | Modèle 1",
+    "nom": "Meuble Dressing | 70 cm | Modèle 1",
     "forme": "D",
     "prix_initial": 1245.000,
     "reduction": "",
@@ -505,7 +505,7 @@
   {
     "id": "md70m2",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 70cm | Modèle 2",
+    "nom": "Meuble Dressing | 70 cm | Modèle 2",
     "forme": "D",
     "prix_initial": 1090.000,
     "reduction": "",
@@ -555,7 +555,7 @@
   {
     "id": "md70m3",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 70cm | Modèle 3",
+    "nom": "Meuble Dressing | 70 cm | Modèle 3",
     "forme": "D",
     "prix_initial": 1375.000,
     "reduction": "",
@@ -606,7 +606,7 @@
   {
     "id": "md80m1",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 80cm | Modèle 1",
+    "nom": "Meuble Dressing | 80 cm | Modèle 1",
     "forme": "D",
     "prix_initial": 1320.000,
     "reduction": "",
@@ -656,7 +656,7 @@
   {
     "id": "md80m2",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 80cm | Modèle 2",
+    "nom": "Meuble Dressing | 80 cm | Modèle 2",
     "forme": "D",
     "prix_initial": 1150.000,
     "reduction": "",
@@ -706,7 +706,7 @@
   {
     "id": "md80m3",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 80cm | Modèle 3",
+    "nom": "Meuble Dressing | 80 cm | Modèle 3",
     "forme": "D",
     "prix_initial": 1450.000,
     "reduction": "",
@@ -757,7 +757,7 @@
   {
     "id": "md90m1",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 90cm | Modèle 1",
+    "nom": "Meuble Dressing | 90 cm | Modèle 1",
     "forme": "D",
     "prix_initial": 1400.000,
     "reduction": "",
@@ -807,7 +807,7 @@
   {
     "id": "md90m2",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 90cm | Modèle 2",
+    "nom": "Meuble Dressing | 90 cm | Modèle 2",
     "forme": "D",
     "prix_initial": 1220.000,
     "reduction": "",
@@ -857,7 +857,7 @@
   {
     "id": "md90m3",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing | 90cm | Modèle 3",
+    "nom": "Meuble Dressing | 90 cm | Modèle 3",
     "forme": "D",
     "prix_initial": 1530.000,
     "reduction": "",
@@ -908,7 +908,7 @@
   {
     "id": "md110m1",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing de Coin | 110cm | Modèle 1",
+    "nom": "Meuble Dressing de Coin | 110 cm | Modèle 1",
     "forme": "D",
     "prix_initial": 1395.000,
     "reduction": "",
@@ -957,7 +957,7 @@
   {
     "id": "md110m2",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing de Coin | 110cm | Modèle 2",
+    "nom": "Meuble Dressing de Coin | 110 cm | Modèle 2",
     "forme": "D",
     "prix_initial": 1595.000,
     "reduction": "",
@@ -1006,7 +1006,7 @@
   {
     "id": "md110m2",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing de Coin | 110cm | Modèle 2",
+    "nom": "Meuble Dressing de Coin | 110 cm | Modèle 2",
     "forme": "D",
     "prix_initial": 1595.000,
     "reduction": "",
@@ -1055,7 +1055,7 @@
   {
     "id": "mcb15pb",
     "categorie": "Meubles",
-    "nom": "Meuble Bas de 15cm avec une porte bouteille",
+    "nom": "Meuble Bas de 15 cm avec une porte bouteille",
     "forme": "B",
     "prix_initial": 410.000,
     "reduction": "",
@@ -1094,7 +1094,7 @@
   {
     "id": "mcb30et",
     "categorie": "Meubles",
-    "nom": "Meuble Bas de 30cm avec étagère",
+    "nom": "Meuble Bas de 30 cm avec étagère",
     "forme": "B",
     "prix_initial": 315.000,
     "reduction": "",
@@ -1133,7 +1133,7 @@
   {
     "id": "mcb30pp",
     "categorie": "Meubles",
-    "nom": "Meuble Bas de 30cm avec porte pain",
+    "nom": "Meuble Bas de 30 cm avec porte pain",
     "forme": "B",
     "prix_initial": 505.000,
     "reduction": "",
@@ -1173,7 +1173,7 @@
   {
     "id": "mcb40et",
     "categorie": "Meubles",
-    "nom": "Meuble Bas de 40cm avec étagère",
+    "nom": "Meuble Bas de 40 cm avec étagère",
     "forme": "B",
     "prix_initial": 265.000,
     "reduction": "",
@@ -1212,7 +1212,7 @@
   {
     "id": "mcb40pp",
     "categorie": "Meubles",
-    "nom": "Meuble Bas de 40cm avec porte pain",
+    "nom": "Meuble Bas de 40 cm avec porte pain",
     "forme": "B",
     "prix_initial": 640.000,
     "reduction": "",
@@ -1252,7 +1252,7 @@
   {
     "id": "mcb45et",
     "categorie": "Meubles",
-    "nom": "Meuble Bas de 45cm avec étagère",
+    "nom": "Meuble Bas de 45 cm avec étagère",
     "forme": "B",
     "prix_initial": 280.000,
     "reduction": "",
@@ -1291,7 +1291,7 @@
   {
     "id": "mcb45pp",
     "categorie": "Meubles",
-    "nom": "Meuble Bas de 45cm avec porte pain",
+    "nom": "Meuble Bas de 45 cm avec porte pain",
     "forme": "B",
     "prix_initial": 660.000,
      "reduction": "",
@@ -1331,7 +1331,7 @@
   {
     "id": "mcb60et",
     "categorie": "Meubles",
-    "nom": "Meuble Bas de 60cm avec étagère",
+    "nom": "Meuble Bas de 60 cm avec étagère",
     "forme": "B",
     "prix_initial": 315.000,
     "reduction": "",
@@ -1370,7 +1370,7 @@
   {
     "id": "mcb602t",
     "categorie": "Meubles",
-    "nom": "Meuble Bas de 60cm avec deux Tiroirs",
+    "nom": "Meuble Bas de 60 cm avec deux Tiroirs",
     "forme": "B",
     "prix_initial": 440.000,
      "reduction": "",
@@ -1409,7 +1409,7 @@
   {
     "id": "mcb603t",
     "categorie": "Meubles",
-    "nom": "Meuble Bas de 60cm avec Trois Tiroirs",
+    "nom": "Meuble Bas de 60 cm avec Trois Tiroirs",
     "forme": "B",
     "prix_initial": 530.000,
     "reduction": "",
@@ -1484,7 +1484,7 @@
   {
     "id": "mcb80et",
     "categorie": "Meubles",
-    "nom": "Meuble Bas de 80cm avec étagère",
+    "nom": "Meuble Bas de 80 cm avec étagère",
     "forme": "B",
     "prix_initial": 405.000,
     "reduction": "",
@@ -1523,7 +1523,7 @@
   {
     "id": "mcb90et",
     "categorie": "Meubles",
-    "nom": "Meuble Bas de 90cm avec étagère",
+    "nom": "Meuble Bas de 90 cm avec étagère",
     "forme": "B",
     "prix_initial": 430.000,
     "reduction": "",
@@ -1562,7 +1562,7 @@
   {
     "id": "mcb902t",
     "categorie": "Meubles",
-    "nom": "Meuble Bas de 90cm avec deux Tiroir",
+    "nom": "Meuble Bas de 90 cm avec deux Tiroir",
     "forme": "B",
     "prix_initial": 575.000,
     "reduction": "",
@@ -1600,7 +1600,7 @@
   {
     "id": "mcb903t",
     "categorie": "Meubles",
-    "nom": "Meuble Bas de 90cm avec Trois Tiroir",
+    "nom": "Meuble Bas de 90 cm avec Trois Tiroir",
     "forme": "B",
     "prix_initial": 630.000,
     "reduction": "",
@@ -1639,7 +1639,7 @@
   {
     "id": "mcb120et",
     "categorie": "Meubles",
-    "nom": "Meuble Bas de 120cm avec étagère",
+    "nom": "Meuble Bas de 120 cm avec étagère",
     "forme": "B",
     "prix_initial": 525.000,
     "reduction": "",
@@ -1678,7 +1678,7 @@
   {
     "id": "mcbe60",
     "categorie": "Meubles",
-    "nom": "Meuble Bas sous Evier de 60cm",
+    "nom": "Meuble Bas sous Evier de 60 cm",
     "forme": "B",
     "prix_initial": 285.000,
     "reduction": "",
@@ -1716,7 +1716,7 @@
   {
     "id": "mcbe90",
     "categorie": "Meubles",
-    "nom": "Meuble Bas sous Evier de 90cm",
+    "nom": "Meuble Bas sous Evier de 90 cm",
     "forme": "B",
     "prix_initial": 390.000,
     "reduction": "",
@@ -1754,7 +1754,7 @@
   {
     "id": "mcbe120",
     "categorie": "Meubles",
-    "nom": "Meuble Bas sous Evier de 120cm",
+    "nom": "Meuble Bas sous Evier de 120 cm",
     "forme": "B",
     "prix_initial": 450.000,
     "reduction": "",
@@ -1792,7 +1792,7 @@
   {
     "id": "mcbc105",
     "categorie": "Meubles",
-    "nom": "Meuble Bas de coin de 105cm",
+    "nom": "Meuble Bas de coin de 105 cm",
     "forme": "B",
     "prix_initial": 395.000,
     "reduction": "",
@@ -1831,7 +1831,7 @@
   {
     "id": "mcbc110",
     "categorie": "Meubles",
-    "nom": "Meuble Bas de coin de 110cm",
+    "nom": "Meuble Bas de coin de 110 cm",
     "forme": "B",
     "prix_initial": 400.000,
     "reduction": "",
@@ -1870,7 +1870,7 @@
   {
     "id": "mch30",
     "categorie": "Meubles",
-    "nom": "Meuble Haut de 30cm avec étagère",
+    "nom": "Meuble Haut de 30 cm avec étagère",
     "forme": "H",
     "prix_initial": 200.000,
     "reduction": "",
@@ -1908,7 +1908,7 @@
   {
     "id": "mch40",
     "categorie": "Meubles",
-    "nom": "Meuble Haut de 40cm avec étagère",
+    "nom": "Meuble Haut de 40 cm avec étagère",
     "forme": "H",
     "prix_initial": 220.000,
      "reduction": "",
@@ -1946,7 +1946,7 @@
   {
     "id": "mch45",
     "categorie": "Meubles",
-    "nom": "Meuble Haut de 45cm avec étagère",
+    "nom": "Meuble Haut de 45 cm avec étagère",
     "forme": "H",
     "prix_initial": 235.000,
     "reduction": "",
@@ -1984,7 +1984,7 @@
   {
     "id": "mch60",
     "categorie": "Meubles",
-    "nom": "Meuble Haut de 60cm avec étagère",
+    "nom": "Meuble Haut de 60 cm avec étagère",
     "forme": "H",
     "prix_initial": 270.000,
      "reduction": "",
@@ -2022,7 +2022,7 @@
   {
     "id": "mch60-basculante",
     "categorie": "Meubles",
-    "nom": "Meuble Haut de 60cm Basculante",
+    "nom": "Meuble Haut de 60 cm Basculante",
     "forme": "H",
     "prix_initial": 370.000,
      "reduction": "",
@@ -2059,7 +2059,7 @@
   {
     "id": "mch80",
     "categorie": "Meubles",
-    "nom": "Meuble Haut de 80cm avec étagère",
+    "nom": "Meuble Haut de 80 cm avec étagère",
     "forme": "H",
     "prix_initial": 360.000,
     "reduction": "",
@@ -2097,7 +2097,7 @@
   {
     "id": "mch90",
     "categorie": "Meubles",
-    "nom": "Meuble Haut de 90cm avec étagère",
+    "nom": "Meuble Haut de 90 cm avec étagère",
     "forme": "H",
     "prix_initial": 385.000,
     "reduction": "",
@@ -2135,7 +2135,7 @@
   {
     "id": "mch90-basculante",
     "categorie": "Meubles",
-    "nom": "Meuble Haut de 90cm Basculante",
+    "nom": "Meuble Haut de 90 cm Basculante",
     "forme": "H",
     "prix_initial": 460.000,
     "reduction": "",
@@ -2172,7 +2172,7 @@
   {
     "id": "mch65-coin",
     "categorie": "Meubles",
-    "nom": "Meuble Haut de coin de 65cm avec étagère",
+    "nom": "Meuble Haut de coin de 65 cm avec étagère",
     "forme": "H",
     "prix_initial": 325.000,
     "reduction": "",
@@ -2210,7 +2210,7 @@
   {
     "id": "mch60-hotte",
     "categorie": "Meubles",
-    "nom": "Meuble Haut pour Hotte de 60cm",
+    "nom": "Meuble Haut pour Hotte de 60 cm",
     "forme": "H",
     "prix_initial": 190.000,
     "reduction": "",
@@ -2247,7 +2247,7 @@
   {
     "id": "mch80-hotte",
     "categorie": "Meubles",
-    "nom": "Meuble Haut pour Hotte de 80cm",
+    "nom": "Meuble Haut pour Hotte de 80 cm",
     "forme": "H",
     "prix_initial": 235.000,
     "reduction": "",
@@ -2284,7 +2284,7 @@
   {
     "id": "mch90-hotte",
     "categorie": "Meubles",
-    "nom": "Meuble Haut pour Hotte de 90cm",
+    "nom": "Meuble Haut pour Hotte de 90 cm",
     "forme": "H",
     "prix_initial": 235.000,
     "reduction": "",
@@ -2321,7 +2321,7 @@
   {
     "id": "mcc45-1p",
     "categorie": "Meubles",
-    "nom": "Meuble Colonne de 45cm 1 Porte avec étagère",
+    "nom": "Meuble Colonne de 45 cm 1 Porte avec étagère",
     "forme": "C",
     "prix_initial": 665.000,
     "reduction": "",
@@ -2359,7 +2359,7 @@
   {
     "id": "mcc45-2p",
     "categorie": "Meubles",
-    "nom": "Meuble Colonne de 45cm 2 Portes avec étagère",
+    "nom": "Meuble Colonne de 45 cm 2 Portes avec étagère",
     "forme": "C",
     "prix_initial": 700.000,
     "reduction": "",
@@ -2397,7 +2397,7 @@
   {
     "id": "mcc60-1p",
     "categorie": "Meubles",
-    "nom": "Meuble Colonne de 60cm 1 Porte avec étagère",
+    "nom": "Meuble Colonne de 60 cm 1 Porte avec étagère",
     "forme": "C",
     "prix_initial": 735.000,
     "reduction": "",
@@ -2435,7 +2435,7 @@
   {
     "id": "mcc60-2p",
     "categorie": "Meubles",
-    "nom": "Meuble Colonne de 60cm 2 Portes avec étagère",
+    "nom": "Meuble Colonne de 60 cm 2 Portes avec étagère",
     "forme": "C",
     "prix_initial": 745.000,
     "reduction": "",
@@ -2473,7 +2473,7 @@
   {
     "id": "mccfour-60",
     "categorie": "Meubles",
-    "nom": "Meuble Colonne Four de 60cm",
+    "nom": "Meuble Colonne Four de 60 cm",
     "forme": "C",
     "prix_initial": 670.000,
      "reduction": "",
@@ -2511,7 +2511,7 @@
   {
     "id": "mccfour-mo-60",
     "categorie": "Meubles",
-    "nom": "Meuble Colonne Four Micro onde de 60cm",
+    "nom": "Meuble Colonne Four Micro onde de 60 cm",
     "forme": "C",
     "prix_initial": 685.000,
     "reduction": "",
@@ -2549,7 +2549,7 @@
   {
     "id": "mccfrigo-60-2p",
     "categorie": "Meubles",
-    "nom": "Meuble Colonne Frigo de 60cm avec 2 Portes",
+    "nom": "Meuble Colonne Frigo de 60 cm avec 2 Portes",
     "forme": "C",
     "prix_initial": 735.000,
     "reduction": "",

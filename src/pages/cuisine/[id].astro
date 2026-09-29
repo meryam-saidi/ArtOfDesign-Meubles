@@ -2,6 +2,7 @@
 // src/pages/cuisine/[id].astro
 import Layout from '../../layouts/Layout.astro';
 import cuisinesData from '../../data/cuisines.json';
+import '../../styles/details.css';
 
 export async function getStaticPaths() {
   return cuisinesData.map((cuisine) => {
@@ -26,6 +27,7 @@ const compoCol2 = cuisine.caracteristiques_techniques.composition_type.slice(mil
 
 <Layout title="Nos Cuisines | Art Of Design" theme="dark">
   <main class="details-page">
+    <!--
     <section class="details-hero">
       <div class="details-hero-viewport">
         <img 
@@ -37,12 +39,11 @@ const compoCol2 = cuisine.caracteristiques_techniques.composition_type.slice(mil
       </div>
       
       <div class="hero-details-scroll">
-      <!-- <span>{cuisine.nom}</span>  -->
        <span>{cuisine.nom}</span>
       <div class="scroll-details-line"></div>
     </div>
     </section>
-
+    -->
     <div class="product-container">
       <nav class="breadcrumb">
           <a href="/">Accueil</a>
@@ -109,8 +110,19 @@ const compoCol2 = cuisine.caracteristiques_techniques.composition_type.slice(mil
           </div>
           
           <div class="specs-block">
-            <p><strong class="spec-paragraph">Dimensions caisson bas </strong> <br /> hauteur {cuisine.dimensions.caisson_bas.hauteur} <br /> profondeur {cuisine.dimensions.caisson_bas.profondeur}</p>
-            <p><strong class="spec-paragraph">Dimensions caisson haut </strong> <br /> hauteur {cuisine.dimensions.caisson_haut.hauteur} <br /> profondeur {cuisine.dimensions.caisson_haut.profondeur}</p>
+            <p>
+              <strong class="spec-paragraph">Dimensions caisson bas </strong> <br /> 
+              hauteur {cuisine.dimensions.caisson_bas.hauteur} <br /> 
+              profondeur {cuisine.dimensions.caisson_bas.profondeur}
+            </p>
+            
+            {cuisine.forme !== 'Ilot' && cuisine.dimensions.caisson_haut && (
+              <p>
+                <strong class="spec-paragraph">Dimensions caisson haut </strong> <br /> 
+                hauteur {cuisine.dimensions.caisson_haut.hauteur} <br /> 
+                profondeur {cuisine.dimensions.caisson_haut.profondeur}
+              </p>
+            )}
           </div>
 
           <div class="nuancier-block">

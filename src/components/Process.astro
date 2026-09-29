@@ -1,14 +1,16 @@
 ---
+import '../styles/process.css'; 
+
 ---
 
-<section id="process-premium">
+<section id="process-premium"> 
   <div class="process-minimal-container">
     <div class="process-split-layout">
       
       <div class="process-raw-list">
         <div class="process-header">
-          <span class="section-label">le Processus<br /></span> 
-          <h2 class="section-title">De l'idée à la matière
+          <span class="section-header-eyebrow reveal">le Processus<br /></span> 
+          <h2 class="section-header-title reveal">De l'idée à la matière
             <!-- <span class="title-serif">matière</span> -->
           </h2>
         </div>
@@ -18,7 +20,7 @@
           { n: 'III', title: 'Fabrication', desc: 'Raffinement des matériaux et confection.' },
           { n: 'IV', title: 'Installation', desc: 'Ajustement ultime in situ pour un rendu parfait.' },
         ].map((step) => (
-          <div class="process-raw-item">
+          <div class="process-raw-item reveal">
             <div class="item-meta">
               <span class="item-roman">{step.n}</span>
               <!-- <div class="item-dot"></div> -->
@@ -31,7 +33,7 @@
         ))}
       </div>
 
-      <div class="process-media-column">
+      <div class="process-media-column reveal">
         <div class="comparison-slider" id="project-slider">
           
           <img class="image-after" src="/images/autres/kitchen_categorie.jpg" alt="Projet Réalisé" />
@@ -83,8 +85,19 @@
       slider.addEventListener('touchmove', (e) => moveSlider(e.touches[0]));
     }
 
-    window.addEventListener('load', () => {
-      setTimeout(initProcessContactScroll, 300);
-    });
 </script>
 
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // ── SCROLL REVEAL ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+  });
+</script>

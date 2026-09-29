@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import cuisinesData from '../data/cuisines.json';
+import '../styles/details.css';
+
 
 // On définit les sections que l'on veut afficher
 const sectionsInfos = [
@@ -41,31 +43,32 @@ const sectionsInfos = [
 ---
 
 <Layout title="Conseils d'Aménagement | AD Cuisine" theme="dark">
-  <main class="">
+  <main class="bg-white">
     <!--
-    <section class="bg-gray-50 py-20 border-b border-gray-100">
-      <div class="max-w-4xl mx-auto px-6 text-center">
-        <h1 class="font-serif text-4xl md:text-5xl mb- italic">
-          Bien choisir la <span class="text-[var(--color-gold)]">forme de sa cuisine</span>
+    <section class="cuisine-intro">
+      <div class="cuisine-intro-content">
+        <h1>
+          Bien choisir la forme de sa cuisine
         </h1>
-        <p class="text-gray-500 leading-relaxed font-light">
-          L'implantation est la clé d'une cuisine fonctionnelle. Découvrez nos conseils pour choisir la configuration qui sublimera votre intérieur selon vos besoins.
+        <p>
+          L'implantation est la clé d'une cuisine fonctionnelle. Découvrez nos conseils
+          pour choisir la configuration qui sublimera votre intérieur selon vos besoins.
         </p>
       </div>
     </section>
-    -->
+     -->
     <div class="catalog-filter-bar">
-      <nav class="luxury-breadcrumb">
+      <nav class="breadcrumb">
         <a href="/">Accueil</a>
         <span class="separator">/</span>
-        <span class="current">Conseils d'Aménagement</span>
+        <span class="active-crumb-text">Conseils d'Aménagement</span>
       </nav>
     </div>
 
-    <div class="">
+    <div class="items-container">
       {sectionsInfos.map((item, index) => (
-        <section id={item.id} class={`py-20 scroll-mt-24 ${index % 2 !== 0 ? 'bg-gray-50' : 'bg-white'}`}>
-          <div class="max-w-7xl mx-auto px-6">
+        <section id={item.id} class={`py-14 scroll-mt-24 ${index % 2 !== 0 ? 'bg-gray-50' : 'bg-white'}`}>
+          <div class="configurations">
             <div class={`flex flex-col md:flex-row items-center gap-12 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
               
               <div class="w-full md:w-1/2 relative group">
@@ -78,14 +81,14 @@ const sectionsInfos = [
               </div>
 
               <div class="w-full md:w-1/2">
-                <span class="text-[var(--color-gold)] font-bold text-xs uppercase tracking-[0.3em] mb-4 block">Configuration</span>
-                <h2 class="font-serif text-3xl md:text-4xl mb-6 italic text-gray-900">{item.title}</h2>
+                <span class="brand-badge">Configuration</span>
+                <h2 class="product-title">{item.title}</h2>
                 <p class="text-gray-600 mb-8 leading-relaxed font-light text-lg">
                   {item.description}
                 </p>
                 
                 <div class="space-y-4">
-                  <h4 class="font-bold text-xs uppercase tracking-widest text-black">Points forts :</h4>
+                  <h4 class="nuancier-title">Points forts :</h4>
                   <ul class="space-y-3">
                     {item.avantages.map((adv) => (
                       <li class="flex items-center gap-3 text-sm text-gray-500">
@@ -130,11 +133,53 @@ const sectionsInfos = [
 </Layout>
 
 <style> 
+  .cuisine-intro {
+    background-color: #f9fafb; /* bg-gray-50 */
+    padding-top: 10rem;         /* pt-20 */
+    padding-bottom: 5rem;      /* py-20 */
+    border-bottom: 1px solid #f3f4f6; /* border-gray-100 */
+  }
+
+  .cuisine-intro-content {
+    margin: 0 auto;
+    padding: 0 1.5rem; /* px-6 */
+    text-align: center;
+  }
+
+  .cuisine-intro h1 {
+   font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .cuisine-intro p {
+    margin: 0;
+    color: #6b7280; /* text-gray-500 */
+    line-height: 1.625; /* leading-relaxed */
+    font-weight: 300; /* font-light */
+  }
+
+  /* md:text-5xl */
+  @media (min-width: 768px) {
+    .cuisine-intro h1 {
+      font-size: 3rem;
+    }
+  }
+
+  .configurations{
+    padding: 0 4rem;
+  }
+  
   .catalog-filter-bar {
-    padding: 2rem 4rem;
-    background-color: #f9f9f9;
-    border-bottom: 1px solid #e5e5e5;
-    padding-top: 6rem;
+    padding: 12rem 2rem 0rem 2em;
+    background-color: white;
+    margin: 0rem 2rem;
+  }
+  .breadcrumb{
+    margin-bottom: 0rem;
   }
   .luxury-breadcrumb a {
     color: black;

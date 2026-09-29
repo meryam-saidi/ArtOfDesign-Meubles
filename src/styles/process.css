@@ -1,0 +1,217 @@
+/* ==========================================================================
+    SECTION PROCESS
+    ========================================================================== */
+    /* ── SPLIT LAYOUT PROCESSUS & SLIDER ── */
+  #process-premium {
+    background: var(--obsidian);
+    padding: 4rem 4rem 4rem 6rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .process-minimal-container {
+    max-width: fit-content;
+    margin: 0 auto;
+    padding-bottom: 2.5rem;
+  }
+
+  .process-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .process-header .section-label {
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    /*text-transform: uppercase;*/
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+
+  .process-header .section-title {
+      font-size: 1.5rem;
+      font-weight: 300;
+      line-height: 1.3;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #ffffff;
+  }
+
+  .process-split-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr; /* Étapes à gauche, Slider à droite */
+    gap: 6rem;
+    align-items: center;
+    margin-top: 5rem;
+  }
+
+  /* --- COLONNE GAUCHE : REPRISE TYPOGRAPHIE --- */
+  .process-raw-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .process-raw-item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.5s ease;
+  }
+
+  .process-raw-list :last-child {
+    border-bottom: 0px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .item-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-right: 1.5rem;
+  }
+
+  .item-roman {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    background: transparent;
+    transform: translateY(-2px);
+    transition: all 0.4s ease;
+    padding-top: 0.5rem;
+  }
+
+  .item-dot {
+    width: 4px;
+    height: 4px;
+    background: transparent;
+    border-radius: 50%;
+    transform: translateY(-2px);
+    transition: all 0.4s ease;
+  }
+
+  .item-body {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 1.5rem;
+    align-items: baseline;
+  }
+
+  .item-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: rgba(247, 245, 240, 0.8);
+  }
+
+  .item-desc {
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: rgba(247, 245, 240, 0.4);
+  }
+
+  /* Interactions sur le texte au survol */
+  .process-raw-item:hover { border-top-color: rgba(201, 168, 76, 0.3); }
+  .process-raw-item:hover .item-roman { color: var(--gold); }
+  .process-raw-item:hover .item-dot { background: var(--gold); box-shadow: 0 0 8px var(--gold); }
+  .process-raw-item:hover .item-title { color: #ffffff; }
+  .process-raw-item:hover .item-desc { color: rgba(247, 245, 240, 0.7); }
+
+
+  /* --- COLONNE DROITE : COMPOSANT SLIDER AVANT/APRÈS --- */
+  .process-media-column {
+    display: flex;
+    justify-content: center;
+  }
+
+  .comparison-slider {
+    --slider-pos: 50%; /* Position par défaut (milieu) */
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+    background: #111;
+    user-select: none;
+  }
+
+  .comparison-slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
+
+  /* Image 3D (Devant) contrôlée par la variable CSS */
+  .image-before-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    /* Utilisation du clip-path pour révéler l'image du dessous selon le pourcentage */
+    clip-path: polygon(0 0, var(--slider-pos) 0, var(--slider-pos) 100%, 0 100%);
+  }
+
+  /* La ligne séparatrice */
+  .slider-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--slider-pos);
+    width: 1px;
+    background: rgba(201, 168, 76, 0.4);
+    z-index: 3;
+    pointer-events: none;
+    transform: translateX(-50%);
+  }
+
+  /* Petit bouton central discret */
+  .handle-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 36px;
+    height: 36px;
+    background: var(--obsidian);
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 0.8rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  }
+
+  /* Badges de contexte */
+  .badge-slider {
+    position: absolute;
+    bottom: 1.5rem;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 0.4rem 0.8rem;
+    background: rgba(18, 18, 18, 0.7);
+    backdrop-filter: blur(4px);
+    color: #f7f5f0;
+    border: 1px solid rgba(255,255,255,0.05);
+    z-index: 4;
+    pointer-events: none;
+  }
+  .badge-before { left: 1.5rem; border-left: 2px solid var(--gold); }
+  .badge-after { right: 1.5rem; border-left: 2px solid var(--gold);}
+
+
+  /* ── RESPONSIVE TAILLES MOBILES ── */
+  @media (max-width: 992px) {
+    #process-premium { padding: 8rem 2rem; }
+    .process-split-layout { grid-template-columns: 1fr; gap: 4rem; }
+    .item-body { grid-template-columns: 1fr; gap: 0.5rem; }
+    .comparison-slider { max-width: 100%; aspect-ratio: 4/5; }
+  }

@@ -1,183 +1,751 @@
 [
   {
-    "id": "proj-001",
-    "nom": "projet Aurora-M | 320cm",
-    "slug": "projet-aurora-m",
-    "forme": "Cuisine",
+    "id": "p1",
+    "nom": "Appartement Kram",
     "description": "Transformation complète d'une cuisine 18m². Du relevé de côtes au rendu 3D, jusqu'à la pose finale en 12 jours.",
     "categorie": "Projets",
-    "prix_initiaC": 4500,
-    "reduction": 25,
     "catalogue_images": [
-      {"image3d": "/images/autres/sketch.png"},
-      {"image": "/images/Projets/cuisines/6cuisine finition modif 6.jpg"}
-    ],
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
+      {
+        "titre": "Cuisine — Conception 3D Vue 1",
+        "image3d": "/images/Projets/Appartement Kram/01 cuisine 3d1.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Vue 2",
+        "image3d": "/images/Projets/Appartement Kram/01 cuisine 3d2.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Appartement Kram/01 cuisine Reel2.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 3",
+        "image": "/images/Projets/Appartement Kram/01 cuisine Reel3.png"
+      },
+      {
+        "titre": "Cuisine — Angle Secondaire 3D Vue 1",
+        "image3d": "/images/Projets/Appartement Kram/02 cuisine 3d1.jpg"
+      },
+      {
+        "titre": "Cuisine — Angle Secondaire 3D Vue 2",
+        "image3d": "/images/Projets/Appartement Kram/02 cuisine 3d2.jpg"
+      },
+      {
+        "titre": "Cuisine — Angle Secondaire Réel Vue 4",
+        "image": "/images/Projets/Appartement Kram/02 cuisine Reel4.jpeg"
+      },
+      {
+        "titre": "Cuisine — Angle Secondaire Réel Vue 3",
+        "image": "/images/Projets/Appartement Kram/02 cuisine Reel3.jpeg"
+      },
+      {
+        "titre": "Cuisine — Vue d'Ensemble Réelle",
+        "image": "/images/Projets/Appartement Kram/03 cuisine Reel1.jpg"
+      },
+      {
+        "titre": "Dressing — Module 1 Conception 3D",
+        "image3d": "/images/Projets/Appartement Kram/05 Dressing 3D.jpg"
+      },
+      {
+        "titre": "Dressing — Module 1 Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Appartement Kram/05 Dressing Reel1.jpg"
+      },
+      {
+        "titre": "Dressing — Module 1 Réalisation Réelle Vue 3",
+        "image": "/images/Projets/Appartement Kram/05 Dressing Reel3.png"
+      },
+      {
+        "titre": "Dressing — Module 2 Conception 3D",
+        "image3d": "/images/Projets/Appartement Kram/06 Dressing 3D.jpg"
+      },
+      {
+        "titre": "Dressing — Module 2 Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Appartement Kram/06 Dressing Reel1.jpeg"
+      },
+      {
+        "titre": "Dressing — Module 2 Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Appartement Kram/06 Dressing Reel2.jpeg"
+      },
+      {
+        "titre": "Dressing — Module 3 Conception 3D",
+        "image3d": "/images/Projets/Appartement Kram/07 Dressing 3D.jpg"
+      },
+      {
+        "titre": "Dressing — Module 3 Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Appartement Kram/07 Dressing Reel1.jpeg"
+      },
+      {
+        "titre": "Dressing — Module 3 Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Appartement Kram/07 Dressing Reel2.jpeg"
+      },
+      {
+        "titre": "Dressing — Vue Intérieure Réelle 1",
+        "image": "/images/Projets/Appartement Kram/08 Dressing reel1.jpg"
+      },
+      {
+        "titre": "Dressing — Vue Intérieure Réelle 2",
+        "image": "/images/Projets/Appartement Kram/08 Dressing reel2.jpg"
+      },
+      {
+        "titre": "Dressing — Finitions Réelles Vue 1",
+        "image": "/images/Projets/Appartement Kram/09 Dressing reel1.jpg"
+      },
+      {
+        "titre": "Dressing — Finitions Réelles Vue 2",
+        "image": "/images/Projets/Appartement Kram/09 Dressing reel2.jpg"
+      },
+      {
+        "titre": "Dressing — Aperçu Global Réel Vue 1",
+        "image": "/images/Projets/Appartement Kram/10 Dressing reel1.jpg"
+      },
+      {
+        "titre": "Dressing — Aperçu Global Réel Vue 2",
+        "image": "/images/Projets/Appartement Kram/10 Dressing  reel2.jpeg"
+      }
     ]
   },
   {
-    "id": "proj-002",
-    "nom": "projet Roma D-L | 400cm",
-    "slug": "projet-roma-dl",
-    "forme": "Cuisine",
-    "description": "Dressing sur mesure en forme L, 8m². Intérieur en noyer, îlot central, éclairage scénographique.",
-    "categorie": "Projets",
-    "prix_initial": 5200,
-    "reduction": 15,
-    "catalogue_images": [
-      {"image3d": "/images/autres/sketch.png"},
-      {"image": "/images/Projets/cuisines/cuisine 2eme etage 1.jpg"}
-    ],
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
-    ]
-  },
-  {
-    "id": "proj-002",
-    "nom": "projet Roma D-L | 400cm",
-    "slug": "projet-roma-dl",
-    "forme": "Cuisine",
-    "description": "Cuisine linéaire 4,2m. Laqué blanc mat, plan quartz, éclairage LED filaire. Résultat époustouflant.",
-    "categorie": "Projets",
-    "prix_initial": 5200,
-    "reduction": 15,
-    "catalogue_images": [
-      {"image3d": "/images/autres/sketch.png"},
-      {"image": "/images/Projets/cuisines/cuisine 10.png"}
-    ],
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
-    ]
-  },
-  {
-    "id": "proj-002",
-    "nom": "projet Roma D-L | 400cm",
-    "slug": "projet-roma-dl",
-    "forme": "Cuisine",
-    "description": "Dressing sur mesure en forme L, 8m². Intérieur en noyer, îlot central, éclairage scénographique.",
-    "categorie": "Projets",
-    "prix_initial": 5200,
-    "reduction": 15,
-    "catalogue_images": [
-      {"image3d": "/images/autres/sketch.png"},
-      {"image": "/images/Projets/cuisines/cuisine 11.png"}
-    ],
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
-    ]
-  },
-  {
-    "id": "proj-002",
-    "nom": "projet Roma D-L | 400cm",
-    "slug": "projet-roma-dl",
-    "forme": "Cuisine",
-    "description": "Cuisine linéaire 4,2m. Laqué blanc mat, plan quartz, éclairage LED filaire. Résultat époustouflant.",
-    "categorie": "Projets",
-    "prix_initial": 5200,
-    "reduction": 15,
-    "catalogue_images": [
-      {"image3d": "/images/autres/sketch.png"},
-      {"image": "/images/Projets/cuisines/cuisine 12.png"}
-    ],
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/projet-blanc.jpg" }
-    ]
-  },
-  {
-    "id": "proj-003",
-    "nom": "projet Verveine-G | 450cm",
-    "slug": "projet-verveine-g",
-    "forme": "Cuisine",
+    "id": "p2",
+    "nom": "Cuisine Boumhel",
     "description": "Transformation complète d'une cuisine 18m². Du relevé de côtes au rendu 3D, jusqu'à la pose finale en 12 jours.",
     "categorie": "Projets",
-    "prix_initial": 6100,
-    "reduction": 20,
     "catalogue_images": [
-      {"image3d": "/images/autres/sketch.png"},
-      {"image": "/images/Projets/cuisines/cuisine modif3.jpg"}
-    ],
-    "en_stock": false,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/autres/projet-blanc.jpg" }
+      {
+        "titre": "Cuisine — Conception 3D Vue 1",
+        "image3d": "/images/Projets/Cuisine Boumhel/01 cuisine 3d1.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Vue 2",
+        "image3d": "/images/Projets/Cuisine Boumhel/01 cuisine 3d2.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Vue 3",
+        "image3d": "/images/Projets/Cuisine Boumhel/01 cuisine 3d3.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Vue 4",
+        "image3d": "/images/Projets/Cuisine Boumhel/01 cuisine 3d4.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Détails",
+        "image3d": "/images/Projets/Cuisine Boumhel/01 cuisine Détail.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Cuisine Boumhel/01 cuisine Reel1.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Cuisine Boumhel/01 cuisine Reel2.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 3",
+        "image": "/images/Projets/Cuisine Boumhel/01 cuisine Reel3.jpg"
+      }
+      
     ]
   },
   {
-    "id": "proj-004",
-    "nom": "projet forme-L | 750cm",
-    "slug": "projet-forme-l",
-    "forme": "Cuisine",
-    "description": "Dressing sur mesure en forme L, 8m². Intérieur en noyer, îlot central, éclairage scénographique.",
+    "id": "p3",
+    "nom": "Cuisine Manel",
+    "description": "Transformation complète d'une cuisine 18m². Du relevé de côtes au rendu 3D, jusqu'à la pose finale en 12 jours.",
     "categorie": "Projets",
-    "prix_initial": 5800,
-    "reduction": 10,
     "catalogue_images": [
-      {"image3d": "/images/autres/sketch.png"},
-      {"image": "/images/Projets/cuisines/salon 8 badr.jpg"}
-    ],
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/autres/projet-blanc.jpg" }
+      {
+        "titre": "Cuisine — Conception 3D Vue 1",
+        "image3d": "/images/Projets/Cuisine Manel Ksar/01 cuisine 3d.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Détails",
+        "image3d": "/images/Projets/Cuisine Manel Ksar/01 cuisine Détail.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Cuisine Manel Ksar/01 cuisine Reel1.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Cuisine Manel Ksar/01 cuisine Reel2.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 3",
+        "image": "/images/Projets/Cuisine Manel Ksar/01 cuisine Reel3.jpg"
+      }
     ]
   },
   {
-    "id": "proj-004",
-    "nom": "projet forme-L | 750cm",
-    "slug": "projet-forme-l",
-    "forme": "Dressing",
-    "description": "Dressing sur mesure en forme L, 8m². Intérieur en noyer, îlot central, éclairage scénographique.",
+    "id": "p4",
+    "nom": "Appartement Manouba",
+    "description": "Transformation complète d'une cuisine 18m². Du relevé de côtes au rendu 3D, jusqu'à la pose finale en 12 jours.",
     "categorie": "Projets",
-    "prix_initial": 5800,
-    "reduction": 10,
     "catalogue_images": [
-      {"image3d": "/images/autres/sketch.png"},
-      {"image": "/images/Projets/dressings/dress6.jpg"}
-    ],
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/autres/projet-blanc.jpg" }
+      {
+        "titre": "Cuisine — Conception 3D Vue 1",
+        "image3d": "/images/Projets/Cuisine Mme Amira Manouba/01 cuisine 3d1.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Vue 2",
+        "image3d": "/images/Projets/Cuisine Mme Amira Manouba/01 cuisine 3d2.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Détails",
+        "image3d": "/images/Projets/Cuisine Mme Amira Manouba/01 cuisine Détail.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Cuisine Mme Amira Manouba/01 cuisine Reel1.png"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Cuisine Mme Amira Manouba/01 cuisine Reel2.jpg"
+      },
+      {
+        "titre": "Dressing — Conception 3D Vue 1",
+        "image3d": "/images/Projets/Cuisine Mme Amira Manouba/02 Dressing 3D1.jpg"
+      },
+      {
+        "titre": "Dressing — Conception 3D Vue 2",
+        "image3d": "/images/Projets/Cuisine Mme Amira Manouba/02 Dressing 3D2.jpg"
+      },
+      {
+        "titre": "Dressing — Conception 3D Détails",
+        "image3d": "/images/Projets/Cuisine Mme Amira Manouba/02 Dressing Détail.jpg"
+      },
+      {
+        "titre": "Dressing — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Cuisine Mme Amira Manouba/02 Dressing Reel1.png"
+      },
+      {
+        "titre": "Dressing — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Cuisine Mme Amira Manouba/02 Dressing Reel2.png"
+      }
     ]
   },
   {
-    "id": "proj-004",
-    "nom": "projet forme-L | 750cm",
-    "slug": "projet-forme-l",
-    "forme": "Dressing",
-    "description": "Dressing sur mesure en forme L, 8m². Intérieur en noyer, îlot central, éclairage scénographique.",
+    "id": "p5",
+    "nom": "Cuisine Khoubaib",
+    "description": "Transformation complète d'une cuisine 18m². Du relevé de côtes au rendu 3D, jusqu'à la pose finale en 12 jours.",
     "categorie": "Projets",
-    "prix_initial": 5800,
-    "reduction": 10,
     "catalogue_images": [
-      {"image3d": "/images/autres/sketch.png"},
-      {"image": "/images/Projets/dressings/dress3.jpg"}
-    ],
-    "en_stock": true,
-    "variantes": [
-    { "couleur": "Anthracite", "code": "#2C2C2C", "image": "/images/autres/projet-anthracite.jpg" },
-    { "couleur": "Chêne Clair", "code": "#D2B48C", "image": "/images/autres/projet-chene.jpg" },
-    { "couleur": "Blanc Pur", "code": "#FFFFFF", "image": "/images/autres/projet-blanc.jpg" }
+      {
+        "titre": "Cuisine — Conception 3D Vue 1",
+        "image3d": "/images/Projets/Cuisine Koubayb/01 Cuisine 3D1.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Vue 2",
+        "image3d": "/images/Projets/Cuisine Koubayb/01 Cuisine 3D2.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Détails",
+        "image3d": "/images/Projets/Cuisine Koubayb/01 Cuisine Détail.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Cuisine Koubayb/01 Cuisine Reel1.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Cuisine Koubayb/01 Cuisine Reel2.jpg"
+      }
+    ]
+  },
+  {
+    "id": "p6",
+    "nom": "Cuisine Mourouj 6",
+    "description": "Transformation complète d'une cuisine 18m². Du relevé de côtes au rendu 3D, jusqu'à la pose finale en 12 jours.",
+    "categorie": "Projets",
+    "catalogue_images": [
+      {
+        "titre": "Cuisine — Conception 3D Détails",
+        "image3d": "/images/Projets/Cuisine mourouj 6/01 cuisine Détail.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Cuisine mourouj 6/01 cuisine Reel1.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Cuisine mourouj 6/01 cuisine Reel2.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 3",
+        "image": "/images/Projets/Cuisine mourouj 6/01 cuisine Reel3.png"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 4",
+        "image": "/images/Projets/Cuisine mourouj 6/01 cuisine Reel4.png"
+      }
+    ]
+  },
+  {
+    "id": "p7",
+    "nom": "Cuisine Ilot Centrale",
+    "description": "Transformation complète d'une cuisine 18m². Du relevé de côtes au rendu 3D, jusqu'à la pose finale en 12 jours.",
+    "categorie": "Projets",
+    "catalogue_images": [
+      {
+        "titre": "Cuisine — Conception 3D Vue 1",
+        "image3d": "/images/Projets/Ilot Centrale/01 Ilot 3D1.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Vue 2",
+        "image3d": "/images/Projets/Ilot Centrale/01 Ilot 3D2.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Détails",
+        "image3d": "/images/Projets/Ilot Centrale/01 Ilot Détail.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Ilot Centrale/01 Ilot Reel1.jpeg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Ilot Centrale/01 Ilot Reel2.jpeg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 3",
+        "image": "/images/Projets/Ilot Centrale/01 Ilot Reel3.jpg"
+      }
+    ]
+  },
+  {
+    "id": "p8",
+    "nom": "Maison Ranim",
+    "description": "Transformation complète d'une cuisine 18m². Du relevé de côtes au rendu 3D, jusqu'à la pose finale en 12 jours.",
+    "categorie": "Projets",
+    "catalogue_images": [
+      {
+        "titre": "Cuisine — Conception 3D Vue 1",
+        "image3d": "/images/Projets/Maison Ranim/01 cuisine 3d1.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Vue 2",
+        "image3d": "/images/Projets/Maison Ranim/01 cuisine 3d1.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Détails",
+        "image3d": "/images/Projets/Maison Ranim/01 cuisine Détail.jpg"
+      },
+      {
+        "titre": "Cuisine — Avant",
+        "image": "/images/Projets/Maison Ranim/01 cuisine Avant.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Maison Ranim/01 cuisine Reel1.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Maison Ranim/01 cuisine Reel2.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 3",
+        "image": "/images/Projets/Maison Ranim/01 cuisine Reel3.jpg"
+      },
+      {
+        "titre": "Meuble Tv — Conception 3D",
+        "image3d": "/images/Projets/Maison Ranim/02 Meuble tv 3D.jpg"
+      },
+      {
+        "titre": "Meuble Tv — Conception 3D Détails",
+        "image3d": "/images/Projets/Maison Ranim/02 Meuble tv Detail.jpg"
+      },
+      {
+        "titre": "Meuble Tv — Avant",
+        "image": "/images/Projets/Maison Ranim/02 Meuble tv avant.jpg"
+      },
+      {
+        "titre": "Meuble Tv — Réalisation Réelle Vue 0",
+        "image": "/images/Projets/Maison Ranim/02 Meuble tv Reel0.jpg"
+      },
+      {
+        "titre": "Meuble Tv — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Maison Ranim/02 Meuble tv Reel1.jpg"
+      },
+      {
+        "titre": "Meuble Tv — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Maison Ranim/02 Meuble tv Reel2.jpg"
+      },
+      {
+        "titre": "Meuble Tv — Réalisation Réelle Vue 3",
+        "image": "/images/Projets/Maison Ranim/02 Meuble tv Reel3.jpg"
+      },
+      {
+        "titre": "Meuble Tv — Réalisation Réelle Vue 4",
+        "image": "/images/Projets/Maison Ranim/02 Meuble tv Reel4.jpg"
+      },
+      {
+        "titre": "Meuble d'entrée — Conception 3D Détails",
+        "image3d": "/images/Projets/Maison Ranim/03 Meuble entree  détail.jpg"
+      },
+      {
+        "titre": "Meuble d'entrée — Avant",
+        "image": "/images/Projets/Maison Ranim/03 Meuble entree  Avant.jpg"
+      },
+      {
+        "titre": "Meuble d'entrée — Réalisation Réelle",
+        "image": "/images/Projets/Maison Ranim/03 Meuble entree  Reel.jpg"
+      },
+      {
+        "titre": "Dressing — Conception 3D",
+        "image3d": "/images/Projets/Maison Ranim/04 Dressing 3D.jpg"
+      },
+      {
+        "titre": "Dressing — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Maison Ranim/04 Dressing Reel1.jpg"
+      },
+      {
+        "titre": "Dressing — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Maison Ranim/04 Dressing Reel2.jpg"
+      },
+      {
+        "titre": "Dressing — Réalisation Réelle Vue 3",
+        "image": "/images/Projets/Maison Ranim/04 Dressing Reel3.jpg"
+      }
+    ]
+  },
+  {
+    "id": "p9",
+    "nom": "Villa Wassila",
+    "description": "Transformation complète d'une cuisine 18m². Du relevé de côtes au rendu 3D, jusqu'à la pose finale en 12 jours.",
+    "categorie": "Projets",
+    "catalogue_images": [
+      {
+        "titre": "Cuisine — Conception 3D Vue 1",
+        "image3d": "/images/Projets/Villa Wassila/01 cuisine 3D1.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Vue 2",
+        "image3d": "/images/Projets/Villa Wassila/01 cuisine 3D2.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Détails",
+        "image3d": "/images/Projets/Villa Wassila/01 cuisine Détail.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Villa Wassila/01 cuisine Reel1.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Villa Wassila/01 cuisine Reel2.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 3",
+        "image": "/images/Projets/Villa Wassila/01 cuisine Reel3.png"
+      },
+      {
+        "titre": "Dressing 1 — Conception 3D",
+        "image3d": "/images/Projets/Villa Wassila/02 CH P 3D.jpg"
+      },
+      {
+        "titre": "Dressing 1 — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Villa Wassila/02 CH P Reel1.jpg"
+      },
+      {
+        "titre": "Dressing 1 — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Villa Wassila/02 CH P Reel2.jpg"
+      },
+      {
+        "titre": "Dressing 2 — Conception 3D",
+        "image3d": "/images/Projets/Villa Wassila/03 CH filles 3D.jpg"
+      },
+      {
+        "titre": "Dressing 2 — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Villa Wassila/03 CH filles Reel 1.jpg"
+      },
+      {
+        "titre": "Dressing 2 — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Villa Wassila/03 CH filles Reel 2.jpg"
+      },
+      {
+        "titre": "Meuble d'entrée 1 — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Villa Wassila/04 Meuble entree Reel 1.jpg"
+      },
+      {
+        "titre": "Meuble d'entrée 1 — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Villa Wassila/04 Meuble entree Reel 1.jpg"
+      },
+      {
+        "titre": "Meuble d'entrée 2 — Réalisation Réelle",
+        "image": "/images/Projets/Villa Wassila/04 Meuble entree Reel 3.jpg"
+      },
+      {
+        "titre": "Meuble Roof — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Villa Wassila/05 Meuble Roof Reel 1.jpg"
+      },
+      {
+        "titre": "Meuble Roof — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Villa Wassila/05 Meuble Roof Reel 2.jpg"
+      },
+      {
+        "titre": "Meuble Roof — Réalisation Réelle Vue 3",
+        "image": "/images/Projets/Villa Wassila/05 Meuble Roof Reel 3.jpg"
+      },
+      {
+        "titre": "Meuble d'entrée 3 — Conception 3D",
+        "image3d": "/images/Projets/Villa Wassila/06 Decor Entréé 3D.jpg"
+      },
+      {
+        "titre": "Meuble d'entrée 3 — Réalisation Réelle",
+        "image": "/images/Projets/Villa Wassila/06 Decor Entréé Reel 1.jpg"
+      },
+      {
+        "titre": "Meuble TV 1 — Conception 3D",
+        "image3d": "/images/Projets/Villa Wassila/07 Meuble TV 1 3D.jpg"
+      },
+      {
+        "titre": "Meuble TV 1 — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Villa Wassila/07 Meuble TV 1 Reel1.jpg"
+      },
+      {
+        "titre": "Meuble TV 1 — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Villa Wassila/07 Meuble TV 1 Reel2.jpg"
+      },
+      {
+        "titre": "Meuble TV 1 — Réalisation Réelle Vue 3",
+        "image": "/images/Projets/Villa Wassila/07 Meuble TV 1 Reel3.jpg"
+      },
+      {
+        "titre": "Meuble TV 2 — Conception 3D",
+        "image3d": "/images/Projets/Villa Wassila/08 Meuble TV 2 3D.jpg"
+      },
+      {
+        "titre": "Meuble TV 2 — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Villa Wassila/08 Meuble TV 2 Reel1.jpg"
+      }
+    ]
+  },
+  {
+    "id": "p10",
+    "nom": "Agencement",
+    "description": "Transformation complète d'une cuisine 18m². Du relevé de côtes au rendu 3D, jusqu'à la pose finale en 12 jours.",
+    "categorie": "Projets",
+    "catalogue_images": [
+      {
+        "titre": "Meuble Bureau — Conception 3D Vue 1",
+        "image3d": "/images/Projets/Agencement/01 Meuble 3D1.png"
+      },
+      {
+        "titre": "Meuble Bureau — Conception 3D Vue 2",
+        "image3d": "/images/Projets/Agencement/01 Meuble 3D2.png"
+      },
+      {
+        "titre": "Meuble Bureau — Conception 3D Vue 3",
+        "image3d": "/images/Projets/Agencement/01 Meuble 3D3.jpg"
+      },
+      {
+        "titre": "Meuble Bureau — Conception 3D Vue 4",
+        "image3d": "/images/Projets/Agencement/01 Meuble 3D4.jpg"
+      },
+      {
+        "titre": "Meuble Bureau — Conception 3D Vue 5",
+        "image3d": "/images/Projets/Agencement/01 Meuble 3D5.jpg"
+      },
+      {
+        "titre": "Meuble Bureau — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Agencement/01 Meuble Reel1.jpg"
+      },
+      {
+        "titre": "Meuble Bureau — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Agencement/01 Meuble Reel2.jpg"
+      },
+      {
+        "titre": "Meuble Bureau — Réalisation Réelle Vue 3",
+        "image": "/images/Projets/Agencement/01 Meuble Reel3.jpg"
+      },
+      {
+        "titre": "Meuble Bureau — Réalisation Réelle Vue 4",
+        "image": "/images/Projets/Agencement/01 Meuble Reel4.jpg"
+      },
+      {
+        "titre": "Meuble Bureau — Réalisation Réelle Vue 5",
+        "image": "/images/Projets/Agencement/01 Meuble Reel5.jpg"
+      },
+      {
+        "titre": "Meuble Bureau — Réalisation Réelle Vue 6",
+        "image": "/images/Projets/Agencement/01 Meuble Reel6.jpg"
+      },
+      {
+        "titre": "Meuble Bureau 2 — Conception 3D",
+        "image3d": "/images/Projets/Agencement/02 Meuble 3d1.jpg"
+      },
+      {
+        "titre": "Meuble Bureau 2 — Réalisation Réelle",
+        "image": "/images/Projets/Agencement/02 Meuble Reel1.jpg"
+      },
+      {
+        "titre": "Meuble Bureau 3 — Conception 3D",
+        "image3d": "/images/Projets/Agencement/03 Meuble 3D.jpg"
+      },
+      {
+        "titre": "Meuble Bureau 3 — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Agencement/03 Meuble Reel1.jpg"
+      },
+      {
+        "titre": "Meuble Bureau 3 — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Agencement/03 Meuble Reel2.jpg"
+      },
+      {
+        "titre": "Meuble Bureau 4 — Conception 3D",
+        "image3d": "/images/Projets/Agencement/05 Meuble 3D.png"
+      }
+    ]
+  },
+  {
+    "id": "p11",
+    "nom": "Cuisine Hammamet",
+    "description": "Transformation complète d'une cuisine 18m². Du relevé de côtes au rendu 3D, jusqu'à la pose finale en 12 jours.",
+    "categorie": "Projets",
+    "catalogue_images": [
+      {
+        "titre": "Cuisine — Conception 3D Vue 1",
+        "image3d": "/images/Projets/Cuisine Hammamet/01 Cuisine 3D1.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Vue 2",
+        "image3d": "/images/Projets/Cuisine Hammamet/01 Cuisine 3D2.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Vue 3",
+        "image3d": "/images/Projets/Cuisine Hammamet/01 Cuisine 3D3.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Détails",
+        "image3d": "/images/Projets/Cuisine Hammamet/01 Cuisine Détail.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Cuisine Hammamet/01 Cuisine Reel1.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Cuisine Hammamet/01 Cuisine Reel2.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 3",
+        "image": "/images/Projets/Cuisine Hammamet/01 Cuisine Reel3.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 4",
+        "image": "/images/Projets/Cuisine Hammamet/01 Cuisine Reel4.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 5",
+        "image": "/images/Projets/Cuisine Hammamet/01 Cuisine Reel5.jpg"
+      }
+    ]
+  },
+  {
+    "id": "p12",
+    "nom": "Maison Mourouj",
+    "description": "Transformation complète d'une cuisine 18m². Du relevé de côtes au rendu 3D, jusqu'à la pose finale en 12 jours.",
+    "categorie": "Projets",
+    "catalogue_images": [
+      {
+        "titre": "Cuisine — Conception 3D Vue 1",
+        "image3d": "/images/Projets/Cuisine Mourouj 5 Mme Safe/01 cuisine 3d1.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Vue 2",
+        "image3d": "/images/Projets/Cuisine Mourouj 5 Mme Safe/01 cuisine 3d2.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Vue 3",
+        "image3d": "/images/Projets/Cuisine Mourouj 5 Mme Safe/01 cuisine 3d3.jpg"
+      },
+      {
+        "titre": "Cuisine — Conception 3D Détails",
+        "image3d": "/images/Projets/Cuisine Mourouj 5 Mme Safe/01 cuisine D2TAIL.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Cuisine Mourouj 5 Mme Safe/01 cuisine Reel1.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Cuisine Mourouj 5 Mme Safe/01 cuisine Reel2.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 3",
+        "image": "/images/Projets/Cuisine Mourouj 5 Mme Safe/01 cuisine Reel3.jpg"
+      },
+      {
+        "titre": "Cuisine — Réalisation Réelle Vue 4",
+        "image": "/images/Projets/Cuisine Mourouj 5 Mme Safe/01 cuisine Reel4.jpg"
+      },
+      {
+        "titre": "Dressing — Conception 3D Vue 1",
+        "image3d": "/images/Projets/Cuisine Mourouj 5 Mme Safe/02 Ch1 3D1.jpg"
+      },
+      {
+        "titre": "Dressing — Conception 3D Vue 2",
+        "image3d": "/images/Projets/Cuisine Mourouj 5 Mme Safe/02 Ch1 3D2.jpg"
+      },
+      {
+        "titre": "Dressing — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Cuisine Mourouj 5 Mme Safe/02 Ch1 Reel1.jpg"
+      },
+      {
+        "titre": "Dressing — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Cuisine Mourouj 5 Mme Safe/02 Ch1 Reel2.jpg"
+      },
+      {
+        "titre": "Dressing — Réalisation Réelle Vue 3",
+        "image": "/images/Projets/Cuisine Mourouj 5 Mme Safe/02 Ch1 Reel3.jpg"
+      },
+      {
+        "titre": "Dressing 2 — Conception 3D Vue 1",
+        "image3d": "/images/Projets/Cuisine Mourouj 5 Mme Safe/03 Ch2 3D1.jpg"
+      },
+      {
+        "titre": "Dressing 2 — Conception 3D Vue 2",
+        "image3d": "/images/Projets/Cuisine Mourouj 5 Mme Safe/03 Ch2 3D2.jpg"
+      },
+      {
+        "titre": "Dressing 2 — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Cuisine Mourouj 5 Mme Safe/03 Ch2 Reel1.jpg"
+      },
+      {
+        "titre": "Dressing 2 — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Cuisine Mourouj 5 Mme Safe/03 Ch2 Reel2.jpg"
+      }
+    ]
+  },
+  {
+    "id": "p13",
+    "nom": "Meubles TV",
+    "description": "Transformation complète d'une cuisine 18m². Du relevé de côtes au rendu 3D, jusqu'à la pose finale en 12 jours.",
+    "categorie": "Projets",
+    "catalogue_images": [
+      {
+        "titre": "Meubles TV 1  — Conception 3D",
+        "image3d": "/images/Projets/Meubles TV/01 Meuble tv 3D.jpg"
+      },
+      {
+        "titre": "Meubles TV 1 — Réalisation Réelle",
+        "image": "/images/Projets/Meubles TV/01 Meuble tv Reel.png"
+      },
+      {
+        "titre": "Meubles TV 2 — Conception 3D",
+        "image3d": "/images/Projets/Meubles TV/02 Meuble tv 3D.jpg"
+      },
+      {
+        "titre": "Meubles TV 2 — Réalisation Réelle Vue 1",
+        "image": "/images/Projets/Meubles TV/02 Meuble tv Reel1.jpg"
+      },
+      {
+        "titre": "Meubles TV 2 — Réalisation Réelle Vue 2",
+        "image": "/images/Projets/Meubles TV/02 Meuble tv Reel2.jpg"
+      },
+      {
+        "titre": "Meubles TV 2 — Réalisation Réelle Vue 3",
+        "image": "/images/Projets/Meubles TV/02 Meuble tv Reel3.jpg"
+      },
+      {
+        "titre": "Meubles TV 2 — Réalisation Réelle Vue 4",
+        "image": "/images/Projets/Meubles TV/02 Meuble tv Reel4.jpg"
+      }
     ]
   }
-  
 ]

@@ -2,6 +2,7 @@
 // src/pages/dressing/[id].astro
 import Layout from '../../layouts/Layout.astro';
 import dressingsData from '../../data/dressing.json';
+import '../../styles/details.css';
 
 export async function getStaticPaths() {
   return dressingsData.map((dressing) => {
@@ -26,6 +27,7 @@ const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(mi
 
 <Layout title="Nos dressings | Art Of Design" theme="dark">
   <main class="details-page">
+    <!--
     <section class="details-hero">
       <div class="details-hero-viewport">
         <img 
@@ -37,17 +39,16 @@ const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(mi
       </div>
       
       <div class="hero-details-scroll">
-      <!-- <span>{dressing.nom}</span>  -->
        <span>{dressing.nom}</span>
       <div class="scroll-details-line"></div>
     </div>
     </section>
-
+    -->
     <div class="product-container">
       <nav class="breadcrumb">
           <a href="/">Accueil</a>
           <span>/</span>
-          <a href="/dressings">dressings</a>
+          <a href="/dressing">dressings</a>
           <span>/</span>
           <span class="active-crumb-text">{dressing.nom}</span>
       </nav>

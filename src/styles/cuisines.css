@@ -1,0 +1,395 @@
+/*  ####################### CUISINES.ASRO ###################### */
+  /* ── ARCHITECTURE HAUTE COUTURE POUR LE CATALOGUE ── */
+
+  .luxury-catalog {
+    background-color: #0b0b0b; /* Un noir encore plus pur et profond */
+    color: #f7f5f0;
+    min-height: 100vh;
+  }
+
+  /* Hero Plein Écran */
+  .luxury-hero {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .luxury-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .luxury-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.45; /* Plus sombre pour donner un aspect dramatique et haut de gamme */
+    transform: scale(1.05);
+    animation: heroIntellectualZoom 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  }
+
+  @keyframes heroIntellectualZoom {
+    to { transform: scale(1); }
+  }
+
+  .luxury-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, #0b0b0b 100%),
+                rgba(11, 11, 11, 0.3);
+  }
+
+  .luxury-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 2rem;
+    width: 100%;
+    max-width: 80rem;
+    height: 50%; /* Distribue les éléments verticalement */
+    justify-content: space-between;
+  }
+
+  /* ── BARRE DE FILTRAGE HAUT DE GAMME ── */
+
+  .catalog-filter-bar {
+    max-width: 95rem;
+    margin: 4rem auto 0 auto;
+    padding: 0 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-start;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+    padding-bottom: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .catalog-filter-bar {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  /* Fil d'Ariane */
+  .luxury-breadcrumb {
+    display: flex;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+  }
+
+  .luxury-breadcrumb a {
+    color: rgba(247, 245, 240, 0.5);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    outline: none;
+  }
+
+  .luxury-breadcrumb a:hover {
+    color: var(--gold);
+  }
+
+  .luxury-breadcrumb .separator {
+    margin: 0 0.75rem;
+    opacity: 0.3;
+  }
+
+  .luxury-breadcrumb .current {
+    color: var(--gold);
+  }
+
+  /* Boutons de Filtre */
+  .filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: none;
+    color: rgba(247, 245, 240, 0.4);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+      outline: none;
+
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    color: var(--gold);
+  }
+
+  /* Ligne animée sous le bouton actif */
+  .filter-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--gold);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .filter-btn.active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Transitions pour le filtrage dynamique des sections */
+  .data-catalog-section {
+    transition: opacity 0.4s ease, transform 0.4s ease, display 0.4s ease allow-discrete;
+    will-change: opacity, transform;
+  }
+
+
+
+  /* Titre Hero */
+  .luxury-main-title {
+    font-size: 1.5rem;
+    font-weight: 200;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    line-height: 1.3;
+  }
+
+  @media (min-width: 768px) {
+    .luxury-main-title { font-size: 1.75rem; }
+  }
+
+  .luxury-main-title span {
+    font-style: italic;
+    text-transform: lowercase;
+    color: var(--gold);
+    letter-spacing: 0;
+  }
+
+  .luxury-text{
+    font-size: 14px;
+    text-transform: none;
+    color: rgba(247, 245, 240, 0.4);
+    margin-top: 1rem;
+  }
+
+  .luxury-subtitle {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.6em;
+    color: rgba(247, 245, 240, 0.4);
+    margin-top: 1rem;
+  }
+
+  /* Ligne élégante de scroll */
+  .luxury-scroll-indicator {
+    width: 1px;
+    height: 30px;
+    background: rgba(201, 168, 76, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .luxury-scroll-indicator .line {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--gold);
+    animation: luxuryScrollLine 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+    transform: translateY(-100%);
+  }
+
+  @keyframes luxuryScrollLine {
+    0% { transform: translateY(-100%); }
+    50% { transform: translateY(0); }
+    100% { transform: translateY(100%); }
+  }
+
+  /* Conteneur de Pages Élargi */
+  .luxury-content-wrapper {
+    max-width: 95rem; /* Section très élargie pour un effet cinéma */
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  .luxury-section {
+    padding: 6rem 0;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+  }
+
+  .luxury-section:last-child { border-bottom: none; }
+
+  /* En-tête des Sections */
+  .luxury-section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .luxury-section-header {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+  }
+
+  .luxury-section-header .btn-text-flip{
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.92rem;
+    opacity: 0.4;
+    text-transform: none;
+
+  }
+
+  .header-title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .collection-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--gold);
+    opacity: 0.6;
+  }
+
+  .luxury-section-title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .luxury-section-title span {
+    font-style: italic;
+    text-transform: lowercase;
+    color: var(--gold);
+    margin-left: 0.5rem;
+  }
+
+  .luxury-discover-link {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: rgba(247, 245, 240, 0.5);
+    text-decoration: none;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(247, 245, 240, 0.1);
+    transition: all 0.4s ease;
+  }
+
+  .luxury-discover-link:hover {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  .luxury-discover-link .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .luxury-discover-link:hover .arrow {
+    transform: translateX(6px);
+  }
+
+  /* ── GRILLE MONUMENTALE ET ASYMÉTRIQUE ── */
+  /* ── NOUVELLE GRILLE ALIGNÉE ET MONUMENTALE LUXE ── */
+
+  .luxury-monumental-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 0rem; /* Grand espacement épuré */
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .luxury-monumental-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0rem;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .luxury-monumental-grid {
+      /* Alignement chirurgical sur 3 colonnes ultra-larges */
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem 1rem;
+    }
+  }
+
+  /* Réinitialisation complète de l'asymétrie précédente pour un alignement strict */
+  @media (min-width: 1024px) {
+    .luxury-monumental-grid .luxury-card-container:nth-child(3n+1),
+    .luxury-monumental-grid .luxury-card-container:nth-child(3n+2),
+    .luxury-monumental-grid .luxury-card-container:nth-child(3n+3) {
+      grid-column: auto !important;
+      margin-top: 0 !important;
+      max-height: none !important;
+    }
+  }
+
+  /* Forçage structurel : Zéro arrondi et rigidité des lignes */
+  .luxury-card-container,
+  .luxury-card-container *,
+  .luxury-card-container img,
+  .luxury-card-container .card {
+    border-radius: 0px !important;
+    border: none;
+  }
+
+  .luxury-card-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  /* Effet de zoom minimaliste et élégant au survol de la carte alignée */
+  .luxury-card-container:hover {
+    transform: translateY(-4px);
+  }
+
+  /* ANIMATION NATIVE AU SCROLL */
+  @supports (animation-timeline: view()) {
+    .section-reveal {
+      animation: luxuryFade 1s linear forwards;
+      animation-timeline: view();
+      animation-range: entry 5% cover 30%;
+    }
+
+    @keyframes luxuryFade {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  }
+
+  /* RESPONSIVE FIN */
+  @media (max-width: 768px) {
+    .luxury-content-wrapper { padding: 0 1.5rem; }
+    .luxury-section { padding: 6rem 0; }
+    .luxury-monumental-grid { gap: 4rem; }
+  }

@@ -5,6 +5,7 @@ import cuisinesData from '../data/cuisines.json';
 import dressingData from '../data/dressing.json';
 import meublesData from '../data/meuble.json';
 import projetsData from '../data/projets.json';
+import '../styles/cuisines.css'; 
 
 // Helper pour extraire L'URL textuelle (string) de l'image
 const getImageUrl = (product: any): string => {
@@ -42,12 +43,12 @@ const allProducts = [
 <Layout title="Résultats de recherche | AD Cuisine" theme="dark">
   
   <div class="catalog-filter-bar">
-      <nav class="luxury-breadcrumb">
-        <a href="/">Accueil</a>
-        <span class="separator">/</span>
-        <span class="current">Résultats pour <span id="search-query" class="highlight-gold">...</span></span>
+      <nav class="breadcrumb">
+          <a href="/">Accueil</a>
+          <span>/</span>
+          <span class="active-crumb-text">Résultats pour <span id="search-query" class="highlight-gold">...</span></span>
       </nav>
-    </div>
+  </div>
   <main class="search-main-container">
 
     <!-- BARRE D'OUTILS ET FILTRES DES RÉSULTATS -->
@@ -113,15 +114,16 @@ const allProducts = [
         const imageUrl = getImageUrl(product);
         
         const displayNom = product.nom || 'Modèle sans nom';
-        const displayPrix = product.prix_initial || 0;
-        const displayPromo = product.reduction || 0;
+        const displayPrix = 'prix_initial' in product ? product.prix_initial || 0 : 0;
+        const displayPromo = 'reduction' in product ? product.reduction || 0 : 0;
+        const displayForme = 'forme' in product ? String(product.forme ?? '').toLowerCase() : '';
 
         return (
           <div 
             class="search-item hidden" 
             data-nom={displayNom.toLowerCase()}
             data-description={product.description?.toLowerCase() || ''}
-            data-forme={product.forme?.toLowerCase() || ''}
+            data-forme={displayForme}
             data-categorie={product.categorie?.toLowerCase() || ''}
           >
             <Card 
@@ -359,12 +361,8 @@ const allProducts = [
 <style>
   /* --- LAYOUT GLOBAL ET CONTENEURS --- */
   .search-main-container {
-    padding-top: 2rem; /* pt-32 */
-    padding-bottom: 2.5rem; /* pb-10 */
-    margin-left: 4rem;
-    margin-right: 4rem;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 4 0 2.5 0rem;
+    margin: 0 3rem;
   }
 
   .highlight-gold {
@@ -486,16 +484,16 @@ const allProducts = [
     align-items: center;
     gap: 1.5rem;
     cursor: none !important;
-  min-width: 29ch; /* Fixe la largeur minimale exacte pour accueillir "PRIX : DÉCROISSANT" + flèche */
-  justify-content: space-between; /* Calfeutre le texte à gauche et la flèche complètement à droite */
-  box-sizing: border-box;
+    min-width: 29ch; /* Fixe la largeur minimale exacte pour accueillir "PRIX : DÉCROISSANT" + flèche */
+    justify-content: space-between; /* Calfeutre le texte à gauche et la flèche complètement à droite */
+    box-sizing: border-box;
   }
-.selected-text {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: left;
-}
+  .selected-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+  }
   .arrow-icon {
     width: 0.875rem;
     height: 0.875rem;
@@ -513,16 +511,16 @@ const allProducts = [
     position: absolute !important;
     top: 100% !important;
     left: 0 !important;
-width: 100% !important;
-  min-width: 100% !important;
-  box-sizing: border-box;
+    width: 100% !important;
+    min-width: 100% !important;
+    box-sizing: border-box;
     background: transparent !important;
     background-color: transparent !important;
     /*
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  box-shadow: none !important;
-  */
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    box-shadow: none !important;
+    */
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
@@ -597,13 +595,20 @@ width: 100% !important;
   }
 
   /* --- STYLES EXISTANTS CONSERVÉS --- */
+  .breadcrumb{
+    margin-bottom: 2rem;
+  }
+
   .luxury-breadcrumb a {
     color: black;
   }
 
   .catalog-filter-bar {
-    padding-top: 6rem;
-    border-color: rgba(20, 20, 20, 0.1);
+    padding: 8rem 2rem 0rem 2em;
+    /*border-bottom: 1px solid;
+    border-color: rgba(20, 20, 20, 0.1);*/
+    margin-bottom: 0rem;
+    border: none;
   }
 
   .search-item :global(#main-header) {

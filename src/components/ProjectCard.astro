@@ -1,36 +1,61 @@
 ---
-// src/components/ProjectCard.astro
+interface Image3DItem {
+  image3d: string;
+  titre?: string;
+}
+
+interface ImageReelleItem {
+  image: string;
+  titre?: string;
+}
+
+export type CatalogueItem = Image3DItem | ImageReelleItem;
+
 interface Props {
   id: string;
   nom: string;
   description: string;
-  image3d: string;
-  image: string;
-  forme: string;
+  categorie?: string;
+  catalogue_images: CatalogueItem[];
 }
 
-const { id, nom, description, image3d, image, forme } = Astro.props;
+const { 
+  id, 
+  nom, 
+  description, 
+  catalogue_images = []
+} = Astro.props;
 
-// Résolution propre du label lisible selon la forme
-const labelsForme: Record<string, string> = {
-  "I": "Configuration en Forme I",
-  "L": "Configuration en Forme L",
-  "Fr": "Style À La Française",
-  "C": "Meuble Coulissant / Projet Spécial"
-};
-const typeLabel = labelsForme[forme] || "Projet Sur Mesure";
+// Extraire les images avec leur titre
+const images3d = catalogue_images
+  .filter((item): item is Image3DItem => 'image3d' in item)
+  .map(item => ({ url: item.image3d, titre: item.titre }));
+
+const imagesReelles = catalogue_images
+  .filter((item): item is ImageReelleItem => 'image' in item)
+  .map(item => ({ url: item.image, titre: item.titre }));
+
+const mainImage3d = images3d[0]?.url || '/images/placeholder-3d.jpg';
+const mainImageReelle = imagesReelles[0]?.url || '/images/placeholder-real.jpg';
+const typeLabel = "Projet Sur Mesure";
 ---
 
 <div class="project-item reveal visible" data-id={id}>
-  <div class="project-item-gallery">
+  <div class="project-item-gallery open-comparator" data-target={`modal-comparator-${id}`}>
     <div class="before-after">
       <div class="before-after-side">
-        <img src={image3d} alt={`Conception 3D — ${nom}`} loading="lazy" />
-        <div class="before-after-badge badge-3d">Vue 3D</div>
+        <img src={mainImage3d} alt={`Conception 3D — ${nom}`} loading="lazy" />
+        <div class="badge-slider badge-before">Vue 3D</div>
       </div>
       <div class="before-after-side">
-        <img src={image} alt={`Réalisation — ${nom}`} loading="lazy" />
-        <div class="before-after-badge badge-real">Réalisation</div>
+        <img src={mainImageReelle} alt={`Réalisation — ${nom}`} loading="lazy" />
+        <div class="badge-slider badge-before">Réalisation</div>
+      </div>
+    </div>
+    <div class="hover-overlay">
+      <div class="btn-text-flip">
+        <span class="text-default">Explorer le comparateur plein écran</span>
+        <span class="text-hover">Explorer le comparateur plein écran</span>
       </div>
     </div>
   </div>
@@ -60,3 +85,399 @@ const typeLabel = labelsForme[forme] || "Projet Sur Mesure";
     </div>
   </div>
 </div>
+
+<!-- MODALE PLEIN ÉCRAN DOUBLE SLIDER -->
+<div class="fullscreen-comparator" id={`modal-comparator-${id}`} aria-hidden="true">
+  <div class="comparator-topbar">
+    <div class="comparator-title">
+      Projet : <strong>{nom}</strong> <span class="comparator-tag">Comparatif 3D vs Réel</span>
+    </div>
+    <button class="close-comparator-btn" aria-label="Fermer le comparateur">&times;</button>
+  </div>
+
+  <div class="comparator-viewport">
+    <!-- SLIDER GAUCHE : CONCEPTION 3D -->
+    <div class="slider-panel panel-3d">
+      <div class="panel-header-badge">📐 Conception 3D ({images3d.length})</div>
+      <div class="swiper swiper-3d">
+        <div class="swiper-wrapper">
+          {images3d.map((item, idx) => (
+            <div class="swiper-slide">
+              <div class="slide-image-wrapper">
+                <img src={item.url} alt={item.titre || `${nom} — Vue 3D ${idx + 1}`} />
+                <div class="slide-caption">{item.titre || `Vue 3D ${idx + 1}`}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="swiper-button-next swiper-button-next-3d"></div>
+        <div class="swiper-button-prev swiper-button-prev-3d"></div>
+        <div class="swiper-pagination swiper-pagination-3d"></div>
+      </div>
+    </div>
+
+    <div class="comparator-divider"></div>
+
+    <!-- SLIDER DROIT : RÉALISATION RÉELLE -->
+    <div class="slider-panel panel-real">
+      <div class="panel-header-badge">✨ Réalisation Réelle ({imagesReelles.length})</div>
+      <div class="swiper swiper-real">
+        <div class="swiper-wrapper">
+          {imagesReelles.map((item, idx) => (
+            <div class="swiper-slide">
+              <div class="slide-image-wrapper">
+                <img src={item.url} alt={item.titre || `${nom} — Réel ${idx + 1}`} />
+                <div class="slide-caption">{item.titre || `Réalisation ${idx + 1}`}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="swiper-button-next swiper-button-next-real"></div>
+        <div class="swiper-button-prev swiper-button-prev-real"></div>
+        <div class="swiper-pagination swiper-pagination-real"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  
+  .project-item-gallery {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .hover-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(13, 13, 13, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    z-index: 10;
+  }
+
+  .project-item-gallery:hover .hover-overlay {
+    opacity: 1;
+  }
+  
+/* ── MODALE OVERLAY Z-INDEX MAX ── */ 
+.fullscreen-comparator {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  background: #080808;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.fullscreen-comparator.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Barre supérieure */
+  .comparator-topbar {
+    height: 60px;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #111111;
+    border-bottom: 1px solid rgba(193, 168, 112, 0.2);
+    z-index: 20;
+  }
+
+  .comparator-title {
+    color: #ffffff;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .comparator-title strong {
+    color: var(--gold, #C1A870);
+  }
+
+  .comparator-tag {
+    margin-left: 1rem;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .close-comparator-btn {
+    background: transparent;
+    border: none;
+    color: var(--gold, #C1A870);
+    font-size: 2.2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .close-comparator-btn:hover {
+    transform: scale(1.15);
+  }
+
+/* Zone principale à 2 panneaux */
+.comparator-viewport {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider-panel {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+  background: #000;
+}
+
+.panel-header-badge {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 15;
+    background: rgba(13, 13, 13, 0.85);
+    color: var(--gold, #C1A870);
+    border: 1px solid rgba(193, 168, 112, 0.3);
+    padding: 0.4rem 0.9rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .comparator-divider {
+    width: 2px;
+    background: linear-gradient(180deg, transparent, var(--gold, #C1A870), transparent);
+    z-index: 15;
+  }
+
+/* Configuration des Sliders Swiper */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-wrapper {
+  height: 100%;
+}
+
+.swiper-slide {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-image-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 4rem 4rem 5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.slide-image-wrapper img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100% - 2rem);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Style de la légende / titre d'image */
+.slide-caption {
+  position: absolute;
+  bottom: 2rem;
+  background: rgba(13, 13, 13, 0.75);
+  color: #e0e0e0;
+  border: 1px solid rgba(193, 168, 112, 0.2);
+  padding: 0.4rem 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+  text-align: center;
+  max-width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Boutons Swiper Personnalisés */
+  :global(.swiper-button-next),
+  :global(.swiper-button-prev) {
+    color: var(--gold, #C1A870) !important;
+  }
+
+  :global(.swiper-pagination-bullet-active) {
+    background: var(--gold, #C1A870) !important;
+  }
+  
+/* ── RESPONSIVE (MOBILE & TABLETTE) ── */
+@media (max-width: 991px) {
+  .project-item {
+    flex-direction: column; /* Bascule en colonne sur mobile */
+  }
+
+  .project-item-gallery {
+    flex: none;
+    width: 100%;
+    height: 240px;
+  }
+
+  .project-item-info {
+    padding: 1.5rem;
+  }
+
+  .project-steps-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes d'étapes sur tablette */
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .project-steps-grid {
+    grid-template-columns: 1fr; /* 1 colonne sur petit écran mobile */
+  }  
+}
+
+@media (max-width: 991px) {
+  .comparator-viewport {
+    flex-direction: column;
+  }
+
+  .slider-panel {
+    flex: 1 1 50%;
+    min-height: 0;
+  }
+
+  .comparator-divider {
+    flex: 0 0 2px;
+    width: 100%;
+    height: 2px;
+  }
+
+  .slide-image-wrapper {
+    padding: 2rem 2rem 3.5rem 2rem;
+  }
+
+  .slide-caption {
+    bottom: 1rem;
+    font-size: 0.7rem;
+  }
+
+  .comparator-topbar {
+    flex-basis: 56px;
+    padding: 0 1rem;
+  }
+}
+</style>
+
+<script>
+  import Swiper from 'swiper';
+  import { Navigation, Pagination } from 'swiper/modules';
+
+  const initComparators = () => {
+    const openBtns = document.querySelectorAll('.open-comparator');
+
+    openBtns.forEach((btn) => {
+      if (btn.hasAttribute('data-comparator-ready')) return;
+      btn.setAttribute('data-comparator-ready', 'true');
+
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        if (!targetId) return;
+
+        const modal = document.getElementById(targetId);
+        if (!modal) return;
+
+        if (modal.parentElement !== document.body) {
+          document.body.appendChild(modal);
+        }
+
+        modal.classList.add('is-active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        requestAnimationFrame(() => {
+          const container3D = modal.querySelector<HTMLElement>('.swiper-3d');
+          const containerReal = modal.querySelector<HTMLElement>('.swiper-real');
+
+          if (!container3D || !containerReal) return;
+
+          const swiper3D = new Swiper(container3D, {
+            modules: [Navigation, Pagination],
+            observer: true,
+            observeParents: true,
+            autoHeight: false,
+            navigation: {
+              nextEl: modal.querySelector<HTMLElement>('.swiper-button-next-3d'),
+              prevEl: modal.querySelector<HTMLElement>('.swiper-button-prev-3d'),
+            },
+            pagination: {
+              el: modal.querySelector<HTMLElement>('.swiper-pagination-3d'),
+              clickable: true,
+            },
+          });
+
+          const swiperReal = new Swiper(containerReal, {
+            modules: [Navigation, Pagination],
+            observer: true,
+            observeParents: true,
+            autoHeight: false,
+            navigation: {
+              nextEl: modal.querySelector<HTMLElement>('.swiper-button-next-real'),
+              prevEl: modal.querySelector<HTMLElement>('.swiper-button-prev-real'),
+            },
+            pagination: {
+              el: modal.querySelector<HTMLElement>('.swiper-pagination-real'),
+              clickable: true,
+            },
+          });
+
+          swiper3D.update();
+          swiperReal.update();
+
+          const closeBtn = modal.querySelector('.close-comparator-btn');
+
+          const handleClose = () => {
+            modal.classList.remove('is-active');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+
+            swiper3D.destroy(true, true);
+            swiperReal.destroy(true, true);
+
+            closeBtn?.removeEventListener('click', handleClose);
+          };
+
+          closeBtn?.addEventListener('click', handleClose);
+        });
+      });
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initComparators);
+  } else {
+    initComparators();
+  }
+</script>

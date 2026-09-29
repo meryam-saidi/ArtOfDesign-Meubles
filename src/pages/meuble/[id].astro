@@ -2,6 +2,7 @@
 // src/pages/meuble/[id].astro
 import Layout from '../../layouts/Layout.astro';
 import meublesData from '../../data/meuble.json';
+import '../../styles/details.css';
 
 export async function getStaticPaths() {
   return meublesData.map((item) => {
@@ -15,8 +16,8 @@ export async function getStaticPaths() {
 const { meuble } = Astro.props;
 
 const prixFinal = meuble.reduction 
-  ? meuble.prix_initial * (1 - meuble.reduction / 100) 
-  : meuble.prix_initial;
+  ? Number(meuble.prix_initial) * (1 - Number(meuble.reduction) / 100) 
+  : Number(meuble.prix_initial);
 
 // Séparation équitable de la composition type en deux colonnes pour affichage horizontal
 const milieuComposition = Math.ceil(meuble.caracteristiques_techniques.composition_type.length / 2);
@@ -26,6 +27,7 @@ const compoCol2 = meuble.caracteristiques_techniques.composition_type.slice(mili
 
 <Layout title="Nos meubles | Art Of Design" theme="dark">
   <main class="details-page">
+    <!--
     <section class="details-hero">
       <div class="details-hero-viewport">
         <img 
@@ -37,12 +39,11 @@ const compoCol2 = meuble.caracteristiques_techniques.composition_type.slice(mili
       </div>
       
       <div class="hero-details-scroll">
-      <!-- <span>{meuble.nom}</span>  -->
        <span>{meuble.nom}</span>
       <div class="scroll-details-line"></div>
-    </div>
+      </div>
     </section>
-
+    -->
     <div class="product-container">
       <nav class="breadcrumb">
           <a href="/">Accueil</a>
@@ -218,7 +219,6 @@ const compoCol2 = meuble.caracteristiques_techniques.composition_type.slice(mili
     overflow: hidden;
     background-color: #f9fafb;
     aspect-ratio: 16 / 16;
-    cursor: zoom-in;
   }
 </style>
 

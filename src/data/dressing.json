@@ -4,7 +4,7 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "Fr",
-    "nom": "Dressing Forme de I | 100cm",
+    "nom": "Dressing Forme de I | 100 cm",
     "prix_initial": 2130.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
@@ -40,7 +40,7 @@
         "7 Etagères",
         "Poignées",
         "2 Tiroirs Metabox Blum",
-        "Plinth",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -55,8 +55,8 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "Fr",
-    "nom": "Dressing Forme de I | 140cm",
-    "prix_initial": 2340.000,
+    "nom": "Dressing Forme de I | 140 cm",
+    "prix_initial": 2400.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -90,7 +90,57 @@
         "4 Façades",
         "7 Etagères",
         "Poignées",
-        "Plinth",
+        "Plinthes",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dif160",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "Fr",
+    "nom": "Dressing Forme de I | 160 cm",
+    "prix_initial": 2840.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "180cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Française/Dr180.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "2 Modules Dressing de 80 cm",
+        "4 Façades",
+        "7 Etagères",
+        "Poignées",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -105,8 +155,8 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "Fr",
-    "nom": "Dressing Forme de I | 180cm",
-    "prix_initial": 3400.000,
+    "nom": "Dressing Forme de I | 180 cm",
+    "prix_initial": 3000.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -139,9 +189,8 @@
         "2 Modules Dressing de 90 cm",
         "4 Façades",
         "7 Etagères",
-        "2 Tiroirs Metabox Blum",
         "Poignées",
-        "Plinth",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -156,8 +205,8 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "Fr",
-    "nom": "Dressing Forme de I | 250cm",
-    "prix_initial": 4050.000,
+    "nom": "Dressing Forme de I | 250 cm",
+    "prix_initial": 4200.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -194,7 +243,7 @@
         "11 Etagères",
         "2 Tiroirs Metabox Blum",
         "Poignées",
-        "Plinth",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -209,7 +258,7 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "Fr",
-    "nom": "Dressing Forme de I | 300cm",
+    "nom": "Dressing Forme de I | 300 cm",
     "prix_initial": 5220.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
@@ -247,7 +296,7 @@
         "14 Etagères",
         "4 Tiroirs Metabox Blum",
         "Poignées",
-        "Plinth",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -262,7 +311,7 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "Fr",
-    "nom": "Dressing Forme de I | 320cm",
+    "nom": "Dressing Forme de I | 320 cm",
     "prix_initial": 7950.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
@@ -297,12 +346,12 @@
         "2 Modules Dressing de 90 cm",
         "2 Modules Dressing de 70 cm",
         "4 Façades",
-        "7 Etagères",
         "4 Façades Vitrées",
+        "14 Etagères",
         "4 Tiroirs Metabox Blum",
         "Poignées",
         "Led",
-        "Plinth",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -317,8 +366,8 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "Fr",
-    "nom": "Dressing Forme de I | 340cm",
-    "prix_initial": 10850.000,
+    "nom": "Dressing Forme de I | 340 cm",
+    "prix_initial": 10870.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -355,7 +404,7 @@
         "4 Tiroirs Metabox Blum",
         "Poignées", 
         "Led",
-        "Plinth",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -370,8 +419,8 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "Fr",
-    "nom": "Dressing Forme de I | 400cm",
-    "prix_initial": 6700.000,
+    "nom": "Dressing Forme de I | 400 cm",
+    "prix_initial": 6760.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -403,12 +452,13 @@
     "caracteristiques_techniques": {
       "composition_type": [
         "2 Modules Dressing de 90 cm",
-        "2 Modules Dressing de 80 cm",
+        "1 Module Dressing de 80 cm",
+        "2 Modules Dressing de 70 cm",
         "10 Façades",
         "16 Etagères",
         "4 Tiroirs Metabox Blum",
         "Poignées", 
-        "Plinth",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -423,8 +473,8 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "Fr",
-    "nom": "Dressing Forme de I | 430cm",
-    "prix_initial": 9400.000,
+    "nom": "Dressing Forme de I | 430 cm",
+    "prix_initial": 9455.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -455,7 +505,7 @@
     ],
     "caracteristiques_techniques": {
       "composition_type": [
-        "2 Modules Dressing de 90 cm",
+        "3 Modules Dressing de 90 cm",
         "2 Modules Dressing de 80 cm",
         "6 Façades",
         "4 Façades Vitrées",
@@ -463,7 +513,7 @@
         "4 Tiroirs Metabox Blum",
         "Poignées",  
         "Led",
-        "Plinth",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -478,7 +528,7 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "C",
-    "nom": "Dressing Forme de I | 100cm",
+    "nom": "Dressing Forme de I | 100 cm",
     "prix_initial": 2740.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
@@ -515,7 +565,7 @@
         "7 Etagères",
         "2 Tiroirs Metabox Blum",
         "Poignées",  
-        "Plinth",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -530,7 +580,7 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "C",
-    "nom": "Dressing Forme de I | 120cm",
+    "nom": "Dressing Forme de I | 120 cm",
     "prix_initial": 2870.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
@@ -567,7 +617,7 @@
         "7 Etagères",
         "2 Tiroirs Metabox Blum",
         "Poignées",  
-        "Plinth",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -582,8 +632,8 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "C",
-    "nom": "Dressing Forme de I | 140cm",
-    "prix_initial": 2870.000,
+    "nom": "Dressing Forme de I | 140 cm",
+    "prix_initial": 3065.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -619,7 +669,7 @@
         "7 Etagères",
         "2 Tiroirs Metabox Blum",
         "Poignées",  
-        "Plinth",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -634,7 +684,7 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "C",
-    "nom": "Dressing Forme de I | 160cm",
+    "nom": "Dressing Forme de I | 160 cm",
     "prix_initial": 3230.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
@@ -671,7 +721,7 @@
         "7 Etagères",
         "2 Tiroirs Metabox Blum",
         "Poignées",  
-        "Plinth",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -686,7 +736,7 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "C",
-    "nom": "Dressing Forme de I | 180cm",
+    "nom": "Dressing Forme de I | 180 cm",
     "prix_initial": 3400.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
@@ -723,7 +773,7 @@
         "7 Etagères",
         "2 Tiroirs Metabox Blum",
         "Poignées",  
-        "Plinth",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -738,8 +788,8 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "C",
-    "nom": "Dressing Forme de I | 210cm",
-    "prix_initial": 4320.000,
+    "nom": "Dressing Forme de I | 210 cm",
+    "prix_initial": 4315.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -775,7 +825,7 @@
         "9 Etagères",
         "4 Tiroirs Metabox Blum",
         "Poignées",  
-        "Plinth",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -790,7 +840,7 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "C",
-    "nom": "Dressing Forme de I | 240cm",
+    "nom": "Dressing Forme de I | 240 cm",
     "prix_initial": 4560.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
@@ -827,7 +877,7 @@
         "9 Etagères",
         "4 Tiroirs Metabox Blum",
         "Poignées",  
-        "Plinth",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -842,8 +892,8 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "C",
-    "nom": "Dressing Forme de I | 270cm",
-    "prix_initial": 4800.000,
+    "nom": "Dressing Forme de I | 270 cm",
+    "prix_initial": 4805.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -879,7 +929,60 @@
         "9 Etagères",
         "4 Tiroirs Metabox Blum",
         "Poignées",  
-        "Plinth",
+        "Plinthes",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dic360",
+    "categorie": "Dressings",
+    "forme": "I",
+    "type_ouverture": "C",
+    "nom": "Dressing Forme de I | 270 cm",
+    "prix_initial": 6085.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "270cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme I/Coulissant/dress coulissant 270 F.jpg",
+      "/images/dressings/Forme I/Coulissant/dress coulissant 270 O.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "4 Modules Dressing de 90 cm",
+        "4 Façades",
+        "14 Etagères",
+        "Rail de coulissement",
+        "4 Tiroirs Metabox Blum",
+        "Poignées",  
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -893,7 +996,7 @@
     "id": "dl150x160",
     "categorie": "Dressings",
     "forme": "L",
-    "nom": "Dressing Forme de L | 150x160cm",
+    "nom": "Dressing Forme de L | 150 x 160 cm",
     "prix_initial": 4400.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
@@ -927,11 +1030,11 @@
       "composition_type": [
         "1 Modules Dressing de 60 cm",
         "1 Module Dressing de 70 cm",
-        "1 Module Dressing de Coin 90 cm",
+        "1 Module Dressing d'angle 90 cm",
         "5 Façades",
         "13 Etagères",
         "Poignées",  
-        "Plinth",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -942,15 +1045,68 @@
     }
   },
   {
-    "id": "dl220x270",
+    "id": "dl150x300",
     "categorie": "Dressings",
     "forme": "L",
-    "nom": "Dressing Forme de L | 220x270cm",
+    "nom": "Dressing Forme de L | 150 x 300 cm",
+    "prix_initial": 7300.000,
+    "reduction": 20,
+    "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "150cm/300cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/dressings/Forme L/dressing fome L 300x150 F.jpg",
+      "/images/dressings/Forme L/dressing fome L 300x150 O.jpg",
+      "/images/dressings/Forme L/dressing fome L 300x150.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 60 cm",
+        "1 Module Dressing de 70 cm",
+        "1 Module Dressing d'angle 90 cm",
+        "5 Façades",
+        "13 Etagères",
+        "Poignées",  
+        "Plinthes",
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "dl230x270",
+    "categorie": "Dressings",
+    "forme": "L",
+    "nom": "Dressing Forme de L | 230 x 270 cm",
     "prix_initial": 5410.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
-      "Largeur" : "220cm/270cm",
+      "Largeur" : "230cm/270cm",
       "hauteur": "240cm",
       "profondeur": "60cm"
     },
@@ -978,10 +1134,10 @@
       "composition_type": [
         "1 Modules Dressing de 50 cm",
         "1 Module Dressing de 90 cm",
-        "1 Module Dressing de Coin 90 cm",
+        "1 Module Dressing d'angle 90 cm",
         "20 Etagères",
         "Tiroirs Metabox Blum",  
-        "Plinth",
+        "Plinthes",
         "Pieds",
         "Charnières Blum"
       ],
@@ -995,8 +1151,8 @@
     "id": "dl250x350",
     "categorie": "Dressings",
     "forme": "L",
-    "nom": "Dressing Forme de L | 250x350cm",
-    "prix_initial": 7230.000,
+    "nom": "Dressing Forme de L | 250 x 350 cm",
+    "prix_initial": 10405.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -1029,16 +1185,16 @@
       "composition_type": [
         "2 Modules Dressing de 60 cm",
         "2 Module Dressing de 80 cm",
-        "1 Module Dressing de Coin 70 cm",
+        "1 Module Dressing de 70 cm",
         "1 Module Dressing de 40 cm",
         "1 Module Dressing de 30 cm",
-        "1 Module Dressing de Coin 110 cm",
+        "1 Module Dressing d'angle 110 cm",
         "8 Façades",
         "2 Façades Vitrée",
         "32 Etagères",
         "Tiroirs Metabox Blum",
         "Poignées",  
-        "Plinth",
+        "Plinthes",
         "Led",
         "Pieds",
         "Charnières Blum"
@@ -1053,7 +1209,7 @@
     "id": "dl270x390",
     "categorie": "Dressings",
     "forme": "L",
-    "nom": "Dressing Forme de L | 270x390cm",
+    "nom": "Dressing Forme de L | 270 x 390 cm",
     "prix_initial": 11440.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
@@ -1089,16 +1245,14 @@
       "composition_type": [
         "2 Modules Dressing de 60 cm",
         "2 Module Dressing de 80 cm",
-        "1 Module Dressing de Coin 70 cm",
-        "1 Module Dressing de 40 cm",
-        "1 Module Dressing de 30 cm",
-        "1 Module Dressing de Coin 110 cm",
-        "8 Façades",
+        "1 Module Dressing de 70 cm",
+        "1 Module Dressing d'angle 110 cm",
+        "11 Façades",
         "2 Façades Vitrée",
-        "32 Etagères",
+        "27 Etagères",
         "Tiroirs Metabox Blum",
         "Poignées",  
-        "Plinth",
+        "Plinthes",
         "Led",
         "Pieds",
         "Charnières Blum"

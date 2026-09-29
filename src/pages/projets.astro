@@ -1,32 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Process from '../components/Process.astro';
-import ProjectCard from '../components/ProjectCard.astro';
+import ProjectCard, { type CatalogueItem } from '../components/ProjectCard.astro';
 import projetsData from '../data/projets.json';
 import ImageGallery from '../components/ImageGallery.astro';
+import '../styles/cuisines.css'; 
+import '../styles/projets.css'; 
 
-const sections = [
-  { id: "forme-i", label: "Dressing Forme I", valeur: "I" },
-  { id: "forme-l", label: "Dressing Forme L", valeur: "L" },
-  { id: "aLaFr", label: "A La Française", valeur: "Fr" },
-  { id: "coulissant", label: "Projets", valeur: "C" }
-];
-
-// Mélange des projets pour la galerie globale "Tous"
 const tousLesProjetsMixes = [...projetsData].sort(() => 0.5 - Math.random());
 
-// Extraction UNIQUEMENT des images réelles (exclusion des image3d)
+// Extraction sécurisée des images réelles uniquement (avec correction du type TS)
 const galleryImages = tousLesProjetsMixes.flatMap((projet) => {
-  return (projet.catalogue_images || [])
-    .filter((item) => item.image) // Ne garde que les photos normales
+  return ((projet.catalogue_images || []) as CatalogueItem[])
+    .filter((item): item is { image: string } => 'image' in item)
     .map((item) => ({
-      src: item.image || '',
+      src: item.image,
       alt: `${projet.nom} - Photo du projet`,
       title: projet.nom,
       category: projet.categorie || 'Projet Réel'
     }));
 });
 ---
+
+<!-- Import du CSS Swiper au niveau global -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 <Layout title="Nos Projets Réalisés | Art Of Design">
   <main class="luxury-catalog">
@@ -53,51 +50,29 @@ const galleryImages = tousLesProjetsMixes.flatMap((projet) => {
     </div>
 
     <div class="luxury-content-wrapper">
-      <Process />
+      <!--<Process /> -->
 
       <div class="portfolio-container">
         
         <div class="section-header reveal visible" style="margin-bottom:3rem; padding: 0 4rem;">
-          <div class="section-eyebrow">Portfolio</div>
-          <h2 class="section-title">Nos réalisations d'exception</h2>
+          <div class="section-header-eyebrow">Portfolio</div>
+          <h2 class="section-header-title">Nos réalisations d'exception</h2>
           <p class="section-desc">À gauche : le rendu 3D validé par le client. À droite : la réalisation finale dans son intérieur.</p>
         </div>
 
         <section id="all-gallery" class="projects-list data-catalog-section" style="display: block; opacity: 1;">
-          <div id="projects-list">
-            {tousLesProjetsMixes.map((item) => (
+          <div class="projects-vertical-list">
+            {projetsData.map((projet) => (
               <ProjectCard 
-                id={item.id}
-                nom={item.nom}
-                description={item.description}
-                image3d={item.catalogue_images[0]?.image3d ?? ''}
-                image={item.catalogue_images[1]?.image ?? ''}
-                forme={item.forme}
+                id={projet.id}
+                nom={projet.nom}
+                description={projet.description}
+                categorie={projet.categorie}
+                catalogue_images={projet.catalogue_images}
               />
             ))}
           </div>
         </section>
-
-        {sections.map((section) => {
-          const projetsFiltrés = projetsData.filter(item => item.forme === section.valeur);
-
-          return projetsFiltrés.length > 0 && (
-            <section id={section.id} class="projects-list data-catalog-section" style="display: none; opacity: 0;">
-              <div id="projects-list">
-                {projetsFiltrés.map((item) => (
-                  <ProjectCard 
-                    id={item.id}
-                    nom={item.nom}
-                    description={item.description}
-                    image3d={item.catalogue_images[0]?.image3d ?? ''}
-                    image={item.catalogue_images[0]?.image ?? ''}
-                    forme={item.forme}
-                  />
-                ))}
-              </div>
-            </section>
-          );
-        })}
       </div>
     </div>
 
@@ -111,60 +86,28 @@ const galleryImages = tousLesProjetsMixes.flatMap((projet) => {
         <p class="text-titre-anatomie">Consultez notre guide interactif des formes de cuisines.</p>
       </div>
       <a href={`/cuisines-infos`} class="btn-text-flip"> 
-        <span class="text-default">Explorer l'anatomie</span>
-        <span class="text-hover">Explorer l'anatomie</span>                
+        <span class="text-default">Lire Le Guide <span class="arrow">→</span></span>
+        <span class="text-hover">Lire Le Guide <span class="arrow">→</span></span>                
       </a>    
     </div>
 
   </main>
 </Layout>
 
-<script>
-  const setupFilters = () => {
-    const buttons = document.querySelectorAll('.filter-btn');
-    const sections = document.querySelectorAll('.data-catalog-section');
-
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        const targetFilter = button.getAttribute('data-filter');
-
-        buttons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        sections.forEach(section => {
-          const sectionElement = section as HTMLElement;
-          const isAllTarget = targetFilter === 'all' && sectionElement.id === 'all-gallery';
-          const isSpecificTarget = sectionElement.id === targetFilter;
-
-          if (isAllTarget || isSpecificTarget) {
-            sectionElement.style.display = 'block';
-            setTimeout(() => {
-              sectionElement.style.opacity = '1';
-              sectionElement.style.transform = 'translateY(0)';
-            }, 50);
-          } else {
-            sectionElement.style.opacity = '0';
-            sectionElement.style.transform = 'translateY(15px)';
-            setTimeout(() => {
-              sectionElement.style.display = 'none';
-            }, 350); 
-          }
-        });
-      });
-    });
-  };
-
-  document.addEventListener('DOMContentLoaded', setupFilters);
-</script>
-
 <style is:global>
   #process-premium {
     padding: 0rem 4rem;
-    background-color: #333232;
   }
-  
+
   .portfolio-container {
     padding-top: 6rem;
     background-color: #0b0b0b;
+  }
+
+  .process-header {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding-bottom: 2rem;
   }
 </style>

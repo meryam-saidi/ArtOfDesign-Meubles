@@ -1,0 +1,260 @@
+    /* ── CONTACT ── */
+      /* ── SECTION CONTACT STRUCTURE ── */
+  #contact {
+    position: relative !important;
+    z-index: 10 !important;
+    background: var(--charcoal);
+    /*padding: 10rem 0rem;*/
+    width: 100%;
+    box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .contact-wrapper {
+    max-width: fit-content;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+    /*border-bottom: 1px solid rgba(201, 168, 76, 0.1); /* Délimitation subtile avant les détails */
+  }
+
+  /* ── INFOS (GAUCHE) ── */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-align: start;
+    padding: 10rem 4rem;
+  }
+
+  .contact-info .section-label {
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      /*text-transform: uppercase;*/
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+      font-weight: 500;
+  }
+
+  .contact-info .section-title {
+    font-size: 1.5rem;
+      font-weight: 300;
+      line-height: 1.3;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #ffffff;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+
+  .contact-description {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: rgba(247, 245, 240, 0.5);
+    max-width: fit-content;
+    font-weight: 300;
+    padding-bottom: 1.5rem;
+  }
+
+  /* ── FORMULAIRE (DROITE) ── */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(247, 245, 240, 0.4);
+    font-weight: 500;
+  }
+
+  .form-input,
+  .form-textarea {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    padding: 1rem 1.2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #ffffff;
+    outline: none;
+    transition: border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.4s ease;
+    width: 100%;
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: rgba(247, 245, 240, 0.25);
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 140px;
+  }
+
+  /* Custom Select Architecture */
+  .form-select {
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .form-select option {
+    background: var(--charcoal);
+    color: #ffffff;
+  }
+
+  /* Alignement du bouton text-flip à gauche du formulaire */
+  .contact-form .btn-text-flip {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+  }
+
+
+
+  /* Style de la notification de feedback */
+  .form-status-message {
+    display: none;
+    margin-top: 2rem;
+    padding: 1rem 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    border-left: 3px solid transparent;
+    background: rgba(247, 245, 240, 0.02);
+    transition: all 0.3s ease;
+  }
+
+  /* État : En cours d'envoi */
+  .form-status-message.sending {
+    color: var(--gold, #c9a84c);
+    border-left-color: var(--gold, #c9a84c);
+  }
+
+  /* État : Succès */
+  .form-status-message.success {
+    color: var(--gold);
+    border-left-color: var(--gold);
+    background: rgba(40, 167, 69, 0.04);
+  }
+
+  /* État : Erreur */
+  .form-status-message.error {
+    color: #dc3545;
+    border-left-color: #dc3545;
+    background: rgba(220, 53, 69, 0.04);
+  }
+
+  /* Optionnel : Changement d'état visuel du bouton désactivé */
+  button[type="submit"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* ── VERSION ULTRA-RESPONSIVE (TABLETTES & MOBILES) ── */
+  @media (max-width: 992px) {
+    #contact {
+      padding: 6rem 2rem;
+    }
+    
+    .contact-wrapper {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      padding-bottom: 4rem;
+    }
+    
+    .contact-info {
+      align-items: center;
+      text-align: center;
+    }
+    
+    .contact-description {
+      max-width: 100%;
+    }
+
+    .contact-form .btn-text-flip {
+      align-self: center; /* Centre le bouton sur mobile pour l'équilibre visuel */
+      margin-top: 1rem;
+    }
+
+    .contact-details {
+      padding-top: 3rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding-left: 1rem; /* Aligné subtilement */
+    }
+  }
+
+  @media (max-width: 576px) {
+    .form-row {
+      grid-template-columns: 1fr; /* Les inputs passent les uns sous les autres */
+      gap: 1.5rem;
+    }
+    
+    .contact-info .section-title {
+      font-size: 2rem;
+    }
+  }
+
+  /* ── BLOC CARTE DE LOCALISATION ── */
+  .contact-map-container {
+    max-width: 100%;
+    /*margin: 4rem auto 0 auto;  Aligné avec le grid du dessus */
+    height: 100%;
+    width: 100%;
+    /* border: 1px solid rgba(201, 168, 76, 0.15); /* Rappel du filet doré subtil */
+    overflow: hidden;
+    position: relative;
+    
+    /* L'effet magique pour fondre la carte Google Maps dans ton thème sombre */
+    filter: grayscale(1) invert(0.92) contrast(1.15);
+    opacity: 0.75;
+    transition: filter 0.5s ease, opacity 0.5s ease;
+  }
+
+  /* Au survol, la carte reprend discrètement ses couleurs pour le confort de l'utilisateur */
+  .contact-map-container:hover {
+    filter: grayscale(0.2) invert(0) contrast(1);
+    opacity: 1;
+  }
+
+  .contact-map-container iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ── AJUSTEMENT RESPONSIVE MOBILE ── */
+  @media (max-width: 992px) {
+    .contact-map-container {
+      margin-top: 0rem;
+      height: 300px; /* Un peu plus compacte sur mobile */
+      border-left: none;
+      border-right: none; /* Pleine largeur sur mobile pour casser les lignes */
+    }
+  }

@@ -2,6 +2,7 @@
 // src/pages/projets/[id].astro
 import Layout from '../../layouts/Layout.astro';
 import projetData from '../../data/projets.json';
+import '../../styles/details.css';
 
 // CETTE FONCTION EST OBLIGATOIRE POUR LES ROUTES DYNAMIQUES
 export async function getStaticPaths() {
@@ -34,7 +35,7 @@ const { projets } = Astro.props;
       <div class="relative overflow-hidden bg-gray-50 aspect-[16/9] group cursor-zoom-in">
         <img 
           id="main-visual"
-          src={projets.image} 
+          src={projets.catalogue_images[0]?.image || projets.catalogue_images[0]?.image3d} 
           alt={projets.nom} 
           class="w-full h-full object-cover transition-all duration-700 ease-in-out"
         />
@@ -42,12 +43,12 @@ const { projets } = Astro.props;
       </div>
 
       <div class="flex gap-4 mt-6 overflow-x-auto pb-2 no-scrollbar">
-        <button class="thumb-btn active-thumb" data-full={projets.image}>
-           <img src={projets.image} class="w-24 h-24 object-cover" />
+        <button class="thumb-btn active-thumb" data-full={projets.catalogue_images[0]?.image || projets.catalogue_images[0]?.image3d}>
+           <img src={projets.catalogue_images[0]?.image || projets.catalogue_images[0]?.image3d} class="w-24 h-24 object-cover" />
         </button>
-        {projets.variantes?.map((v) => (
-          <button class="thumb-btn" data-full={v.image}>
-            <img src={v.image} class="w-24 h-24 object-cover" />
+        {projets.catalogue_images?.map((img) => (
+          <button class="thumb-btn" data-full={img.image || img.image3d}>
+            <img src={img.image || img.image3d} class="w-24 h-24 object-cover" />
           </button>
         ))}
       </div>
@@ -73,8 +74,8 @@ const { projets } = Astro.props;
            {/* Option par défaut */}
            <button 
               class="color-swatch ring-2 ring-[var(--color-gold)] ring-offset-2 w-8 h-8 rounded-full bg-center bg-cover" 
-              style={`background-image: url(${projets.image})`}
-              data-image={projets.image} 
+              style={`background-image: url(${projets.catalogue_images[0]?.image || projets.catalogue_images[0]?.image3d})`}
+              data-image={projets.catalogue_images[0]?.image || projets.catalogue_images[0]?.image3d} 
               title="Finition Originale">
            </button>
            
