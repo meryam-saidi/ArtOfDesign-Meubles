@@ -8,7 +8,7 @@ interface Props {
 
 const { theme = 'light' } = Astro.props;
 ---
-
+ 
 <header 
   id="main-header" 
   class={`header-responsive fixed top-0 left-0 w-full z-50 transition-all duration-500 ${theme === 'dark' ? 'is-dark-theme' : ''}`}
@@ -35,7 +35,7 @@ const { theme = 'light' } = Astro.props;
             </div>
           </div>
 
-          <div class="group relative py-4 flex items-center gap-1 cursor-pointer">
+          <div class="group relative py-4 flex items-center gap-1">
             <a href="/dressing" class="nav-link">Dressing</a>
             <div class="dropdown-menu">
               <div class="dropdown-item-wrapper">
@@ -49,7 +49,7 @@ const { theme = 'light' } = Astro.props;
             </div>
           </div>
 
-          <div class="group relative py-4 flex items-center gap-1 cursor-pointer">
+          <div class="group relative py-4 flex items-center gap-1">
             <a href="/meubles" class="nav-link">meubles</a>
             <div class="dropdown-menu">
               <div class="dropdown-item-wrapper">
@@ -122,87 +122,121 @@ const { theme = 'light' } = Astro.props;
 <!--   -->
 
 <script>
-  // le script de filtres existant reste identique
   const setupFilters = () => {
-  const buttons = document.querySelectorAll('.filter-btn');
-  const sections = document.querySelectorAll<HTMLElement>('.data-catalog-section');
+    const buttons = document.querySelectorAll<HTMLElement>('.filter-btn');
+    const sections = document.querySelectorAll<HTMLElement>('.data-catalog-section');
 
-  const filterTo = (targetFilter: string | null, subBlockId: string | null = null) => {
-    // 1. Mise à jour de l'état visuel des boutons de filtres principaux
-    buttons.forEach(btn => {
-      if (btn.getAttribute('data-filter') === targetFilter) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
+    // Page sans catalogue (accueil, etc.) : rien à faire
+    if (!sections.length) return;
+
+    // ── Affiche la bonne section et met à jour les boutons ──
+    const filterTo = (targetFilter: string) => {
+      buttons.forEach((btn) => {
+        btn.classList.toggle('active', btn.getAttribute('data-filter') === targetFilter);
+      });
+
+      sections.forEach((section) => {
+        const visible =
+          (targetFilter === 'all' && section.id === 'all-gallery') ||
+          section.id === targetFilter;
+
+        section.style.display = visible ? 'block' : 'none';
+        section.style.opacity = visible ? '1' : '0';
+      });
+    };
+
+    // ── Scroll précis, compensé par la hauteur du header fixe ──
+    const scrollToEl = (el: Element | null, smooth = false) => {
+      if (!el) return;
+      const headerH = document.getElementById('main-header')?.offsetHeight ?? 0;
+      const y = el.getBoundingClientRect().top + window.scrollY - headerH - 16;
+      window.scrollTo({ top: Math.max(0, y), behavior: smooth ? 'smooth' : 'auto' });
+    };
+
+    // ── Détermine la section à afficher et l'élément à atteindre pour un hash ──
+    const resolveHash = (hash: string) => {
+      if (!hash) return { filter: 'all', target: null as Element | null };
+
+      const el = document.getElementById(hash);
+      if (!el) return { filter: 'all', target: null };
+
+      // Le hash est une section du catalogue (forme-i, forme-l, colonnes...)
+      if (el.classList.contains('data-catalog-section')) {
+        return {
+          filter: el.id === 'all-gallery' ? 'all' : el.id,
+          target: document.querySelector('.catalog-filter-bar') ?? el,
+        };
       }
+
+      // Le hash est un sous-bloc (francaise, coulissant...) : on affiche sa section parente
+      const parent = el.closest<HTMLElement>('.data-catalog-section');
+      if (parent) {
+        return {
+          filter: parent.id === 'all-gallery' ? 'all' : parent.id,
+          target: el,
+        };
+      }
+
+      return { filter: 'all', target: null };
+    };
+
+    // ── Applique le hash, puis re-scrolle quand la hauteur de page se stabilise ──
+    const applyHash = (smooth = false) => {
+      const hash = window.location.hash.replace('#', '');
+      const { filter, target } = resolveHash(hash);
+
+      filterTo(filter);
+      if (!target) return;
+
+      // 1er scroll après le rendu
+      requestAnimationFrame(() => scrollToEl(target, smooth));
+
+      // Re-scroll quand les images de la section visible ont chargé (la hauteur change)
+      const visible = document.getElementById(filter === 'all' ? 'all-gallery' : filter);
+      const pending = Array.from(visible?.querySelectorAll('img') ?? []).filter(
+        (img) => !img.complete
+      );
+      if (pending.length) {
+        const rescroll = () => scrollToEl(target);
+        pending.forEach((img) => img.addEventListener('load', rescroll, { once: true }));
+        // Arrêt de sécurité : on ne corrige plus après 2 s
+        setTimeout(() => pending.forEach((img) => img.removeEventListener('load', rescroll)), 2000);
+      }
+    };
+
+    // ── Clics sur les boutons de filtre de la page ──
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const targetFilter = button.getAttribute('data-filter') || 'all';
+        filterTo(targetFilter);
+        history.pushState(
+          null,
+          '',
+          targetFilter === 'all' ? window.location.pathname : `#${targetFilter}`
+        );
+      });
     });
 
-    // 2. Affichage / Masquage des sections principales
-    sections.forEach(section => {
-      const isAllTarget = targetFilter === 'all' && section.id === 'all-gallery';
-      const isSpecificTarget = section.id === targetFilter;
+    // ── Chargement initial ──
+    // Empêche le navigateur de faire son propre saut d'ancre (sur un élément encore masqué)
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
-      if (isAllTarget || isSpecificTarget) {
-        section.style.display = 'block';
-        section.style.opacity = '1';
+    applyHash();
 
-        // 3. Si une sous-catégorie est ciblée (francaise ou coulissant), défiler vers elle
-        if (subBlockId) {
-          requestAnimationFrame(() => {
-            const targetBlock = document.getElementById(subBlockId);
-            if (targetBlock) {
-              targetBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          });
-        }
-      } else {
-        section.style.display = 'none';
-        section.style.opacity = '0';
-      }
-    });
+    // Dernier recalage une fois la page entièrement chargée
+    const onLoaded = () => {
+      if (window.location.hash) applyHash();
+    };
+    if (document.readyState === 'complete') onLoaded();
+    else window.addEventListener('load', onLoaded, { once: true });
+
+    // ── Navigation depuis le dropdown quand on est déjà sur la page ──
+    window.addEventListener('hashchange', () => applyHash(true));
   };
 
-  // Gestion des clics sur les boutons de filtres sur la page
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      const targetFilter = button.getAttribute('data-filter') || 'all';
-      filterTo(targetFilter);
-      history.pushState(null, '', targetFilter === 'all' ? window.location.pathname : `#${targetFilter}`);
-    });
-  });
-
-  // Analyse complète de l'URL et du Hash
-  const checkHashAndFilter = () => {
-    const hash = window.location.hash.replace('#', '');
-
-    if (!hash) {
-      filterTo('all');
-      return;
-    }
-
-    // --- AJOUT : Cas spécifiques pour les sous-menus Dressing ---
-    if (hash === 'francaise' || hash === 'coulissant') {
-      filterTo('forme-i', hash); // Active la section principale "forme-i" ET scroll vers le sous-bloc
-    } 
-    // Cas standards pour les autres pages / filtres principaux
-    else {
-      // Vérifie si la section avec cet ID existe directement
-      const directSection = document.getElementById(hash);
-      if (directSection && directSection.classList.contains('data-catalog-section')) {
-        filterTo(hash);
-      } else {
-        filterTo('all');
-      }
-    }
-  };
-
-  // Exécution initiale au chargement
-  checkHashAndFilter();
-
-  // Écoute les clics depuis le menu déroulant quand on est déjà sur la page
-  window.addEventListener('hashchange', checkHashAndFilter);
-  };
-
-  document.addEventListener('DOMContentLoaded', setupFilters);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupFilters);
+  } else {
+    setupFilters();
+  }
 </script>
-

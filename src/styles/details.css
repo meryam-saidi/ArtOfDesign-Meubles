@@ -185,6 +185,7 @@
     background-color: #f9fafb;
     /*aspect-ratio: 3 / 2;*/
   }
+
   #main-visual {
     width: 100%;
     height: 100%;
@@ -631,3 +632,294 @@
     font-style: italic;
     line-height: 1.6;
   }
+
+  /* ==========================================================================
+   PAGE DÉTAIL : MOBILE
+   ========================================================================== */
+  @media (max-width: 768px) {
+    .details-page .product-container {
+      --gutter: 1.25rem !important;
+      padding: 6.5rem 0 3rem !important;
+      margin-left: var(--gutter) !important;
+      margin-right: var(--gutter) !important;
+    }
+
+    .details-page .main-product-grid {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 2rem !important;
+    }
+
+    .details-page .main-visual-wrapper {
+      margin-left: calc(var(--gutter) * -1) !important;
+      margin-right: calc(var(--gutter) * -1) !important;
+      aspect-ratio: 4 / 3 !important;
+    }
+
+    .details-page .slider-arrow {
+      display: none !important;
+    }
+  }
+  
+  @media (max-width: 768px) {
+
+  /* ── Page & conteneur ── */
+  .details-page {
+    min-height: 100svh;
+  }
+
+  .product-container {
+    --gutter: 1.25rem;
+    padding: 6.5rem 0 3rem;   /* 12rem de padding haut est prévu pour le desktop */
+    margin-left: var(--gutter);
+    margin-right: var(--gutter);
+  }
+
+  /* ── Fil d'Ariane : retour à la ligne si le nom du produit est long ── */
+  .breadcrumb {
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 0.4rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+  }
+
+  .breadcrumb span {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .breadcrumb a {
+    padding: 0.3rem 0;        /* zone de toucher plus confortable */
+    transition: none;
+  }
+
+  .breadcrumb a:hover {
+    color: #9ca3af;           /* pas de survol au toucher */
+  }
+
+  /* ── Grille principale : une colonne ── */
+  .main-product-grid {
+    gap: 2rem;
+  }
+
+  /* ── Image principale : bord à bord, ratio stable ── */
+  .main-visual-wrapper {
+    margin-left: calc(var(--gutter) * -1);
+    margin-right: calc(var(--gutter) * -1);
+    aspect-ratio: 4 / 3;      /* évite les sauts de mise en page quand on change d'image */
+  }
+
+  #main-visual {
+    height: 100%;
+    object-fit: cover;
+    transition: none;         /* le fondu est géré par GSAP : évite le double effet */
+  }
+
+  .main-visual-wrapper:hover .visual-overlay {
+    opacity: 0;               /* survol neutralisé */
+  }
+
+  /* ── Miniatures : glissement au doigt (GSAP Draggable), sans flèches ── */
+  .slider-container {
+    margin-top: 1rem;
+  }
+
+  .slider-arrow {
+    display: none;
+  }
+
+  .thumb-btn {
+    flex: 0 0 6.5rem;
+    width: 6.5rem;
+    height: 5rem;
+  }
+
+  /* ── En-tête produit ── */
+  .header-details {
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .brand-badge {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    margin-bottom: 0.75rem;
+  }
+
+  .product-title {
+    font-size: clamp(1.9rem, 8vw, 2.4rem);
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+    overflow-wrap: break-word;
+  }
+
+  .price-wrapper,
+  .price-flex {
+    flex-wrap: wrap;
+  }
+
+  .price-flex {
+    gap: 0.4rem 1rem;
+  }
+
+  .price-current {
+    font-size: 1.6rem;
+  }
+
+  .price-old {
+    font-size: 1rem;
+  }
+
+  .discount-tag {
+    font-size: 0.8rem;
+  }
+
+  /* ── Dimensions ── */
+  .specs-block {
+    font-size: 0.9rem;
+    gap: 1.25rem;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .specs-block .spec-paragraph {
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Nuancier ── */
+  .nuancier-header {
+    flex-wrap: wrap;
+    gap: 0.25rem 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .nuancier-title {
+    font-size: 0.65rem;
+    margin-bottom: 0;         /* la marge de 1.5rem décalait le nom de la couleur */
+  }
+
+  .color-current-name {
+    font-size: 0.8rem;
+  }
+
+  .swatches-row {
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Pastilles de 44px : taille minimale recommandée au toucher */
+  .color-swatch {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .color-swatch:hover {
+    transform: none;          /* le survol « collerait » après un tap */
+  }
+
+  .color-swatch.active-swatch,
+  .color-swatch.active-swatch:hover {
+    transform: scale(0.85);
+  }
+
+  .preview-card-wrapper {
+    height: 96px;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── Bouton d'action ── */
+  .cta-wrapper {
+    margin-top: 0.5rem;
+  }
+
+  .cta-wrapper .btn-text-flip {
+    letter-spacing: 0.15em;   /* le texte long tient sur les petits écrans */
+  }
+
+  /* ── Caractéristiques techniques ── */
+  .technical-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+  }
+
+  .technical-main-title {
+    font-size: 1.1rem;
+    line-height: 1.35;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.5rem;
+  }
+
+  .tech-header {
+    padding: 1.1rem 0;
+    min-height: 3.25rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .tech-header:active {
+    background: rgba(0, 0, 0, 0.03);
+  }
+
+  /* Le numéro est vide dans le HTML : sans ça il crée un vide de 1.5rem à gauche */
+  .tech-item-number:empty {
+    display: none;
+  }
+
+  .tech-header h4 {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+  }
+
+  .dropdown-icon {
+    flex: 0 0 1.5rem;
+  }
+
+  .tech-content {
+    transition: max-height 0.35s ease;
+  }
+
+  .tech-content-inner {
+    padding-left: 0;          /* alignement avec le titre */
+    padding-bottom: 1.25rem;
+  }
+
+  .tech-composition-cols {
+    gap: 0.6rem;              /* les deux listes se lisent comme une seule */
+  }
+
+  .tech-finition-details {
+    gap: 1.25rem;
+  }
+
+  .tech-list li,
+  .tech-paragraph {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .nb-footer-container {
+    margin-top: 2rem;
+    padding: 1rem 1.1rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Petits écrans */
+@media (max-width: 480px) {
+  .product-container {
+    --gutter: 1rem;
+    padding-top: 6rem;
+  }
+
+  .price-current {
+    font-size: 1.45rem;
+  }
+
+  .thumb-btn {
+    flex: 0 0 6rem;
+    width: 6rem;
+    height: 4.5rem;
+  }
+}

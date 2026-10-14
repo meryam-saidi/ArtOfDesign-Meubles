@@ -8,22 +8,24 @@ import Loader from '../components/Loader.astro';
 interface Props {
   title: string;
   theme?: 'dark' | 'light';
+  pageBg?: 'dark' | 'light';
 }
 
-const { title, theme = 'light' } = Astro.props;
+const { title, theme = 'light', pageBg = theme } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-bg={pageBg}>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
+        <meta name="theme-color" content={pageBg === 'dark' ? '#0d0d0d' : '#fcfaf8'} />
         <link rel="icon" type="image/svg+xml" href="/faviconAd.svg" />
         <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
         <title>{title}</title>
     </head>
-    <body class="bg-[#fcfaf8] text-[#1a1614]"> 
+    <body> 
         <Loader />
         <CustomCursor />
         <Header theme={theme}/> 

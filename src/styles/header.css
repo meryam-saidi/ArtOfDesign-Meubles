@@ -193,7 +193,7 @@
     transform: translateY(-5px); 
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     pointer-events: none;
-    z-index: 60;
+    z-index: 5;
   }
 
   /* Pont de sécurité pour maintenir le survol */
@@ -398,6 +398,10 @@
   /* 7. RESPONSIVE Menu (MOBILE LAYOUT) */
 
   @media (max-width: 767px) {
+    .logo-img {
+      width: 45px;
+    }
+
     .burger-menu {
       display: flex;
       flex-direction: column;
@@ -411,7 +415,6 @@
     .search-form {
       display: flex !important;
       position: relative;
-      margin-right: 1rem; 
     }
     
     .search-input {
@@ -521,5 +524,19 @@
       padding-left: 1rem;
     }
 
+  #main-header.is-dark-theme {
+    .nav-link{
+      color: rgba(194, 190, 188, 0.6) !important;
+    }
+    .nav-link:hover{
+      color: rgba(194, 190, 188, 0.6) !important;
+    }
+    .dropdown-link{
+      color: rgba(194, 190, 188, 0.6) !important;
+    }
+    .dropdown-link:hover{
+      color: rgba(194, 190, 188, 0.6) !important;
+    }
+  }
     
   }

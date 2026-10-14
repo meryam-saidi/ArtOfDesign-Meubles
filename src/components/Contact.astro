@@ -1,4 +1,5 @@
 ---
+/** components/Contact.astro */
 import '../styles/contact.css'; 
 
 --- 
@@ -7,8 +8,8 @@ import '../styles/contact.css';
     <div class="contact-wrapper">
       
       <div class="contact-info ">
-        <p class="section-label reveal-left">Parlons de votre projet</p> 
-        <h2 class="section-title reveal-left">Demande de devis gratuit</h2>
+        <p class="section-header-eyebrow reveal-left">Parlons de votre projet</p> 
+        <h2 class="section-header-title reveal-left">Demande de devis gratuit</h2>
         <p class="contact-description reveal-left">
           Chaque grand intérieur commence par une conversation. Décrivez-nous votre vision et nous vous répondrons sous 48 heures avec une première proposition.
         </p>
@@ -76,7 +77,6 @@ import '../styles/contact.css';
 
   <!-- script formulaire   -->
 <script is:inline>
-  // On utilise une fonction auto-exécutée pour isoler le scope
   (() => {
     const initForm = () => {
       const form = document.getElementById('ajax-contact-form');
@@ -84,8 +84,11 @@ import '../styles/contact.css';
       
       if (!form || !status) return;
 
+      // Évite d'attacher plusieurs fois l'écouteur d'événement
+      if (form.dataset.listenerAttached) return;
+      form.dataset.listenerAttached = "true";
+
       form.addEventListener('submit', async (e) => {
-        // Bloque immédiatement la redirection native
         e.preventDefault(); 
         e.stopPropagation();
 
@@ -112,6 +115,17 @@ import '../styles/contact.css';
             status.className = 'form-status-message success';
             status.innerText = 'Votre message a bien été transmis. Notre équipe vous répondra sous 48 heures.';
             form.reset();
+
+            // Réactivation du bouton pour permettre un nouvel envoi
+            if (submitBtn) submitBtn.disabled = false;
+
+            // Masque automatiquement le message de confirmation après 5 secondes
+            setTimeout(() => {
+              status.innerText = '';
+              status.className = 'form-status-message';
+              status.style.display = 'none';
+            }, 5000);
+
           } else {
             const responseData = await response.json();
             status.className = 'form-status-message error';
@@ -126,9 +140,11 @@ import '../styles/contact.css';
       });
     };
 
-    // Gestion du cycle de vie Astro (DOMContentLoaded + transitions de pages éventuelles)
-    document.addEventListener('DOMContentLoaded', initForm);
-    initForm(); // Exécution immédiate au cas où le DOM est déjà prêt
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initForm);
+    } else {
+      initForm();
+    }
   })();
 </script>
 

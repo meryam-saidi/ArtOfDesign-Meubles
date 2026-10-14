@@ -23,14 +23,14 @@ const galleryImages = tousLesProjetsMixes.flatMap((projet) => {
 ---
 
 <!-- Import du CSS Swiper au niveau global -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"  />
 
-<Layout title="Nos Projets Réalisés | Art Of Design">
+<Layout title="Nos Projets Réalisés | Art Of Design" pageBg="dark">
   <main class="luxury-catalog">
     
     <section class="luxury-hero">
       <div class="luxury-hero-bg">
-        <img src="/images/autres/1.jpg" alt="Art Of Design Haute Cuisine" class="luxury-hero-img" />
+        <img src="/images/autres/project_categorie.jpg" alt="Art Of Design Haute Cuisine" class="luxury-hero-img" />
         <div class="luxury-hero-overlay"></div>
       </div>
       
@@ -63,13 +63,15 @@ const galleryImages = tousLesProjetsMixes.flatMap((projet) => {
         <section id="all-gallery" class="projects-list data-catalog-section" style="display: block; opacity: 1;">
           <div class="projects-vertical-list">
             {projetsData.map((projet) => (
-              <ProjectCard 
-                id={projet.id}
-                nom={projet.nom}
-                description={projet.description}
-                categorie={projet.categorie}
-                catalogue_images={projet.catalogue_images}
-              />
+              <div class="project-row">
+                <ProjectCard 
+                  id={projet.id}
+                  nom={projet.nom}
+                  description={projet.description}
+                  categorie={projet.categorie}
+                  catalogue_images={projet.catalogue_images}
+                />
+              </div>
             ))}
           </div>
         </section>

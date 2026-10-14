@@ -71,24 +71,37 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; } /* Reset complet pour éviter les marges/paddings par défaut */
 
     html { 
-      overflow-x: hidden !important;
+      overflow-x: clip !important;
       overflow-y: auto !important;
       height: auto !important; 
       max-width: 100%;
       scroll-behavior: smooth;
-      background-color: var(--obsidian);
+      /*background-color: var(--obsidian);*/
+      overscroll-behavior-y: none;
     }
 
     body {
-      background-color: var(--obsidian);
-      color: var(--mist);
+      /*background-color: var(--obsidian);*/
+      /*color: var(--mist);*/
       font-family: var(--font-primary);;
       font-weight: 300;
-      overflow-x: hidden;
+      overflow-x: clip;
       max-width: 100%;
       cursor: none;
       -webkit-font-smoothing: antialiased; /* Améliore le rendu des polices sur les navigateurs WebKit (Chrome, Safari, Edge) */
       -moz-osx-font-smoothing: grayscale;  /* Améliore le rendu des polices sur Firefox sur macOS */
+    }
+
+    html[data-bg="dark"],
+    html[data-bg="dark"] body {
+      background-color: var(--obsidian);
+      color: var(--mist);
+    }
+
+    html[data-bg="light"],
+    html[data-bg="light"] body {
+      background-color: white;
+      color: #1a1614;
     }
 
     /* Masquer le curseur système uniquement sur les écrans disposant d'un pointeur précis (Desktop) */

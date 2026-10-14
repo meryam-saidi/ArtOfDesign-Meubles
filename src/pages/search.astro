@@ -40,112 +40,113 @@ const allProducts = [
 ];
 ---
 
-<Layout title="Résultats de recherche | AD Cuisine" theme="dark">
-  
-  <div class="catalog-filter-bar">
+<Layout title="Résultats de recherche | AD Cuisine" theme="dark" pageBg="light">
+  <main class="search-page">
+    <div class="catalog-filter-bar">
       <nav class="breadcrumb">
-          <a href="/">Accueil</a>
-          <span>/</span>
-          <span class="active-crumb-text">Résultats pour <span id="search-query" class="highlight-gold">...</span></span>
+        <a href="/">Accueil</a>
+        <span>/</span>
+        <span class="active-crumb-text">Résultats pour <span id="search-query" class="highlight-gold">...</span></span>
       </nav>
-  </div>
-  <main class="search-main-container">
-
-    <!-- BARRE D'OUTILS ET FILTRES DES RÉSULTATS -->
-    <div class="search-toolbar">
-      
-      <!-- À GAUCHE : COMPTEUR D'ÉLÉMENTS -->
-      <div class="toolbar-left">
-        <span id="results-count" class="count-number">0</span>
-        <span id="results-label">produit(s) trouvé(s)</span>
-      </div>
-
-      <!-- AU CENTRE : COMMUTATEUR DE GRILLE / FORMAT D'AFFICHAGE -->
-      <div class="toolbar-center">
-        <!-- Bouton 3 Colonnes -->
-        <button 
-          id="btn-grid-3" 
-          class="grid-toggle-btn active"
-          title="Affichage 3 colonnes"
-          aria-label="3 colonnes"
-        >
-          <svg class="toolbar-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5h3v14H4V5zm6 0h3v14h-3V5zm6 0h3v14h-3V5z" />
-          </svg>
-        </button>
-
-        <!-- Bouton 4 Colonnes -->
-        <button 
-          id="btn-grid-4" 
-          class="grid-toggle-btn btn-grid-4-desktop"
-          title="Affichage 4 colonnes"
-          aria-label="4 colonnes"
-        >
-          <svg class="toolbar-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-          </svg>
-        </button>
-      </div>
-      
-      <!-- À DROITE : TRI DES PRIX SUR-MESURE -->
-    <div class="toolbar-right">
-      <span class="sort-label">Trier par :</span>
-      <div class="custom-dropdown" id="sort-dropdown">
-        <button type="button" class="dropdown-trigger" aria-expanded="false">
-          <span class="selected-text">Pertinence</span>
-          <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-        <ul class="dropdown-menu">
-          <li class="dropdown-item active" data-value="default">Pertinence</li>
-          <li class="dropdown-item" data-value="price-asc">Prix : Croissant</li>
-          <li class="dropdown-item" data-value="price-desc">Prix : Décroissant</li>
-        </ul>
-      </div>
     </div>
+    <section class="search-main-container">
 
-    </div>
-
-    <!-- GRILLE DE RÉSULTATS -->
-    <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {allProducts.map((product) => {
-        const typeUrl = getProductType(product.categorie);
-        const imageUrl = getImageUrl(product);
+      <!-- BARRE D'OUTILS ET FILTRES DES RÉSULTATS -->
+      <div class="search-toolbar">
         
-        const displayNom = product.nom || 'Modèle sans nom';
-        const displayPrix = 'prix_initial' in product ? product.prix_initial || 0 : 0;
-        const displayPromo = 'reduction' in product ? product.reduction || 0 : 0;
-        const displayForme = 'forme' in product ? String(product.forme ?? '').toLowerCase() : '';
+        <!-- À GAUCHE : COMPTEUR D'ÉLÉMENTS -->
+        <div class="toolbar-left">
+          <span id="results-count" class="count-number">0</span>
+          <span id="results-label">produit(s) trouvé(s)</span>
+        </div>
 
-        return (
-          <div 
-            class="search-item hidden" 
-            data-nom={displayNom.toLowerCase()}
-            data-description={product.description?.toLowerCase() || ''}
-            data-forme={displayForme}
-            data-categorie={product.categorie?.toLowerCase() || ''}
+        <!-- AU CENTRE : COMMUTATEUR DE GRILLE / FORMAT D'AFFICHAGE -->
+        <div class="toolbar-center">
+          <!-- Bouton 3 Colonnes -->
+          <button 
+            id="btn-grid-3" 
+            class="grid-toggle-btn active"
+            title="Affichage 3 colonnes"
+            aria-label="3 colonnes"
           >
-            <Card 
-              id={product.id}
-              type={typeUrl}
-              nom={displayNom}
-              prix={displayPrix}
-              promo={displayPromo}
-              image={imageUrl}
-            />
-          </div>
-        );
-      })}
-    </div>
+            <svg class="toolbar-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5h3v14H4V5zm6 0h3v14h-3V5zm6 0h3v14h-3V5z" />
+            </svg>
+          </button>
 
-    <!-- MESSAGE AUCUN RÉSULTAT -->
-    <div id="no-results" class="no-results-container hidden">
-      <p class="no-results-text">Aucun modèle ne correspond à votre recherche.</p>
-      <a href="/cuisines" class="back-catalog-link">
-        Voir tout le catalogue
-      </a>
-    </div>
+          <!-- Bouton 4 Colonnes -->
+          <button 
+            id="btn-grid-4" 
+            class="grid-toggle-btn btn-grid-4-desktop"
+            title="Affichage 4 colonnes"
+            aria-label="4 colonnes"
+          >
+            <svg class="toolbar-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+            </svg>
+          </button>
+        </div>
+        
+        <!-- À DROITE : TRI DES PRIX SUR-MESURE -->
+      <div class="toolbar-right">
+        <span class="sort-label">Trier par :</span>
+        <div class="custom-dropdown" id="sort-dropdown">
+          <button type="button" class="dropdown-trigger" aria-expanded="false">
+            <span class="selected-text">Pertinence</span>
+            <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item active" data-value="default">Pertinence</li>
+            <li class="dropdown-item" data-value="price-asc">Prix : Croissant</li>
+            <li class="dropdown-item" data-value="price-desc">Prix : Décroissant</li>
+          </ul>
+        </div>
+      </div>
+
+      </div>
+
+      <!-- GRILLE DE RÉSULTATS -->
+      <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {allProducts.map((product) => {
+          const typeUrl = getProductType(product.categorie);
+          const imageUrl = getImageUrl(product);
+          
+          const displayNom = product.nom || 'Modèle sans nom';
+          const displayPrix = 'prix_initial' in product ? product.prix_initial || 0 : 0;
+          const displayPromo = 'reduction' in product ? product.reduction || 0 : 0;
+          const displayForme = 'forme' in product ? String(product.forme ?? '').toLowerCase() : '';
+
+          return (
+            <div 
+              class="search-item hidden" 
+              data-nom={displayNom.toLowerCase()}
+              data-description={product.description?.toLowerCase() || ''}
+              data-forme={displayForme}
+              data-categorie={product.categorie?.toLowerCase() || ''}
+            >
+              <Card 
+                id={product.id}
+                type={typeUrl}
+                nom={displayNom}
+                prix={displayPrix}
+                promo={displayPromo}
+                image={imageUrl}
+              />
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- MESSAGE AUCUN RÉSULTAT -->
+      <div id="no-results" class="no-results-container hidden">
+        <p class="no-results-text">Aucun modèle ne correspond à votre recherche.</p>
+        <a href="/cuisines" class="back-catalog-link">
+          Voir tout le catalogue
+        </a>
+      </div>
+    </section>
   </main>
 </Layout>
 
@@ -359,6 +360,10 @@ const allProducts = [
 
 
 <style>
+  .search-page{
+    /*background-color: #f9fafb; */ /* bg-gray-50 */
+    background-color: white;
+  }
   /* --- LAYOUT GLOBAL ET CONTENEURS --- */
   .search-main-container {
     padding: 4 0 2.5 0rem;
@@ -531,7 +536,7 @@ const allProducts = [
     visibility: hidden;
     pointer-events: none;
     transition: opacity 0.2s ease, visibility 0.2s ease;
-    z-index: 999;
+    z-index: 99;
   }
 
   /* Affichage lors de l'ouverture */
@@ -543,7 +548,7 @@ const allProducts = [
 
   /* Éléments de la liste */
   .dropdown-item {
-    color: #000000 !important;
+    color: black !important;
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -604,10 +609,10 @@ const allProducts = [
   }
 
   .catalog-filter-bar {
-    padding: 8rem 2rem 0rem 2em;
+    padding: 12rem 2rem 0rem 4em;
     /*border-bottom: 1px solid;
     border-color: rgba(20, 20, 20, 0.1);*/
-    margin-bottom: 0rem;
+    margin: 0rem;
     border: none;
   }
 
@@ -678,6 +683,11 @@ const allProducts = [
   }
 
   @media (max-width: 640px) {
+    .search-main-container {
+      padding: 1 0 2.5 0rem;
+      margin: 0 3rem;
+    }
+
     #results-grid.mode-list :global(.luxury-card) {
       flex-direction: column !important;
       align-items: stretch;

@@ -66,6 +66,11 @@ const formattedImages = images
         </figure>
       ))}
     </div>
+
+    <!-- Indicateur de progression (affiché uniquement sur mobile) -->
+    <div class="gallery-progress" aria-hidden="true">
+      <span class="gallery-progress-bar" id="gallery-progress-bar"></span>
+    </div>
   </div>
 
   <!-- Modal Lightbox sur-mesure -->
@@ -93,11 +98,19 @@ const formattedImages = images
   const track = document.getElementById('gallery-track') as HTMLElement;
   const zone = document.getElementById('interactive-zone') as HTMLElement;
 
+  // Mode mobile : écran étroit OU appareil sans survol (tactile).
+  // Même condition que le CSS : le défilement se fait alors au doigt (swipe + snap).
+  const mobileMq = window.matchMedia('(max-width: 768px), (hover: none)');
+
   let animationFrameId: number | null = null;
   let scrollSpeed = 0;
 
   if (track && zone) {
     zone.addEventListener('mousemove', (e) => {
+      // Sur mobile, un tap génère un mousemove « fantôme » qui lancerait un défilement
+      // automatique sans fin (mouseleave ne se déclenche jamais) : on désactive l'effet.
+      if (mobileMq.matches) return;
+
       const rect = zone.getBoundingClientRect();
       const mouseX = e.clientX - rect.left;
       const zoneWidth = rect.width;
@@ -122,6 +135,9 @@ const formattedImages = images
     zone.addEventListener('mouseleave', () => {
       stopScrolling();
     });
+
+    // Si on bascule en mode mobile (rotation, redimensionnement), on coupe l'auto-scroll
+    mobileMq.addEventListener('change', () => stopScrolling());
   }
 
   function startScrolling() {
@@ -138,6 +154,95 @@ const formattedImages = images
     }
     scrollSpeed = 0;
   }
+
+  // ── Indicateur de progression (mobile) ──
+  const progressBar = document.getElementById('gallery-progress-bar') as HTMLElement | null;
+  let progressTicking = false;
+
+  function updateProgress() {
+    progressTicking = false;
+    if (!track || !progressBar) return;
+    const max = track.scrollWidth - track.clientWidth;
+    if (max <= 0) {
+      progressBar.style.width = '100%';
+      progressBar.style.transform = 'translateX(0)';
+      return;
+    }
+    const w = track.clientWidth / track.scrollWidth;
+    const ratio = Math.min(1, Math.max(0, track.scrollLeft / max));
+    progressBar.style.width = `${w * 100}%`;
+    progressBar.style.transform = `translateX(${(ratio * (1 - w) / w) * 100}%)`;
+  }
+
+  track?.addEventListener('scroll', () => {
+    if (!mobileMq.matches || progressTicking) return;
+    progressTicking = true;
+    requestAnimationFrame(updateProgress);
+  }, { passive: true });
+
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  // ── Glisser à la souris en mode mobile ──
+  // Une souris ne fait pas défiler une piste nativement. Sur une fenêtre étroite de PC
+  // (ou en mode responsive du navigateur), on active donc le « cliquer-glisser ».
+  // Au doigt, le défilement reste 100 % natif.
+  let isDragging = false;
+  let dragMoved = false;
+  let dragStartX = 0;
+  let dragStartScroll = 0;
+
+  track?.addEventListener('pointerdown', (e) => {
+    if (!mobileMq.matches || e.pointerType !== 'mouse' || e.button !== 0) return;
+    isDragging = true;
+    dragMoved = false;
+    dragStartX = e.clientX;
+    dragStartScroll = track.scrollLeft;
+  });
+
+  window.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    const dx = e.clientX - dragStartX;
+    if (Math.abs(dx) > 5) {
+      dragMoved = true;
+      track.classList.add('is-dragging'); // coupe le snap pendant le glissement
+    }
+    if (dragMoved) track.scrollLeft = dragStartScroll - dx;
+  });
+
+  function endDrag() {
+    if (!isDragging) return;
+    isDragging = false;
+    track.classList.remove('is-dragging');
+
+    // Recolle en douceur sur la diapo la plus proche
+    if (dragMoved) {
+      const pad = parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0;
+      const items = Array.from(track.querySelectorAll('.gallery-slide')) as HTMLElement[];
+      let target = 0;
+      let best = Infinity;
+      items.forEach((s) => {
+        const left = s.offsetLeft - pad;
+        const d = Math.abs(left - track.scrollLeft);
+        if (d < best) { best = d; target = left; }
+      });
+      track.scrollTo({ left: target, behavior: 'smooth' });
+    }
+  }
+  window.addEventListener('pointerup', endDrag);
+  window.addEventListener('pointercancel', endDrag);
+
+  // Empêche l'ouverture de la lightbox juste après un glissement
+  track?.addEventListener('click', (e) => {
+    if (dragMoved) {
+      e.stopPropagation();
+      e.preventDefault();
+      dragMoved = false;
+    }
+  }, true);
+
+  // Empêche le « glisser-déposer » natif des images
+  track?.addEventListener('dragstart', (e) => e.preventDefault());
 
   const slideElements = Array.from(document.querySelectorAll('.gallery-slide'));
   const slides = slideElements.map(slide => {
@@ -178,6 +283,11 @@ const formattedImages = images
       lbImg.src = item.src;
       lbImg.alt = item.alt;
       lbCaption.textContent = item.title || item.alt;
+
+      // Relance la petite animation d'apparition (stylée uniquement sur mobile)
+      lbImg.classList.remove('is-switching');
+      void lbImg.offsetWidth;
+      lbImg.classList.add('is-switching');
     }
   }
 
@@ -200,13 +310,126 @@ const formattedImages = images
     if (e.key === 'ArrowLeft') { currentIndex--; updateModalContent(); }
     if (e.key === 'ArrowRight') { currentIndex++; updateModalContent(); }
   });
+
+  // ── Lightbox au doigt (mobile) ──
+  // L'image suit le doigt. Relâcher après > 70px change d'image ; sinon elle revient.
+  // Glisser vers le bas ferme la lightbox. Pointer Events = doigt, stylet et souris
+  // (la souris fonctionne aussi sur une fenêtre étroite). Inactif sur grand écran.
+  const lbBody = modal?.querySelector('.lightbox-body') as HTMLElement | null;
+
+  let lbDown = false;
+  let lbAxis: 'x' | 'y' | null = null;
+  let lbStartX = 0;
+  let lbStartY = 0;
+  let lbDX = 0;
+  let lbDY = 0;
+  let lbMoved = false;
+  let lbAnimating = false;
+
+  function lbReset(animated: boolean) {
+    if (!lbBody) return;
+    lbBody.style.transition = animated
+      ? 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease'
+      : 'none';
+    lbBody.style.transform = '';
+    lbBody.style.opacity = '';
+  }
+
+  modal?.addEventListener('pointerdown', (e) => {
+    lbMoved = false;
+    if (!mobileMq.matches || !modal.classList.contains('is-open') || lbAnimating) return;
+    if ((e.target as HTMLElement).closest('.lb-control')) return;
+    lbDown = true;
+    lbAxis = null;
+    lbDX = 0;
+    lbDY = 0;
+    lbStartX = e.clientX;
+    lbStartY = e.clientY;
+  });
+
+  window.addEventListener('pointermove', (e) => {
+    if (!lbDown || !lbBody) return;
+    lbDX = e.clientX - lbStartX;
+    lbDY = e.clientY - lbStartY;
+
+    // Verrouille l'axe dès que le geste dépasse 8px
+    if (!lbAxis) {
+      if (Math.abs(lbDX) < 8 && Math.abs(lbDY) < 8) return;
+      lbAxis = Math.abs(lbDX) > Math.abs(lbDY) ? 'x' : 'y';
+    }
+
+    lbMoved = true;
+    lbBody.style.transition = 'none';
+
+    if (lbAxis === 'x') {
+      lbBody.style.transform = `translateX(${lbDX}px)`;
+      lbBody.style.opacity = String(1 - Math.min(Math.abs(lbDX) / (window.innerWidth * 0.9), 0.6));
+    } else {
+      const dy = Math.max(lbDY, 0); // seul le glissement vers le bas est pris en compte
+      lbBody.style.transform = `translateY(${dy}px)`;
+      lbBody.style.opacity = String(1 - Math.min(dy / 400, 0.6));
+    }
+  });
+
+  function lbEnd() {
+    if (!lbDown || !lbBody) return;
+    lbDown = false;
+    if (!lbMoved) return;
+
+    if (lbAxis === 'x' && Math.abs(lbDX) > 70) {
+      const dir = lbDX < 0 ? 1 : -1;  // glisser vers la gauche = image suivante
+      const out = lbDX < 0 ? -1 : 1;
+      lbAnimating = true;
+
+      // 1) l'image sort de l'écran
+      lbBody.style.transition = 'transform 0.18s ease-in, opacity 0.18s ease-in';
+      lbBody.style.transform = `translateX(${out * window.innerWidth * 0.5}px)`;
+      lbBody.style.opacity = '0';
+
+      setTimeout(() => {
+        // 2) on change d'image et on la fait entrer du côté opposé
+        currentIndex += dir;
+        updateModalContent();
+        lbImg.classList.remove('is-switching'); // évite le cumul avec l'animation du bouton
+
+        lbBody.style.transition = 'none';
+        lbBody.style.transform = `translateX(${-out * 60}px)`;
+        void lbBody.offsetWidth;
+        lbBody.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease';
+        lbBody.style.transform = '';
+        lbBody.style.opacity = '';
+
+        setTimeout(() => { lbAnimating = false; }, 300);
+      }, 180);
+    } else if (lbAxis === 'y' && lbDY > 100) {
+      closeLightbox();
+      setTimeout(() => lbReset(false), 400); // remet l'état une fois la lightbox fondue
+    } else {
+      lbReset(true); // geste trop court : l'image revient en place
+    }
+  }
+
+  window.addEventListener('pointerup', lbEnd);
+  window.addEventListener('pointercancel', lbEnd);
+
+  // Un glissement ne doit pas déclencher un clic (fermeture via le fond, par exemple)
+  modal?.addEventListener('click', (e) => {
+    if (lbMoved) {
+      e.stopPropagation();
+      e.preventDefault();
+      lbMoved = false;
+    }
+  }, true);
+
+  // Empêche le glisser-déposer natif de l'image à la souris
+  modal?.addEventListener('dragstart', (e) => e.preventDefault());
 </script>
 
 <style>
   .gallery-wrapper {
     width: 100%;
     max-width: 1400px;
-    margin: 4rem auto;
+    margin: 0rem auto 4rem auto;
     padding: 0 1.5rem;
     box-sizing: border-box;
   }
@@ -423,8 +646,217 @@ const formattedImages = images
   .prev-btn { left: 2rem; top: 50%; transform: translateY(-50%); }
   .next-btn { right: 2rem; top: 50%; transform: translateY(-50%); }
 
-  @media (max-width: 768px) {
+  /* Indicateur de progression : masqué sur desktop */
+  .gallery-progress {
+    display: none;
+  }
+
+  /* ==========================================================================
+     GALERIE : MOBILE (écran étroit ou appareil tactile)
+     Défilement natif au doigt, avec aimantation (snap) sur chaque diapo.
+     ========================================================================== */
+  @media (max-width: 768px), (hover: none) {
+
+    /* La piste déborde sur toute la largeur de l'écran (effet « bord à bord ») */
+    .gallery-wrapper {
+      padding: 0;
+      margin: 0 auto 3rem;
+    }
+
+    .gallery-header {
+      padding: 0 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .title {
+      font-size: 1.5rem;
+    }
+
+    /* Empêche la galerie d'être élargie par son contenu quand elle est dans une grille/flex :
+       sans ça, la piste prend la largeur de toutes les images et n'a plus rien à faire défiler */
+    .gallery-wrapper,
+    .gallery-interactive-zone {
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    /* ── Piste : swipe fluide + snap ── */
+    .gallery-track {
+      min-width: 0;
+      max-width: 100%;
+      touch-action: pan-x pan-y; /* autorise explicitement le glissement horizontal et vertical */
+      gap: 1rem;
+      padding: 0 0 1rem 1.25rem;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: 1.25rem;
+      overscroll-behavior-x: contain; /* évite le retour arrière du navigateur en fin de piste */
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .gallery-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Pendant un glissement à la souris, le snap est suspendu */
+    .gallery-track.is-dragging {
+      scroll-snap-type: none;
+      user-select: none;
+    }
+
+    .slide-img {
+      -webkit-user-drag: none;
+      user-select: none;
+    }
+
+    /* Diapo à 82 % : la suivante dépasse, ce qui invite à glisser */
+    .gallery-slide {
+      flex: 0 0 82%;
+      max-width: 420px;
+      scroll-snap-align: start;
+      scroll-snap-stop: normal; /* un swipe rapide peut passer plusieurs diapos */
+    }
+
+    /* Marge de fin : la dernière diapo peut s'aligner proprement */
+    .gallery-slide:last-child {
+      margin-right: 1.25rem;
+    }
+
+    .slide-title {
+      font-size: 1rem;
+    }
+
+    /* ── Plus de survol : hover neutralisé ── */
+    .slide-img {
+      transition: none;
+    }
+
+    .img-wrapper:hover .slide-img {
+      transform: none;
+    }
+
+    /* Le calque sert désormais de simple repère « agrandir » en bas à droite */
+    .img-overlay {
+      background: transparent;
+      opacity: 1;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 0.75rem;
+      transition: none;
+      pointer-events: none; /* le tap passe à l'image, qui ouvre la lightbox */
+    }
+
+    .img-wrapper:hover .img-overlay {
+      opacity: 1;
+    }
+
+    .zoom-trigger {
+      width: 36px;
+      height: 36px;
+      background: rgba(10, 10, 10, 0.5);
+      color: #fff;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      transform: none;
+      transition: none;
+    }
+
+    .img-wrapper:hover .zoom-trigger {
+      transform: none;
+    }
+
+    .zoom-trigger svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Retour tactile discret sur l'image */
+    .img-wrapper {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .img-wrapper:active {
+      opacity: 0.9;
+    }
+
+    /* ── Indicateur de progression ── */
+    .gallery-progress {
+      display: block;
+      position: relative;
+      height: 2px;
+      margin: 0.25rem 1.25rem 0;
+      background: rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+    }
+
+    .gallery-progress-bar {
+      display: block;
+      height: 100%;
+      width: 30%;
+      background: var(--gold, #c9a84c);
+      will-change: transform;
+    }
+
+    /* ── Lightbox : plein écran, navigation au doigt ── */
+    .custom-lightbox {
+      touch-action: none; /* les gestes sont gérés en JS (swipe) */
+      overscroll-behavior: contain;
+    }
+
     .prev-btn, .next-btn { display: none; }
-    .close-btn { top: 1rem; right: 1rem; }
+
+    .close-btn {
+      top: max(1rem, env(safe-area-inset-top));
+      right: 1rem;
+    }
+
+    .lb-control {
+      width: 44px;
+      height: 44px;
+      transition: none;
+    }
+
+    .lb-control:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .lb-control:active {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .lightbox-body {
+      will-change: transform, opacity;
+      max-width: 100%;
+      max-height: 100dvh;
+      padding: 0 0.75rem;
+      box-sizing: border-box;
+    }
+
+    .lightbox-body img {
+      max-height: 72dvh;
+      box-shadow: none;
+    }
+
+    .lightbox-caption {
+      font-size: 0.9rem;
+      padding: 0 0.5rem;
+      text-align: center;
+    }
+
+    /* Petite apparition à chaque changement d'image */
+    .lightbox-body img.is-switching {
+      animation: lbSwitch 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes lbSwitch {
+      from { opacity: 0; transform: scale(0.97); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lightbox-body img.is-switching {
+      animation: none;
+    }
   }
 </style>

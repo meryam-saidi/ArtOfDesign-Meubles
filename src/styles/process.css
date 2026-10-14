@@ -5,7 +5,8 @@
   #process-premium {
     background: var(--obsidian);
     padding: 4rem 4rem 4rem 6rem;
-    position: relative;
+    position: sticky;
+    top: min(0px, calc(100dvh - var(--process-h, 100dvh)));
     z-index: 2;
   }
 
@@ -19,6 +20,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 2.5rem;
   }
 
   .process-header .section-label {
@@ -100,8 +102,8 @@
   }
 
   .item-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
+    font-family: 'Philosopher', serif;
+    font-size: 1.2rem;
     font-weight: 300;
     color: rgba(247, 245, 240, 0.8);
   }
@@ -208,10 +210,161 @@
   .badge-after { right: 1.5rem; border-left: 2px solid var(--gold);}
 
 
-  /* ── RESPONSIVE TAILLES MOBILES ── */
   @media (max-width: 992px) {
-    #process-premium { padding: 8rem 2rem; }
-    .process-split-layout { grid-template-columns: 1fr; gap: 4rem; }
-    .item-body { grid-template-columns: 1fr; gap: 0.5rem; }
-    .comparison-slider { max-width: 100%; aspect-ratio: 4/5; }
+ 
+    /* Plus de section collante : elle serait plus haute que l'écran sur mobile */
+    #process-premium {
+      padding: 4rem 1.5rem;
+    }
+ 
+    .process-minimal-container {
+      max-width: 100%;
+      width: 100%;
+      margin: 0;
+      padding-bottom: 0;
+    }
+ 
+    /* Empilement : liste puis slider */
+    .process-split-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-top: 0;
+    }
+ 
+    .process-raw-list,
+    .process-media-column {
+      width: 100%;
+    }
+ 
+    .process-header {
+      padding-bottom: 1.5rem;
+    }
+ 
+    .process-header .section-title,
+    .process-header .section-header-title {
+      font-size: 1.5rem;
+      line-height: 1.25;
+      letter-spacing: 0.06em;
+    }
+ 
+    /* ── Étapes : numéro à gauche, titre puis description ── */
+    .process-raw-item {
+      grid-template-columns: 2.75rem 1fr;
+      padding: 1.25rem 0;
+      transition: none;
+    }
+ 
+    .item-meta {
+      padding-right: 0.75rem;
+    }
+ 
+    /* Numéro romain en doré en permanence (remplace l'effet de survol) */
+    .item-roman {
+      font-size: 1.4rem;
+      padding-top: 0;
+      transform: none;
+      transition: none;
+      color: var(--gold);
+    }
+ 
+    .item-dot {
+      display: none;
+    }
+ 
+    .item-body {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+      align-items: start;
+    }
+ 
+    .item-title {
+      font-size: 1.1rem;
+      color: rgba(247, 245, 240, 0.6);
+    }
+ 
+    .item-desc {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: rgba(247, 245, 240, 0.6);
+    }
+ 
+    /* ── Neutralisation des effets de survol (inutiles au toucher) ── */
+    .process-raw-item:hover { border-top-color: rgba(255, 255, 255, 0.05); }
+    .process-raw-item:hover .item-roman { color: var(--gold); }
+    .process-raw-item:hover .item-dot { background: transparent; box-shadow: none; }
+    .process-raw-item:hover .item-title { color: rgba(247, 245, 240, 0.6); }
+    .process-raw-item:hover .item-desc { color: rgba(247, 245, 240, 0.6); }
+ 
+    /* ── Slider avant/après ── */
+    .comparison-slider {
+      width: 100%;
+      max-width: 100%;
+      aspect-ratio: 4 / 3;
+      height: auto;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      touch-action: pan-y; /* le scroll vertical reste possible, le glissement horizontal pilote le slider */
+      -webkit-tap-highlight-color: transparent;
+    }
+ 
+    .slider-handle {
+      width: 2px;
+      background: rgba(201, 168, 76, 0.7);
+    }
+ 
+    /* Poignée plus grande : zone de toucher confortable (≥ 44px) */
+    .handle-button {
+      width: 2.75rem;
+      height: 2.75rem;
+      font-size: 1rem;
+    }
+ 
+    .badge-slider {
+      bottom: 0.75rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      padding: 0.3rem 0.6rem;
+      backdrop-filter: none;
+      background: rgba(18, 18, 18, 0.8);
+    }
+ 
+    .badge-before { left: 0.75rem; }
+    .badge-after  { right: 0.75rem; }
+  }
+ 
+  /* Petits écrans */
+  @media (max-width: 480px) {
+    #process-premium {
+      padding: 3rem 1.25rem;
+    }
+ 
+    .process-split-layout {
+      gap: 2rem;
+    }
+ 
+    .process-raw-item {
+      grid-template-columns: 2.25rem 1fr;
+    }
+ 
+    .item-roman {
+      font-size: 1.25rem;
+    }
+ 
+    .item-title {
+      font-size: 1.1rem;
+    }
+ 
+    .item-desc {
+      font-size: 0.85rem;
+    }
+ 
+    .comparison-slider {
+      aspect-ratio: 1 / 1;
+    }
+ 
+    .badge-slider {
+      font-size: 0.55rem;
+      padding: 0.25rem 0.5rem;
+    }
+    
   }

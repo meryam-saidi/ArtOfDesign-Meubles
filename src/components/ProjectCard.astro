@@ -58,6 +58,7 @@ const typeLabel = "Projet Sur Mesure";
         <span class="text-hover">Explorer le comparateur plein écran</span>
       </div>
     </div>
+    <button type="button" class="mobile-open-btn">Voir le comparateur</button>
   </div>
 
   <div class="project-item-info">
@@ -90,7 +91,8 @@ const typeLabel = "Projet Sur Mesure";
 <div class="fullscreen-comparator" id={`modal-comparator-${id}`} aria-hidden="true">
   <div class="comparator-topbar">
     <div class="comparator-title">
-      Projet : <strong>{nom}</strong> <span class="comparator-tag">Comparatif 3D vs Réel</span>
+      <strong>{nom}</strong>
+      <!-- <span class="comparator-tag">Comparatif 3D vs Réel</span> -->
     </div>
     <button class="close-comparator-btn" aria-label="Fermer le comparateur">&times;</button>
   </div>
@@ -141,10 +143,15 @@ const typeLabel = "Projet Sur Mesure";
 </div>
 
 <style>
-  
+
+  .before-after-side img {
+    transform: none;
+    transition: none;
+  }
+
   .project-item-gallery {
     position: relative;
-    cursor: pointer;
+    /*cursor: pointer;*/
   }
 
   .hover-overlay {
@@ -162,29 +169,29 @@ const typeLabel = "Projet Sur Mesure";
     opacity: 1;
   }
   
-/* ── MODALE OVERLAY Z-INDEX MAX ── */ 
-.fullscreen-comparator {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100dvh;
-  background: #080808;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
+  /* ── MODALE OVERLAY Z-INDEX MAX ── */ 
+  .fullscreen-comparator {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    background: #080808;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
 
-.fullscreen-comparator.is-active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
+  .fullscreen-comparator.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
 
-/* Barre supérieure */
+  /* Barre supérieure */
   .comparator-topbar {
     height: 60px;
     padding: 0 2rem;
@@ -196,6 +203,10 @@ const typeLabel = "Projet Sur Mesure";
     z-index: 20;
   }
 
+  .mobile-open-btn {
+    display: none;
+  }
+
   .comparator-title {
     color: #ffffff;
     font-size: 0.85rem;
@@ -204,7 +215,7 @@ const typeLabel = "Projet Sur Mesure";
   }
 
   .comparator-title strong {
-    color: var(--gold, #C1A870);
+    color: var(--gold);
   }
 
   .comparator-tag {
@@ -216,10 +227,10 @@ const typeLabel = "Projet Sur Mesure";
   .close-comparator-btn {
     background: transparent;
     border: none;
-    color: var(--gold, #C1A870);
+    color: var(--gold);
     font-size: 2.2rem;
     line-height: 1;
-    cursor: pointer;
+    cursor: none;
     transition: transform 0.2s;
   }
 
@@ -227,31 +238,31 @@ const typeLabel = "Projet Sur Mesure";
     transform: scale(1.15);
   }
 
-/* Zone principale à 2 panneaux */
-.comparator-viewport {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  width: 100%;
-  overflow: hidden;
-}
+  /* Zone principale à 2 panneaux */
+  .comparator-viewport {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+  }
 
-.slider-panel {
-  flex: 1 1 0;
-  min-width: 0;
-  min-height: 0;
-  position: relative;
-  background: #000;
-}
+  .slider-panel {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 0;
+    position: relative;
+    background: #000;
+  }
 
-.panel-header-badge {
+  .panel-header-badge {
     position: absolute;
     top: 1.5rem;
     left: 1.5rem;
     z-index: 15;
-    background: rgba(13, 13, 13, 0.85);
-    color: var(--gold, #C1A870);
-    border: 1px solid rgba(193, 168, 112, 0.3);
+    /*background: rgba(13, 13, 13, 0.85);*/
+    color: rgba(255, 255, 255, 0.4);
+    /*border: 1px solid rgba(193, 168, 112, 0.3);*/
     padding: 0.4rem 0.9rem;
     font-size: 0.65rem;
     letter-spacing: 0.2em;
@@ -260,75 +271,77 @@ const typeLabel = "Projet Sur Mesure";
 
   .comparator-divider {
     width: 2px;
-    background: linear-gradient(180deg, transparent, var(--gold, #C1A870), transparent);
+    background: linear-gradient(180deg, transparent, var(--gold), transparent);
     z-index: 15;
   }
 
-/* Configuration des Sliders Swiper */
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-wrapper {
-  height: 100%;
-}
-
-.swiper-slide {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.slide-image-wrapper {
-  width: 100%;
-  height: 100%;
-  padding: 4rem 4rem 5rem 4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  position: relative;
-}
-
-.slide-image-wrapper img {
-  display: block;
-  max-width: 100%;
-  max-height: calc(100% - 2rem);
-  width: auto;
-  height: auto;
-  object-fit: contain;
-}
-
-/* Style de la légende / titre d'image */
-.slide-caption {
-  position: absolute;
-  bottom: 2rem;
-  background: rgba(13, 13, 13, 0.75);
-  color: #e0e0e0;
-  border: 1px solid rgba(193, 168, 112, 0.2);
-  padding: 0.4rem 1rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  border-radius: 4px;
-  backdrop-filter: blur(4px);
-  text-align: center;
-  max-width: 80%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Boutons Swiper Personnalisés */
-  :global(.swiper-button-next),
-  :global(.swiper-button-prev) {
-    color: var(--gold, #C1A870) !important;
+  /* Configuration des Sliders Swiper */
+  .swiper {
+    width: 100%;
+    height: 100%;
   }
 
+  .swiper-wrapper {
+    height: 100%;
+  }
+
+  .swiper-slide {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slide-image-wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 4rem 4rem 4rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .slide-image-wrapper img {
+    display: block;
+    max-width: 100%;
+    max-height: calc(100% - 2rem);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* Style de la légende / titre d'image */
+  .slide-caption {
+    position: absolute;
+    bottom: 4rem;
+    background: rgba(13, 13, 13, 0.75);
+    color: #e0e0e0;
+    /*border: 1px solid rgba(193, 168, 112, 0.2);*/
+    padding: 0.4rem 1rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    backdrop-filter: blur(4px);
+    text-align: center;
+    max-width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Boutons Swiper Personnalisés */
+  :global(.swiper-button-next),
+  :global(.swiper-button-prev) {
+    color: var(--gold) !important;
+  }
+  :global(.swiper-pagination-bullet) {
+    background: var(--gold) !important;
+  }
   :global(.swiper-pagination-bullet-active) {
-    background: var(--gold, #C1A870) !important;
+    background: var(--gold) !important;
   }
   
 /* ── RESPONSIVE (MOBILE & TABLETTE) ── */
@@ -340,23 +353,62 @@ const typeLabel = "Projet Sur Mesure";
   .project-item-gallery {
     flex: none;
     width: 100%;
-    height: 240px;
+    height: auto;
+  }
+
+  /* Overlay survol supprimé sur mobile */
+  .hover-overlay {
+    display: none;
+  }
+  
+  .mobile-open-btn {
+    display: block;
+    width: 100%;
+    margin-top: 0.75rem;
+    padding: 0.8rem 1rem;
+    background: transparent;
+    border: 1px solid var(--gold, #c9a84c);
+    color: var(--gold, #c9a84c);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
   }
 
   .project-item-info {
-    padding: 1.5rem;
+    padding: 1rem 0 0;
   }
 
-  .project-steps-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 colonnes d'étapes sur tablette */
-    gap: 0.75rem;
+  .project-item-name {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
   }
-}
 
-@media (max-width: 576px) {
+  .project-item-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  /* Grille d'étapes compacte : titres seuls */
   .project-steps-grid {
-    grid-template-columns: 1fr; /* 1 colonne sur petit écran mobile */
-  }  
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem;
+  }
+
+  .project-step-mini {
+    padding: 0.5rem 0.6rem;
+    gap: 0;
+  }
+
+  .project-step-mini strong {
+    font-size: 9px;
+    letter-spacing: 0.05em;
+  }
+
+  .project-step-mini span {
+    display: none;             /* supprimé, pas seulement invisible */
+  }
 }
 
 @media (max-width: 991px) {

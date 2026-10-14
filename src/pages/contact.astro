@@ -4,7 +4,7 @@ import Contact from '../components/Contact.astro';
 
 ---
 
-<Layout title="Nos Modèles de Cuisines | Art Of Design">
+<Layout title="Nos Modèles de Cuisines | Art Of Design" pageBg="dark">
   <main class="luxury-catalog">
     
     <!-- LUXURY HERO -->
@@ -68,11 +68,15 @@ import Contact from '../components/Contact.astro';
 </script>
 
 <style is:global>
-  .luxury-hero{
-     height: 15vh;
-  }
+.luxury-hero{
+  height: 15vh;
+  background-color: var(--charcoal);
+}
 /* ── DISPOSITION VERTICALE ET PLEINE LARGEUR ── */
 /* 1. Passer le conteneur principal en colonne */
+#contact{
+  box-shadow: none;
+}
 #contact .contact-wrapper {
   display: flex;
   flex-direction: column;
@@ -148,7 +152,7 @@ import Contact from '../components/Contact.astro';
   }
 
   #contact .contact-map-container {
-    height: 350px;
+    height: 700px;
   }
 }
 </style>

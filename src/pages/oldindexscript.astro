@@ -1,0 +1,111 @@
+
+<script is:inline>
+  (() => {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    let ctx;
+    let refreshTimer;
+
+    const scheduleRefresh = () => {
+      clearTimeout(refreshTimer);
+      refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150);
+    };
+
+    function curtainPin(selector) {
+      const el = document.querySelector(selector);
+      if (!el) return;
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'bottom bottom',
+        end: '+=100%',
+        pin: true,
+        pinSpacing: false,
+        invalidateOnRefresh: true,
+      });
+    }
+/*
+    function setupHomeScroll() {
+      if (ctx) ctx.revert();
+
+      ctx = gsap.context(() => {
+        // ── Ordre = ordre du DOM, obligatoire pour un pin stacking correct ──
+
+        // 1. philosophy -> categories
+        curtainPin('#philosophy-premium');
+
+        // 2. scroll horizontal des categories (AVANT process, car il est physiquement avant dans le DOM)
+        ScrollTrigger.matchMedia({
+          '(min-width: 900px)': () => {
+            const track = document.querySelector('.categories-horizontal-track');
+            const container = document.querySelector('#categories-pin-container');
+            if (!track || !container) return;
+
+            gsap.to(track, {
+              x: () => -(track.scrollWidth - window.innerWidth),
+              ease: 'none',
+              scrollTrigger: {
+                trigger: container,
+                start: 'bottom bottom',
+                end: () => `+=${track.scrollWidth}`,
+                pin: true,
+                scrub: 1,
+                invalidateOnRefresh: true,
+              },
+            });
+          },
+        });
+
+        // 3. process -> contact (créé APRÈS le pin categories)
+        curtainPin('#process-premium');
+      });
+
+      ScrollTrigger.refresh();
+    }
+*/
+  function setupHomeScroll(){
+    ctx = gsap.context(() => {
+
+      const mm = gsap.matchMedia();
+
+      mm.add('(min-width: 900px)', () => {
+        const track = document.querySelector('.categories-horizontal-track');
+        const container = document.querySelector('#categories-pin-container');
+
+        if (!track || !container) return;
+
+        gsap.to(track, {
+          x: () => -(track.scrollWidth - window.innerWidth),
+          ease: 'none',
+
+          scrollTrigger: {
+            trigger: container,
+            start: 'top top',
+            end: () => `+=${track.scrollWidth - window.innerWidth}`,
+            pin: true,
+            pinSpacing: true,
+            scrub: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+      });
+
+      curtainPin('#process-premium');
+
+    });
+  }
+
+    Promise.all([
+      new Promise((res) => {
+        if (document.readyState === 'complete') res();
+        else window.addEventListener('load', res, { once: true });
+      }),
+      document.fonts ? document.fonts.ready : Promise.resolve(),
+    ]).then(() => {
+      setupHomeScroll();
+      /*new ResizeObserver(scheduleRefresh).observe(document.body);*/
+      window.addEventListener('resize', scheduleRefresh);
+    });
+  })();
+</script>
+

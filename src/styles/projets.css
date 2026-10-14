@@ -4,7 +4,7 @@
 
   .portfolio-container {
     background-color: #0b0b0b;
-    padding: 8rem 0;
+    padding: 8rem 0 2rem 0;
     width: 100%;
   }
 
@@ -39,9 +39,9 @@
     font-size: 13px;
     color: rgba(247, 245, 240, 0.5);
     line-height: 1.6;
-  }
+  } 
 
-  /* ── LISTE DES COMPOSANTS PROJETS ── */
+  /* ── LISTE DES COMPOSANTS PROJETS ── */    
   .projects-vertical-list {
     display: flex;
     flex-direction: column;
@@ -63,6 +63,29 @@
     border-bottom: none;
     padding-bottom: 0;
   }
+
+@media (min-width: 992px) {
+  .project-item {
+    align-items: center;
+    gap: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .project-item-gallery {
+    flex: 1.2 1 0;
+    min-width: 0;
+  }
+
+  .project-item-info {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  /* Lignes paires : images à droite, infos à gauche */
+  .project-row:nth-child(even) .project-item {
+    flex-direction: row-reverse;
+  }
+}
 
   /* ── LOGIQUE DE CHICANE ALTERNÉE (DESKTOP) ── */
   @media (min-width: 1024px) {
@@ -184,12 +207,6 @@
     gap: 1.25rem;
   }
 
-  @media (min-width: 640px) {
-    .project-steps-grid {
-      grid-template-columns: 1fr 1fr; /* Passage en 2x2 sur tablettes et plus */
-    }
-  }
-
   .project-step-mini {
     background: rgba(247, 245, 240, 0.01);
     border: 1px solid rgba(247, 245, 240, 0.03);
@@ -225,6 +242,7 @@
     }
     .portfolio-container .section-header {
       padding: 0 0rem;
+      margin: 0 1.5rem;
     }
     #projects-list {
       gap: 6rem;
@@ -234,5 +252,17 @@
     }
     .portfolio-container .section-title {
       font-size: 2.25rem;
+    }
+    .section-header-title {
+      text-align: start;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .project-steps-grid {
+      grid-template-columns: 1fr 1fr; /* Passage en 2x2 sur tablettes et plus */
+    }
+    .section-header-title {
+      text-align: start;
     }
   }

@@ -128,7 +128,7 @@
     padding: 0.5rem 0;
     position: relative;
     transition: color 0.3s ease;
-      outline: none;
+    outline: none;
 
   }
 
@@ -158,12 +158,13 @@
 
   /* Transitions pour le filtrage dynamique des sections */
   .data-catalog-section {
-    transition: opacity 0.4s ease, transform 0.4s ease, display 0.4s ease allow-discrete;
-    will-change: opacity, transform;
+    scroll-margin-top: 7rem;
   }
 
-
-
+  .sub-category-block {
+    scroll-margin-top: 7rem;
+  }
+  
   /* Titre Hero */
   .luxury-main-title {
     font-size: 1.5rem;
@@ -389,7 +390,8 @@
 
   /* RESPONSIVE FIN */
   @media (max-width: 768px) {
-    .luxury-content-wrapper { padding: 0 1.5rem; }
-    .luxury-section { padding: 6rem 0; }
+    .luxury-content-wrapper { margin: 0; padding: 0 1.5rem; }
+    .luxury-section { padding: 1rem 0; }
     .luxury-monumental-grid { gap: 4rem; }
+    .catalog-filter-bar { margin: 1rem 2rem; padding: 0.5rem; }
   }

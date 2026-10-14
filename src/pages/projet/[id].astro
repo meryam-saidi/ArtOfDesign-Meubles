@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 const { projets } = Astro.props;
 ---
 
-<Layout title={`${projets.nom} | Détails AD projets`}>
+<Layout title={`${projets.nom} | Détails AD projets`} pageBg="light">
  <main class="pt-32 pb-20 max-w-7xl mx-auto px-6">
   
   <nav class="flex mb-12 text-[10px] uppercase tracking-[0.2em] text-gray-400">
@@ -58,7 +58,7 @@ const { projets } = Astro.props;
       <div class="border-b border-gray-100 pb-8 mb-8">
         <span class="text-[var(--color-gold)] font-bold text-[10px] uppercase tracking-[0.3em] mb-2 block">Exclusivité AD projets</span>
         <h1 class="font-serif text-4xl md:text-5xl mb-4 italic leading-tight">{projets.nom}</h1>
-        <p class="text-2xl font-light text-gray-900">{projets.prix_initial} <span class="text-xs text-gray-400 uppercase tracking-widest ml-2">TTC</span></p>
+        <!--<p class="text-2xl font-light text-gray-900">{projets.prix_initial} <span class="text-xs text-gray-400 uppercase tracking-widest ml-2">TTC</span></p> -->
       </div>
       
       <p class="text-gray-500 font-light leading-relaxed mb-10 text-sm">
@@ -79,7 +79,7 @@ const { projets } = Astro.props;
               title="Finition Originale">
            </button>
            
-           {/* Variantes du JSON */}
+           {/* Variantes du JSON
            {projets.variantes?.map((v) => (
             <button 
               class="color-swatch w-8 h-8 rounded-full border border-gray-200 transition-all hover:scale-110"
@@ -88,6 +88,7 @@ const { projets } = Astro.props;
               title={v.couleur}
             >
             </button>
+             */}
           ))}
         </div>
       </div>

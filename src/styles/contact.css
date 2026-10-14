@@ -1,7 +1,8 @@
-    /* ── CONTACT ── */
+/* ── CONTACT ── */
       /* ── SECTION CONTACT STRUCTURE ── */
   #contact {
-    position: relative !important;
+    position: sticky;
+    top: min(0px, calc(100vh - var(--process-h, 100vh)));
     z-index: 10 !important;
     background: var(--charcoal);
     /*padding: 10rem 0rem;*/
@@ -175,52 +176,6 @@
     cursor: not-allowed;
   }
 
-  /* ── VERSION ULTRA-RESPONSIVE (TABLETTES & MOBILES) ── */
-  @media (max-width: 992px) {
-    #contact {
-      padding: 6rem 2rem;
-    }
-    
-    .contact-wrapper {
-      grid-template-columns: 1fr;
-      gap: 4rem;
-      padding-bottom: 4rem;
-    }
-    
-    .contact-info {
-      align-items: center;
-      text-align: center;
-    }
-    
-    .contact-description {
-      max-width: 100%;
-    }
-
-    .contact-form .btn-text-flip {
-      align-self: center; /* Centre le bouton sur mobile pour l'équilibre visuel */
-      margin-top: 1rem;
-    }
-
-    .contact-details {
-      padding-top: 3rem;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1.5rem;
-      padding-left: 1rem; /* Aligné subtilement */
-    }
-  }
-
-  @media (max-width: 576px) {
-    .form-row {
-      grid-template-columns: 1fr; /* Les inputs passent les uns sous les autres */
-      gap: 1.5rem;
-    }
-    
-    .contact-info .section-title {
-      font-size: 2rem;
-    }
-  }
-
   /* ── BLOC CARTE DE LOCALISATION ── */
   .contact-map-container {
     max-width: 100%;
@@ -249,12 +204,135 @@
     object-fit: cover;
   }
 
-  /* ── AJUSTEMENT RESPONSIVE MOBILE ── */
+
+  /* ==========================================================================
+     CONTACT : TABLETTE & MOBILE
+     ========================================================================== */
   @media (max-width: 992px) {
+
+    /* Plus de section collante sur mobile : le contenu empilé dépasse l'écran */
+    #contact {
+      position: relative;
+      top: auto;
+      padding: 0;
+      overflow-x: hidden; /* évite tout débordement horizontal des animations reveal */
+    }
+
+    /* Une seule colonne : infos + formulaire, puis carte pleine largeur */
+    .contact-wrapper {
+      max-width: 100%;
+      width: 100%;
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding-bottom: 0;
+    }
+
+    /* Le padding de 10rem × 4rem du desktop est remplacé */
+    .contact-info {
+      width: 100%;
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 3rem;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .contact-info .section-label {
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info .section-title {
+      font-size: 1.5rem;
+      line-height: 1.25;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-description {
+      max-width: 100%;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      padding-bottom: 1rem;
+    }
+
+    .contact-form {
+      gap: 1.25rem;
+    }
+
+    .form-row {
+      gap: 1.25rem;
+    }
+
+    .form-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+    }
+
+    /* 16px minimum : sinon iOS zoome automatiquement sur le champ au focus */
+    .form-input,
+    .form-textarea {
+      font-size: 1rem;
+      padding: 0.9rem 1rem;
+      min-height: 3rem;
+      border-radius: 0; /* neutralise l'arrondi par défaut d'iOS */
+      -webkit-appearance: none;
+    }
+
+    .form-textarea {
+      min-height: 120px;
+    }
+
+    /* appearance: none masque la flèche native : on la remet pour que le champ se lise comme une liste */
+    .form-select {
+      padding-right: 2.5rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%23c9a84c' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='1 1 6 6 11 1'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+    }
+
+    /* Bouton pleine largeur : zone de toucher confortable */
+    .contact-form .btn-text-flip {
+      align-self: stretch;
+      width: 100%;
+      min-height: 3rem;
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+
+    .form-status-message {
+      margin-top: 1rem;
+      padding: 0.9rem 1rem;
+      font-size: 0.85rem;
+    }
+
+    /* ── Carte : pleine largeur, sans effet de survol ── */
     .contact-map-container {
-      margin-top: 0rem;
-      height: 300px; /* Un peu plus compacte sur mobile */
-      border-left: none;
-      border-right: none; /* Pleine largeur sur mobile pour casser les lignes */
+      height: 320px;
+      margin-top: 0;
+      transition: none;
+    }
+
+    /* Le hover n'existe pas au toucher : la carte garde son rendu sombre (même valeurs que la base) */
+    .contact-map-container:hover {
+      filter: grayscale(1) invert(0.92) contrast(1.15);
+      opacity: 0.75;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .contact-info {
+      padding: 3rem 1.25rem 2.5rem;
+    }
+
+    /* Les champs passent les uns sous les autres */
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .contact-map-container {
+      height: 280px;
     }
   }
