@@ -14,7 +14,8 @@
       "profondeur": "60cm"
     },
     "catalogue_images": [
-      "/images/dressings/Forme I/Française/Dr100.jpg"
+      "/images/dressings/Forme I/Française/Dr100.jpg",
+      "/images/dressings/Forme I/Française/dressing a la francaise-100.jpg"
     ],
     "couleurs": [
       {
@@ -65,7 +66,8 @@
       "profondeur": "60cm"
     },
     "catalogue_images": [
-      "/images/dressings/Forme I/Française/Dr140.jpg"
+      "/images/dressings/Forme I/Française/Dr140.jpg",
+      "/images/dressings/Forme I/Française/dressing a la francaise-140.jpg"
     ],
     "couleurs": [
       {
@@ -115,7 +117,8 @@
       "profondeur": "60cm"
     },
     "catalogue_images": [
-      "/images/dressings/Forme I/Française/Dr180.jpg"
+      "/images/dressings/Forme I/Française/Dr180.jpg",
+      "/images/dressings/Forme I/Française/dressing a la francaise-160.jpg"
     ],
     "couleurs": [
       {
@@ -137,9 +140,10 @@
     "caracteristiques_techniques": {
       "composition_type": [
         "2 Modules Dressing de 80 cm",
+        "2 Blocs Tiroirs",
         "4 Façades",
         "7 Etagères",
-        "Poignées",
+        "Poignées", 
         "Plinthes",
         "Pieds",
         "Charnières Blum"
@@ -165,7 +169,8 @@
       "profondeur": "60cm"
     },
     "catalogue_images": [
-      "/images/dressings/Forme I/Française/Dr180.jpg"
+      "/images/dressings/Forme I/Française/Dr180.jpg",
+      "/images/dressings/Forme I/Française/dressing a la francaise-180.jpg"
     ],
     "couleurs": [
       {
@@ -187,6 +192,7 @@
     "caracteristiques_techniques": {
       "composition_type": [
         "2 Modules Dressing de 90 cm",
+        "2 Blocs Tiroirs",
         "4 Façades",
         "7 Etagères",
         "Poignées",
@@ -216,7 +222,8 @@
     },
     "catalogue_images": [
       "/images/dressings/Forme I/Française/Dr250 Fermé.jpg",
-      "/images/dressings/Forme I/Française/Dr250 Ouvert.jpg"
+      "/images/dressings/Forme I/Française/Dr250 Ouvert.jpg",
+      "/images/dressings/Forme I/Française/dressing a la francaise-250.jpg"
     ],
     "couleurs": [
       {
@@ -269,7 +276,8 @@
     },
     "catalogue_images": [
       "/images/dressings/Forme I/Française/Dr300 Fermé.jpg",
-       "/images/dressings/Forme I/Française/Dr300 Ouvert.jpg"
+       "/images/dressings/Forme I/Française/Dr300 Ouvert.jpg",
+       "/images/dressings/Forme I/Française/dressing a la francaise-300.jpg"
     ],
     "couleurs": [
       {
@@ -322,7 +330,8 @@
     },
     "catalogue_images": [
       "/images/dressings/Forme I/Française/Dr320 Fermé.jpg",
-      "/images/dressings/Forme I/Française/Dr320 Ouvert.jpg"
+      "/images/dressings/Forme I/Française/Dr320 Ouvert.jpg",
+      "/images/dressings/Forme I/Française/dressing a la francaise-320.jpg"
     ],
     "couleurs": [
       {
@@ -376,7 +385,8 @@
       "profondeur": "60cm"
     },
     "catalogue_images": [
-      "/images/dressings/Forme I/Française/Dr340 Fermé.jpg"
+      "/images/dressings/Forme I/Française/Dr340 Fermé.jpg",
+      "/images/dressings/Forme I/Française/dressing a la francaise-340.jpg"
     ],
     "couleurs": [
       {
@@ -430,7 +440,8 @@
     },
     "catalogue_images": [
       "/images/dressings/Forme I/Française/Dr400 Fermé.jpg",
-      "/images/dressings/Forme I/Française/Dr400 Ouvert.jpg"
+      "/images/dressings/Forme I/Française/Dr400 Ouvert.jpg",
+      "/images/dressings/Forme I/Française/dressing a la francaise-400.jpg"
     ],
     "couleurs": [
       {
@@ -484,7 +495,8 @@
     },
     "catalogue_images": [
       "/images/dressings/Forme I/Française/Dr430 Fermé.jpg",
-      "/images/dressings/Forme I/Française/Dr430 Ouvert.jpg"
+      "/images/dressings/Forme I/Française/Dr430 Ouvert.jpg",
+      "/images/dressings/Forme I/Française/dressing a la francaise-430.jpg"
     ],
     "couleurs": [
       {
@@ -539,7 +551,8 @@
     },
     "catalogue_images": [
       "/images/dressings/Forme I/Coulissant/dress coulissant 140 F.jpg",
-      "/images/dressings/Forme I/Coulissant/dress coulissant 140 O.jpg"
+      "/images/dressings/Forme I/Coulissant/dress coulissant 140 O.jpg",
+      "/images/dressings/Forme I/Coulissant/dressing coulissant-100.jpg"
     ],
     "couleurs": [
       {
@@ -567,7 +580,7 @@
         "Poignées",  
         "Plinthes",
         "Pieds",
-        "Charnières Blum"
+        "Rail Porte Coulissante"
       ],
       "finition_produit": {
         "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
@@ -591,7 +604,8 @@
     },
     "catalogue_images": [
       "/images/dressings/Forme I/Coulissant/dress coulissant 140 F.jpg",
-      "/images/dressings/Forme I/Coulissant/dress coulissant 140 O.jpg"
+      "/images/dressings/Forme I/Coulissant/dress coulissant 140 O.jpg",
+      "/images/dressings/Forme I/Coulissant/dressing coulissant-120.jpg"
     ],
     "couleurs": [
       {
@@ -619,7 +633,7 @@
         "Poignées",  
         "Plinthes",
         "Pieds",
-        "Charnières Blum"
+        "Rail Porte Coulissante"
       ],
       "finition_produit": {
         "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
@@ -643,7 +657,8 @@
     },
     "catalogue_images": [
       "/images/dressings/Forme I/Coulissant/dress coulissant 140 F.jpg",
-      "/images/dressings/Forme I/Coulissant/dress coulissant 140 O.jpg"
+      "/images/dressings/Forme I/Coulissant/dress coulissant 140 O.jpg",
+      "/images/dressings/Forme I/Coulissant/dressing coulissant-140.jpg"
     ],
     "couleurs": [
       {
@@ -671,7 +686,7 @@
         "Poignées",  
         "Plinthes",
         "Pieds",
-        "Charnières Blum"
+        "Rail Porte Coulissante"
       ],
       "finition_produit": {
         "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
@@ -695,7 +710,8 @@
     },
     "catalogue_images": [
       "/images/dressings/Forme I/Coulissant/dress coulissant 160 F.jpg",
-      "/images/dressings/Forme I/Coulissant/dress coulissant 160 O.jpg"
+      "/images/dressings/Forme I/Coulissant/dress coulissant 160 O.jpg",
+      "/images/dressings/Forme I/Coulissant/dressing coulissant-160.jpg"
     ],
     "couleurs": [
       {
@@ -723,7 +739,7 @@
         "Poignées",  
         "Plinthes",
         "Pieds",
-        "Charnières Blum"
+        "Rail Porte Coulissante"
       ],
       "finition_produit": {
         "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
@@ -747,7 +763,8 @@
     },
     "catalogue_images": [
       "/images/dressings/Forme I/Coulissant/dress coulissant 180 F.jpg",
-      "/images/dressings/Forme I/Coulissant/dress coulissant 180 O.jpg"
+      "/images/dressings/Forme I/Coulissant/dress coulissant 180 O.jpg",
+      "/images/dressings/Forme I/Coulissant/dressing coulissant-180.jpg"
     ],
     "couleurs": [
       {
@@ -775,7 +792,7 @@
         "Poignées",  
         "Plinthes",
         "Pieds",
-        "Charnières Blum"
+        "Rail Porte Coulissante"
       ],
       "finition_produit": {
         "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
@@ -799,7 +816,8 @@
     },
     "catalogue_images": [
       "/images/dressings/Forme I/Coulissant/dress coulissant 210 F.jpg",
-      "/images/dressings/Forme I/Coulissant/dress coulissant 210 O.jpg"
+      "/images/dressings/Forme I/Coulissant/dress coulissant 210 O.jpg",
+      "/images/dressings/Forme I/Coulissant/dressing coulissant-210.jpg"
     ],
     "couleurs": [
       {
@@ -827,7 +845,7 @@
         "Poignées",  
         "Plinthes",
         "Pieds",
-        "Charnières Blum"
+        "Rail Porte Coulissante"
       ],
       "finition_produit": {
         "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
@@ -851,7 +869,8 @@
     },
     "catalogue_images": [
       "/images/dressings/Forme I/Coulissant/dress coulissant 240 F.jpg",
-      "/images/dressings/Forme I/Coulissant/dress coulissant 240 O.jpg"
+      "/images/dressings/Forme I/Coulissant/dress coulissant 240 O.jpg",
+      "/images/dressings/Forme I/Coulissant/dressing coulissant-240.jpg"
     ],
     "couleurs": [
       {
@@ -879,7 +898,7 @@
         "Poignées",  
         "Plinthes",
         "Pieds",
-        "Charnières Blum"
+        "Rail Porte Coulissante"
       ],
       "finition_produit": {
         "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
@@ -903,7 +922,8 @@
     },
     "catalogue_images": [
       "/images/dressings/Forme I/Coulissant/dress coulissant 270 F.jpg",
-      "/images/dressings/Forme I/Coulissant/dress coulissant 270 O.jpg"
+      "/images/dressings/Forme I/Coulissant/dress coulissant 270 O7.jpg",
+      "/images/dressings/Forme I/Coulissant/dressing coulissant-270.jpg"
     ],
     "couleurs": [
       {
@@ -931,7 +951,7 @@
         "Poignées",  
         "Plinthes",
         "Pieds",
-        "Charnières Blum"
+        "Rail Porte Coulissante"
       ],
       "finition_produit": {
         "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
@@ -944,7 +964,7 @@
     "categorie": "Dressings",
     "forme": "I",
     "type_ouverture": "C",
-    "nom": "Dressing Forme de I | 270 cm",
+    "nom": "Dressing Forme de I | 360 cm",
     "prix_initial": 6085.000,
     "reduction": 20,
     "description": "Un dressing moderne alliant la chaleur des textures stratifiées.",
@@ -955,7 +975,8 @@
     },
     "catalogue_images": [
       "/images/dressings/Forme I/Coulissant/dress coulissant 270 F.jpg",
-      "/images/dressings/Forme I/Coulissant/dress coulissant 270 O.jpg"
+      "/images/dressings/Forme I/Coulissant/dress coulissant 270 O.jpg",
+      "/images/dressings/Forme I/Coulissant/dressing coulissant-360.jpg"
     ],
     "couleurs": [
       {
@@ -984,7 +1005,7 @@
         "Poignées",  
         "Plinthes",
         "Pieds",
-        "Charnières Blum"
+        "Rail Porte Coulissante"
       ],
       "finition_produit": {
         "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
@@ -1007,7 +1028,8 @@
     },
     "catalogue_images": [
       "/images/dressings/Forme L/dressing fome L 160x150 F.jpg",
-      "/images/dressings/Forme L/dressing fome L 160x150 O.jpg"
+      "/images/dressings/Forme L/dressing fome L 160x150 O.jpg",
+      "/images/dressings/Forme L/dressing forme L-150x160.jpg"
     ],
     "couleurs": [
       {
@@ -1060,7 +1082,8 @@
     "catalogue_images": [
       "/images/dressings/Forme L/dressing fome L 300x150 F.jpg",
       "/images/dressings/Forme L/dressing fome L 300x150 O.jpg",
-      "/images/dressings/Forme L/dressing fome L 300x150.jpg"
+      "/images/dressings/Forme L/dressing fome L 300x150.jpg",
+      "/images/dressings/Forme L/dressing forme L-150x300.jpg"
     ],
     "couleurs": [
       {
@@ -1111,7 +1134,8 @@
       "profondeur": "60cm"
     },
     "catalogue_images": [
-      "/images/dressings/Forme L/dressing fome L 220x270.jpg"
+      "/images/dressings/Forme L/dressing fome L 220x270.jpg",
+      "/images/dressings/Forme L/dressing forme L-230x270.jpg"
     ],
     "couleurs": [
       {
@@ -1162,7 +1186,8 @@
     },
     "catalogue_images": [
       "/images/dressings/Forme L/dressing fome L 350x250 O1.jpg",
-      "/images/dressings/Forme L/dressing fome L 350x250 F1.jpg"
+      "/images/dressings/Forme L/dressing fome L 350x250 F1.jpg",
+      "/images/dressings/Forme L/dressing forme L-250x350.jpg"
     ],
     "couleurs": [
       {
@@ -1222,7 +1247,8 @@
       "/images/dressings/Forme L/dressing fome L 390x270.jpg",
       "/images/dressings/Forme L/dressing fome L 390x270 im1.jpg",
       "/images/dressings/Forme L/dressing fome L 390x270 im2.jpg",
-      "/images/dressings/Forme L/dressing fome L 390x270 im3.jpg"
+      "/images/dressings/Forme L/dressing fome L 390x270 im3.jpg",
+      "/images/dressings/Forme L/dressing forme L-270x390.jpg"
     ],
     "couleurs": [
       {

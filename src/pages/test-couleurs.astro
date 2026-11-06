@@ -1,0 +1,40 @@
+
+---
+import { getCouleurs } from "../services/couleurs";
+
+let couleurs: Awaited<ReturnType<typeof getCouleurs>> = [];
+let erreur = "";
+
+try {
+  couleurs = await getCouleurs();
+} catch (e) {
+  erreur = e instanceof Error ? e.message : "Erreur inconnue";
+}
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Test API Couleurs</title>
+  </head>
+  <body>
+    <h1>Test API Couleurs</h1>
+
+    {erreur ? (
+      <p>Erreur : {erreur}</p>
+    ) : (
+      <ul>
+        {couleurs.map((couleur) => (
+          <li>
+            {couleur.nom} — {couleur.codeCouleur}
+            <img
+              src={couleur.imagePresentationUrl}
+              alt={couleur.nom}
+              width="100"
+            />
+          </li>
+        ))}
+      </ul>
+    )}
+  </body>
+</html>

@@ -5,7 +5,7 @@
     "nom": "Meuble Dressing | 40 cm | Modèle 1",
     "forme": "D",
     "prix_initial": 920.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "40cm",
@@ -55,7 +55,7 @@
     "nom": "Meuble Dressing | 40 cm | Modèle 2",
     "forme": "D",
     "prix_initial": 920.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "40cm",
@@ -105,7 +105,7 @@
     "nom": "Meuble Dressing | 40 cm | Modèle 3",
     "forme": "D",
     "prix_initial": 920.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "40cm",
@@ -156,7 +156,7 @@
     "nom": "Meuble Dressing | 50 cm | Modèle 1",
     "forme": "D",
     "prix_initial": 880.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "50cm",
@@ -206,7 +206,7 @@
     "nom": "Meuble Dressing | 50 cm | Modèle 2",
     "forme": "D",
     "prix_initial": 995.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "50cm",
@@ -256,7 +256,7 @@
     "nom": "Meuble Dressing | 50 cm | Modèle 3",
     "forme": "D",
     "prix_initial": 920.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "50cm",
@@ -307,7 +307,7 @@
     "nom": "Meuble Dressing | 60 cm | Modèle 1",
     "forme": "D",
     "prix_initial": 1080.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "60cm",
@@ -357,7 +357,7 @@
     "nom": "Meuble Dressing | 60 cm | Modèle 2",
     "forme": "D",
     "prix_initial": 995.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "60cm",
@@ -407,7 +407,7 @@
     "nom": "Meuble Dressing | 60 cm | Modèle 3",
     "forme": "D",
     "prix_initial": 1220.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "60cm",
@@ -458,7 +458,7 @@
     "nom": "Meuble Dressing | 70 cm | Modèle 1",
     "forme": "D",
     "prix_initial": 1245.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "70cm",
@@ -508,7 +508,7 @@
     "nom": "Meuble Dressing | 70 cm | Modèle 2",
     "forme": "D",
     "prix_initial": 1090.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "70cm",
@@ -558,7 +558,7 @@
     "nom": "Meuble Dressing | 70 cm | Modèle 3",
     "forme": "D",
     "prix_initial": 1375.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "70cm",
@@ -609,7 +609,7 @@
     "nom": "Meuble Dressing | 80 cm | Modèle 1",
     "forme": "D",
     "prix_initial": 1320.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "80cm",
@@ -659,7 +659,7 @@
     "nom": "Meuble Dressing | 80 cm | Modèle 2",
     "forme": "D",
     "prix_initial": 1150.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "80cm",
@@ -709,7 +709,7 @@
     "nom": "Meuble Dressing | 80 cm | Modèle 3",
     "forme": "D",
     "prix_initial": 1450.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "80cm",
@@ -760,7 +760,7 @@
     "nom": "Meuble Dressing | 90 cm | Modèle 1",
     "forme": "D",
     "prix_initial": 1400.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "90cm",
@@ -810,7 +810,7 @@
     "nom": "Meuble Dressing | 90 cm | Modèle 2",
     "forme": "D",
     "prix_initial": 1220.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "90cm",
@@ -860,7 +860,7 @@
     "nom": "Meuble Dressing | 90 cm | Modèle 3",
     "forme": "D",
     "prix_initial": 1530.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "90cm",
@@ -911,7 +911,7 @@
     "nom": "Meuble Dressing de Coin | 110 cm | Modèle 1",
     "forme": "D",
     "prix_initial": 1395.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "110cm",
@@ -960,7 +960,7 @@
     "nom": "Meuble Dressing de Coin | 110 cm | Modèle 2",
     "forme": "D",
     "prix_initial": 1595.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "110cm",
@@ -1009,7 +1009,7 @@
     "nom": "Meuble Dressing de Coin | 110 cm | Modèle 2",
     "forme": "D",
     "prix_initial": 1595.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
       "Largeur" : "110cm",
@@ -1058,7 +1058,7 @@
     "nom": "Meuble Bas de 15 cm avec une porte bouteille",
     "forme": "B",
     "prix_initial": 410.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un module de meuble bas pour cuisine intégrant un porte-bouteille coulissant.",
     "dimensions": {
       "largeur": "15cm",
@@ -1097,7 +1097,7 @@
     "nom": "Meuble Bas de 30 cm avec étagère",
     "forme": "B",
     "prix_initial": 315.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un module de meuble bas pour cuisine avec une porte battante et une étagère intérieure.",
     "dimensions": {
       "largeur": "30cm",
@@ -1136,7 +1136,7 @@
     "nom": "Meuble Bas de 30 cm avec porte pain",
     "forme": "B",
     "prix_initial": 505.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un module de meuble bas pour cuisine avec panier porte-pain coulissant.",
     "dimensions": {
       "largeur": "30cm",
@@ -1176,7 +1176,7 @@
     "nom": "Meuble Bas de 40 cm avec étagère",
     "forme": "B",
     "prix_initial": 265.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un module de meuble bas pour cuisine de 40 cm avec une étagère de rangement.",
     "dimensions": {
       "largeur": "40cm",
@@ -1215,7 +1215,7 @@
     "nom": "Meuble Bas de 40 cm avec porte pain",
     "forme": "B",
     "prix_initial": 640.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un module de meuble bas pour cuisine de 40 cm équipé d'un rangement porte-pain coulissant.",
     "dimensions": {
       "largeur": "40cm",
@@ -1255,7 +1255,7 @@
     "nom": "Meuble Bas de 45 cm avec étagère",
     "forme": "B",
     "prix_initial": 280.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un module de meuble bas pour cuisine de 45 cm avec une étagère centrale.",
     "dimensions": {
       "largeur": "45cm",
@@ -1294,7 +1294,7 @@
     "nom": "Meuble Bas de 45 cm avec porte pain",
     "forme": "B",
     "prix_initial": 660.000,
-     "reduction": "",
+     "reduction": 15,
     "description": "Un module de meuble bas pour cuisine de 45 cm équipé d'un système porte-pain coulissant.",
     "dimensions": {
       "largeur": "45cm",
@@ -1334,7 +1334,7 @@
     "nom": "Meuble Bas de 60 cm avec étagère",
     "forme": "B",
     "prix_initial": 315.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un module de meuble bas standard de 60 cm avec porte battante et étagère interne.",
     "dimensions": {
       "largeur": "60cm",
@@ -1373,7 +1373,7 @@
     "nom": "Meuble Bas de 60 cm avec deux Tiroirs",
     "forme": "B",
     "prix_initial": 440.000,
-     "reduction": "",
+     "reduction": 15,
     "description": "Un module de meuble bas pour cuisine de 60 cm équipé de 2 grands tiroirs coulissants.",
     "dimensions": {
       "largeur": "60cm",
@@ -1412,7 +1412,7 @@
     "nom": "Meuble Bas de 60 cm avec Trois Tiroirs",
     "forme": "B",
     "prix_initial": 530.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un module de meuble bas de 60 cm intégrant 3 tiroirs coulissants pour optimiser le rangement.",
     "dimensions": {
       "largeur": "60cm",
@@ -1451,7 +1451,7 @@
     "nom": "Meuble Bas Four de 60cm",
     "forme": "B",
     "prix_initial": 205.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un caisson bas spécialement conçu pour l'encastrement d'un four de 60 cm.",
     "dimensions": {
       "largeur": "60cm",
@@ -1487,7 +1487,7 @@
     "nom": "Meuble Bas de 80 cm avec étagère",
     "forme": "B",
     "prix_initial": 405.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un module de meuble bas pour cuisine de 80 cm avec 2 portes battantes et une étagère de rangement.",
     "dimensions": {
       "largeur": "80cm",
@@ -1526,7 +1526,7 @@
     "nom": "Meuble Bas de 90 cm avec étagère",
     "forme": "B",
     "prix_initial": 430.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un module de meuble bas pour cuisine de 90 cm avec 2 portes battantes et étagère intérieure.",
     "dimensions": {
       "largeur": "90cm",
@@ -1565,7 +1565,7 @@
     "nom": "Meuble Bas de 90 cm avec deux Tiroir",
     "forme": "B",
     "prix_initial": 575.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un grand module bas pour cuisine de 90 cm avec 2 tiroirs coulissants grand volume.",
     "dimensions": {
       "largeur": "90cm",
@@ -1603,7 +1603,7 @@
     "nom": "Meuble Bas de 90 cm avec Trois Tiroir",
     "forme": "B",
     "prix_initial": 630.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un module bas de cuisine de 90 cm avec 3 tiroirs coulissants pour une organisation optimale.",
     "dimensions": {
       "largeur": "90cm",
@@ -1642,7 +1642,7 @@
     "nom": "Meuble Bas de 120 cm avec étagère",
     "forme": "B",
     "prix_initial": 525.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Grand meuble bas de cuisine de 120 cm avec 2 portes battantes et une étagère interne.",
     "dimensions": {
       "largeur": "120cm",
@@ -1681,7 +1681,7 @@
     "nom": "Meuble Bas sous Evier de 60 cm",
     "forme": "B",
     "prix_initial": 285.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un module bas sous évier de 60 cm avec une porte battante.",
     "dimensions": {
       "largeur": "60cm",
@@ -1719,7 +1719,7 @@
     "nom": "Meuble Bas sous Evier de 90 cm",
     "forme": "B",
     "prix_initial": 390.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un module bas sous évier de 90 cm équipé de 2 portes battantes.",
     "dimensions": {
       "largeur": "90cm",
@@ -1757,7 +1757,7 @@
     "nom": "Meuble Bas sous Evier de 120 cm",
     "forme": "B",
     "prix_initial": 450.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Grand meuble bas sous évier de 120 cm avec 2 portes battantes.",
     "dimensions": {
       "largeur": "120cm",
@@ -1795,7 +1795,7 @@
     "nom": "Meuble Bas de coin de 105 cm",
     "forme": "B",
     "prix_initial": 395.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un module d'angle bas de 105 cm optimisé pour maximiser l'espace dans les coins de cuisine.",
     "dimensions": {
       "largeur": "105cm",
@@ -1834,7 +1834,7 @@
     "nom": "Meuble Bas de coin de 110 cm",
     "forme": "B",
     "prix_initial": 400.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Un module d'angle bas de 110 cm optimisé pour maximiser l'espace dans les coins de cuisine.",
     "dimensions": {
       "largeur": "110cm",
@@ -1873,7 +1873,7 @@
     "nom": "Meuble Haut de 30 cm avec étagère",
     "forme": "H",
     "prix_initial": 200.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Module de rangement haut de 30 cm avec étagère pour optimiser l'espace vertical de la cuisine.",
     "dimensions": {
       "largeur": "30cm",
@@ -1911,7 +1911,7 @@
     "nom": "Meuble Haut de 40 cm avec étagère",
     "forme": "H",
     "prix_initial": 220.000,
-     "reduction": "",
+     "reduction": 15,
     "description": "Module de rangement haut de 40 cm avec étagère pratique et compact.",
     "dimensions": {
       "largeur": "40cm",
@@ -1949,7 +1949,7 @@
     "nom": "Meuble Haut de 45 cm avec étagère",
     "forme": "H",
     "prix_initial": 235.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Meuble haut de 45 cm équipé d'une étagère pour le rangement quotidien.",
     "dimensions": {
       "largeur": "45cm",
@@ -1987,7 +1987,7 @@
     "nom": "Meuble Haut de 60 cm avec étagère",
     "forme": "H",
     "prix_initial": 270.000,
-     "reduction": "",
+     "reduction": 15,
     "description": "Grand caisson haut de 60 cm une porte avec étagère interne.",
     "dimensions": {
       "largeur": "60cm",
@@ -2025,7 +2025,7 @@
     "nom": "Meuble Haut de 60 cm Basculante",
     "forme": "H",
     "prix_initial": 370.000,
-     "reduction": "",
+     "reduction": 15,
     "description": "Meuble haut de 60 cm à ouverture basculante doté de deux façades indépendantes.",
     "dimensions": {
       "largeur": "60cm",
@@ -2062,7 +2062,7 @@
     "nom": "Meuble Haut de 80 cm avec étagère",
     "forme": "H",
     "prix_initial": 360.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Large meuble haut de 80 cm à deux portes battantes avec étagère centrale.",
     "dimensions": {
       "largeur": "80cm",
@@ -2100,7 +2100,7 @@
     "nom": "Meuble Haut de 90 cm avec étagère",
     "forme": "H",
     "prix_initial": 385.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Meuble haut grande largeur de 90 cm à deux portes et étagère de rangement.",
     "dimensions": {
       "largeur": "90cm",
@@ -2138,7 +2138,7 @@
     "nom": "Meuble Haut de 90 cm Basculante",
     "forme": "H",
     "prix_initial": 460.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Grand meuble haut de 90 cm à double portes basculantes horizontales.",
     "dimensions": {
       "largeur": "90cm",
@@ -2175,7 +2175,7 @@
     "nom": "Meuble Haut de coin de 65 cm avec étagère",
     "forme": "H",
     "prix_initial": 325.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Caisson d'angle haut de 65 cm conçu pour optimiser l'espace d'angle supérieur.",
     "dimensions": {
       "largeur": "65cm",
@@ -2213,7 +2213,7 @@
     "nom": "Meuble Haut pour Hotte de 60 cm",
     "forme": "H",
     "prix_initial": 190.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Caisson haut spécifique de 60 cm de largeur et 36 cm de hauteur pour l'intégration d'une hotte aspirante.",
     "dimensions": {
       "largeur": "60cm",
@@ -2250,7 +2250,7 @@
     "nom": "Meuble Haut pour Hotte de 80 cm",
     "forme": "H",
     "prix_initial": 235.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Caisson haut spécifique de 80 cm de largeur et 36 cm de hauteur pour l'intégration d'une hotte aspirante.",
     "dimensions": {
       "largeur": "80cm",
@@ -2287,7 +2287,7 @@
     "nom": "Meuble Haut pour Hotte de 90 cm",
     "forme": "H",
     "prix_initial": 235.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Caisson haut spécifique de 90 cm de largeur pour l'intégration d'une hotte aspirante.",
     "dimensions": {
       "largeur": "90cm",
@@ -2324,7 +2324,7 @@
     "nom": "Meuble Colonne de 45 cm 1 Porte avec étagère",
     "forme": "C",
     "prix_initial": 665.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Meuble colonne de 45 cm une porte offrant un grand espace de rangement avec étagères.",
     "dimensions": {
       "largeur": "45cm",
@@ -2362,7 +2362,7 @@
     "nom": "Meuble Colonne de 45 cm 2 Portes avec étagère",
     "forme": "C",
     "prix_initial": 700.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Meuble colonne de 45 cm à 2 portes indépendantes et étagères intérieures.",
     "dimensions": {
       "largeur": "45cm",
@@ -2400,7 +2400,7 @@
     "nom": "Meuble Colonne de 60 cm 1 Porte avec étagère",
     "forme": "C",
     "prix_initial": 735.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Large colonne de 60 cm une porte optimisant le rangement vertical.",
     "dimensions": {
       "largeur": "60cm",
@@ -2438,7 +2438,7 @@
     "nom": "Meuble Colonne de 60 cm 2 Portes avec étagère",
     "forme": "C",
     "prix_initial": 745.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Colonne de 60 cm à 2 portes offrant une division pratique des espaces de rangement.",
     "dimensions": {
       "largeur": "60cm",
@@ -2476,7 +2476,7 @@
     "nom": "Meuble Colonne Four de 60 cm",
     "forme": "C",
     "prix_initial": 670.000,
-     "reduction": "",
+     "reduction": 15,
     "description": "Colonne spécialisée de 60 cm conçue pour l'encastrement d'un four standard avec rangements.",
     "dimensions": {
       "largeur": "60cm",
@@ -2514,7 +2514,7 @@
     "nom": "Meuble Colonne Four Micro onde de 60 cm",
     "forme": "C",
     "prix_initial": 685.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Meuble colonne de 60 cm prévu pour intégrer un four et un four micro-ondes.",
     "dimensions": {
       "largeur": "60cm",
@@ -2552,7 +2552,7 @@
     "nom": "Meuble Colonne Frigo de 60 cm avec 2 Portes",
     "forme": "C",
     "prix_initial": 735.000,
-    "reduction": "",
+    "reduction": 15,
     "description": "Colonne d'encastrement pour réfrigérateur de 60 cm équipée de 2 portes.",
     "dimensions": {
       "largeur": "60cm",

@@ -315,11 +315,12 @@
         "1 caisson bas 3 tiroirs 60 cm",
         "1 caisson bas pour four 60 cm",
         "1 caisson bas 30 cm",
+        "1 caisson bas 45 cm",
         "2 éléments hauts 90 cm",
-        "1 élément haut 40 cm",
+        "1 élément haut 45 cm",
         "1 élément haut 60 cm",
         "1 fausse façade pour meuble bas",
-        "1 fausse façade pour meuble haut",
+        "2 fausses façades pour meuble haut",
         "Poignées",
         "Tiroirs Metabox Blum",
         "Plinthes",
@@ -406,6 +407,7 @@
         "1 caisson bas 3 tiroirs 60 cm",
         "1 caisson bas pour four 60 cm",
         "1 caisson bas 45 cm",
+        "1 caisson bas 80 cm",
         "2 éléments hauts 90 cm",
         "1 élément haut 40 cm",
         "1 élément haut 30 cm",
@@ -495,12 +497,12 @@
         "1 caisson bas 3 tiroirs 60 cm",
         "1 caisson bas 45 cm",
         "1 caisson bas 80 cm",
-        "2 éléments hauts 80 cm",
-        "1 élément haut 40 cm",
+        "1 élément haut 90 cm",
+        "1 élément haut 80 cm",
+        "1 élément haut 45 cm",
         "2 éléments hauts 30 cm",
         "1 colonne pour four 60 cm",
         "1 fausse façade pour colonne",
-        "2 fausses façades pour meuble haut",
         "Poignées",
         "Tiroirs Metabox Blum",
         "Plinthes",
@@ -706,102 +708,6 @@
       "/images/cuisines/Forme I/Forme I 430 m2/cuisine 430 m2 decor3.jpg",
       "/images/cuisines/Forme I/Forme I 430 m2/cuisine 430 m2 decor4.jpg",
       "/images/cuisines/Forme I/Forme I 430 m2/Forme I 430 m2.jpg"
-    ]
-  },
-  {
-    "id": "ci430m3",
-    "categorie": "Cuisines",
-    "forme": "I",
-    "nom": "Cuisine Forme de I | 430 cm | modèle 3",
-    "prix_initial": 9000.000,
-    "reduction": 20,
-    "description": "Une cuisine moderne alliant la pureté du High Gloss et la chaleur des textures stratifiées.",
-    "dimensions": {
-      "caisson_bas": {
-        "hauteur": "72cm",
-        "profondeur": "58cm"
-      },
-      "caisson_haut": {
-        "hauteur": "72cm",
-        "profondeur": "33cm"
-      }
-    },
-    "couleurs": [
-      {
-        "nom": "Blanc",
-        "code_couleur": "#FFFFFF",
-        "image_presentation": "/images/couleurs/blanc.jpg"
-      },
-      {
-        "nom": "Grège",
-        "code_couleur": "#2C2C2C",
-        "image_presentation": "/images/couleurs/grège.jpg"
-      },
-      {
-        "nom": "Gris",
-        "code_couleur": "#2C2C2C",
-        "image_presentation": "/images/couleurs/gris.jpg"
-      },
-      {
-        "nom": "Chêne naturel",
-        "code_couleur": "#2C2C2C",
-        "image_presentation": "/images/couleurs/chenenaturel.png"
-      },
-      {
-        "nom": "Beige",
-        "code_couleur": "#2C2C2C",
-        "image_presentation": "/images/couleurs/beige.jpg"
-      },
-      {
-        "nom": "Chêne foncé",
-        "code_couleur": "#2C2C2C",
-        "image_presentation": "/images/couleurs/chenefonce.png"
-      }
-    ],
-    "caracteristiques_techniques": {
-      "composition_type": [
-        "1 caisson bas sous évier 90 cm",
-        "1 caisson bas 3 tiroirs 60 cm",
-        "1 caisson bas 45 cm",
-        "1 élément haut 80 cm",
-        "1 élément haut 40 cm",
-        "1 élément haut 45 cm",
-        "1 élément haut 30 cm",
-        "1 élément haut pour hotte 60 cm",
-        "1 colone pour four 60 cm",
-        "1 niche colone 30 cm",
-        "3 éléments hauts basculants H36 P56 L80 cm",
-        "3 éléments hauts basculants H36 P56 L90 cm",
-        "3 fausses façades pour colonne",
-        "2 fausses façades pour meuble haut",
-        "3 façades alu vitrées 40 cm",
-        "1 façade alu vitrée 45 cm",
-        "Poignées",
-        "Tiroirs Metabox Blum",
-        "Plinthes",
-        "Pieds",
-        "Charnières Blum",
-        "Bras à gaz",
-        "Boîtiers de suspension Blum"
-      ],
-      "finition_produit": {
-        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
-        "facade": "High Gloss et stratifiée, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
-      }
-    },
-    "nb": "sans plan de travail et sans Electroménager.",
-    "catalogue_images": [
-      "/images/cuisines/Forme I/Forme I 400 m2/cuisine 400 m1 decor1.jpg",
-      "/images/cuisines/Forme I/Forme I 400 m2/cuisine 400 m1 decor2.jpg",
-      "/images/cuisines/Forme I/Forme I 400 m2/cuisine 400 m1 decor3.jpg",
-      "/images/cuisines/Forme I/Forme I 400 m2/cuisine 400 m1 decor4.jpg",
-      "/images/cuisines/Forme I/Forme I 400 m2/cuisine 400 m1 decor5.jpg",
-      "/images/cuisines/Forme I/Forme I 400 m2/cuisine 400 m1 decor6.jpg",
-      "/images/cuisines/Forme I/Forme I 400 m2/cuisine 400 m1 decor7.jpg",
-      "/images/cuisines/Forme I/Forme I 400 m2/cuisine 400 m1 decor8.jpg",
-      "/images/cuisines/Forme I/Forme I 400 m2/cuisine 400 m1 decor9.jpg",
-      "/images/cuisines/Forme I/Forme I 400 m2/cuisine 400 m1 decor10.jpg",
-      "/images/cuisines/Forme I/Forme I 400 m2/Forme I 400 m2.jpg"
     ]
   },
   {
@@ -1261,7 +1167,7 @@
     ]
   },
   {
-    "id": "cl400X200m2",
+    "id": "cl400x200m2",
     "categorie": "Cuisines",
     "forme": "L",
     "nom": "Cuisine Forme de L | 400 x 200 cm | modèle 2",
@@ -1601,7 +1507,7 @@
         "1 élément haut 80 cm",
         "1 élément haut 90 cm",
         "1 élément haut 30 cm",
-        "1 élément haut d'angle 45 cm",
+        "1 élément haut d'angle 65 cm",
         "1 fausse façade pour meuble bas",
         "2 fausses façades pour meuble haut",
         "Fileurs de 15 cm",
@@ -1697,6 +1603,7 @@
         "1 élément haut d'angle 65 cm",
         "1 éléments haut basculant H36 P56 L80 cm",
         "1 fausse façade pour meuble bas",
+        "1 fausse façade pour colonne",
         "2 fausses façades pour meuble haut",
         "Fileurs de 15 cm",
         "Poignées",
@@ -2132,7 +2039,8 @@
     ],
     "caracteristiques_techniques": {
       "composition_type": [
-        "2 caissons bas 80 cm",
+        "2 caissons bas 45 cm",
+        "1 caisson bas 3 tiroirs 60 cm",
         "2 Fausses façades pour meuble bas",
         "Poignées",
         "Tiroirs Metabox Blum",
@@ -2152,7 +2060,7 @@
       "/images/cuisines/ilot central/ilot 150/ilot 150 decor 3.jpg",
       "/images/cuisines/ilot central/ilot 150/ilot 150 decor 4.jpg",
       "/images/cuisines/ilot central/ilot 150/ilot 150 decor 5.jpg",
-      "/images/cuisines/ilot central/ilot 150/ilot 150.jpg"
+      "/images/cuisines/ilot central/ilot 150/ilot 150 dim.jpg"
     ]
   },
   {
@@ -2294,7 +2202,8 @@
       "/images/cuisines/ilot central/ilot 200/ilot 200 decor 2.jpg",
       "/images/cuisines/ilot central/ilot 200/ilot 200 decor 3.jpg",
       "/images/cuisines/ilot central/ilot 200/ilot 200 decor 4.jpg",
-      "/images/cuisines/ilot central/ilot 200/ilot 200 decor 5.jpg"
+      "/images/cuisines/ilot central/ilot 200/ilot 200 decor 5.jpg",
+      "/images/cuisines/ilot central/ilot 200/ilot 200.jpg"
     ]
   } 
 ]
