@@ -15,30 +15,28 @@
     const loader = document.getElementById('global-loader');
     if (!loader) return;
 
-    // 1. Vérification dans la mémoire de session
-    const hasSeenLoader = sessionStorage.getItem('hasSeenLoader');
+    // 1. Vérification dans le localStorage (persistant)
+    const hasSeenLoader = localStorage.getItem('hasSeenLoader');
 
     if (hasSeenLoader === 'true') {
-      // Déjà vu : suppression immédiate sans animation
+      // Déjà vu : masque immédiatement pour éviter tout saut visuel
       loader.classList.add('is-done');
     } else {
-      // Première visite : exécution des animations puis disparition
-      const TOTAL_DURATION = 2800; // Durée totale en ms (animations + attente)
+      // Première visite absolue : animation
+      const TOTAL_DURATION = 2800; // 2.8 secondes
 
       setTimeout(() => {
-        // Déclencher le fondu de sortie CSS
         loader.classList.add('loader-hidden');
 
-        // Retirer complètement du DOM après la transition (500ms)
         setTimeout(() => {
           loader.classList.add('is-done');
-          sessionStorage.setItem('hasSeenLoader', 'true');
+          // Enregistrement définitif dans le navigateur de l'utilisateur
+          localStorage.setItem('hasSeenLoader', 'true');
         }, 500);
       }, TOTAL_DURATION);
     }
   }
 
-  // Chargement initial
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initLoader);
   } else {
@@ -48,7 +46,7 @@
   // Compatibilité Astro ViewTransitions
   document.addEventListener('astro:after-swap', () => {
     const loader = document.getElementById('global-loader');
-    if (loader && sessionStorage.getItem('hasSeenLoader') === 'true') {
+    if (loader && localStorage.getItem('hasSeenLoader') === 'true') {
       loader.classList.add('is-done');
     }
   });

@@ -46,11 +46,23 @@ const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(mi
     -->
     <div class="product-container">
       <nav class="breadcrumb">
-          <a href="/">Accueil</a>
-          <span>/</span>
-          <a href="/dressing">dressings</a>
-          <span>/</span>
-          <span class="active-crumb-text">{dressing.nom}</span>
+        <a href="/">Accueil</a>
+        <span>/</span>
+        <a href="/dressing">dressings</a>
+        {dressing.type_ouverture === "Fr" && (
+          <>
+            <span>/</span>
+            <a href="/dressing#francaise">Dressing À la française</a>
+          </>
+        )}
+        {dressing.type_ouverture === "C" && (
+          <>
+            <span>/</span>
+            <a href="/dressing#coulissant">Dressing Coulissant</a>
+          </>
+        )}
+        <span>/</span>
+        <span class="active-crumb-text">{dressing.nom}</span>
       </nav>
 
       <div class="main-product-grid">     
@@ -110,8 +122,7 @@ const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(mi
           </div>
           
           <div class="specs-block">
-            <p><strong class="spec-paragraph">Dimensions caisson bas </strong> <br /> hauteur {dressing.dimensions.hauteur} <br /> profondeur {dressing.dimensions.profondeur}</p>
-            <p><strong class="spec-paragraph">Dimensions caisson haut </strong> <br /> hauteur {dressing.dimensions.hauteur} <br /> profondeur {dressing.dimensions.profondeur}</p>
+            <p><strong class="spec-paragraph">Dimensions Module Dressing </strong> <br /> Largeur {dressing.dimensions.Largeur} <br /> hauteur {dressing.dimensions.hauteur} <br /> profondeur {dressing.dimensions.profondeur}</p>
           </div>
 
           <div class="nuancier-block">
