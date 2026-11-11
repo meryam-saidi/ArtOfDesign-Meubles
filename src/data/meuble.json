@@ -1,10 +1,58 @@
 [
   {
+    "id": "md30",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing | 30 cm",
+    "forme": "D",
+    "prix_initial": 615.000,
+    "reduction": 15,
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "30cm",
+      "hauteur": "240cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr30-03.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Module Dressing de 30 cm",
+        "1 Façade",
+        "5 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
     "id": "md40m1",
     "categorie": "Meubles",
     "nom": "Meuble Dressing | 40 cm | Modèle 1",
     "forme": "D",
-    "prix_initial": 920.000,
+    "prix_initial": 915.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -54,7 +102,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Dressing | 40 cm | Modèle 2",
     "forme": "D",
-    "prix_initial": 920.000,
+    "prix_initial": 815.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -155,7 +203,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Dressing | 50 cm | Modèle 1",
     "forme": "D",
-    "prix_initial": 880.000,
+    "prix_initial": 995.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -205,7 +253,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Dressing | 50 cm | Modèle 2",
     "forme": "D",
-    "prix_initial": 995.000,
+    "prix_initial": 875.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -255,7 +303,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Dressing | 50 cm | Modèle 3",
     "forme": "D",
-    "prix_initial": 920.000,
+    "prix_initial": 1125.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -356,7 +404,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Dressing | 60 cm | Modèle 2",
     "forme": "D",
-    "prix_initial": 995.000,
+    "prix_initial": 940.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -406,7 +454,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Dressing | 60 cm | Modèle 3",
     "forme": "D",
-    "prix_initial": 1220.000,
+    "prix_initial": 1215.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -457,7 +505,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Dressing | 70 cm | Modèle 1",
     "forme": "D",
-    "prix_initial": 1245.000,
+    "prix_initial": 1160.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -507,7 +555,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Dressing | 70 cm | Modèle 2",
     "forme": "D",
-    "prix_initial": 1090.000,
+    "prix_initial": 1005.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -557,7 +605,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Dressing | 70 cm | Modèle 3",
     "forme": "D",
-    "prix_initial": 1375.000,
+    "prix_initial": 1290.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -608,7 +656,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Dressing | 80 cm | Modèle 1",
     "forme": "D",
-    "prix_initial": 1320.000,
+    "prix_initial": 1240.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -658,7 +706,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Dressing | 80 cm | Modèle 2",
     "forme": "D",
-    "prix_initial": 1150.000,
+    "prix_initial": 1070.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -708,7 +756,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Dressing | 80 cm | Modèle 3",
     "forme": "D",
-    "prix_initial": 1450.000,
+    "prix_initial": 1365.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -759,7 +807,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Dressing | 90 cm | Modèle 1",
     "forme": "D",
-    "prix_initial": 1400.000,
+    "prix_initial": 1320.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -809,7 +857,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Dressing | 90 cm | Modèle 2",
     "forme": "D",
-    "prix_initial": 1220.000,
+    "prix_initial": 1130.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -859,7 +907,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Dressing | 90 cm | Modèle 3",
     "forme": "D",
-    "prix_initial": 1530.000,
+    "prix_initial": 1445.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -910,7 +958,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Dressing de Coin | 110 cm | Modèle 1",
     "forme": "D",
-    "prix_initial": 1395.000,
+    "prix_initial": 1465.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
@@ -1004,20 +1052,20 @@
     }
   },
   {
-    "id": "md110m2",
+    "id": "md90x90",
     "categorie": "Meubles",
-    "nom": "Meuble Dressing de Coin | 110 cm | Modèle 2",
+    "nom": "Meuble Dressing de Coin | 90 X 90 cm",
     "forme": "D",
-    "prix_initial": 1595.000,
+    "prix_initial": 2050.000,
     "reduction": 15,
     "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
     "dimensions": {
-      "Largeur" : "110cm",
-      "hauteur": "240cm",
+      "Largeur" : "90cm",
+      "hauteur": "90cm",
       "profondeur": "60cm"
     },
     "catalogue_images": [
-      "/images/meubles/Modules Dressing/Dr110 coin.jpg"
+      "/images/meubles/Modules Dressing/Dr90 coin m1.jpg"
     ],
     "couleurs": [
       {
@@ -1038,10 +1086,492 @@
     ],
     "caracteristiques_techniques": {
       "composition_type": [
-        "1 Modules Dressing de 110 cm",
+        "1 Modules Dressing de 90 cm",
+        "2 Façade",
+        "5 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "mdt50",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing de Terminaison | 50 cm",
+    "forme": "D",
+    "prix_initial": 820.000,
+    "reduction": 15,
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "50cm",
+      "hauteur": "90cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr60  terminaison module2.jpg",
+      "/images/meubles/Modules Dressing/Dr60  terminaison module3.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 50 cm",
         "1 Façade",
-        "2 Etagères",
-        "2 tiroirs",
+        "5 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "mdl50",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing de Liaison | 50 cm",
+    "forme": "D",
+    "prix_initial": 725.000,
+    "reduction": 15,
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "50cm",
+      "hauteur": "90cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr60  liaison module.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 50 cm",
+        "1 Façade",
+        "5 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "mdt60",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing de Terminaison | 60 cm",
+    "forme": "D",
+    "prix_initial": 875.000,
+    "reduction": 15,
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "60cm",
+      "hauteur": "90cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr60  terminaison module2.jpg",
+      "/images/meubles/Modules Dressing/Dr60  terminaison module3.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 60 cm",
+        "1 Façade",
+        "5 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "mdl60",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing de Liaison | 60 cm",
+    "forme": "D",
+    "prix_initial": 775.000,
+    "reduction": 15,
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "60cm",
+      "hauteur": "90cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr60  liaison module.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 60 cm",
+        "1 Façade",
+        "5 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "mdt70",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing de Terminaison | 70 cm",
+    "forme": "D",
+    "prix_initial": 935.000,
+    "reduction": 15,
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "70cm",
+      "hauteur": "90cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr60  terminaison module2.jpg",
+      "/images/meubles/Modules Dressing/Dr60  terminaison module3.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 70 cm",
+        "1 Façade",
+        "5 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "mdl70",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing de Liaison | 70 cm",
+    "forme": "D",
+    "prix_initial": 830.000,
+    "reduction": 15,
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "70cm",
+      "hauteur": "90cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Dr60  liaison module.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 70 cm",
+        "1 Façade",
+        "5 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "mdt80",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing de Terminaison | 80 cm",
+    "forme": "D",
+    "prix_initial": 990.000,
+    "reduction": 15,
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "80cm",
+      "hauteur": "90cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Drt80.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 80 cm",
+        "1 Façade",
+        "5 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "mdl80",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing de Liaison | 80 cm",
+    "forme": "D",
+    "prix_initial": 885.000,
+    "reduction": 15,
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "80cm",
+      "hauteur": "90cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Drl80.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 80 cm",
+        "1 Façade",
+        "5 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "mdt90",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing de Terminaison | 90 cm",
+    "forme": "D",
+    "prix_initial": 1050.000,
+    "reduction": 15,
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "90cm",
+      "hauteur": "90cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Drt90.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 90 cm",
+        "1 Façade",
+        "5 Etagères",
+        "Poignées",  
+        "Pieds",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Stratifié en MDF blanc, épaisseur 18mm",
+        "facade": "Façade en Stratifié, épaisseur 18mm, équipées d'un couvre-chant de 1mm"
+      }
+    }
+  },
+  {
+    "id": "mdl90",
+    "categorie": "Meubles",
+    "nom": "Meuble Dressing de Liaison | 90 cm",
+    "forme": "D",
+    "prix_initial": 940.000,
+    "reduction": 15,
+    "description": "Un Module de dressing moderne alliant la chaleur des textures stratifiées.",
+    "dimensions": {
+      "Largeur" : "90cm",
+      "hauteur": "90cm",
+      "profondeur": "60cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Modules Dressing/Drl90.jpg"
+    ],
+    "couleurs": [
+      {
+        "nom": "Blanc",
+        "code_couleur": "#FFFFFF",
+        "image_presentation": "/images/couleurs/blanc.jpg"
+      },
+      {
+        "nom": "Chêne naturel",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenenaturel.png"
+      },
+      {
+        "nom": "Chêne foncé",
+        "code_couleur": "#2C2C2C",
+        "image_presentation": "/images/couleurs/chenefonce.png"
+      }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "1 Modules Dressing de 90 cm",
+        "1 Façade",
+        "5 Etagères",
         "Poignées",  
         "Pieds",
         "Charnières Blum"
