@@ -1057,7 +1057,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas de 15 cm avec une porte bouteille",
     "forme": "B",
-    "prix_initial": 410.000,
+    "prix_initial": 460.000,
     "reduction": 15,
     "description": "Un module de meuble bas pour cuisine intégrant un porte-bouteille coulissant.",
     "dimensions": {
@@ -1096,7 +1096,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas de 30 cm avec étagère",
     "forme": "B",
-    "prix_initial": 315.000,
+    "prix_initial": 250.000,
     "reduction": 15,
     "description": "Un module de meuble bas pour cuisine avec une porte battante et une étagère intérieure.",
     "dimensions": {
@@ -1135,7 +1135,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas de 30 cm avec porte pain",
     "forme": "B",
-    "prix_initial": 505.000,
+    "prix_initial": 620.000,
     "reduction": 15,
     "description": "Un module de meuble bas pour cuisine avec panier porte-pain coulissant.",
     "dimensions": {
@@ -1175,7 +1175,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas de 40 cm avec étagère",
     "forme": "B",
-    "prix_initial": 265.000,
+    "prix_initial": 280.000,
     "reduction": 15,
     "description": "Un module de meuble bas pour cuisine de 40 cm avec une étagère de rangement.",
     "dimensions": {
@@ -1214,7 +1214,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas de 40 cm avec porte pain",
     "forme": "B",
-    "prix_initial": 640.000,
+    "prix_initial": 775.000,
     "reduction": 15,
     "description": "Un module de meuble bas pour cuisine de 40 cm équipé d'un rangement porte-pain coulissant.",
     "dimensions": {
@@ -1254,7 +1254,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas de 45 cm avec étagère",
     "forme": "B",
-    "prix_initial": 280.000,
+    "prix_initial": 295.000,
     "reduction": 15,
     "description": "Un module de meuble bas pour cuisine de 45 cm avec une étagère centrale.",
     "dimensions": {
@@ -1293,7 +1293,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas de 45 cm avec porte pain",
     "forme": "B",
-    "prix_initial": 660.000,
+    "prix_initial": 830.000,
      "reduction": 15,
     "description": "Un module de meuble bas pour cuisine de 45 cm équipé d'un système porte-pain coulissant.",
     "dimensions": {
@@ -1329,11 +1329,51 @@
     }
   },
   {
+    "id": "mcb45tt",
+    "categorie": "Meubles",
+    "nom": "Meuble Bas de 45 cm avec trois tiroirs",
+    "forme": "B",
+    "prix_initial": 490.000,
+     "reduction": 15,
+    "description": "Un module de meuble bas pour cuisine de 45 cm équipé d'un système porte-pain coulissant.",
+    "dimensions": {
+      "largeur": "45cm",
+      "hauteur": "72cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meuble Bas/C45 coulissant.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 45 cm",
+        "1 Façade",
+        "3 Tiroirs",
+        "Poignées",
+        "Pieds",
+        "Charnières Blum",
+        "Porte pain avec coulisses"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, équipées d'un couvre-chant de 1 mm"
+      }
+    }
+  },
+  {
     "id": "mcb60et",
     "categorie": "Meubles",
     "nom": "Meuble Bas de 60 cm avec étagère",
     "forme": "B",
-    "prix_initial": 315.000,
+    "prix_initial": 340.000,
     "reduction": 15,
     "description": "Un module de meuble bas standard de 60 cm avec porte battante et étagère interne.",
     "dimensions": {
@@ -1372,7 +1412,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas de 60 cm avec deux Tiroirs",
     "forme": "B",
-    "prix_initial": 440.000,
+    "prix_initial": 495.000,
      "reduction": 15,
     "description": "Un module de meuble bas pour cuisine de 60 cm équipé de 2 grands tiroirs coulissants.",
     "dimensions": {
@@ -1411,7 +1451,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas de 60 cm avec Trois Tiroirs",
     "forme": "B",
-    "prix_initial": 530.000,
+    "prix_initial": 605.000,
     "reduction": 15,
     "description": "Un module de meuble bas de 60 cm intégrant 3 tiroirs coulissants pour optimiser le rangement.",
     "dimensions": {
@@ -1450,7 +1490,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas Four de 60cm",
     "forme": "B",
-    "prix_initial": 205.000,
+    "prix_initial": 220.000,
     "reduction": 15,
     "description": "Un caisson bas spécialement conçu pour l'encastrement d'un four de 60 cm.",
     "dimensions": {
@@ -1486,7 +1526,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas de 80 cm avec étagère",
     "forme": "B",
-    "prix_initial": 405.000,
+    "prix_initial": 435.000,
     "reduction": 15,
     "description": "Un module de meuble bas pour cuisine de 80 cm avec 2 portes battantes et une étagère de rangement.",
     "dimensions": {
@@ -1525,7 +1565,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas de 90 cm avec étagère",
     "forme": "B",
-    "prix_initial": 430.000,
+    "prix_initial": 460.000,
     "reduction": 15,
     "description": "Un module de meuble bas pour cuisine de 90 cm avec 2 portes battantes et étagère intérieure.",
     "dimensions": {
@@ -1564,7 +1604,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas de 90 cm avec deux Tiroir",
     "forme": "B",
-    "prix_initial": 575.000,
+    "prix_initial": 615.000,
     "reduction": 15,
     "description": "Un grand module bas pour cuisine de 90 cm avec 2 tiroirs coulissants grand volume.",
     "dimensions": {
@@ -1602,7 +1642,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas de 90 cm avec Trois Tiroir",
     "forme": "B",
-    "prix_initial": 630.000,
+    "prix_initial": 680.000,
     "reduction": 15,
     "description": "Un module bas de cuisine de 90 cm avec 3 tiroirs coulissants pour une organisation optimale.",
     "dimensions": {
@@ -1680,7 +1720,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas sous Evier de 60 cm",
     "forme": "B",
-    "prix_initial": 285.000,
+    "prix_initial": 305.000,
     "reduction": 15,
     "description": "Un module bas sous évier de 60 cm avec une porte battante.",
     "dimensions": {
@@ -1718,7 +1758,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas sous Evier de 90 cm",
     "forme": "B",
-    "prix_initial": 390.000,
+    "prix_initial": 420.000,
     "reduction": 15,
     "description": "Un module bas sous évier de 90 cm équipé de 2 portes battantes.",
     "dimensions": {
@@ -1756,7 +1796,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas sous Evier de 120 cm",
     "forme": "B",
-    "prix_initial": 450.000,
+    "prix_initial": 485.000,
     "reduction": 15,
     "description": "Grand meuble bas sous évier de 120 cm avec 2 portes battantes.",
     "dimensions": {
@@ -1794,7 +1834,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas de coin de 105 cm",
     "forme": "B",
-    "prix_initial": 395.000,
+    "prix_initial": 425.000,
     "reduction": 15,
     "description": "Un module d'angle bas de 105 cm optimisé pour maximiser l'espace dans les coins de cuisine.",
     "dimensions": {
@@ -1833,7 +1873,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Bas de coin de 110 cm",
     "forme": "B",
-    "prix_initial": 400.000,
+    "prix_initial": 430.000,
     "reduction": 15,
     "description": "Un module d'angle bas de 110 cm optimisé pour maximiser l'espace dans les coins de cuisine.",
     "dimensions": {
@@ -1872,7 +1912,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Haut de 30 cm avec étagère",
     "forme": "H",
-    "prix_initial": 200.000,
+    "prix_initial": 210.000,
     "reduction": 15,
     "description": "Module de rangement haut de 30 cm avec étagère pour optimiser l'espace vertical de la cuisine.",
     "dimensions": {
@@ -1910,7 +1950,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Haut de 40 cm avec étagère",
     "forme": "H",
-    "prix_initial": 220.000,
+    "prix_initial": 240.000,
      "reduction": 15,
     "description": "Module de rangement haut de 40 cm avec étagère pratique et compact.",
     "dimensions": {
@@ -1948,7 +1988,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Haut de 45 cm avec étagère",
     "forme": "H",
-    "prix_initial": 235.000,
+    "prix_initial": 215.000,
     "reduction": 15,
     "description": "Meuble haut de 45 cm équipé d'une étagère pour le rangement quotidien.",
     "dimensions": {
@@ -1986,7 +2026,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Haut de 60 cm avec étagère",
     "forme": "H",
-    "prix_initial": 270.000,
+    "prix_initial": 290.000,
      "reduction": 15,
     "description": "Grand caisson haut de 60 cm une porte avec étagère interne.",
     "dimensions": {
@@ -2020,11 +2060,11 @@
     }
   },
   {
-    "id": "mch60-basculante",
+    "id": "mch60-basculant",
     "categorie": "Meubles",
-    "nom": "Meuble Haut de 60 cm Basculante",
+    "nom": "Meuble Haut de 60 cm Basculant",
     "forme": "H",
-    "prix_initial": 370.000,
+    "prix_initial": 345.000,
      "reduction": 15,
     "description": "Meuble haut de 60 cm à ouverture basculante doté de deux façades indépendantes.",
     "dimensions": {
@@ -2061,7 +2101,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Haut de 80 cm avec étagère",
     "forme": "H",
-    "prix_initial": 360.000,
+    "prix_initial": 390.000,
     "reduction": 15,
     "description": "Large meuble haut de 80 cm à deux portes battantes avec étagère centrale.",
     "dimensions": {
@@ -2099,7 +2139,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Haut de 90 cm avec étagère",
     "forme": "H",
-    "prix_initial": 385.000,
+    "prix_initial": 415.000,
     "reduction": 15,
     "description": "Meuble haut grande largeur de 90 cm à deux portes et étagère de rangement.",
     "dimensions": {
@@ -2133,11 +2173,11 @@
     }
   },
   {
-    "id": "mch90-basculante",
+    "id": "mch90-basculant",
     "categorie": "Meubles",
-    "nom": "Meuble Haut de 90 cm Basculante",
+    "nom": "Meuble Haut de 90 cm Basculant",
     "forme": "H",
-    "prix_initial": 460.000,
+    "prix_initial": 440.000,
     "reduction": 15,
     "description": "Grand meuble haut de 90 cm à double portes basculantes horizontales.",
     "dimensions": {
@@ -2174,7 +2214,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Haut de coin de 65 cm avec étagère",
     "forme": "H",
-    "prix_initial": 325.000,
+    "prix_initial": 350.000,
     "reduction": 15,
     "description": "Caisson d'angle haut de 65 cm conçu pour optimiser l'espace d'angle supérieur.",
     "dimensions": {
@@ -2212,7 +2252,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Haut pour Hotte de 60 cm",
     "forme": "H",
-    "prix_initial": 190.000,
+    "prix_initial": 205.000,
     "reduction": 15,
     "description": "Caisson haut spécifique de 60 cm de largeur et 36 cm de hauteur pour l'intégration d'une hotte aspirante.",
     "dimensions": {
@@ -2286,7 +2326,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Haut pour Hotte de 90 cm",
     "forme": "H",
-    "prix_initial": 235.000,
+    "prix_initial": 250.000,
     "reduction": 15,
     "description": "Caisson haut spécifique de 90 cm de largeur pour l'intégration d'une hotte aspirante.",
     "dimensions": {
@@ -2319,11 +2359,196 @@
     }
   },
   {
+    "id": "mch45-2en",
+    "categorie": "Meubles",
+    "nom": "Meuble Haut pour deuxième niveau de 45 cm",
+    "forme": "H",
+    "prix_initial": 315.000,
+    "reduction": 15,
+    "description": "Caisson haut spécifique de 45 cm de largeur pour l'intégration d'une hotte aspirante.",
+    "dimensions": {
+      "largeur": "45cm",
+      "hauteur": "36cm",
+      "profondeur": "58cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meubles Haut/haut hotte 45 1p.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 45 cm",
+        "1 Façade",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mch60-2en",
+    "categorie": "Meubles",
+    "nom": "Meuble Haut pour deuxième niveau de 60 cm",
+    "forme": "H",
+    "prix_initial": 335.000,
+    "reduction": 15,
+    "description": "Caisson haut spécifique de 60 cm de largeur pour l'intégration d'une hotte aspirante.",
+    "dimensions": {
+      "largeur": "60cm",
+      "hauteur": "36cm",
+      "profondeur": "58cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meubles Haut/haut hotte 60 1p.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 60 cm",
+        "1 Façade",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mch80-2en",
+    "categorie": "Meubles",
+    "nom": "Meuble Haut pour deuxième niveau de 80 cm",
+    "forme": "H",
+    "prix_initial": 390.000,
+    "reduction": 15,
+    "description": "Caisson haut spécifique de 80 cm de largeur pour l'intégration d'une hotte aspirante.",
+    "dimensions": {
+      "largeur": "80cm",
+      "hauteur": "36cm",
+      "profondeur": "58cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meubles Haut/haut hotte 80 1p.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 80 cm",
+        "1 Façade",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mch90-2en",
+    "categorie": "Meubles",
+    "nom": "Meuble Haut pour deuxième niveau de 90 cm",
+    "forme": "H",
+    "prix_initial": 415.000,
+    "reduction": 15,
+    "description": "Caisson haut spécifique de 90 cm de largeur pour l'intégration d'une hotte aspirante.",
+    "dimensions": {
+      "largeur": "90cm",
+      "hauteur": "36cm",
+      "profondeur": "58cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meubles Haut/haut hotte 90 1p.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 90 cm",
+        "1 Façade",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mch100-2en",
+    "categorie": "Meubles",
+    "nom": "Meuble Haut pour deuxième niveau de 100 cm",
+    "forme": "H",
+    "prix_initial": 445.000,
+    "reduction": 15,
+    "description": "Caisson haut spécifique de 100 cm de largeur pour l'intégration d'une hotte aspirante.",
+    "dimensions": {
+      "largeur": "100cm",
+      "hauteur": "36cm",
+      "profondeur": "58cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Meubles Haut/haut hotte 100 1p.png"
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 100 cm",
+        "1 Façade",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
     "id": "mcc45-1p",
     "categorie": "Meubles",
     "nom": "Meuble Colonne de 45 cm 1 Porte avec étagère",
     "forme": "C",
-    "prix_initial": 665.000,
+    "prix_initial": 690.000,
     "reduction": 15,
     "description": "Meuble colonne de 45 cm une porte offrant un grand espace de rangement avec étagères.",
     "dimensions": {
@@ -2361,7 +2586,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Colonne de 45 cm 2 Portes avec étagère",
     "forme": "C",
-    "prix_initial": 700.000,
+    "prix_initial": 715.000,
     "reduction": 15,
     "description": "Meuble colonne de 45 cm à 2 portes indépendantes et étagères intérieures.",
     "dimensions": {
@@ -2399,7 +2624,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Colonne de 60 cm 1 Porte avec étagère",
     "forme": "C",
-    "prix_initial": 735.000,
+    "prix_initial": 790.000,
     "reduction": 15,
     "description": "Large colonne de 60 cm une porte optimisant le rangement vertical.",
     "dimensions": {
@@ -2437,7 +2662,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Colonne de 60 cm 2 Portes avec étagère",
     "forme": "C",
-    "prix_initial": 745.000,
+    "prix_initial": 820.000,
     "reduction": 15,
     "description": "Colonne de 60 cm à 2 portes offrant une division pratique des espaces de rangement.",
     "dimensions": {
@@ -2475,7 +2700,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Colonne Four de 60 cm",
     "forme": "C",
-    "prix_initial": 670.000,
+    "prix_initial": 740.000,
      "reduction": 15,
     "description": "Colonne spécialisée de 60 cm conçue pour l'encastrement d'un four standard avec rangements.",
     "dimensions": {
@@ -2513,7 +2738,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Colonne Four Micro onde de 60 cm",
     "forme": "C",
-    "prix_initial": 685.000,
+    "prix_initial": 735.000,
     "reduction": 15,
     "description": "Meuble colonne de 60 cm prévu pour intégrer un four et un four micro-ondes.",
     "dimensions": {
@@ -2551,7 +2776,7 @@
     "categorie": "Meubles",
     "nom": "Meuble Colonne Frigo de 60 cm avec 2 Portes",
     "forme": "C",
-    "prix_initial": 735.000,
+    "prix_initial": 790.000,
     "reduction": 15,
     "description": "Colonne d'encastrement pour réfrigérateur de 60 cm équipée de 2 portes.",
     "dimensions": {
@@ -2561,6 +2786,43 @@
     },
     "catalogue_images": [
       "/images/meubles/Colonnes/colonne frigo 60 2P.png" 
+    ],
+    "couleurs": [
+      { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
+      { "nom": "Grège", "code_couleur": "#D8D3C9", "image_presentation": "/images/couleurs/grège.jpg" },
+      { "nom": "Gris", "code_couleur": "#808080", "image_presentation": "/images/couleurs/gris.jpg" },
+      { "nom": "Chêne naturel", "code_couleur": "#C8AD8D", "image_presentation": "/images/couleurs/chenenaturel.png" },
+      { "nom": "Beige", "code_couleur": "#F5F5DC", "image_presentation": "/images/couleurs/beige.jpg" },
+      { "nom": "Chêne foncé", "code_couleur": "#5C4033", "image_presentation": "/images/couleurs/chenefonce.png" }
+    ],
+    "caracteristiques_techniques": {
+      "composition_type": [
+        "Caisson Bas de 60 cm",
+        "2 Façades",
+        "Poignées",
+        "Charnières Blum"
+      ],
+      "finition_produit": {
+        "caisson": "Caisson stratifié en MDF blanc épaisseur 18mm",
+        "facade": "Façade en High Gloss et stratifiée épaisseur 18 mm, sont équipées d'un couvre-chant de 1 mm."
+      }
+    }
+  },
+  {
+    "id": "mccfrigo-60-1p",
+    "categorie": "Meubles",
+    "nom": "Meuble Colonne Frigo de 60 cm avec 1 Porte",
+    "forme": "C",
+    "prix_initial": 760.000,
+    "reduction": 15,
+    "description": "Colonne d'encastrement pour réfrigérateur de 60 cm équipée de 1 porte.",
+    "dimensions": {
+      "largeur": "60cm",
+      "hauteur": "204cm",
+      "profondeur": "56cm"
+    },
+    "catalogue_images": [
+      "/images/meubles/Colonnes/colonne frigo 60 1P.png" 
     ],
     "couleurs": [
       { "nom": "Blanc", "code_couleur": "#FFFFFF", "image_presentation": "/images/couleurs/blanc.jpg" },
