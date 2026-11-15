@@ -1,8 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
-import dressingData from '../data/dressing.json';
+//import dressingData from '../data/dressing.json';
 import '../styles/cuisines.css'; 
+
+// Importation de notre service d'API centralisé (avec bascule sécurisée)
+import { getDressings } from '../services/dressingService';
+
+import { type DressingDto } from '../types/dressing'; // Importation du type DressingDto
+
+// 2. Force le type sur le résultat de ton service
+const dressingData = (await getDressings()) as DressingDto[];
 
 // Structure des filtres principaux (Formes)
 const formes = [
@@ -11,10 +19,8 @@ const formes = [
 ];
 
 // Séparation des données Forme I par type d'ouverture
-const formeIFr = dressingData.filter(item => item.forme === "I" && (item.type_ouverture === "Fr"));
-const formeICoulissant = dressingData.filter(item => item.forme === "I" && (item.type_ouverture === "C"));
-
-// Autres formes (Forme L)
+const formeIFr = dressingData.filter(item => item.forme === "I" && item.typeOuverture === "Fr");
+const formeICoulissant = dressingData.filter(item => item.forme === "I" && item.typeOuverture === "C");
 const formeL = dressingData.filter(item => item.forme === "L");
 
 // Collection mixée pour le filtre "Tous"
@@ -74,9 +80,9 @@ const toutesLesDressingMixees = [...dressingData].sort(() => 0.5 - Math.random()
                 type="dressing"
                 id={item.id}
                 nom={item.nom} 
-                prix={item.prix_initial} 
+                prix={item.prixInitial} 
                 promo={item.reduction} 
-                image={item.catalogue_images?.[0]} 
+                image={item.images?.find(img => img.estPrincipale)?.url} 
               />
             </div>
           ))}
@@ -97,9 +103,9 @@ const toutesLesDressingMixees = [...dressingData].sort(() => 0.5 - Math.random()
                     type="dressing"
                     id={item.id}
                     nom={item.nom} 
-                    prix={item.prix_initial} 
+                    prix={item.prixInitial} 
                     promo={item.reduction} 
-                    image={item.catalogue_images?.[0]} 
+                    image={item.images?.find(img => img.estPrincipale)?.url} 
                   />
                 </div>
               ))}
@@ -118,9 +124,9 @@ const toutesLesDressingMixees = [...dressingData].sort(() => 0.5 - Math.random()
                     type="dressing"
                     id={item.id}
                     nom={item.nom} 
-                    prix={item.prix_initial} 
+                    prix={item.prixInitial} 
                     promo={item.reduction} 
-                    image={item.catalogue_images?.[0]} 
+                    image={item.images?.find(img => img.estPrincipale)?.url} 
                   />
                 </div>
               ))}
@@ -139,9 +145,9 @@ const toutesLesDressingMixees = [...dressingData].sort(() => 0.5 - Math.random()
                 type="dressing"
                 id={item.id}
                 nom={item.nom} 
-                prix={item.prix_initial} 
+                prix={item.prixInitial} 
                 promo={item.reduction} 
-                image={item.catalogue_images?.[0]} 
+                image={item.images?.find(img => img.estPrincipale)?.url} 
               />
             </div>
           ))}

@@ -11,5 +11,6 @@ export default defineConfig({
   },
     devToolbar: {
     enabled: false,
-  }
+  },
+  output: 'server' // <-- C'est ça qui active le mode dynamique (SSR)
 });

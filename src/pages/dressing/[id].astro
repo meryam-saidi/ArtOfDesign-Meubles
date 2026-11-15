@@ -1,61 +1,45 @@
 ---
 // src/pages/dressing/[id].astro
 import Layout from '../../layouts/Layout.astro';
-import dressingsData from '../../data/dressing.json';
 import '../../styles/details.css';
+import { getDressingById } from '../../services/dressingService';
+import type { DressingDto } from '../../types/dressing';
 
-export async function getStaticPaths() {
-  return dressingsData.map((dressing) => {
-    return {
-      params: { id: dressing.id.toString().toLowerCase() },
-      props: { dressing },
-    };
-  });
+const { id } = Astro.params;
+
+// Récupération sécurisée des données du dressing via l'API ou le fallback
+const dressing: DressingDto = await getDressingById(id);
+
+if (!dressing) {
+    return Astro.redirect('/404');
 }
 
-const { dressing } = Astro.props;
-
+// Correction du calcul du prix final
 const prixFinal = dressing.reduction 
-  ? dressing.prix_initial * (1 - dressing.reduction / 100) 
-  : dressing.prix_initial;
+  ? dressing.prixInitial * (1 - dressing.reduction / 100) 
+  : dressing.prixInitial;
 
-// Séparation équitable de la composition type en deux colonnes pour affichage horizontal
-const milieuComposition = Math.ceil(dressing.caracteristiques_techniques.composition_type.length / 2);
-const compoCol1 = dressing.caracteristiques_techniques.composition_type.slice(0, milieuComposition);
-const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(milieuComposition);
+// Séparation sécurisée de la composition type
+const compoText = dressing.caracteristiquesTechniques?.compositionType || '';
+const milieuComposition = Math.ceil(compoText.length / 2);
+const compoCol1 = compoText.slice(0, milieuComposition);
+const compoCol2 = compoText.slice(milieuComposition);
 ---
 
 <Layout title="Nos dressings | Art Of Design" theme="dark" pageBg="light">
   <main class="details-page">
-    <!--
-    <section class="details-hero">
-      <div class="details-hero-viewport">
-        <img 
-          src={dressing.catalogue_images?.[0]} 
-          alt={`Art Of Design - Haute dressing ${dressing.nom}`} 
-          class="details-hero-media"
-        />
-        <div class="details-hero-overlay"></div>
-      </div>
-      
-      <div class="hero-details-scroll">
-       <span>{dressing.nom}</span>
-      <div class="scroll-details-line"></div>
-    </div>
-    </section>
-    -->
     <div class="product-container">
       <nav class="breadcrumb">
         <a href="/">Accueil</a>
         <span>/</span>
         <a href="/dressing">dressings</a>
-        {dressing.type_ouverture === "Fr" && (
+        {dressing.typeOuverture === "Fr" && (
           <>
             <span>/</span>
             <a href="/dressing#francaise">Dressing À la française</a>
           </>
         )}
-        {dressing.type_ouverture === "C" && (
+        {dressing.typeOuverture === "C" && (
           <>
             <span>/</span>
             <a href="/dressing#coulissant">Dressing Coulissant</a>
@@ -65,18 +49,25 @@ const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(mi
         <span class="active-crumb-text">{dressing.nom}</span>
       </nav>
 
-      <div class="main-product-grid">     
+      <div class="main-product-grid">    
         <div class="visuals-zone">
 
+          <!-- Image principale -->
           <div class="main-visual-wrapper">
-            <img 
-              id="main-visual"
-              src={dressing.catalogue_images?.[0]} 
-              alt={dressing.nom} 
-            />
+            {dressing.images && dressing.images.length > 0 ? (
+              <img 
+                id="main-visual" 
+                src={dressing.images.find(img => img.estPrincipale)?.url || dressing.images[0].url} 
+                alt={dressing.nom} 
+                class="main-img" 
+              />
+            ) : (
+              <img id="main-visual" src="/images/placeholder.jpg" alt={dressing.nom} class="main-img" />
+            )}
             <div class="visual-overlay"></div>
           </div>
 
+          <!-- Slider des miniatures corrigé (plus de double map imbriqué) -->
           <div class="slider-wrapper-relative">
             <button id="slide-prev" class="slider-arrow prev-arrow" aria-label="Précédent">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -86,9 +77,9 @@ const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(mi
 
             <div class="slider-container" id="slider-mask">
               <div class="thumbnails-slider-rail" id="thumb-rail">
-                {dressing.catalogue_images?.map((img, index) => (
-                  <button class={`thumb-btn ${index === 0 ? 'active-thumb' : ''}`} data-full={img}>
-                    <img src={img} alt={`Aperçu ${index + 1}`} />
+                {dressing.images?.map((img, index) => (
+                  <button class={`thumb-btn ${index === 0 ? 'active-thumb' : ''}`} data-full={img.url}>
+                    <img src={img.url} alt={`${dressing.nom} - ${index + 1}`} class="thumb" />
                   </button>
                 ))}
               </div>
@@ -109,20 +100,25 @@ const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(mi
             <h1 class="product-title">{dressing.nom}</h1>
             
             <div class="price-wrapper">
-              {dressing.reduction ? (
+              {dressing.reduction > 0 ? (
                 <div class="price-flex">
-                  <p class="price-old">{dressing.prix_initial} TTC</p>
+                  <p class="price-old">{dressing.prixInitial} TTC</p>
                   <p class="price-current">{prixFinal} TTC</p>                
                   <span class="discount-tag">-{dressing.reduction}%</span>
                 </div>
               ) : (
-                <p class="price-current">{dressing.prix_initial} TTC</p>
+                <p class="price-current">{dressing.prixInitial} TTC</p>
               )}
             </div>
           </div>
           
           <div class="specs-block">
-            <p><strong class="spec-paragraph">Dimensions Module Dressing </strong> <br /> Largeur {dressing.dimensions.Largeur} <br /> hauteur {dressing.dimensions.hauteur} <br /> profondeur {dressing.dimensions.profondeur}</p>
+            <p>
+              <strong class="spec-paragraph">Dimensions Module Dressing</strong> <br /> 
+              Largeur {dressing.dimensions?.largeur} <br /> 
+              Hauteur {dressing.dimensions?.hauteur} <br /> 
+              Profondeur {dressing.dimensions?.profondeur}
+            </p>
           </div>
 
           <div class="nuancier-block">
@@ -134,9 +130,9 @@ const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(mi
             <div class="swatches-row">
               {dressing.couleurs?.map((v) => (
                 <button 
-                  class={`color-swatch ${v.nom === "Chêne naturel" ? "active-swatch" : ""}`}
-                  style={`background-image: url(${v.image_presentation}); background-size: cover; background-position: center;`}
-                  data-value={v.image_presentation}
+                  class="color-swatch"
+                  style={`background-image: url(${v.imagePresentationUrl || ''}); background-size: cover; background-position: center;`}
+                  data-value={v.imagePresentationUrl}
                   title={v.nom}
                 >
                 </button>
@@ -161,11 +157,9 @@ const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(mi
         <h3 class="technical-main-title">Caractéristiques techniques des éléments</h3>
         
         <div class="tech-dropdowns">
-          
-          {/* DROPDOWN : COMPOSITION TYPE */}
           <div class="tech-item dropdown active" id="dropdown-composition">
             <button class="tech-header dropdown-toggle">
-              <span class="tech-item-number reveal"></span> <!--I -->
+              <span class="tech-item-number reveal"></span>
               <h4>Composition type</h4>
               <div class="dropdown-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -176,22 +170,16 @@ const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(mi
             <div class="tech-content dropdown-pane">
               <div class="tech-content-inner">
                 <div class="tech-composition-cols">
-                  <ul class="tech-list">
-                    {compoCol1.map((item) => (
-                      <li><span>•</span> {item}</li>
-                    ))}
-                  </ul>
-                  <ul class="tech-list">
-                    {compoCol2.map((item) => (
-                      <li><span>•</span> {item}</li>
-                    ))}
+                  <ul>
+                    <li>Composition : {dressing.caracteristiquesTechniques?.compositionType}</li>
+                    <li>Caisson : {dressing.caracteristiquesTechniques?.caisson}</li>
+                    <li>Façade : {dressing.caracteristiquesTechniques?.facade}</li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* DROPDOWN : FINITION PRODUIT */}
           <div class="tech-item dropdown" id="dropdown-finition">
             <button class="tech-header dropdown-toggle">
               <span class="tech-item-number"></span>
@@ -207,11 +195,11 @@ const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(mi
                 <div class="tech-finition-details">
                   <div class="tech-finition-item">
                     <strong class="sub-label">Caisson</strong>
-                    <p class="tech-paragraph">{dressing.caracteristiques_techniques.finition_produit.caisson}</p>
+                    <p class="tech-paragraph">{dressing.caracteristiquesTechniques?.caisson}</p>
                   </div>
                   <div class="tech-finition-item">
                     <strong class="sub-label">Façade</strong>
-                    <p class="tech-paragraph">{dressing.caracteristiques_techniques.finition_produit.facade}</p>
+                    <p class="tech-paragraph">{dressing.caracteristiquesTechniques?.facade}</p>
                   </div>
                 </div>
               </div>
@@ -222,13 +210,10 @@ const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(mi
       </div>
     </div>
   </main>
-
 </Layout>
 
 <script is:inline>
-  // Script pour gérer l'ouverture/fermeture des dropdowns
   const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-
   dropdownToggles.forEach(toggle => {
     toggle.addEventListener('click', () => {
       const dropdownItem = toggle.closest('.tech-item');
@@ -237,7 +222,6 @@ const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(mi
   });
 </script>
 
-
 <script>
   import { gsap } from 'gsap';
 
@@ -245,79 +229,9 @@ const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(mi
     const swatches = document.querySelectorAll('.color-swatch');
     const colorLabel = document.getElementById('color-label') as HTMLElement | null;
     const previewCard = document.getElementById('texture-preview-card') as HTMLElement | null;
-    const defaultSwatch = Array.from(swatches).find(s => s.getAttribute('title') === "Chêne naturel") as HTMLElement | null;
 
-    // SI L'ÉLÉMENT N'EXISTE PAS SUR CETTE PAGE, ON QUITTE SILENCIEUSEMENT SANS ERREUR
     if (!previewCard) return;
-
     let activeSwatch: HTMLElement | null = null;
-
-    if (defaultSwatch) {
-      const defaultImg = defaultSwatch.getAttribute('data-value');
-      const defaultTitle = defaultSwatch.getAttribute('title') || '';
-
-      if (defaultImg && previewCard) {
-        // 1. On applique directement le titre et la texture en arrière-plan
-        if (colorLabel) colorLabel.textContent = defaultTitle;
-        previewCard.style.backgroundImage = `url(${defaultImg})`;
-        
-        // 2. On fait descendre le rectangle instantanément ou via une transition douce
-        gsap.to(previewCard, {
-          y: "0%",
-          duration: 0.45,
-          ease: "power3.out"
-        });
-
-        // 3. On l'enregistre comme la pastille active en mémoire
-        activeSwatch = defaultSwatch;
-      }
-    }
-
-    function closePreview() {
-      if (!previewCard) return;
-      
-      gsap.to(previewCard, {
-        y: "-100%",
-        duration: 0.3,
-        ease: "power2.in",
-        onComplete: () => {
-          if (colorLabel) colorLabel.textContent = "";
-          swatches.forEach(s => s.classList.remove('active-swatch'));
-          activeSwatch = null;
-        }
-      });
-    }
-
-    function openOrChangePreview(currentSwatch: HTMLElement, imageUrl: string, title: string) {
-      if (!previewCard) return;
-      
-      const tl = gsap.timeline();
-
-      if (activeSwatch && activeSwatch !== currentSwatch) {
-        tl.to(previewCard, {
-          y: "-100%",
-          duration: 0.2,
-          ease: "power2.in",
-          onComplete: () => {
-            if (colorLabel) colorLabel.textContent = title;
-            previewCard.style.backgroundImage = `url(${imageUrl})`;
-          }
-        });
-      } else {
-        if (colorLabel) colorLabel.textContent = title;
-        previewCard.style.backgroundImage = `url(${imageUrl})`;
-      }
-
-      tl.to(previewCard, {
-        y: "0%",
-        duration: 0.45,
-        ease: "power3.out"
-      });
-
-      swatches.forEach(s => s.classList.remove('active-swatch'));
-      currentSwatch.classList.add('active-swatch');
-      activeSwatch = currentSwatch;
-    }
 
     swatches.forEach(swatch => {
       swatch.addEventListener('click', (e) => {
@@ -328,15 +242,32 @@ const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(mi
         if (!imageUrl) return;
 
         if (activeSwatch === currentSwatch) {
-          closePreview();
+          gsap.to(previewCard, {
+            y: "-100%",
+            duration: 0.3,
+            ease: "power2.in",
+            onComplete: () => {
+              if (colorLabel) colorLabel.textContent = "";
+              currentSwatch.classList.remove('active-swatch');
+              activeSwatch = null;
+            }
+          });
         } else {
-          openOrChangePreview(currentSwatch, imageUrl, title);
+          if (colorLabel) colorLabel.textContent = title;
+          previewCard.style.backgroundImage = `url(${imageUrl})`;
+          gsap.to(previewCard, {
+            y: "0%",
+            duration: 0.45,
+            ease: "power3.out"
+          });
+          swatches.forEach(s => s.classList.remove('active-swatch'));
+          currentSwatch.classList.add('active-swatch');
+          activeSwatch = currentSwatch;
         }
       });
     });
   });
 </script>
-
 
 <script>
   import { gsap } from 'gsap';
@@ -354,62 +285,51 @@ const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(mi
 
     if (!rail || !mask) return;
 
-    // 1. INITIALISATION DU DRAGGABLE
     const dragInstance = Draggable.create(rail, {
       type: "x",
       bounds: mask,
       edgeResistance: 0.65,
       inertia: true,
-    })[0]; // On récupère l'instance indexée 0
+    })[0];
 
-    // 2. LOGIQUE DE NAVIGATION VIA LES FLÈCHES
-    // Largeur d'une miniature (9rem = 144px) + gap (0.5rem = 8px) = ~152px
     const stepWidth = 152; 
 
     function moveSlider(direction: 'next' | 'prev') {
-      // On calcule la position cible X actuelle
       let currentX = gsap.getProperty(rail, "x") as number;
       let targetX = direction === 'next' ? currentX - stepWidth : currentX + stepWidth;
 
-      // Force GSAP à respecter les limites physiques (bounds) du masque de défilement
       const minX = dragInstance.minX;
       const maxX = dragInstance.maxX;
 
       if (targetX < minX) targetX = minX;
       if (targetX > maxX) targetX = maxX;
 
-      // Animation fluide du rail vers la nouvelle position
       gsap.to(rail, {
         x: targetX,
         duration: 0.4,
         ease: "power2.out",
-        onUpdate: () => dragInstance.update() // Synchronise l'état interne du Drag de GSAP
+        onUpdate: () => dragInstance.update()
       });
     }
 
     nextBtn?.addEventListener('click', () => moveSlider('next'));
     prevBtn?.addEventListener('click', () => moveSlider('prev'));
 
-    // 3. LOGIQUE DE CHANGEMENT DE GALERIE (FADE)
-    function updateGallery(newSrc: string | null) {
-      if (!mainImg || !newSrc) return;
-      
-      gsap.to(mainImg, {
-        opacity: 0,
-        duration: 0.2,
-        onComplete: () => {
-          mainImg.src = newSrc;
-          gsap.to(mainImg, { opacity: 1, duration: 0.2 });
-        }
-      });
-    }
-
     thumbButtons.forEach(btn => {
       btn.addEventListener('click', (e) => {
         const currentBtn = e.currentTarget as HTMLElement;
-        const img = currentBtn.getAttribute('data-full');
+        const imgUrl = currentBtn.getAttribute('data-full');
         
-        updateGallery(img);
+        if (mainImg && imgUrl) {
+          gsap.to(mainImg, {
+            opacity: 0,
+            duration: 0.2,
+            onComplete: () => {
+              mainImg.src = imgUrl;
+              gsap.to(mainImg, { opacity: 1, duration: 0.2 });
+            }
+          });
+        }
 
         thumbButtons.forEach(b => b.classList.remove('active-thumb'));
         currentBtn.classList.add('active-thumb');
@@ -417,20 +337,3 @@ const compoCol2 = dressing.caracteristiques_techniques.composition_type.slice(mi
     });
   });
 </script>
-
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    // ── SCROLL REVEAL ──
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('visible'), i * 80);
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
-  });
-</script>
-
-
