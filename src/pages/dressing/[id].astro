@@ -7,9 +7,15 @@ import type { DressingDto } from '../../types/dressing';
 
 const { id } = Astro.params;
 
-// Récupération sécurisée des données du dressing via l'API ou le fallback
-const dressing: DressingDto = await getDressingById(id);
+// Sécurité : si l'ID est absent de l'URL, on redirige vers la 404
+if (!id) {
+    return Astro.redirect('/404');
+}
 
+// Appel asynchrone sécurisé (id est forcé en string avec le '!')
+const dressing: DressingDto | null = await getDressingById(id!);
+
+// Si le dressing n'existe ni dans l'API ni dans le fallback local
 if (!dressing) {
     return Astro.redirect('/404');
 }

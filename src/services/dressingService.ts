@@ -1,8 +1,11 @@
-// src/services/dressingService.js
+// src/services/dressingService.ts
+import type { DressingDto } from '../types/dressing';
+import dressingsData from '../data/dressing.json'; // Import de ton JSON local pour le fallback
 
 const USE_API = true; // Passe à true uniquement quand tu veux tester ton API .NET
 
-export async function getDressings() {
+// Récupérer tous les dressings (Typé avec Promise<DressingDto[]>)
+export async function getDressings(): Promise<DressingDto[]> {
     if (USE_API) {
         try {
             const response = await fetch('http://localhost:5133/api/dressings'); 
@@ -13,19 +16,18 @@ export async function getDressings() {
             return getLocalDressingsFallback();
         }
     } else {
-        // Ton ancien fichier JSON statique importé ou simulé
         return getLocalDressingsFallback();
     }
 }
 
-function getLocalDressingsFallback() {
-    // Retourne tes données JSON actuelles pour sécuriser le site vitrine
-    return [
-        // ... tes données statiques habituelles
-    ];
+// Fallback pour la liste entière
+function getLocalDressingsFallback(): DressingDto[] {
+    // On caste le JSON local en DressingDto[] si nécessaire
+    return dressingsData as unknown as DressingDto[];
 }
 
-export async function getDressingById(id) {
+// Récupérer un seul dressing par son ID (Typé avec Promise<DressingDto | null>)
+export async function getDressingById(id: string): Promise<DressingDto | null> {
     if (USE_API) {
         try {
             const response = await fetch(`http://localhost:5133/api/dressings/${id}`); 
@@ -33,10 +35,16 @@ export async function getDressingById(id) {
             return await response.json();
         } catch (error) {
             console.error("Impossible de joindre l'API, bascule sur le cache local :", error);
-            return getLocalDressingByIdFallback(id); // On appelle une fonction dédiée pour un seul élément
+            return getLocalDressingByIdFallback(id);
         }
     } else {
-        // En mode local, on cherche le dressing spécifique par son ID dans le JSON
         return getLocalDressingByIdFallback(id);
     }
+}
+
+// Fallback pour un seul élément par ID
+function getLocalDressingByIdFallback(id: string): DressingDto | null {
+    const allDressings = dressingsData as unknown as DressingDto[];
+    const found = allDressings.find(d => d.id.toString().toLowerCase() === id.toLowerCase());
+    return found || null;
 }

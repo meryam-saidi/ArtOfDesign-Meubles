@@ -3,26 +3,24 @@
 import Layout from '../../layouts/Layout.astro';
 import cuisinesData from '../../data/cuisines.json';
 import '../../styles/details.css';
+import { getCuisineById } from '../../services/cuisineService';
+import type { CuisineDto } from '../../types/cuisine';
 
-export async function getStaticPaths() {
-  return cuisinesData.map((cuisine) => {
-    return {
-      params: { id: cuisine.id.toString().toLowerCase() },
-      props: { cuisine },
-    };
-  });
+const { id } = Astro.params;
+
+if (!id) {
+    return Astro.redirect('/404');
 }
 
-const { cuisine } = Astro.props;
+const cuisine: CuisineDto | null = await getCuisineById(id!);
+
+if (!cuisine) {
+    return Astro.redirect('/404');
+}
 
 const prixFinal = cuisine.reduction 
-  ? cuisine.prix_initial * (1 - cuisine.reduction / 100) 
-  : cuisine.prix_initial;
-
-// Séparation équitable de la composition type en deux colonnes pour affichage horizontal
-const milieuComposition = Math.ceil(cuisine.caracteristiques_techniques.composition_type.length / 2);
-const compoCol1 = cuisine.caracteristiques_techniques.composition_type.slice(0, milieuComposition);
-const compoCol2 = cuisine.caracteristiques_techniques.composition_type.slice(milieuComposition);
+  ? cuisine.prixInitial * (1 - cuisine.reduction / 100) 
+  : cuisine.prixInitial;
 ---
 
 <Layout title="Nos Cuisines | Art Of Design" theme="dark" pageBg="light">
@@ -59,7 +57,7 @@ const compoCol2 = cuisine.caracteristiques_techniques.composition_type.slice(mil
           <div class="main-visual-wrapper">
             <img 
               id="main-visual"
-              src={cuisine.catalogue_images?.[0]} 
+              src={cuisine.images.find(img => img.estPrincipale)?.url || cuisine.images[0].url} 
               alt={cuisine.nom} 
             />
             <div class="visual-overlay"></div>
@@ -74,9 +72,9 @@ const compoCol2 = cuisine.caracteristiques_techniques.composition_type.slice(mil
 
             <div class="slider-container" id="slider-mask">
               <div class="thumbnails-slider-rail" id="thumb-rail">
-                {cuisine.catalogue_images?.map((img, index) => (
+                {cuisine.images.map((img, index) => (
                   <button class={`thumb-btn ${index === 0 ? 'active-thumb' : ''}`} data-full={img}>
-                    <img src={img} alt={`Aperçu ${index + 1}`} />
+                    <img src={img.url} alt={`Aperçu ${index + 1}`} />
                   </button>
                 ))}
               </div>
@@ -99,12 +97,12 @@ const compoCol2 = cuisine.caracteristiques_techniques.composition_type.slice(mil
             <div class="price-wrapper">
               {cuisine.reduction ? (
                 <div class="price-flex">
-                  <p class="price-old">{cuisine.prix_initial} TTC</p>
+                  <p class="price-old">{cuisine.prixInitial} TTC</p>
                   <p class="price-current">{prixFinal} TTC</p>                
                   <span class="discount-tag">-{cuisine.reduction}%</span>
                 </div>
               ) : (
-                <p class="price-current">{cuisine.prix_initial} TTC</p>
+                <p class="price-current">{cuisine.prixInitial} TTC</p>
               )}
             </div>
           </div>
@@ -112,17 +110,18 @@ const compoCol2 = cuisine.caracteristiques_techniques.composition_type.slice(mil
           <div class="specs-block">
             <p>
               <strong class="spec-paragraph">Dimensions caisson bas </strong> <br /> 
-              hauteur {cuisine.dimensions.caisson_bas.hauteur} <br /> 
-              profondeur {cuisine.dimensions.caisson_bas.profondeur}
+              hauteur {cuisine.dimensions.hauteurCaissonBas} <br /> 
+              profondeur {cuisine.dimensions.profondeurCaissonBas}
             </p>
             
-            {cuisine.forme !== 'Ilot' && cuisine.dimensions.caisson_haut && (
+            {/* {cuisine.forme !== 'Ilot' && cuisine.dimensions.caisson_haut && (
+            )} */}
               <p>
                 <strong class="spec-paragraph">Dimensions caisson haut </strong> <br /> 
-                hauteur {cuisine.dimensions.caisson_haut.hauteur} <br /> 
-                profondeur {cuisine.dimensions.caisson_haut.profondeur}
-              </p>
-            )}
+                hauteur {cuisine.dimensions.hauteurCaissonHaut} <br /> 
+                profondeur {cuisine.dimensions.profondeurCaissonHaut}
+              </p> 
+            
           </div>
 
           <div class="nuancier-block">
@@ -135,8 +134,8 @@ const compoCol2 = cuisine.caracteristiques_techniques.composition_type.slice(mil
               {cuisine.couleurs?.map((v) => (
                 <button 
                   class={`color-swatch ${v.nom === "Chêne naturel" ? "active-swatch" : ""}`}
-                  style={`background-image: url(${v.image_presentation}); background-size: cover; background-position: center;`}
-                  data-value={v.image_presentation}
+                  style={`background-image: url(${v.imagePresentationUrl}); background-size: cover; background-position: center;`}
+                  data-value={v.imagePresentationUrl}
                   title={v.nom}
                 >
                 </button>
@@ -161,11 +160,9 @@ const compoCol2 = cuisine.caracteristiques_techniques.composition_type.slice(mil
         <h3 class="technical-main-title">Caractéristiques techniques des éléments</h3>
         
         <div class="tech-dropdowns">
-          
-          {/* DROPDOWN : COMPOSITION TYPE */}
           <div class="tech-item dropdown active" id="dropdown-composition">
             <button class="tech-header dropdown-toggle">
-              <span class="tech-item-number reveal"></span> <!--I -->
+              <span class="tech-item-number reveal"></span>
               <h4>Composition type</h4>
               <div class="dropdown-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -176,22 +173,16 @@ const compoCol2 = cuisine.caracteristiques_techniques.composition_type.slice(mil
             <div class="tech-content dropdown-pane">
               <div class="tech-content-inner">
                 <div class="tech-composition-cols">
-                  <ul class="tech-list">
-                    {compoCol1.map((item) => (
-                      <li><span>•</span> {item}</li>
-                    ))}
-                  </ul>
-                  <ul class="tech-list">
-                    {compoCol2.map((item) => (
-                      <li><span>•</span> {item}</li>
-                    ))}
+                  <ul>
+                    <li>Composition : {cuisine.caracteristiquesTechniques?.compositionType}</li>
+                    <li>Caisson : {cuisine.caracteristiquesTechniques?.caisson}</li>
+                    <li>Façade : {cuisine.caracteristiquesTechniques?.facade}</li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* DROPDOWN : FINITION PRODUIT */}
           <div class="tech-item dropdown" id="dropdown-finition">
             <button class="tech-header dropdown-toggle">
               <span class="tech-item-number"></span>
@@ -207,21 +198,17 @@ const compoCol2 = cuisine.caracteristiques_techniques.composition_type.slice(mil
                 <div class="tech-finition-details">
                   <div class="tech-finition-item">
                     <strong class="sub-label">Caisson</strong>
-                    <p class="tech-paragraph">{cuisine.caracteristiques_techniques.finition_produit.caisson}</p>
+                    <p class="tech-paragraph">{cuisine.caracteristiquesTechniques?.caisson}</p>
                   </div>
                   <div class="tech-finition-item">
                     <strong class="sub-label">Façade</strong>
-                    <p class="tech-paragraph">{cuisine.caracteristiques_techniques.finition_produit.facade}</p>
+                    <p class="tech-paragraph">{cuisine.caracteristiquesTechniques?.facade}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           
-        </div>
-
-        <div class="nb-footer-container">
-          <p><strong>NB :</strong> {cuisine.nb}</p>
         </div>
       </div>
     </div>

@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import cuisinesData from '../data/cuisines.json';
 import '../styles/cuisines.css'; 
+import { getCuisines } from '../services/cuisineService';
+import type { CuisineDto } from '../types/cuisine';
 
 const sections = [
   { id: "forme-i", label: "Cuisines Forme I — linéaire", valeur: "I" },
@@ -11,8 +13,12 @@ const sections = [
   { id: "ilot", label: "Cuisines Îlot central", valeur: "Ilot" }
 ];
 
-// Création d'une liste unique mixée de tous les produits pour l'affichage "Tous"
-const toutesLesCuisinesMixees = [...cuisinesData].sort(() => 0.5 - Math.random());
+
+// Récupération dynamique depuis l'API .NET (avec fallback local automatique)
+const cuisineData: CuisineDto[] = await getCuisines();
+
+// Le reste de tes filtres et tris s'applique directement sur cuisineData
+const toutesLesCuisinesMixees = [...cuisineData].sort(() => 0.5 - Math.random());
 ---
 
 <Layout title="Nos Modèles de Cuisines | Art Of Design" pageBg="dark">
@@ -75,9 +81,9 @@ const toutesLesCuisinesMixees = [...cuisinesData].sort(() => 0.5 - Math.random()
                 type="cuisine"
                 id={item.id}
                 nom={item.nom} 
-                prix={item.prix_initial} 
+                prix={item.prixInitial} 
                 promo={item.reduction} 
-                image={item.catalogue_images?.[0]} 
+                image={item.images?.find(img => img.estPrincipale)?.url} 
               />
             </div>
           ))}

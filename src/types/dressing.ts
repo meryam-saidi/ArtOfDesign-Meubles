@@ -1,3 +1,5 @@
+// src/types/dressing.ts
+
 export interface ImageDressingDto {
   id?: number;
   url: string;
