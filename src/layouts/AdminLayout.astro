@@ -1,0 +1,86 @@
+---
+// src/layouts/AdminLayout.astro
+import '../styles/admin.css';
+
+interface Props {
+  title?: string;
+  pageTitle?: string;
+  activeNav?: 'dashboard' | 'cuisines' | 'dressings' | 'meubles' | 'demandes';
+}
+
+const {
+  title = 'Administration | Art Of Design',
+  pageTitle = 'Tableau de bord',
+  activeNav = 'dashboard',
+} = Astro.props;
+
+const navItems = [
+  { id: 'dashboard', label: 'Vue d’ensemble', href: '/admin' },
+  { id: 'cuisines', label: 'Cuisines', href: '/admin/cuisines' },
+  { id: 'dressings', label: 'Dressings', href: '/admin/dressings' },
+  { id: 'meubles', label: 'Meubles', href: '/admin/meubles' },
+  { id: 'demandes', label: 'Études & Contacts', href: '/admin/demandes' },
+] as const;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title}</title>
+  </head>
+  <body class="admin-body">
+    <div class="admin-shell">
+      <!-- SIDEBAR NAVIGATION -->
+      <aside class="admin-sidebar" aria-label="Navigation administration">
+        <div class="admin-brand">
+          <a href="/admin" class="admin-logo">
+            Art <em>Of</em> Design
+          </a>
+          <span class="admin-badge">Back-Office</span>
+        </div>
+
+        <nav class="admin-nav">
+          <ul>
+            {navItems.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class={`admin-nav-link ${activeNav === item.id ? 'is-active' : ''}`}
+                >
+                  <span>{item.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div class="admin-sidebar-footer">
+          <a href="/" target="_blank" rel="noopener noreferrer" class="admin-ghost-btn">
+            Voir la vitrine publique ↗
+          </a>
+        </div>
+      </aside>
+
+      <!-- ZONE PRINCIPALE -->
+      <div class="admin-main-wrapper">
+        <header class="admin-topbar">
+          <div>
+            <p class="admin-eyebrow">Espace Gestion</p>
+            <h1 class="admin-page-title">{pageTitle}</h1>
+          </div>
+
+          <div class="admin-topbar-actions">
+            <slot name="actions" />
+          </div>
+        </header>
+
+        <main class="admin-content">
+          <slot />
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
