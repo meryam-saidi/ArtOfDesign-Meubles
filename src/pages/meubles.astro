@@ -1,8 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
-import meublesData from '../data/meuble.json';
 import '../styles/cuisines.css'; 
+import { getMeubles } from '../services/meubleService';
+import { type MeubleDto } from '../types/meuble';
+
+const meublesData = (await getMeubles()) as MeubleDto[];
 
 // On définit les sections que l'on veut afficher
 const sections = [
@@ -12,7 +15,7 @@ const sections = [
   { id: "meubles-dressing", label: "meubles Dressing", valeur: "D" }
 ];
 
-const toutesLesDressingMixees = [...meublesData].sort(() => 0.5 - Math.random());
+const  toutesLesDressingMixees = [...meublesData].sort(() => 0.5 - Math.random());
 ---
 
 <Layout title="Nos Modèles de meubles | Art Of Design" pageBg="dark">
@@ -75,9 +78,9 @@ const toutesLesDressingMixees = [...meublesData].sort(() => 0.5 - Math.random())
                 type="meuble"
                 id={item.id}
                 nom={item.nom} 
-                prix={item.prix_initial} 
+                prix={item.prixInitial} 
                 promo={item.reduction} 
-                image={item.catalogue_images[0]} 
+                image={item.images?.find(img => img.estPrincipale)?.url} 
               />
             </div>
           ))}
@@ -109,9 +112,9 @@ const toutesLesDressingMixees = [...meublesData].sort(() => 0.5 - Math.random())
                     type="meuble"
                     id={item.id}
                     nom={item.nom} 
-                    prix={item.prix_initial} 
+                    prix={item.prixInitial} 
                     promo={item.reduction} 
-                    image={item.catalogue_images[0]} 
+                    image={item.images?.find(img => img.estPrincipale)?.url}  
                   />
                 </div>
               ))}
