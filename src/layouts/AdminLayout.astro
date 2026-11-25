@@ -5,7 +5,7 @@ import '../styles/admin.css';
 interface Props {
   title?: string;
   pageTitle?: string;
-  activeNav?: 'dashboard' | 'cuisines' | 'dressings' | 'meubles' | 'demandes';
+  activeNav?: 'dashboard' | 'cuisines' | 'dressings' | 'meubles' | 'demandes' | 'couleurs';
 }
 
 const {
@@ -19,7 +19,8 @@ const navItems = [
   { id: 'cuisines', label: 'Cuisines', href: '/admin/cuisines' },
   { id: 'dressings', label: 'Dressings', href: '/admin/dressings' },
   { id: 'meubles', label: 'Meubles', href: '/admin/meubles' },
-  { id: 'demandes', label: 'Études & Contacts', href: '/admin/demandes' },
+  { id: 'couleurs', label: 'Nuancier & Couleurs', href: '/admin/couleurs' },
+   { id: 'demandes', label: 'Études & Contacts', href: '/admin/demandes' },
 ] as const;
 ---
 
@@ -36,9 +37,7 @@ const navItems = [
       <!-- SIDEBAR NAVIGATION -->
       <aside class="admin-sidebar" aria-label="Navigation administration">
         <div class="admin-brand">
-          <a href="/admin" class="admin-logo">
-            Art <em>Of</em> Design
-          </a>
+          <img src="/images/autres/logo_ADM.png" alt="Logo AD" class="logo-img" />
           <span class="admin-badge">Back-Office</span>
         </div>
 

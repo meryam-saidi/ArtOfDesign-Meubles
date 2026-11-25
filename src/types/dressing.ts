@@ -40,3 +40,39 @@ export interface DressingDto {
   caracteristiquesTechniques: CaracteristiquesTechniquesDressingDto;
   couleurs: CouleurDressingDto[];
 }
+
+export interface CreateDressingPayload {
+  categorie: string;
+  forme: string;
+  typeOuverture: string;
+  nom: string;
+  prixInitial: number;
+  reduction: number;
+  description: string;
+  hauteur: number;
+  largeur: number;
+  profondeur: number;
+  compositionType: string;
+  caisson: string;
+  facade: string;
+  couleurIds?: number[];
+  files: File[];
+}
+
+export interface UpdateDressingPayload {
+  categorie: string;
+  forme: string;
+  typeOuverture: string;
+  nom: string;
+  prixInitial: number;
+  reduction: number;
+  description: string;
+  hauteur: number;
+  largeur: number;
+  profondeur: number;
+  compositionType: string;
+  caisson: string;
+  facade: string;
+  couleurIds?: number[];
+  images?: File[];
+}

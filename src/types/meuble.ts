@@ -39,3 +39,37 @@ export interface MeubleDto {
   caracteristiquesTechniques: CaracteristiquesTechniquesMeubleDto;
   couleurs: CouleurMeubleDto[];
 }
+
+export interface CreateMeublePayload {
+  categorie: string;
+  forme: string;
+  nom: string;
+  prixInitial: number;
+  reduction: number;
+  description: string;
+  hauteur: number;
+  largeur: number;
+  profondeur: number;
+  compositionType: string;
+  caisson: string;
+  facade: string;
+  couleurIds?: number[];
+  files: File[];
+}
+
+export interface UpdateMeublePayload {
+  categorie: string;
+  forme: string;
+  nom: string;
+  prixInitial: number;
+  reduction: number;
+  description: string;
+  hauteur: number;
+  largeur: number;
+  profondeur: number;
+  compositionType: string;
+  caisson: string;
+  facade: string;
+  couleurIds?: number[];
+  images?: File[];
+}

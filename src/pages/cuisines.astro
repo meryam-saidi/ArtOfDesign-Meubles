@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
-import cuisinesData from '../data/cuisines.json';
 import '../styles/cuisines.css'; 
 import { getCuisines } from '../services/cuisineService';
 import type { CuisineDto } from '../types/cuisine';
@@ -92,7 +91,7 @@ const toutesLesCuisinesMixees = [...cuisineData].sort(() => 0.5 - Math.random())
 
       <!-- 2. SECTIONS PAR CONFIGURATION (Masquées par défaut au profit du mix global) -->
       {sections.map((section) => {
-        const produitsParForme = cuisinesData.filter(item => item.forme === section.valeur);
+        const produitsParForme = cuisineData.filter(item => item.forme === section.valeur);
 
         return produitsParForme.length > 0 && (
           <section id={section.id} class="luxury-section data-catalog-section" style="display: none; opacity: 0;">
@@ -115,9 +114,9 @@ const toutesLesCuisinesMixees = [...cuisineData].sort(() => 0.5 - Math.random())
                     type="cuisine"
                     id={item.id}
                     nom={item.nom} 
-                    prix={item.prix_initial} 
+                    prix={item.prixInitial} 
                     promo={item.reduction} 
-                    image={item.catalogue_images?.[0]} 
+                    image={item.images?.find(img => img.estPrincipale)?.url} 
                   />
                 </div>
               ))}

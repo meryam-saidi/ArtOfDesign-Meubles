@@ -1,7 +1,6 @@
 ---
 // src/pages/cuisine/[id].astro
 import Layout from '../../layouts/Layout.astro';
-import cuisinesData from '../../data/cuisines.json';
 import '../../styles/details.css';
 import { getCuisineById } from '../../services/cuisineService';
 import type { CuisineDto } from '../../types/cuisine';
@@ -114,14 +113,14 @@ const prixFinal = cuisine.reduction
               profondeur {cuisine.dimensions.profondeurCaissonBas}
             </p>
             
-            {/* {cuisine.forme !== 'Ilot' && cuisine.dimensions.caisson_haut && (
-            )} */}
+            {cuisine.forme !== 'Ilot' && (
+            
               <p>
                 <strong class="spec-paragraph">Dimensions caisson haut </strong> <br /> 
                 hauteur {cuisine.dimensions.hauteurCaissonHaut} <br /> 
                 profondeur {cuisine.dimensions.profondeurCaissonHaut}
               </p> 
-            
+            )}
           </div>
 
           <div class="nuancier-block">

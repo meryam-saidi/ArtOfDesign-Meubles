@@ -41,3 +41,41 @@ export interface CuisineDto {
   caracteristiquesTechniques: CaracteristiquesTechniquesCuisineDto;
   couleurs: CouleurCuisineDto[];
 }
+
+export interface CreateCuisinePayload {
+  categorie: string;
+  forme: string;
+  nom: string;
+  prixInitial: number;
+  reduction: number;
+  description: string;
+  nb: string;
+  hauteurCaissonBas: number;
+  profondeurCaissonBas: number;
+  hauteurCaissonHaut: number;
+  profondeurCaissonHaut: number;
+  compositionType: string;
+  caisson: string;
+  facade: string;
+  couleurIds?: number[];
+  files: File[];
+}
+
+export interface UpdateCuisinePayload {
+  categorie: string;
+  forme: string;
+  nom: string;
+  prixInitial: number;
+  reduction: number;
+  description: string;
+  nb: string;
+  hauteurCaissonBas: number;
+  profondeurCaissonBas: number;
+  hauteurCaissonHaut: number;
+  profondeurCaissonHaut: number;
+  compositionType: string;
+  caisson: string;
+  facade: string;
+  couleurIds?: number[];
+  images?: File[];
+}

@@ -1,0 +1,240 @@
+---
+// src/pages/admin/index.astro
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import cuisinesData from '../../data/cuisines.json';
+import dressingsData from '../../data/dressing.json';
+import meublesData from '../../data/meuble.json';
+
+interface CatalogItem {
+  id: string;
+  nom: string;
+  prix_initial?: number;
+  reduction?: number;
+  forme?: string;
+  type_ouverture?: string;
+  categorie?: string;
+}
+
+const initialCuisines = (cuisinesData as CatalogItem[]) ?? [];
+const initialDressings = (dressingsData as CatalogItem[]) ?? [];
+const initialMeubles = (meublesData as CatalogItem[]) ?? [];
+
+const totalInitialItems =
+  initialCuisines.length + initialDressings.length + initialMeubles.length;
+
+const totalInitialPromos = [
+  ...initialCuisines,
+  ...initialDressings,
+  ...initialMeubles,
+].filter((item) => (item.reduction ?? 0) > 0).length;
+---
+
+<AdminLayout
+  title="Vue d’ensemble | Administration Art Of Design"
+  pageTitle="Vue d’ensemble"
+  activeNav="dashboard"
+>
+  <div slot="actions" style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
+    <a href="/admin/cuisines" class="admin-btn-primary">+ Cuisines</a>
+    <a href="/admin/dressings" class="admin-ghost-btn" style="width: auto;">+ Dressings</a>
+    <a href="/admin/meubles" class="admin-ghost-btn" style="width: auto;">+ Meubles</a>
+  </div>
+
+  <!-- INDICATEURS GLOBAUX -->
+  <section class="admin-grid-stats" aria-label="Statistiques globales du catalogue">
+    <article class="admin-card">
+      <h2 class="admin-card-title">Total références</h2>
+      <p class="admin-stat-value" id="dash-total-items">{totalInitialItems}</p>
+      <p class="admin-stat-meta">Cuisines, Dressings & Meubles</p>
+    </article>
+
+    <article class="admin-card">
+      <h2 class="admin-card-title">Cuisines</h2>
+      <p class="admin-stat-value" id="dash-total-cuisines">{initialCuisines.length}</p>
+      <p class="admin-stat-meta" id="dash-cuisines-meta">Catalogue cuisines</p>
+    </article>
+
+    <article class="admin-card">
+      <h2 class="admin-card-title">Dressings</h2>
+      <p class="admin-stat-value" id="dash-total-dressings">{initialDressings.length}</p>
+      <p class="admin-stat-meta" id="dash-dressings-meta">Catalogue dressings</p>
+    </article>
+
+    <article class="admin-card">
+      <h2 class="admin-card-title">Offres & Réductions</h2>
+      <p class="admin-stat-value" id="dash-total-promos">{totalInitialPromos}</p>
+      <p class="admin-stat-meta">Modèles en promotion</p>
+    </article>
+  </section>
+
+  <!-- RÉPARTITION PAR UNIVERS & ÉTAT ARCHITECTURE -->
+  <section
+    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; margin-bottom: 2rem;"
+    aria-label="Répartition et architecture"
+  >
+    <article class="admin-card">
+      <p class="admin-eyebrow" style="margin-bottom: 0.25rem;">Catalogue</p>
+      <h2 style="margin: 0 0 1rem; font-size: 1.15rem;">Répartition par famille</h2>
+
+      <div style="display: flex; flex-direction: column; gap: 0.9rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.75rem; border-bottom: 1px solid var(--admin-border);">
+          <div>
+            <strong>Cuisines sur mesure</strong>
+            <div style="font-size: 0.8rem; color: var(--admin-text-muted);">Linéaire, En L, En U, Îlot</div>
+          </div>
+          <a href="/admin/cuisines" class="admin-ghost-btn" style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;">
+            Gérer →
+          </a>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.75rem; border-bottom: 1px solid var(--admin-border);">
+          <div>
+            <strong>Dressings</strong>
+            <div style="font-size: 0.8rem; color: var(--admin-text-muted);">À la française (Fr) & Coulissant (C)</div>
+          </div>
+          <a href="/admin/dressings" class="admin-ghost-btn" style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;">
+            Gérer →
+          </a>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <strong>Mobilier</strong>
+            <div style="font-size: 0.8rem; color: var(--admin-text-muted);">Pièces & créations sur mesure</div>
+          </div>
+          <a href="/admin/meubles" class="admin-ghost-btn" style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;">
+            Gérer →
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="admin-card">
+      <p class="admin-eyebrow" style="margin-bottom: 0.25rem;">État du système</p>
+      <h2 style="margin: 0 0 1rem; font-size: 1.15rem;">Source de données & Préparation API</h2>
+
+      <p style="margin: 0 0 0.85rem; font-size: 0.88rem; color: var(--admin-text-muted);">
+        Les pages admin lisent actuellement les fichiers JSON locaux avec un tampon temporaire dans le navigateur (<code style="color: var(--admin-gold);">localStorage</code>) pour tester vos modifications avant le branchement de l'API.
+      </p>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.1rem;">
+        <span class="admin-badge" id="dash-sync-status">Mode local (JSON + localStorage)</span>
+        <span class="admin-badge">API prête : Node.js / .NET</span>
+      </div>
+
+      <div style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
+        <button type="button" id="btn-reset-all-admin" class="admin-btn-danger" style="padding: 0.5rem 0.9rem; font-size: 0.82rem;">
+          Réinitialiser tout le cache local
+        </button>
+      </div>
+    </article>
+  </section>
+
+  <!-- APERÇU RÉCENT DES RÉFÉRENCES -->
+  <section aria-label="Aperçu des références">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+      <h2 style="margin: 0; font-size: 1.15rem;">Aperçu rapide du catalogue</h2>
+      <span style="font-size: 0.8rem; color: var(--admin-text-muted);" id="dash-preview-count"></span>
+    </div>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Famille</th>
+            <th>Modèle</th>
+            <th>ID</th>
+            <th>Prix TTC</th>
+            <th>Accès</th>
+          </tr>
+        </thead>
+        <tbody id="dash-recent-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+</AdminLayout>
+
+<script define:vars={{ initialCuisines, initialDressings, initialMeubles }}>
+  const KEYS = {
+    cuisines: 'aod_admin_cuisines_v1',
+    dressings: 'aod_admin_dressings_v1',
+    meubles: 'aod_admin_meubles_v1',
+  };
+
+  const readCollection = (key, fallback) => {
+    try {
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : structuredClone(fallback);
+    } catch {
+      return structuredClone(fallback);
+    }
+  };
+
+  const getFinalPrice = (item) => {
+    const base = Number(item.prix_initial || 0);
+    const red = Number(item.reduction || 0);
+    return red > 0 ? Math.round(base * (1 - red / 100)) : base;
+  };
+
+  const renderDashboard = () => {
+    const cuisines = readCollection(KEYS.cuisines, initialCuisines);
+    const dressings = readCollection(KEYS.dressings, initialDressings);
+    const meubles = readCollection(KEYS.meubles, initialMeubles);
+
+    const all = [
+      ...cuisines.map((item) => ({ ...item, _family: 'Cuisine', _adminHref: '/admin/cuisines', _publicHref: `/cuisine/${String(item.id).toLowerCase()}` })),
+      ...dressings.map((item) => ({ ...item, _family: 'Dressing', _adminHref: '/admin/dressings', _publicHref: `/dressing/${String(item.id).toLowerCase()}` })),
+      ...meubles.map((item) => ({ ...item, _family: 'Meuble', _adminHref: '/admin/meubles', _publicHref: `/meuble/${String(item.id).toLowerCase()}` })),
+    ];
+
+    const promosCount = all.filter((item) => Number(item.reduction || 0) > 0).length;
+
+    const elTotal = document.getElementById('dash-total-items');
+    const elCuisines = document.getElementById('dash-total-cuisines');
+    const elDressings = document.getElementById('dash-total-dressings');
+    const elPromos = document.getElementById('dash-total-promos');
+    const elCount = document.getElementById('dash-preview-count');
+    const tbody = document.getElementById('dash-recent-tbody');
+
+    if (elTotal) elTotal.textContent = String(all.length);
+    if (elCuisines) elCuisines.textContent = String(cuisines.length);
+    if (elDressings) elDressings.textContent = String(dressings.length);
+    if (elPromos) elPromos.textContent = String(promosCount);
+    if (elCount) elCount.textContent = `${Math.min(all.length, 8)} affichés sur ${all.length}`;
+
+    if (tbody) {
+      tbody.innerHTML = all
+        .slice(0, 8)
+        .map((item) => {
+          const finalPrice = getFinalPrice(item);
+          const hasPromo = Number(item.reduction || 0) > 0;
+          const priceDisplay = hasPromo
+            ? `<span style="color: var(--admin-gold); font-weight: 600;">${finalPrice}</span> <span style="font-size: 0.75rem; color: var(--admin-success);">(-${item.reduction}%)</span>`
+            : `<span style="font-weight: 600;">${item.prix_initial ?? '—'}</span>`;
+
+          return `
+            <tr>
+              <td><span class="admin-badge" style="margin-top: 0;">${item._family}</span></td>
+              <td><strong>${item.nom}</strong></td>
+              <td style="font-family: monospace; font-size: 0.8rem; color: var(--admin-text-muted);">${item.id}</td>
+              <td>${priceDisplay}</td>
+              <td>
+                <div style="display: flex; gap: 0.5rem;">
+                  <a href="${item._adminHref}" class="admin-ghost-btn" style="width: auto; padding: 0.35rem 0.7rem; font-size: 0.78rem;">Éditer</a>
+                  <a href="${item._publicHref}" target="_blank" rel="noopener noreferrer" class="admin-ghost-btn" style="width: auto; padding: 0.35rem 0.7rem; font-size: 0.78rem;">Voir ↗</a>
+                </div>
+              </td>
+            </tr>
+          `;
+        })
+        .join('');
+    }
+  };
+
+  document.getElementById('btn-reset-all-admin')?.addEventListener('click', () => {
+    Object.values(KEYS).forEach((key) => localStorage.removeItem(key));
+    renderDashboard();
+  });
+
+  renderDashboard();
+</script>

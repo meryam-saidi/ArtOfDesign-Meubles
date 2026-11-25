@@ -1,40 +1,20 @@
 ---
 // src/pages/admin/cuisines.astro
 import AdminLayout from '../../layouts/AdminLayout.astro';
-import cuisinesData from '../../data/cuisines.json';
+import { getCuisines } from '../../services/cuisineService';
+import type { CuisineDto } from '../../types/cuisine';
 
-interface DimensionsCaisson {
-  hauteur: string;
-  profondeur: string;
-}
+const CATEGORIES = ['Cuisines', 'Dressings', 'Meubles', 'Projets'] as const;
 
-interface CuisineItem {
-  id: string;
-  nom: string;
-  forme: string;
-  prix_initial: number;
-  reduction?: number;
-  catalogue_images?: string[];
-  dimensions: {
-    caisson_bas: DimensionsCaisson;
-    caisson_haut?: DimensionsCaisson;
-  };
-  caracteristiques_techniques?: {
-    composition_type?: string[];
-    finition_produit?: {
-      caisson?: string;
-      facade?: string;
-    };
-  };
-  nb?: string;
-}
+const initialCuisines: CuisineDto[] = await getCuisines();
 
-const initialCuisines = (cuisinesData as CuisineItem[]) ?? [];
-
-const computeFinalPrice = (item: CuisineItem) => {
-  if (!item.reduction || item.reduction <= 0) return item.prix_initial;
-  return Math.round(item.prix_initial * (1 - item.reduction / 100));
+const computeFinalPrice = (item: CuisineDto) => {
+  if (!item.reduction || item.reduction <= 0) return item.prixInitial;
+  return Math.round(item.prixInitial * (1 - item.reduction / 100));
 };
+
+const getMainImage = (item: CuisineDto) =>
+  item.images?.find((img) => img.estPrincipale)?.url ?? item.images?.[0]?.url ?? '';
 ---
 
 <AdminLayout
@@ -47,6 +27,14 @@ const computeFinalPrice = (item: CuisineItem) => {
       + Nouvelle cuisine
     </button>
   </div>
+
+  <!-- MESSAGE RETOUR API -->
+  <div
+    id="cuisine-feedback"
+    role="status"
+    aria-live="polite"
+    style="display: none; margin-bottom: 1.25rem; padding: 0.85rem 1rem; border-radius: var(--admin-radius-sm); border: 1px solid var(--admin-border-gold); background: var(--admin-surface); font-size: 0.88rem;"
+  ></div>
 
   <!-- KPIs RAPIDES -->
   <section class="admin-grid-stats" aria-label="Indicateurs cuisines">
@@ -67,13 +55,13 @@ const computeFinalPrice = (item: CuisineItem) => {
     <article class="admin-card">
       <h2 class="admin-card-title">Modèles Îlot</h2>
       <p class="admin-stat-value" id="stat-ilot-cuisines">
-        {initialCuisines.filter((c) => c.forme.toLowerCase() === 'ilot').length}
+        {initialCuisines.filter((c) => (c.forme ?? '').toLowerCase() === 'ilot').length}
       </p>
       <p class="admin-stat-meta">Sans caisson haut</p>
     </article>
   </section>
 
-  <!-- FORMULAIRE D'ÉDITION / CRÉATION -->
+  <!-- FORMULAIRE CRÉATION / ÉDITION -->
   <section
     id="cuisine-editor-card"
     class="admin-card"
@@ -94,7 +82,7 @@ const computeFinalPrice = (item: CuisineItem) => {
       <input type="hidden" id="cuisine-mode" value="edit" />
 
       <div class="admin-field">
-        <label for="cuisine-id" class="admin-label">Identifiant (slug / ID)</label>
+        <label for="cuisine-id" class="admin-label">Identifiant (ID)</label>
         <input
           type="text"
           id="cuisine-id"
@@ -118,12 +106,21 @@ const computeFinalPrice = (item: CuisineItem) => {
       </div>
 
       <div class="admin-field">
+        <label for="cuisine-categorie" class="admin-label">Catégorie</label>
+        <select id="cuisine-categorie" name="categorie" class="admin-select" required>
+          {CATEGORIES.map((cat) => (
+            <option value={cat}>{cat}</option>
+          ))}
+        </select>
+      </div>
+
+      <div class="admin-field">
         <label for="cuisine-forme" class="admin-label">Forme d'implantation</label>
         <select id="cuisine-forme" name="forme" class="admin-select">
-          <option value="Linéaire">Linéaire</option>
-          <option value="En L">En L</option>
-          <option value="En U">En U</option>
-          <option value="Ilot">Ilot</option>
+          <option value="I">Forme I — Linéaire</option>
+          <option value="L">Forme L — Angle</option>
+          <option value="U">Forme U — Cabine</option>
+          <option value="Ilot">Îlot central</option>
         </select>
       </div>
 
@@ -133,10 +130,10 @@ const computeFinalPrice = (item: CuisineItem) => {
           <input
             type="number"
             id="cuisine-prix"
-            name="prix_initial"
+            name="prixInitial"
             class="admin-input"
             min="0"
-            step="1"
+            step="any"
             required
           />
         </div>
@@ -149,52 +146,79 @@ const computeFinalPrice = (item: CuisineItem) => {
             class="admin-input"
             min="0"
             max="90"
-            step="1"
+            step="any"
             value="0"
           />
         </div>
       </div>
 
+      <!-- LISTE DYNAMIQUE DE CHAMPS : compositionType -->
+      <div class="admin-field">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;">
+          <span class="admin-label">Type de composition</span>
+          <button
+            type="button"
+            id="btn-add-composition"
+            class="admin-ghost-btn"
+            style="width: auto; padding: 0.25rem 0.65rem; font-size: 0.76rem;"
+          >
+            + Ajouter un champ
+          </button>
+        </div>
+        <div
+          id="composition-fields-list"
+          style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.25rem;"
+        ></div>
+      </div>
+
       <!-- DIMENSIONS CAISSON BAS -->
       <div class="admin-field">
-        <label for="caisson-bas-hauteur" class="admin-label">Caisson bas — Hauteur</label>
+        <label for="caisson-bas-hauteur" class="admin-label">Hauteur caisson bas</label>
         <input
-          type="text"
+          type="number"
           id="caisson-bas-hauteur"
           class="admin-input"
-          placeholder="ex: 78 cm"
+          step="any"
+          value="0"
         />
       </div>
 
       <div class="admin-field">
-        <label for="caisson-bas-profondeur" class="admin-label">Caisson bas — Profondeur</label>
+        <label for="caisson-bas-profondeur" class="admin-label">Profondeur caisson bas</label>
         <input
-          type="text"
+          type="number"
           id="caisson-bas-profondeur"
           class="admin-input"
-          placeholder="ex: 60 cm"
+          step="any"
+          value="0"
         />
       </div>
 
       <!-- DIMENSIONS CAISSON HAUT (MASQUÉ SI FORME === 'Ilot') -->
-      <div id="caisson-haut-fields" class="admin-field admin-field--full" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.15rem;">
+      <div
+        id="caisson-haut-fields"
+        class="admin-field admin-field--full"
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.15rem;"
+      >
         <div class="admin-field">
-          <label for="caisson-haut-hauteur" class="admin-label">Caisson haut — Hauteur</label>
+          <label for="caisson-haut-hauteur" class="admin-label">Hauteur caisson haut</label>
           <input
-            type="text"
+            type="number"
             id="caisson-haut-hauteur"
             class="admin-input"
-            placeholder="ex: 72 cm"
+            step="any"
+            value="0"
           />
         </div>
 
         <div class="admin-field">
-          <label for="caisson-haut-profondeur" class="admin-label">Caisson haut — Profondeur</label>
+          <label for="caisson-haut-profondeur" class="admin-label">Profondeur caisson haut</label>
           <input
-            type="text"
+            type="number"
             id="caisson-haut-profondeur"
             class="admin-input"
-            placeholder="ex: 35 cm"
+            step="any"
+            value="0"
           />
         </div>
       </div>
@@ -205,7 +229,7 @@ const computeFinalPrice = (item: CuisineItem) => {
           type="text"
           id="finition-caisson"
           class="admin-input"
-          placeholder="ex: Panneau mélaminé hydrofuge haute densité"
+          placeholder="ex: Panneau mélaminé hydrofuge"
         />
       </div>
 
@@ -215,8 +239,31 @@ const computeFinalPrice = (item: CuisineItem) => {
           type="text"
           id="finition-facade"
           class="admin-input"
-          placeholder="ex: Laque mate anti-traces / Chêne naturel"
+          placeholder="ex: Laque mate / Chêne"
         />
+      </div>
+
+      <!-- LISTE DES NOMS DE COULEURS (CHARGÉE DEPUIS GET /api/couleurs) -->
+      <div class="admin-field admin-field--full">
+        <span class="admin-label">Couleurs disponibles</span>
+        <div
+          id="couleurs-checkbox-list"
+          style="display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.35rem; padding: 0.75rem; border-radius: var(--admin-radius-sm); background: var(--admin-surface-elevated); border: 1px solid var(--admin-border);"
+        >
+          <span style="font-size: 0.82rem; color: var(--admin-text-muted);">
+            Chargement des couleurs...
+          </span>
+        </div>
+      </div>
+
+      <div class="admin-field admin-field--full">
+        <label for="cuisine-description" class="admin-label">Description</label>
+        <textarea
+          id="cuisine-description"
+          rows="2"
+          class="admin-textarea"
+          placeholder="Description commerciale du modèle..."
+        ></textarea>
       </div>
 
       <div class="admin-field admin-field--full">
@@ -225,31 +272,98 @@ const computeFinalPrice = (item: CuisineItem) => {
           id="cuisine-nb"
           rows="2"
           class="admin-textarea"
-          placeholder="Précisions sur les dimensions, électroménager ou options..."
+          placeholder="Précisions techniques ou options..."
         ></textarea>
       </div>
 
-      <div class="admin-field admin-field--full" style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 0.5rem;">
-        <button type="button" id="btn-reset-storage" class="admin-ghost-btn" style="width: auto;">
-          Réinitialiser depuis JSON
-        </button>
-        <button type="submit" class="admin-btn-primary">
-          Enregistrer la cuisine
+      <!-- IMAGES EXISTANTES (EN MODE ÉDITION) -->
+      <div id="existing-images-block" class="admin-field admin-field--full" style="display: none;">
+        <span class="admin-label">Images enregistrées (suppression directe via API)</span>
+        <div
+          id="existing-images-list"
+          style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.35rem;"
+        ></div>
+      </div>
+
+      <!-- UPLOAD FICHIERS IMAGES (multipart/form-data) -->
+      <div class="admin-field admin-field--full">
+        <label for="cuisine-files" id="cuisine-files-label" class="admin-label">
+          Images (fichiers)
+        </label>
+        <input
+          type="file"
+          id="cuisine-files"
+          name="files"
+          class="admin-input"
+          accept="image/*"
+          multiple
+        />
+      </div>
+
+      <div
+        class="admin-field admin-field--full"
+        style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 0.5rem;"
+      >
+        <button type="submit" id="btn-submit-cuisine" class="admin-btn-primary">
+          Enregistrer
         </button>
       </div>
     </form>
   </section>
 
-  <!-- LISTE DES CUISINES -->
+  <!-- RECHERCHE, FILTRE & LISTE DES CUISINES -->
   <section aria-label="Liste des cuisines">
+    <div class="admin-card" style="margin-bottom: 1rem;">
+      <div class="admin-form-grid" style="align-items: end;">
+        <div class="admin-field">
+          <label for="cuisine-search" class="admin-label">Rechercher</label>
+          <input
+            type="search"
+            id="cuisine-search"
+            class="admin-input"
+            placeholder="Nom, ID, catégorie ou finition..."
+          />
+        </div>
+
+        <div class="admin-field">
+          <label for="cuisine-filter-forme" class="admin-label">Filtrer par forme / état</label>
+          <select id="cuisine-filter-forme" class="admin-select">
+            <option value="all">Toutes les cuisines</option>
+            <option value="I">Forme I — Linéaire</option>
+            <option value="L">Forme L — Angle</option>
+            <option value="U">Forme U — Cabine</option>
+            <option value="Ilot">Îlot central</option>
+            <option value="promo">En promotion uniquement</option>
+          </select>
+        </div>
+
+        <div
+          class="admin-field admin-field--full"
+          style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap;"
+        >
+          <span id="cuisine-results-count" style="font-size: 0.82rem; color: var(--admin-text-muted);">
+            {initialCuisines.length} modèle(s) affiché(s)
+          </span>
+          <button
+            type="button"
+            id="btn-reset-cuisine-filters"
+            class="admin-ghost-btn"
+            style="width: auto; padding: 0.35rem 0.7rem; font-size: 0.78rem;"
+          >
+            Réinitialiser les filtres
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div class="admin-table-wrap">
       <table class="admin-table">
         <thead>
           <tr>
             <th>Modèle</th>
             <th>ID</th>
+            <th>Catégorie</th>
             <th>Forme</th>
-            <th>Dimensions</th>
             <th>Prix TTC</th>
             <th>Actions</th>
           </tr>
@@ -257,13 +371,14 @@ const computeFinalPrice = (item: CuisineItem) => {
         <tbody id="cuisines-tbody">
           {initialCuisines.map((item) => {
             const finalPrice = computeFinalPrice(item);
+            const mainImg = getMainImage(item);
             return (
               <tr data-id={item.id}>
                 <td>
                   <div style="display: flex; align-items: center; gap: 0.75rem;">
-                    {item.catalogue_images?.[0] && (
+                    {mainImg && (
                       <img
-                        src={item.catalogue_images[0]}
+                        src={mainImg}
                         alt={item.nom}
                         style="width: 48px; height: 36px; object-fit: cover; border-radius: 4px; border: 1px solid var(--admin-border);"
                       />
@@ -274,31 +389,25 @@ const computeFinalPrice = (item: CuisineItem) => {
                 <td style="color: var(--admin-text-muted); font-family: monospace; font-size: 0.8rem;">
                   {item.id}
                 </td>
+                <td style="color: var(--admin-text-muted); font-size: 0.84rem;">
+                  {item.categorie || 'Cuisines'}
+                </td>
                 <td>
                   <span class="admin-badge" style="margin-top: 0;">{item.forme}</span>
-                </td>
-                <td style="color: var(--admin-text-muted); font-size: 0.82rem;">
-                  Bas : {item.dimensions?.caisson_bas?.hauteur ?? '—'} × {item.dimensions?.caisson_bas?.profondeur ?? '—'}
-                  {item.forme !== 'Ilot' && item.dimensions?.caisson_haut && (
-                    <>
-                      <br />
-                      Haut : {item.dimensions.caisson_haut.hauteur} × {item.dimensions.caisson_haut.profondeur}
-                    </>
-                  )}
                 </td>
                 <td>
                   {item.reduction && item.reduction > 0 ? (
                     <div>
                       <span style="font-weight: 600; color: var(--admin-gold);">{finalPrice}</span>
                       <span style="margin-left: 0.4rem; font-size: 0.75rem; color: var(--admin-text-muted); text-decoration: line-through;">
-                        {item.prix_initial}
+                        {item.prixInitial}
                       </span>
                       <span style="margin-left: 0.35rem; font-size: 0.75rem; color: var(--admin-success);">
                         -{item.reduction}%
                       </span>
                     </div>
                   ) : (
-                    <span style="font-weight: 600;">{item.prix_initial}</span>
+                    <span style="font-weight: 600;">{item.prixInitial}</span>
                   )}
                 </td>
                 <td>
@@ -312,7 +421,7 @@ const computeFinalPrice = (item: CuisineItem) => {
                       Éditer
                     </button>
                     <a
-                      href={`/cuisine/${item.id.toLowerCase()}`}
+                      href={`/cuisine/${String(item.id).toLowerCase()}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       class="admin-ghost-btn"
@@ -331,43 +440,201 @@ const computeFinalPrice = (item: CuisineItem) => {
   </section>
 </AdminLayout>
 
-<script define:vars={{ initialCuisines }}>
-  const STORAGE_KEY = 'aod_admin_cuisines_v1';
+<script>
+  import {
+    getCuisines,
+    createCuisine,
+    updateCuisine,
+    deleteCuisineImage,
+  } from '../../services/cuisineService';
+  import { getCouleurs } from '../../services/couleurService';
+  import type { CuisineDto } from '../../types/cuisine';
+  import type { CouleurDto } from '../../types/couleur';
 
-  const loadState = () => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? JSON.parse(saved) : structuredClone(initialCuisines);
-    } catch {
-      return structuredClone(initialCuisines);
+  let cuisines: CuisineDto[] = [];
+  let activeEditingItem: CuisineDto | null = null;
+  let availableColors: CouleurDto[] = [];
+
+  const tbody = document.getElementById('cuisines-tbody');
+  const feedbackEl = document.getElementById('cuisine-feedback');
+  const editorCard = document.getElementById('cuisine-editor-card') as HTMLElement | null;
+  const editorHeading = document.getElementById('editor-heading');
+  const form = document.getElementById('cuisine-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('btn-submit-cuisine') as HTMLButtonElement | null;
+
+  const searchInput = document.getElementById('cuisine-search') as HTMLInputElement | null;
+  const filterFormeSelect = document.getElementById('cuisine-filter-forme') as HTMLSelectElement | null;
+  const resetFiltersBtn = document.getElementById('btn-reset-cuisine-filters');
+  const resultsCountEl = document.getElementById('cuisine-results-count');
+
+  const modeInput = document.getElementById('cuisine-mode') as HTMLInputElement | null;
+  const idInput = document.getElementById('cuisine-id') as HTMLInputElement | null;
+  const nomInput = document.getElementById('cuisine-nom') as HTMLInputElement | null;
+  const categorieSelect = document.getElementById('cuisine-categorie') as HTMLSelectElement | null;
+  const formeSelect = document.getElementById('cuisine-forme') as HTMLSelectElement | null;
+  const prixInput = document.getElementById('cuisine-prix') as HTMLInputElement | null;
+  const reductionInput = document.getElementById('cuisine-reduction') as HTMLInputElement | null;
+
+  const compositionListEl = document.getElementById('composition-fields-list') as HTMLElement | null;
+  const addCompositionBtn = document.getElementById('btn-add-composition');
+
+  const basHauteurInput = document.getElementById('caisson-bas-hauteur') as HTMLInputElement | null;
+  const basProfondeurInput = document.getElementById('caisson-bas-profondeur') as HTMLInputElement | null;
+  const hautFieldsWrap = document.getElementById('caisson-haut-fields') as HTMLElement | null;
+  const hautHauteurInput = document.getElementById('caisson-haut-hauteur') as HTMLInputElement | null;
+  const hautProfondeurInput = document.getElementById('caisson-haut-profondeur') as HTMLInputElement | null;
+
+  const finitionCaissonInput = document.getElementById('finition-caisson') as HTMLInputElement | null;
+  const finitionFacadeInput = document.getElementById('finition-facade') as HTMLInputElement | null;
+  const couleursCheckboxList = document.getElementById('couleurs-checkbox-list') as HTMLElement | null;
+
+  const descriptionInput = document.getElementById('cuisine-description') as HTMLTextAreaElement | null;
+  const nbInput = document.getElementById('cuisine-nb') as HTMLTextAreaElement | null;
+
+  const existingImagesBlock = document.getElementById('existing-images-block') as HTMLElement | null;
+  const existingImagesList = document.getElementById('existing-images-list') as HTMLElement | null;
+  const filesLabel = document.getElementById('cuisine-files-label');
+  const filesInput = document.getElementById('cuisine-files') as HTMLInputElement | null;
+
+  const showFeedback = (message: string, isError = false) => {
+    if (!feedbackEl) return;
+    feedbackEl.style.display = 'block';
+    feedbackEl.style.color = isError ? 'var(--admin-danger)' : 'var(--admin-gold)';
+    feedbackEl.style.borderColor = isError
+      ? 'rgba(248, 113, 113, 0.35)'
+      : 'var(--admin-border-gold)';
+    feedbackEl.textContent = message;
+  };
+
+  const renderColorCheckboxes = (selectedIds: number[] = []) => {
+    if (!couleursCheckboxList) return;
+
+    if (availableColors.length === 0) {
+      couleursCheckboxList.innerHTML = `
+        <span style="font-size: 0.82rem; color: var(--admin-text-muted);">
+          Aucune couleur disponible dans le nuancier.
+        </span>
+      `;
+      return;
+    }
+
+    const selectedSet = new Set(selectedIds);
+
+    couleursCheckboxList.innerHTML = availableColors
+      .map((couleur) => {
+        const checked = selectedSet.has(couleur.id) ? 'checked' : '';
+        const imgHtml = couleur.imagePresentationUrl
+          ? `<img src="${couleur.imagePresentationUrl}" alt="${couleur.nom}" style="width: 18px; height: 18px; border-radius: 3px; object-fit: cover; flex-shrink: 0;" />`
+          : '';
+        const swatch = couleur.codeCouleur
+          ? `<span style="width: 12px; height: 12px; border-radius: 50%; background: ${couleur.codeCouleur}; border: 1px solid rgba(255,255,255,0.25); display: inline-block; flex-shrink: 0;"></span>`
+          : '';
+
+        return `
+          <label
+            style="display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.35rem 0.65rem; border-radius: var(--admin-radius-sm); background: var(--admin-surface); border: 1px solid var(--admin-border); cursor: pointer; font-size: 0.84rem;"
+          >
+            <input
+              type="checkbox"
+              class="couleur-name-checkbox"
+              value="${couleur.id}"
+              ${checked}
+            />
+            ${imgHtml}
+            <!--${swatch} -->
+            <span>${couleur.nom}</span>
+          </label>
+        `;
+      })
+      .join('');
+  };
+
+  const getSelectedCouleurIds = (): number[] => {
+    if (!couleursCheckboxList) return [];
+    const checkedBoxes = couleursCheckboxList.querySelectorAll<HTMLInputElement>(
+      '.couleur-name-checkbox:checked'
+    );
+    return Array.from(checkedBoxes)
+      .map((cb) => Number(cb.value))
+      .filter((id) => Number.isInteger(id) && id > 0);
+  };
+
+  const addCompositionFieldRow = (value = '') => {
+    if (!compositionListEl) return;
+
+    const row = document.createElement('div');
+    row.className = 'composition-row';
+    row.style.cssText = 'display: flex; gap: 0.45rem; align-items: center;';
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'admin-input composition-value-input';
+    input.placeholder = 'ex: Colonne four, Îlot central...';
+    input.value = value;
+
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.className = 'admin-btn-danger btn-remove-composition';
+    removeBtn.textContent = '×';
+    removeBtn.title = 'Supprimer ce champ';
+    removeBtn.style.cssText = 'padding: 0.55rem 0.7rem; font-size: 0.9rem; line-height: 1;';
+
+    removeBtn.addEventListener('click', () => {
+      if (compositionListEl.children.length > 1) {
+        row.remove();
+      } else {
+        input.value = '';
+      }
+    });
+
+    row.appendChild(input);
+    row.appendChild(removeBtn);
+    compositionListEl.appendChild(row);
+  };
+
+  const setCompositionFields = (rawComposition?: string) => {
+    if (!compositionListEl) return;
+    compositionListEl.innerHTML = '';
+
+    const parts = (rawComposition || '')
+      .split(',')
+      .map((part) => part.trim())
+      .filter(Boolean);
+
+    if (parts.length === 0) {
+      addCompositionFieldRow('');
+    } else {
+      for (const part of parts) {
+        addCompositionFieldRow(part);
+      }
     }
   };
 
-  let cuisines = loadState();
+  const getCompositionJoined = (): string => {
+    if (!compositionListEl) return '';
+    const inputs = compositionListEl.querySelectorAll<HTMLInputElement>('.composition-value-input');
+    return Array.from(inputs)
+      .map((inp) => inp.value.trim())
+      .filter(Boolean)
+      .join(', ');
+  };
 
-  const tbody = document.getElementById('cuisines-tbody');
-  const editorCard = document.getElementById('cuisine-editor-card');
-  const editorHeading = document.getElementById('editor-heading');
-  const form = document.getElementById('cuisine-form');
-  const modeInput = document.getElementById('cuisine-mode');
-  const idInput = document.getElementById('cuisine-id');
-  const nomInput = document.getElementById('cuisine-nom');
-  const formeSelect = document.getElementById('cuisine-forme');
-  const prixInput = document.getElementById('cuisine-prix');
-  const reductionInput = document.getElementById('cuisine-reduction');
-  const basHauteurInput = document.getElementById('caisson-bas-hauteur');
-  const basProfondeurInput = document.getElementById('caisson-bas-profondeur');
-  const hautFieldsWrap = document.getElementById('caisson-haut-fields');
-  const hautHauteurInput = document.getElementById('caisson-haut-hauteur');
-  const hautProfondeurInput = document.getElementById('caisson-haut-profondeur');
-  const finitionCaissonInput = document.getElementById('finition-caisson');
-  const finitionFacadeInput = document.getElementById('finition-facade');
-  const nbInput = document.getElementById('cuisine-nb');
+  addCompositionBtn?.addEventListener('click', () => addCompositionFieldRow(''));
 
   const toggleHautFields = () => {
     if (!hautFieldsWrap || !formeSelect) return;
-    hautFieldsWrap.style.display = formeSelect.value === 'Ilot' ? 'none' : 'grid';
+    const isIlot = formeSelect.value.toLowerCase() === 'ilot';
+    hautFieldsWrap.style.display = isIlot ? 'none' : 'grid';
   };
+
+  const getFinalPrice = (item: CuisineDto) => {
+    const base = Number(item.prixInitial || 0);
+    const red = Number(item.reduction || 0);
+    return red > 0 ? Math.round(base * (1 - red / 100)) : base;
+  };
+
+  const getMainImageUrl = (item: CuisineDto) =>
+    item.images?.find((img) => img.estPrincipale)?.url ?? item.images?.[0]?.url ?? '';
 
   const updateStats = () => {
     const totalEl = document.getElementById('stat-total-cuisines');
@@ -375,38 +642,82 @@ const computeFinalPrice = (item: CuisineItem) => {
     const ilotEl = document.getElementById('stat-ilot-cuisines');
 
     if (totalEl) totalEl.textContent = String(cuisines.length);
-    if (promoEl) promoEl.textContent = String(cuisines.filter((c) => Number(c.reduction || 0) > 0).length);
-    if (ilotEl) ilotEl.textContent = String(cuisines.filter((c) => String(c.forme).toLowerCase() === 'ilot').length);
+    if (promoEl) {
+      promoEl.textContent = String(cuisines.filter((c) => Number(c.reduction || 0) > 0).length);
+    }
+    if (ilotEl) {
+      ilotEl.textContent = String(
+        cuisines.filter((c) => String(c.forme || '').toLowerCase() === 'ilot').length
+      );
+    }
   };
 
-  const getFinalPrice = (item) => {
-    const red = Number(item.reduction || 0);
-    const base = Number(item.prix_initial || 0);
-    return red > 0 ? Math.round(base * (1 - red / 100)) : base;
+  const getFilteredCuisines = (): CuisineDto[] => {
+    const query = (searchInput?.value || '').trim().toLowerCase();
+    const formeFilter = filterFormeSelect?.value || 'all';
+
+    return cuisines.filter((item) => {
+      const formeNorm = String(item.forme || '').trim().toLowerCase();
+      const hasPromo = Number(item.reduction || 0) > 0;
+
+      if (formeFilter === 'promo' && !hasPromo) return false;
+      if (
+        formeFilter !== 'all' &&
+        formeFilter !== 'promo' &&
+        formeNorm !== formeFilter.trim().toLowerCase()
+      ) {
+        return false;
+      }
+
+      if (!query) return true;
+
+      const matchNom = (item.nom || '').toLowerCase().includes(query);
+      const matchId = String(item.id || '').toLowerCase().includes(query);
+      const matchCat = (item.categorie || '').toLowerCase().includes(query);
+      const matchCaisson = (item.caracteristiquesTechniques?.caisson || '').toLowerCase().includes(query);
+      const matchFacade = (item.caracteristiquesTechniques?.facade || '').toLowerCase().includes(query);
+
+      return matchNom || matchId || matchCat || matchCaisson || matchFacade;
+    });
   };
 
   const renderTable = () => {
     if (!tbody) return;
-    tbody.innerHTML = cuisines
+    const filtered = getFilteredCuisines();
+
+    if (resultsCountEl) {
+      resultsCountEl.textContent = `${filtered.length} modèle(s) affiché(s) sur ${cuisines.length}`;
+    }
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="6" style="text-align: center; color: var(--admin-text-muted); padding: 1.75rem;">
+            ${cuisines.length === 0 ? 'Aucune cuisine trouvée depuis l\'API.' : 'Aucune cuisine ne correspond à la recherche ou au filtre.'}
+          </td>
+        </tr>
+      `;
+      updateStats();
+      return;
+    }
+
+    tbody.innerHTML = filtered
       .map((item) => {
         const finalPrice = getFinalPrice(item);
         const hasPromo = Number(item.reduction || 0) > 0;
-        const imgHtml = item.catalogue_images?.[0]
-          ? `<img src="${item.catalogue_images[0]}" alt="${item.nom}" style="width: 48px; height: 36px; object-fit: cover; border-radius: 4px; border: 1px solid var(--admin-border);" />`
-          : '';
+        const mainImg = getMainImageUrl(item);
 
-        const hautDimHtml =
-          item.forme !== 'Ilot' && item.dimensions?.caisson_haut
-            ? `<br />Haut : ${item.dimensions.caisson_haut.hauteur} × ${item.dimensions.caisson_haut.profondeur}`
-            : '';
+        const imgHtml = mainImg
+          ? `<img src="${mainImg}" alt="${item.nom}" style="width: 48px; height: 36px; object-fit: cover; border-radius: 4px; border: 1px solid var(--admin-border);" />`
+          : '';
 
         const priceHtml = hasPromo
           ? `<div>
                <span style="font-weight: 600; color: var(--admin-gold);">${finalPrice}</span>
-               <span style="margin-left: 0.4rem; font-size: 0.75rem; color: var(--admin-text-muted); text-decoration: line-through;">${item.prix_initial}</span>
+               <span style="margin-left: 0.4rem; font-size: 0.75rem; color: var(--admin-text-muted); text-decoration: line-through;">${item.prixInitial}</span>
                <span style="margin-left: 0.35rem; font-size: 0.75rem; color: var(--admin-success);">-${item.reduction}%</span>
              </div>`
-          : `<span style="font-weight: 600;">${item.prix_initial}</span>`;
+          : `<span style="font-weight: 600;">${item.prixInitial}</span>`;
 
         return `
           <tr data-id="${item.id}">
@@ -417,17 +728,26 @@ const computeFinalPrice = (item: CuisineItem) => {
               </div>
             </td>
             <td style="color: var(--admin-text-muted); font-family: monospace; font-size: 0.8rem;">${item.id}</td>
+            <td style="color: var(--admin-text-muted); font-size: 0.84rem;">${item.categorie || 'Cuisines'}</td>
             <td><span class="admin-badge" style="margin-top: 0;">${item.forme}</span></td>
-            <td style="color: var(--admin-text-muted); font-size: 0.82rem;">
-              Bas : ${item.dimensions?.caisson_bas?.hauteur ?? '—'} × ${item.dimensions?.caisson_bas?.profondeur ?? '—'}${hautDimHtml}
-            </td>
             <td>${priceHtml}</td>
             <td>
               <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                <button type="button" class="admin-ghost-btn btn-edit-cuisine" data-id="${item.id}" style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;">
+                <button
+                  type="button"
+                  class="admin-ghost-btn btn-edit-cuisine"
+                  data-id="${item.id}"
+                  style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;"
+                >
                   Éditer
                 </button>
-                <a href="/cuisine/${String(item.id).toLowerCase()}" target="_blank" rel="noopener noreferrer" class="admin-ghost-btn" style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;">
+                <a
+                  href="/cuisine/${String(item.id).toLowerCase()}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="admin-ghost-btn"
+                  style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;"
+                >
                   Voir ↗
                 </a>
               </div>
@@ -440,118 +760,249 @@ const computeFinalPrice = (item: CuisineItem) => {
     updateStats();
   };
 
-  const openEditor = (item = null) => {
+  const renderExistingImages = (item: CuisineDto | null) => {
+    if (!existingImagesBlock || !existingImagesList) return;
+
+    const imgs = item?.images ?? [];
+    if (!item || imgs.length === 0) {
+      existingImagesBlock.style.display = 'none';
+      existingImagesList.innerHTML = '';
+      return;
+    }
+
+    existingImagesBlock.style.display = 'block';
+    existingImagesList.innerHTML = imgs
+      .map(
+        (img) => `
+          <div
+            data-image-id="${img.id}"
+            style="display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.6rem; border-radius: var(--admin-radius-sm); background: var(--admin-surface-elevated); border: 1px solid var(--admin-border);"
+          >
+            <img
+              src="${img.url}"
+              alt="Image ${img.id}"
+              style="width: 44px; height: 34px; object-fit: cover; border-radius: 4px;"
+            />
+            <span style="font-size: 0.75rem; color: var(--admin-text-muted);">
+              #${img.id}${img.estPrincipale ? ' · Principale' : ''}
+            </span>
+            <button
+              type="button"
+              class="admin-btn-danger btn-delete-image"
+              data-cuisine-id="${item.id}"
+              data-image-id="${img.id}"
+              style="padding: 0.25rem 0.5rem; font-size: 0.75rem;"
+            >
+              Supprimer
+            </button>
+          </div>
+        `
+      )
+      .join('');
+  };
+
+  const openEditor = (item: CuisineDto | null) => {
     if (!editorCard || !form) return;
+    activeEditingItem = item;
     editorCard.style.display = 'block';
+    if (filesInput) filesInput.value = '';
 
     if (item) {
       if (editorHeading) editorHeading.textContent = `Modifier : ${item.nom}`;
       if (modeInput) modeInput.value = 'edit';
       if (idInput) {
-        idInput.value = item.id;
+        idInput.value = String(item.id);
         idInput.readOnly = true;
       }
       if (nomInput) nomInput.value = item.nom || '';
-      if (formeSelect) formeSelect.value = item.forme || 'Linéaire';
-      if (prixInput) prixInput.value = String(item.prix_initial ?? 0);
+      if (categorieSelect) categorieSelect.value = item.categorie || 'Cuisines';
+      if (formeSelect) formeSelect.value = item.forme || 'I';
+      if (prixInput) prixInput.value = String(item.prixInitial ?? 0);
       if (reductionInput) reductionInput.value = String(item.reduction ?? 0);
-      if (basHauteurInput) basHauteurInput.value = item.dimensions?.caisson_bas?.hauteur || '';
-      if (basProfondeurInput) basProfondeurInput.value = item.dimensions?.caisson_bas?.profondeur || '';
-      if (hautHauteurInput) hautHauteurInput.value = item.dimensions?.caisson_haut?.hauteur || '';
-      if (hautProfondeurInput) hautProfondeurInput.value = item.dimensions?.caisson_haut?.profondeur || '';
-      if (finitionCaissonInput) finitionCaissonInput.value = item.caracteristiques_techniques?.finition_produit?.caisson || '';
-      if (finitionFacadeInput) finitionFacadeInput.value = item.caracteristiques_techniques?.finition_produit?.facade || '';
+
+      setCompositionFields(item.caracteristiquesTechniques?.compositionType || '');
+
+      if (basHauteurInput) {
+        basHauteurInput.value = String(item.dimensions?.hauteurCaissonBas ?? 0);
+      }
+      if (basProfondeurInput) {
+        basProfondeurInput.value = String(item.dimensions?.profondeurCaissonBas ?? 0);
+      }
+      if (hautHauteurInput) {
+        hautHauteurInput.value = String(item.dimensions?.hauteurCaissonHaut ?? 0);
+      }
+      if (hautProfondeurInput) {
+        hautProfondeurInput.value = String(item.dimensions?.profondeurCaissonHaut ?? 0);
+      }
+      if (finitionCaissonInput) {
+        finitionCaissonInput.value = item.caracteristiquesTechniques?.caisson || '';
+      }
+      if (finitionFacadeInput) {
+        finitionFacadeInput.value = item.caracteristiquesTechniques?.facade || '';
+      }
+
+      const itemColorIds = (item.couleurs ?? []).map((c) => c.id);
+      renderColorCheckboxes(itemColorIds);
+
+      if (descriptionInput) descriptionInput.value = item.description || '';
       if (nbInput) nbInput.value = item.nb || '';
+      if (filesLabel) filesLabel.textContent = 'Nouvelles images à ajouter (optionnel)';
+      renderExistingImages(item);
     } else {
       form.reset();
       if (editorHeading) editorHeading.textContent = 'Ajouter une cuisine';
       if (modeInput) modeInput.value = 'create';
       if (idInput) idInput.readOnly = false;
+      if (categorieSelect) categorieSelect.value = 'Cuisines';
+      if (formeSelect) formeSelect.value = 'I';
       if (reductionInput) reductionInput.value = '0';
+
+      setCompositionFields('');
+      renderColorCheckboxes([]);
+
+      if (filesLabel) filesLabel.textContent = 'Images (au moins 1 fichier requis)';
+      renderExistingImages(null);
     }
 
     toggleHautFields();
     editorCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
 
+  const refreshCuisines = async () => {
+    try {
+      const [loadedCuisines, loadedCouleurs] = await Promise.all([
+        getCuisines(),
+        getCouleurs(),
+      ]);
+
+      cuisines = Array.isArray(loadedCuisines) ? loadedCuisines : [];
+      availableColors = Array.isArray(loadedCouleurs) ? loadedCouleurs : [];
+    } catch (err) {
+      console.error('[cuisines.astro] Erreur chargement données :', err);
+      availableColors = [];
+    }
+
+    renderTable();
+
+    if (activeEditingItem) {
+      const updatedActive =
+        cuisines.find((c) => String(c.id) === String(activeEditingItem?.id)) || null;
+      activeEditingItem = updatedActive;
+      renderColorCheckboxes((updatedActive?.couleurs ?? []).map((c) => c.id));
+      renderExistingImages(updatedActive);
+    } else if (editorCard && editorCard.style.display !== 'none') {
+      renderColorCheckboxes(getSelectedCouleurIds());
+    } else {
+      renderColorCheckboxes([]);
+    }
+  };
+
+  searchInput?.addEventListener('input', renderTable);
+  filterFormeSelect?.addEventListener('change', renderTable);
+
+  resetFiltersBtn?.addEventListener('click', () => {
+    if (searchInput) searchInput.value = '';
+    if (filterFormeSelect) filterFormeSelect.value = 'all';
+    renderTable();
+  });
+
   document.getElementById('btn-new-cuisine')?.addEventListener('click', () => openEditor(null));
+
   document.getElementById('btn-cancel-edit')?.addEventListener('click', () => {
+    activeEditingItem = null;
     if (editorCard) editorCard.style.display = 'none';
   });
 
   formeSelect?.addEventListener('change', toggleHautFields);
 
   tbody?.addEventListener('click', (event) => {
-    const target = event.target instanceof Element ? event.target.closest('.btn-edit-cuisine') : null;
-    if (!target) return;
-    const id = target.getAttribute('data-id');
+    const btn = event.target instanceof Element ? event.target.closest('.btn-edit-cuisine') : null;
+    if (!btn) return;
+    const id = btn.getAttribute('data-id');
     const found = cuisines.find((c) => String(c.id) === String(id));
     if (found) openEditor(found);
   });
 
-  form?.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const rawId = (idInput?.value || '').trim().toLowerCase();
-    const forme = formeSelect?.value || 'Linéaire';
+  existingImagesList?.addEventListener('click', async (event) => {
+    const btn = event.target instanceof Element ? event.target.closest('.btn-delete-image') : null;
+    if (!btn) return;
 
-    const updatedItem = {
-      id: rawId,
-      nom: (nomInput?.value || '').trim(),
-      forme,
-      prix_initial: Number(prixInput?.value || 0),
-      reduction: Number(reductionInput?.value || 0),
-      dimensions: {
-        caisson_bas: {
-          hauteur: (basHauteurInput?.value || '').trim(),
-          profondeur: (basProfondeurInput?.value || '').trim(),
-        },
-        ...(forme !== 'Ilot'
-          ? {
-              caisson_haut: {
-                hauteur: (hautHauteurInput?.value || '').trim(),
-                profondeur: (hautProfondeurInput?.value || '').trim(),
-              },
-            }
-          : {}),
-      },
-      caracteristiques_techniques: {
-        finition_produit: {
-          caisson: (finitionCaissonInput?.value || '').trim(),
-          facade: (finitionFacadeInput?.value || '').trim(),
-        },
-      },
-      nb: (nbInput?.value || '').trim(),
-    };
+    const cuisineId = btn.getAttribute('data-cuisine-id');
+    const imageId = Number(btn.getAttribute('data-image-id'));
+    if (!cuisineId || !imageId) return;
+
+    try {
+      (btn as HTMLButtonElement).disabled = true;
+      await deleteCuisineImage(cuisineId, imageId);
+      showFeedback(`Image #${imageId} supprimée.`);
+      await refreshCuisines();
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Erreur lors de la suppression de l’image.';
+      showFeedback(msg, true);
+      (btn as HTMLButtonElement).disabled = false;
+    }
+  });
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!submitBtn) return;
 
     const mode = modeInput?.value || 'edit';
-    if (mode === 'create') {
-      cuisines = [updatedItem, ...cuisines.filter((c) => String(c.id).toLowerCase() !== rawId)];
-    } else {
-      cuisines = cuisines.map((c) =>
-        String(c.id).toLowerCase() === rawId
-          ? {
-              ...c,
-              ...updatedItem,
-              catalogue_images: c.catalogue_images,
-              caracteristiques_techniques: {
-                ...c.caracteristiques_techniques,
-                ...updatedItem.caracteristiques_techniques,
-              },
-            }
-          : c
-      );
+    const id = (idInput?.value || '').trim();
+    const forme = formeSelect?.value || 'I';
+    const isIlot = forme.toLowerCase() === 'ilot';
+    const selectedFiles = filesInput?.files ? Array.from(filesInput.files) : [];
+
+    const basePayload = {
+      categorie: categorieSelect?.value || 'Cuisines',
+      forme,
+      nom: (nomInput?.value || '').trim(),
+      prixInitial: Number(prixInput?.value || 0),
+      reduction: Number(reductionInput?.value || 0),
+      description: (descriptionInput?.value || '').trim(),
+      nb: (nbInput?.value || '').trim(),
+      hauteurCaissonBas: Number(basHauteurInput?.value || 0),
+      profondeurCaissonBas: Number(basProfondeurInput?.value || 0),
+      hauteurCaissonHaut: isIlot ? 0 : Number(hautHauteurInput?.value || 0),
+      profondeurCaissonHaut: isIlot ? 0 : Number(hautProfondeurInput?.value || 0),
+      compositionType: getCompositionJoined(),
+      caisson: (finitionCaissonInput?.value || '').trim(),
+      facade: (finitionFacadeInput?.value || '').trim(),
+      couleurIds: getSelectedCouleurIds(),
+    };
+
+    try {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enregistrement...';
+
+      if (mode === 'create') {
+        if (selectedFiles.length === 0) {
+          throw new Error('Ajoute au moins une image.');
+        }
+        await createCuisine({
+          ...basePayload,
+          files: selectedFiles,
+        });
+        showFeedback(`Cuisine "${basePayload.nom}" créée avec succès.`);
+      } else {
+        await updateCuisine(id, {
+          ...basePayload,
+          images: selectedFiles,
+        });
+        showFeedback(`Cuisine "${basePayload.nom}" mise à jour avec succès.`);
+      }
+
+      activeEditingItem = null;
+      if (editorCard) editorCard.style.display = 'none';
+      await refreshCuisines();
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Erreur lors de l’enregistrement.';
+      showFeedback(msg, true);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enregistrer';
     }
-
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(cuisines));
-    renderTable();
-    if (editorCard) editorCard.style.display = 'none';
   });
 
-  document.getElementById('btn-reset-storage')?.addEventListener('click', () => {
-    localStorage.removeItem(STORAGE_KEY);
-    cuisines = structuredClone(initialCuisines);
-    renderTable();
-  });
-
-  renderTable();
+  refreshCuisines();
 </script>

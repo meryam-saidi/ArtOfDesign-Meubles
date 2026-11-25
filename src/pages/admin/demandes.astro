@@ -1,0 +1,387 @@
+---
+// src/pages/admin/demandes.astro
+import AdminLayout from '../../layouts/AdminLayout.astro';
+
+interface DemandeClient {
+  id: string;
+  date_creation: string;
+  client_nom: string;
+  telephone: string;
+  email?: string;
+  ville?: string;
+  type_projet: 'Cuisine' | 'Dressing' | 'Meuble' | 'Contact';
+  reference_modele?: string;
+  message: string;
+  statut: 'nouveau' | 'en_cours' | 'devis_envoye' | 'termine';
+  note_interne?: string;
+}
+
+const initialDemandes: DemandeClient[] = [
+  {
+    id: 'DM-2026-014',
+    date_creation: '2026-11-24',
+    client_nom: 'Salma Ben Ali',
+    telephone: '+216 22 410 890',
+    email: 'salma.benali@example.com',
+    ville: 'La Marsa',
+    type_projet: 'Cuisine',
+    reference_modele: 'cl400x200m2',
+    message: 'Demande d’étude sur mesure avec îlot central et façade laquée mate.',
+    statut: 'nouveau',
+    note_interne: '',
+  },
+  {
+    id: 'DM-2026-013',
+    date_creation: '2026-11-22',
+    client_nom: 'Youssef Trabelsi',
+    telephone: '+216 54 118 302',
+    email: 'y.trabelsi@example.com',
+    ville: 'Tunis',
+    type_projet: 'Dressing',
+    reference_modele: 'dr-suite-240',
+    message: 'Intéressé par un dressing coulissant avec éclairage intégré et aménagement tiroirs.',
+    statut: 'en_cours',
+    note_interne: 'Prise de mesures prévue cette semaine.',
+  },
+  {
+    id: 'DM-2026-012',
+    date_creation: '2026-11-19',
+    client_nom: 'Nadia Mansouri',
+    telephone: '+216 98 705 114',
+    ville: 'Sousse',
+    type_projet: 'Meuble',
+    reference_modele: 'mb-console-aura',
+    message: 'Souhaite connaître le délai de fabrication et les finitions disponibles.',
+    statut: 'devis_envoye',
+    note_interne: 'Devis transmis par WhatsApp.',
+  },
+];
+---
+
+<AdminLayout
+  title="Études & Contacts | Administration Art Of Design"
+  pageTitle="Demandes d’étude & Contacts"
+  activeNav="demandes"
+>
+  <div slot="actions" style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
+    <button type="button" id="btn-reset-demandes" class="admin-ghost-btn" style="width: auto;">
+      Réinitialiser exemples
+    </button>
+  </div>
+
+  <!-- KPIs DES DEMANDES -->
+  <section class="admin-grid-stats" aria-label="Indicateurs des demandes clients">
+    <article class="admin-card">
+      <h2 class="admin-card-title">Total demandes</h2>
+      <p class="admin-stat-value" id="stat-demandes-total">{initialDemandes.length}</p>
+      <p class="admin-stat-meta">Devis & prises de contact</p>
+    </article>
+
+    <article class="admin-card">
+      <h2 class="admin-card-title">Nouvelles</h2>
+      <p class="admin-stat-value" id="stat-demandes-nouveau">
+        {initialDemandes.filter((d) => d.statut === 'nouveau').length}
+      </p>
+      <p class="admin-stat-meta">À traiter en priorité</p>
+    </article>
+
+    <article class="admin-card">
+      <h2 class="admin-card-title">En étude / Devis</h2>
+      <p class="admin-stat-value" id="stat-demandes-actifs">
+        {initialDemandes.filter((d) => d.statut === 'en_cours' || d.statut === 'devis_envoye').length}
+      </p>
+      <p class="admin-stat-meta">Suivi client en cours</p>
+    </article>
+  </section>
+
+  <!-- FILTRES RAPIDES -->
+  <section class="admin-card" style="margin-bottom: 1.5rem;" aria-label="Filtrer les demandes">
+    <div class="admin-form-grid">
+      <div class="admin-field">
+        <label for="filter-statut" class="admin-label">Statut</label>
+        <select id="filter-statut" class="admin-select">
+          <option value="all">Tous les statuts</option>
+          <option value="nouveau">Nouveau</option>
+          <option value="en_cours">En étude</option>
+          <option value="devis_envoye">Devis envoyé</option>
+          <option value="termine">Clôturé</option>
+        </select>
+      </div>
+
+      <div class="admin-field">
+        <label for="filter-projet" class="admin-label">Univers / Type de demande</label>
+        <select id="filter-projet" class="admin-select">
+          <option value="all">Tous les univers</option>
+          <option value="Cuisine">Cuisine</option>
+          <option value="Dressing">Dressing</option>
+          <option value="Meuble">Meuble</option>
+          <option value="Contact">Contact général</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANNEAU DE DÉTAIL & NOTE INTERNE -->
+  <section
+    id="demande-detail-card"
+    class="admin-card"
+    style="display: none; margin-bottom: 1.75rem; border-color: var(--admin-border-gold);"
+    aria-labelledby="demande-detail-heading"
+  >
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+      <div>
+        <p class="admin-eyebrow" style="margin-bottom: 0.15rem;" id="detail-id-label">Dossier</p>
+        <h2 id="demande-detail-heading" style="margin: 0; font-size: 1.2rem;">Détail de la demande</h2>
+      </div>
+      <button type="button" id="btn-close-detail" class="admin-ghost-btn" style="width: auto;">
+        Fermer
+      </button>
+    </div>
+
+    <form id="demande-detail-form" class="admin-form-grid">
+      <input type="hidden" id="detail-id" />
+
+      <div class="admin-field">
+        <span class="admin-label">Client & Coordonnées</span>
+        <div id="detail-client-info" style="font-size: 0.9rem; color: var(--admin-text);"></div>
+      </div>
+
+      <div class="admin-field">
+        <span class="admin-label">Projet & Référence</span>
+        <div id="detail-projet-info" style="font-size: 0.9rem; color: var(--admin-gold);"></div>
+      </div>
+
+      <div class="admin-field admin-field--full">
+        <span class="admin-label">Message du client</span>
+        <p id="detail-message" style="margin: 0.25rem 0 0; padding: 0.85rem; border-radius: var(--admin-radius-sm); background: var(--admin-surface-elevated); border: 1px solid var(--admin-border); font-size: 0.9rem;"></p>
+      </div>
+
+      <div class="admin-field">
+        <label for="detail-statut" class="admin-label">Mettre à jour le statut</label>
+        <select id="detail-statut" class="admin-select">
+          <option value="nouveau">Nouveau</option>
+          <option value="en_cours">En étude</option>
+          <option value="devis_envoye">Devis envoyé</option>
+          <option value="termine">Clôturé</option>
+        </select>
+      </div>
+
+      <div class="admin-field">
+        <label for="detail-note" class="admin-label">Note interne (équipe / atelier)</label>
+        <input
+          type="text"
+          id="detail-note"
+          class="admin-input"
+          placeholder="Ex. : visite technique planifiée, acompte reçu..."
+        />
+      </div>
+
+      <div class="admin-field admin-field--full" style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+        <button type="submit" class="admin-btn-primary">
+          Enregistrer le suivi
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- TABLEAU DES DEMANDES -->
+  <section aria-label="Liste des demandes clients">
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Client</th>
+            <th>Univers</th>
+            <th>Référence</th>
+            <th>Statut</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="demandes-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+</AdminLayout>
+
+<script define:vars={{ initialDemandes }}>
+  const STORAGE_KEY = 'aod_admin_demandes_v1';
+
+  const STATUT_LABELS = {
+    nouveau: 'Nouveau',
+    en_cours: 'En étude',
+    devis_envoye: 'Devis envoyé',
+    termine: 'Clôturé',
+  };
+
+  const loadDemandes = () => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : structuredClone(initialDemandes);
+    } catch {
+      return structuredClone(initialDemandes);
+    }
+  };
+
+  let demandes = loadDemandes();
+
+  const tbody = document.getElementById('demandes-tbody');
+  const filterStatut = document.getElementById('filter-statut');
+  const filterProjet = document.getElementById('filter-projet');
+  const detailCard = document.getElementById('demande-detail-card');
+  const detailForm = document.getElementById('demande-detail-form');
+  const detailIdInput = document.getElementById('detail-id');
+  const detailIdLabel = document.getElementById('detail-id-label');
+  const detailHeading = document.getElementById('demande-detail-heading');
+  const detailClientInfo = document.getElementById('detail-client-info');
+  const detailProjetInfo = document.getElementById('detail-projet-info');
+  const detailMessage = document.getElementById('detail-message');
+  const detailStatutSelect = document.getElementById('detail-statut');
+  const detailNoteInput = document.getElementById('detail-note');
+
+  const updateStats = () => {
+    const totalEl = document.getElementById('stat-demandes-total');
+    const nouveauEl = document.getElementById('stat-demandes-nouveau');
+    const actifsEl = document.getElementById('stat-demandes-actifs');
+
+    if (totalEl) totalEl.textContent = String(demandes.length);
+    if (nouveauEl) nouveauEl.textContent = String(demandes.filter((d) => d.statut === 'nouveau').length);
+    if (actifsEl) {
+      actifsEl.textContent = String(
+        demandes.filter((d) => d.statut === 'en_cours' || d.statut === 'devis_envoye').length
+      );
+    }
+  };
+
+  const renderTable = () => {
+    if (!tbody) return;
+    const selectedStatut = filterStatut?.value || 'all';
+    const selectedProjet = filterProjet?.value || 'all';
+
+    const filtered = demandes.filter((item) => {
+      const matchStatut = selectedStatut === 'all' || item.statut === selectedStatut;
+      const matchProjet = selectedProjet === 'all' || item.type_projet === selectedProjet;
+      return matchStatut && matchProjet;
+    });
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="6" style="text-align: center; color: var(--admin-text-muted); padding: 1.75rem;">
+            Aucune demande ne correspond aux filtres sélectionnés.
+          </td>
+        </tr>
+      `;
+      updateStats();
+      return;
+    }
+
+    tbody.innerHTML = filtered
+      .map((item) => {
+        const statutText = STATUT_LABELS[item.statut] || item.statut;
+        const badgeStyle =
+          item.statut === 'nouveau'
+            ? 'margin-top: 0; color: var(--admin-gold); border-color: var(--admin-border-gold);'
+            : 'margin-top: 0;';
+
+        return `
+          <tr data-id="${item.id}">
+            <td style="color: var(--admin-text-muted); font-size: 0.82rem; white-space: nowrap;">${item.date_creation}</td>
+            <td>
+              <strong>${item.client_nom}</strong>
+              <div style="font-size: 0.8rem; color: var(--admin-text-muted);">${item.telephone}${item.ville ? ` · ${item.ville}` : ''}</div>
+            </td>
+            <td><span class="admin-badge" style="margin-top: 0;">${item.type_projet}</span></td>
+            <td style="font-family: monospace; font-size: 0.8rem; color: var(--admin-text-muted);">
+              ${item.reference_modele || '—'}
+            </td>
+            <td><span class="admin-badge" style="${badgeStyle}">${statutText}</span></td>
+            <td>
+              <button
+                type="button"
+                class="admin-ghost-btn btn-open-demande"
+                data-id="${item.id}"
+                style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;"
+              >
+                Ouvrir
+              </button>
+            </td>
+          </tr>
+        `;
+      })
+      .join('');
+
+    updateStats();
+  };
+
+  const openDetail = (id) => {
+    const item = demandes.find((d) => d.id === id);
+    if (!item || !detailCard) return;
+
+    detailCard.style.display = 'block';
+    if (detailIdInput) detailIdInput.value = item.id;
+    if (detailIdLabel) detailIdLabel.textContent = `Dossier ${item.id} · ${item.date_creation}`;
+    if (detailHeading) detailHeading.textContent = item.client_nom;
+
+    if (detailClientInfo) {
+      detailClientInfo.innerHTML = `
+        <div>Tél : <strong>${item.telephone}</strong></div>
+        ${item.email ? `<div>Email : ${item.email}</div>` : ''}
+        ${item.ville ? `<div>Ville : ${item.ville}</div>` : ''}
+      `;
+    }
+
+    if (detailProjetInfo) {
+      detailProjetInfo.innerHTML = `
+        <div>Univers : <strong>${item.type_projet}</strong></div>
+        ${item.reference_modele ? `<div>Modèle : <span style="font-family: monospace;">${item.reference_modele}</span></div>` : ''}
+      `;
+    }
+
+    if (detailMessage) detailMessage.textContent = item.message;
+    if (detailStatutSelect) detailStatutSelect.value = item.statut;
+    if (detailNoteInput) detailNoteInput.value = item.note_interne || '';
+
+    detailCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+
+  filterStatut?.addEventListener('change', renderTable);
+  filterProjet?.addEventListener('change', renderTable);
+
+  tbody?.addEventListener('click', (event) => {
+    const btn = event.target instanceof Element ? event.target.closest('.btn-open-demande') : null;
+    if (!btn) return;
+    const id = btn.getAttribute('data-id');
+    if (id) openDetail(id);
+  });
+
+  document.getElementById('btn-close-detail')?.addEventListener('click', () => {
+    if (detailCard) detailCard.style.display = 'none';
+  });
+
+  detailForm?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const id = detailIdInput?.value;
+    if (!id) return;
+
+    const nextStatut = detailStatutSelect?.value || 'nouveau';
+    const nextNote = (detailNoteInput?.value || '').trim();
+
+    demandes = demandes.map((d) =>
+      d.id === id ? { ...d, statut: nextStatut, note_interne: nextNote } : d
+    );
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(demandes));
+    renderTable();
+    if (detailCard) detailCard.style.display = 'none';
+  });
+
+  document.getElementById('btn-reset-demandes')?.addEventListener('click', () => {
+    localStorage.removeItem(STORAGE_KEY);
+    demandes = structuredClone(initialDemandes);
+    renderTable();
+    if (detailCard) detailCard.style.display = 'none';
+  });
+
+  renderTable();
+</script>

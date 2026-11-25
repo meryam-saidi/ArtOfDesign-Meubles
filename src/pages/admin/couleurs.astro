@@ -1,0 +1,509 @@
+---
+// src/pages/admin/couleurs.astro
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { getCouleurs } from '../../services/couleurService';
+import type { CouleurDto } from '../../types/couleur';
+
+const initialCouleurs: CouleurDto[] = await getCouleurs();
+---
+
+<AdminLayout
+  title="Gestion des Couleurs | Art Of Design"
+  pageTitle="Nuancier & Couleurs"
+>
+  <div slot="actions">
+    <button type="button" id="btn-new-couleur" class="admin-btn-primary">
+      + Nouvelle couleur
+    </button>
+  </div>
+
+  <!-- MESSAGE RETOUR API -->
+  <div
+    id="couleur-feedback"
+    role="status"
+    aria-live="polite"
+    style="display: none; margin-bottom: 1.25rem; padding: 0.85rem 1rem; border-radius: var(--admin-radius-sm); border: 1px solid var(--admin-border-gold); background: var(--admin-surface); font-size: 0.88rem;"
+  ></div>
+
+  <!-- KPI RAPIDE -->
+  <section class="admin-grid-stats" aria-label="Indicateurs couleurs">
+    <article class="admin-card">
+      <h2 class="admin-card-title">Couleurs enregistrées</h2>
+      <p class="admin-stat-value" id="stat-total-couleurs">{initialCouleurs.length}</p>
+      <p class="admin-stat-meta">Palette & finitions</p>
+    </article>
+  </section>
+
+  <!-- FORMULAIRE CRÉATION / ÉDITION -->
+  <section
+    id="couleur-editor-card"
+    class="admin-card"
+    style="display: none; margin-bottom: 2rem; border-color: var(--admin-border-gold);"
+    aria-labelledby="couleur-editor-heading"
+  >
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+      <div>
+        <p class="admin-eyebrow" style="margin-bottom: 0.15rem;">Édition du nuancier</p>
+        <h2 id="couleur-editor-heading" style="margin: 0; font-size: 1.2rem;">Ajouter une couleur</h2>
+      </div>
+      <button type="button" id="btn-cancel-couleur" class="admin-ghost-btn" style="width: auto;">
+        Fermer
+      </button>
+    </div>
+
+    <form id="couleur-form" class="admin-form-grid">
+      <input type="hidden" id="couleur-mode" value="create" />
+      <input type="hidden" id="couleur-id" value="" />
+
+      <div class="admin-field">
+        <label for="couleur-nom" class="admin-label">Nom de la couleur</label>
+        <input
+          type="text"
+          id="couleur-nom"
+          name="Nom"
+          class="admin-input"
+          placeholder="ex: Chêne Doré / Noir Mat"
+          required
+        />
+      </div>
+
+      <div class="admin-field">
+        <label for="couleur-code-hex" class="admin-label">Code couleur</label>
+        <div style="display: flex; align-items: center; gap: 0.65rem;">
+          <input
+            type="color"
+            id="couleur-picker"
+            value="#C1A870"
+            style="width: 44px; height: 40px; padding: 2px; border: 1px solid var(--admin-border); border-radius: var(--admin-radius-sm); background: var(--admin-surface-elevated); cursor: pointer;"
+          />
+          <input
+            type="text"
+            id="couleur-code"
+            name="CodeCouleur"
+            class="admin-input"
+            value="#C1A870"
+            placeholder="ex: #C1A870"
+            required
+          />
+        </div>
+      </div>
+
+      <!-- APERÇU IMAGE EXISTANTE EN MODE ÉDITION -->
+      <div id="couleur-current-image-wrap" class="admin-field admin-field--full" style="display: none;">
+        <span class="admin-label">Image de présentation actuelle</span>
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-top: 0.25rem;">
+          <img
+            id="couleur-current-image"
+            src=""
+            alt="Aperçu couleur"
+            style="width: 64px; height: 64px; object-fit: cover; border-radius: var(--admin-radius-sm); border: 1px solid var(--admin-border);"
+          />
+          <span style="font-size: 0.8rem; color: var(--admin-text-muted);">
+            Laissez le champ fichier vide pour conserver cette image.
+          </span>
+        </div>
+      </div>
+
+      <!-- FICHIER IMAGE (multipart/form-data -> champ "Image") -->
+      <div class="admin-field admin-field--full">
+        <label for="couleur-image" id="couleur-image-label" class="admin-label">
+          Image de présentation (obligatoire)
+        </label>
+        <input
+          type="file"
+          id="couleur-image"
+          name="Image"
+          class="admin-input"
+          accept="image/*"
+        />
+      </div>
+
+      <div
+        class="admin-field admin-field--full"
+        style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 0.5rem;"
+      >
+        <button type="submit" id="btn-submit-couleur" class="admin-btn-primary">
+          Enregistrer
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- RECHERCHE, FILTRE & TABLEAU DES COULEURS -->
+  <section aria-label="Liste des couleurs">
+    <div class="admin-card" style="margin-bottom: 1rem;">
+      <div class="admin-form-grid" style="align-items: end;">
+        <div class="admin-field">
+          <label for="couleur-search" class="admin-label">Rechercher</label>
+          <input
+            type="search"
+            id="couleur-search"
+            class="admin-input"
+            placeholder="Nom, code couleur (#...) ou ID..."
+          />
+        </div>
+
+        <div class="admin-field">
+          <label for="couleur-filter-image" class="admin-label">Filtrer par visuel</label>
+          <select id="couleur-filter-image" class="admin-select">
+            <option value="all">Toutes les couleurs</option>
+            <option value="with-image">Avec image de présentation</option>
+            <option value="without-image">Sans image de présentation</option>
+          </select>
+        </div>
+
+        <div
+          class="admin-field admin-field--full"
+          style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap;"
+        >
+          <span id="couleur-results-count" style="font-size: 0.82rem; color: var(--admin-text-muted);">
+            {initialCouleurs.length} couleur(s) affichée(s)
+          </span>
+          <button
+            type="button"
+            id="btn-reset-couleur-filters"
+            class="admin-ghost-btn"
+            style="width: auto; padding: 0.35rem 0.7rem; font-size: 0.78rem;"
+          >
+            Réinitialiser les filtres
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Aperçu</th>
+            <th>Nom</th>
+            <th>Code couleur</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="couleurs-tbody">
+          {initialCouleurs.map((item) => (
+            <tr data-id={item.id}>
+              <td style="font-family: monospace; font-size: 0.8rem; color: var(--admin-text-muted);">
+                #{item.id}
+              </td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                  {item.imagePresentationUrl && (
+                    <img
+                      src={item.imagePresentationUrl}
+                      alt={item.nom}
+                      style="width: 84px; height: 44px; object-fit: cover; border-radius: 4px; border: 1px solid var(--admin-border);"
+                    />
+                  )}
+                </div>
+              </td>
+              <td><strong>{item.nom}</strong></td>
+              <td style="font-family: monospace; font-size: 0.82rem; color: var(--admin-text-muted);">
+                {item.codeCouleur}
+              </td>
+              <td>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                  <button
+                    type="button"
+                    class="admin-ghost-btn btn-edit-couleur"
+                    data-id={item.id}
+                    style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;"
+                  >
+                    Éditer
+                  </button>
+                  <button
+                    type="button"
+                    class="admin-btn-danger btn-delete-couleur"
+                    data-id={item.id}
+                    data-nom={item.nom}
+                    style="padding: 0.4rem 0.75rem; font-size: 0.8rem;"
+                  >
+                    Supprimer
+                  </button>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</AdminLayout>
+
+<script>
+  import {
+    getCouleurs,
+    createCouleur,
+    updateCouleur,
+    deleteCouleur,
+  } from '../../services/couleurService';
+  import type { CouleurDto } from '../../types/couleur';
+
+  let couleurs: CouleurDto[] = [];
+
+  const tbody = document.getElementById('couleurs-tbody');
+  const feedbackEl = document.getElementById('couleur-feedback');
+  const editorCard = document.getElementById('couleur-editor-card') as HTMLElement | null;
+  const editorHeading = document.getElementById('couleur-editor-heading');
+  const form = document.getElementById('couleur-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('btn-submit-couleur') as HTMLButtonElement | null;
+
+  const searchInput = document.getElementById('couleur-search') as HTMLInputElement | null;
+  const filterImageSelect = document.getElementById('couleur-filter-image') as HTMLSelectElement | null;
+  const resetFiltersBtn = document.getElementById('btn-reset-couleur-filters');
+  const resultsCountEl = document.getElementById('couleur-results-count');
+
+  const modeInput = document.getElementById('couleur-mode') as HTMLInputElement | null;
+  const idInput = document.getElementById('couleur-id') as HTMLInputElement | null;
+  const nomInput = document.getElementById('couleur-nom') as HTMLInputElement | null;
+  const pickerInput = document.getElementById('couleur-picker') as HTMLInputElement | null;
+  const codeInput = document.getElementById('couleur-code') as HTMLInputElement | null;
+
+  const currentImageWrap = document.getElementById('couleur-current-image-wrap') as HTMLElement | null;
+  const currentImageEl = document.getElementById('couleur-current-image') as HTMLImageElement | null;
+  const imageLabel = document.getElementById('couleur-image-label');
+  const imageInput = document.getElementById('couleur-image') as HTMLInputElement | null;
+
+  const showFeedback = (message: string, isError = false) => {
+    if (!feedbackEl) return;
+    feedbackEl.style.display = 'block';
+    feedbackEl.style.color = isError ? 'var(--admin-danger)' : 'var(--admin-gold)';
+    feedbackEl.style.borderColor = isError
+      ? 'rgba(248, 113, 113, 0.35)'
+      : 'var(--admin-border-gold)';
+    feedbackEl.textContent = message;
+  };
+
+  const updateStats = () => {
+    const totalEl = document.getElementById('stat-total-couleurs');
+    if (totalEl) totalEl.textContent = String(couleurs.length);
+  };
+
+  const getFilteredCouleurs = (): CouleurDto[] => {
+    const query = (searchInput?.value || '').trim().toLowerCase();
+    const imageFilter = filterImageSelect?.value || 'all';
+
+    return couleurs.filter((item) => {
+      const hasImage = Boolean(item.imagePresentationUrl && item.imagePresentationUrl.trim());
+      if (imageFilter === 'with-image' && !hasImage) return false;
+      if (imageFilter === 'without-image' && hasImage) return false;
+
+      if (!query) return true;
+
+      const matchNom = (item.nom || '').toLowerCase().includes(query);
+      const matchCode = (item.codeCouleur || '').toLowerCase().includes(query);
+      const matchId = String(item.id).toLowerCase().includes(query);
+      return matchNom || matchCode || matchId;
+    });
+  };
+
+  const renderTable = () => {
+    if (!tbody) return;
+    const filtered = getFilteredCouleurs();
+
+    if (resultsCountEl) {
+      resultsCountEl.textContent = `${filtered.length} couleur(s) affichée(s) sur ${couleurs.length}`;
+    }
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="5" style="text-align: center; color: var(--admin-text-muted); padding: 1.75rem;">
+            ${couleurs.length === 0 ? 'Aucune couleur enregistrée.' : 'Aucune couleur ne correspond à la recherche ou au filtre.'}
+          </td>
+        </tr>
+      `;
+      updateStats();
+      return;
+    }
+
+    tbody.innerHTML = filtered
+      .map((item) => {
+        const imgHtml = item.imagePresentationUrl
+          ? `<img src="${item.imagePresentationUrl}" alt="${item.nom}" style="width: 84px; height: 44px; object-fit: cover; border-radius: 4px; border: 1px solid var(--admin-border);" />`
+          : '';
+
+        return `
+          <tr data-id="${item.id}">
+            <td style="font-family: monospace; font-size: 0.8rem; color: var(--admin-text-muted);">#${item.id}</td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                ${imgHtml}
+              </div>
+            </td>
+            <td><strong>${item.nom}</strong></td>
+            <td style="font-family: monospace; font-size: 0.82rem; color: var(--admin-text-muted);">${item.codeCouleur}</td>
+            <td>
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <button
+                  type="button"
+                  class="admin-ghost-btn btn-edit-couleur"
+                  data-id="${item.id}"
+                  style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;"
+                >
+                  Éditer
+                </button>
+                <button
+                  type="button"
+                  class="admin-btn-danger btn-delete-couleur"
+                  data-id="${item.id}"
+                  data-nom="${item.nom}"
+                  style="padding: 0.4rem 0.75rem; font-size: 0.8rem;"
+                >
+                  Supprimer
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      })
+      .join('');
+
+    updateStats();
+  };
+
+  const openEditor = (item: CouleurDto | null) => {
+    if (!editorCard || !form) return;
+    editorCard.style.display = 'block';
+    if (imageInput) imageInput.value = '';
+
+    if (item) {
+      if (editorHeading) editorHeading.textContent = `Modifier : ${item.nom}`;
+      if (modeInput) modeInput.value = 'edit';
+      if (idInput) idInput.value = String(item.id);
+      if (nomInput) nomInput.value = item.nom || '';
+      if (codeInput) codeInput.value = item.codeCouleur || '#C1A870';
+      if (pickerInput && /^#[0-9A-Fa-f]{6}$/.test(item.codeCouleur || '')) {
+        pickerInput.value = item.codeCouleur;
+      }
+      if (imageLabel) imageLabel.textContent = 'Nouvelle image de présentation (optionnel)';
+      if (currentImageWrap && currentImageEl && item.imagePresentationUrl) {
+        currentImageWrap.style.display = 'block';
+        currentImageEl.src = item.imagePresentationUrl;
+        currentImageEl.alt = item.nom;
+      } else if (currentImageWrap) {
+        currentImageWrap.style.display = 'none';
+      }
+    } else {
+      form.reset();
+      if (editorHeading) editorHeading.textContent = 'Ajouter une couleur';
+      if (modeInput) modeInput.value = 'create';
+      if (idInput) idInput.value = '';
+      if (codeInput) codeInput.value = '#C1A870';
+      if (pickerInput) pickerInput.value = '#C1A870';
+      if (imageLabel) imageLabel.textContent = 'Image de présentation (obligatoire)';
+      if (currentImageWrap) currentImageWrap.style.display = 'none';
+    }
+
+    editorCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+
+  const refreshCouleurs = async () => {
+    couleurs = await getCouleurs();
+    renderTable();
+  };
+
+  searchInput?.addEventListener('input', renderTable);
+  filterImageSelect?.addEventListener('change', renderTable);
+
+  resetFiltersBtn?.addEventListener('click', () => {
+    if (searchInput) searchInput.value = '';
+    if (filterImageSelect) filterImageSelect.value = 'all';
+    renderTable();
+  });
+
+  // Synchronisation color picker <-> texte hex
+  pickerInput?.addEventListener('input', () => {
+    if (codeInput) codeInput.value = pickerInput.value.toUpperCase();
+  });
+
+  codeInput?.addEventListener('input', () => {
+    if (pickerInput && /^#[0-9A-Fa-f]{6}$/.test(codeInput.value.trim())) {
+      pickerInput.value = codeInput.value.trim();
+    }
+  });
+
+  document.getElementById('btn-new-couleur')?.addEventListener('click', () => openEditor(null));
+  document.getElementById('btn-cancel-couleur')?.addEventListener('click', () => {
+    if (editorCard) editorCard.style.display = 'none';
+  });
+
+  tbody?.addEventListener('click', async (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    if (!target) return;
+
+    const editBtn = target.closest('.btn-edit-couleur');
+    if (editBtn) {
+      const id = Number(editBtn.getAttribute('data-id'));
+      const found = couleurs.find((c) => c.id === id);
+      if (found) openEditor(found);
+      return;
+    }
+
+    const deleteBtn = target.closest('.btn-delete-couleur') as HTMLButtonElement | null;
+    if (deleteBtn) {
+      const id = Number(deleteBtn.getAttribute('data-id'));
+      const nom = deleteBtn.getAttribute('data-nom') || `#${id}`;
+      if (!id) return;
+
+      try {
+        deleteBtn.disabled = true;
+        await deleteCouleur(id);
+        showFeedback(`Couleur "${nom}" supprimée.`);
+        await refreshCouleurs();
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : 'Erreur lors de la suppression.';
+        showFeedback(msg, true);
+        deleteBtn.disabled = false;
+      }
+    }
+  });
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!submitBtn) return;
+
+    const mode = modeInput?.value || 'create';
+    const nom = (nomInput?.value || '').trim();
+    const codeCouleur = (codeInput?.value || '').trim();
+    const selectedFile = imageInput?.files?.[0] ?? null;
+
+    try {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enregistrement...';
+
+      if (mode === 'create') {
+        if (!selectedFile) {
+          throw new Error('Une image est obligatoire.');
+        }
+        await createCouleur({
+          nom,
+          codeCouleur,
+          image: selectedFile,
+        });
+        showFeedback(`Couleur "${nom}" ajoutée.`);
+      } else {
+        const id = Number(idInput?.value || 0);
+        await updateCouleur(id, {
+          nom,
+          codeCouleur,
+          image: selectedFile,
+        });
+        showFeedback(`Couleur "${nom}" mise à jour.`);
+      }
+
+      if (editorCard) editorCard.style.display = 'none';
+      await refreshCouleurs();
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Erreur lors de l’enregistrement.';
+      showFeedback(msg, true);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enregistrer';
+    }
+  });
+
+  refreshCouleurs();
+</script>

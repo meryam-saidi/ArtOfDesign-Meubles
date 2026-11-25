@@ -1,0 +1,988 @@
+---
+// src/pages/admin/meubles.astro
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { getMeubles } from '../../services/meubleService';
+import type { MeubleDto } from '../../types/meuble';
+
+const CATEGORIES = ['Cuisines', 'Dressings', 'Meubles', 'Projets'] as const;
+
+const initialMeubles: MeubleDto[] = await getMeubles();
+
+const computeFinalPrice = (item: MeubleDto): number => {
+  const prix = Number(item.prixInitial ?? 0);
+  const red = Number(item.reduction ?? 0);
+  if (!Number.isFinite(prix)) return 0;
+  if (!Number.isFinite(red) || red <= 0) return prix;
+  return Math.round(prix * (1 - red / 100));
+};
+
+const getMainImage = (item: MeubleDto): string =>
+  item.images?.find((img) => img.estPrincipale)?.url ?? item.images?.[0]?.url ?? '';
+---
+
+<AdminLayout
+  title="Gestion des Meubles | Art Of Design"
+  pageTitle="Meubles sur mesure"
+  activeNav="meubles"
+>
+  <div slot="actions">
+    <button type="button" id="btn-new-meuble" class="admin-btn-primary">
+      + Nouveau meuble
+    </button>
+  </div>
+
+  <!-- MESSAGE RETOUR API -->
+  <div
+    id="meuble-feedback"
+    role="status"
+    aria-live="polite"
+    style="display: none; margin-bottom: 1.25rem; padding: 0.85rem 1rem; border-radius: var(--admin-radius-sm); border: 1px solid var(--admin-border-gold); background: var(--admin-surface); font-size: 0.88rem;"
+  ></div>
+
+  <!-- KPIs RAPIDES -->
+  <section class="admin-grid-stats" aria-label="Indicateurs meubles">
+    <article class="admin-card">
+      <h2 class="admin-card-title">Modèles référencés</h2>
+      <p class="admin-stat-value" id="stat-total-meubles">{initialMeubles.length}</p>
+      <p class="admin-stat-meta">Catalogue Meubles</p>
+    </article>
+
+    <article class="admin-card">
+      <h2 class="admin-card-title">En promotion</h2>
+      <p class="admin-stat-value" id="stat-promo-meubles">
+        {initialMeubles.filter((m) => Number(m.reduction ?? 0) > 0).length}
+      </p>
+      <p class="admin-stat-meta">Réduction active</p>
+    </article>
+  </section>
+
+  <!-- FORMULAIRE CRÉATION / ÉDITION -->
+  <section
+    id="meuble-editor-card"
+    class="admin-card"
+    style="display: none; margin-bottom: 2rem; border-color: var(--admin-border-gold);"
+    aria-labelledby="meuble-editor-heading"
+  >
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+      <div>
+        <p class="admin-eyebrow" style="margin-bottom: 0.15rem;">Édition du catalogue</p>
+        <h2 id="meuble-editor-heading" style="margin: 0; font-size: 1.2rem;">Ajouter un meuble</h2>
+      </div>
+      <button type="button" id="btn-cancel-meuble" class="admin-ghost-btn" style="width: auto;">
+        Fermer
+      </button>
+    </div>
+
+    <form id="meuble-form" class="admin-form-grid">
+      <input type="hidden" id="meuble-mode" value="create" />
+
+      <div class="admin-field">
+        <label for="meuble-id" class="admin-label">Identifiant (ID)</label>
+        <input
+          type="text"
+          id="meuble-id"
+          name="id"
+          class="admin-input"
+          placeholder="ex: mb-console-180"
+          required
+        />
+      </div>
+
+      <div class="admin-field">
+        <label for="meuble-nom" class="admin-label">Nom du modèle</label>
+        <input
+          type="text"
+          id="meuble-nom"
+          name="nom"
+          class="admin-input"
+          placeholder="ex: Console Sculptée Chêne & Laiton"
+          required
+        />
+      </div>
+
+      <div class="admin-field">
+        <label for="meuble-categorie" class="admin-label">Catégorie</label>
+        <select id="meuble-categorie" name="categorie" class="admin-select" required>
+          {CATEGORIES.map((cat) => (
+            <option value={cat}>{cat}</option>
+          ))}
+        </select>
+      </div>
+
+      <div class="admin-field">
+        <label for="meuble-forme" class="admin-label">Forme / Typologie</label>
+        <input
+          type="text"
+          id="meuble-forme"
+          name="forme"
+          class="admin-input"
+          placeholder="ex: Console, Buffets, Table basse, Bibliothèque..."
+        />
+      </div>
+
+      <div class="admin-field" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+        <div class="admin-field">
+          <label for="meuble-prix" class="admin-label">Prix initial (TTC)</label>
+          <input
+            type="number"
+            id="meuble-prix"
+            name="prixInitial"
+            class="admin-input"
+            min="0"
+            step="any"
+            required
+          />
+        </div>
+        <div class="admin-field">
+          <label for="meuble-reduction" class="admin-label">Réduction (%)</label>
+          <input
+            type="number"
+            id="meuble-reduction"
+            name="reduction"
+            class="admin-input"
+            min="0"
+            max="90"
+            step="any"
+            value="0"
+          />
+        </div>
+      </div>
+
+      <!-- DIMENSIONS (Hauteur, Largeur, Profondeur) -->
+      <div
+        class="admin-field admin-field--full"
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;"
+      >
+        <div class="admin-field">
+          <label for="meuble-hauteur" class="admin-label">Hauteur</label>
+          <input
+            type="number"
+            id="meuble-hauteur"
+            class="admin-input"
+            step="any"
+            value="0"
+          />
+        </div>
+
+        <div class="admin-field">
+          <label for="meuble-largeur" class="admin-label">Largeur</label>
+          <input
+            type="number"
+            id="meuble-largeur"
+            class="admin-input"
+            step="any"
+            value="0"
+          />
+        </div>
+
+        <div class="admin-field">
+          <label for="meuble-profondeur" class="admin-label">Profondeur</label>
+          <input
+            type="number"
+            id="meuble-profondeur"
+            class="admin-input"
+            step="any"
+            value="0"
+          />
+        </div>
+      </div>
+
+      <!-- LISTE DYNAMIQUE DE CHAMPS : compositionType -->
+      <div class="admin-field admin-field--full">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;">
+          <span class="admin-label">Type de composition</span>
+          <button
+            type="button"
+            id="btn-add-meuble-composition"
+            class="admin-ghost-btn"
+            style="width: auto; padding: 0.25rem 0.65rem; font-size: 0.76rem;"
+          >
+            + Ajouter un champ
+          </button>
+        </div>
+        <div
+          id="meuble-composition-list"
+          style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.25rem;"
+        ></div>
+      </div>
+
+      <div class="admin-field">
+        <label for="meuble-caisson" class="admin-label">Finition caisson</label>
+        <input
+          type="text"
+          id="meuble-caisson"
+          class="admin-input"
+          placeholder="ex: Chêne massif / Panneau..."
+        />
+      </div>
+
+      <div class="admin-field">
+        <label for="meuble-facade" class="admin-label">Finition façade</label>
+        <input
+          type="text"
+          id="meuble-facade"
+          class="admin-input"
+          placeholder="ex: Laque satinée / Travertin..."
+        />
+      </div>
+
+      <!-- LISTE DES NOMS DE COULEURS (CHARGÉE DEPUIS GET /api/couleurs) -->
+      <div class="admin-field admin-field--full">
+        <span class="admin-label">Couleurs disponibles</span>
+        <div
+          id="meuble-couleurs-list"
+          style="display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.35rem; padding: 0.75rem; border-radius: var(--admin-radius-sm); background: var(--admin-surface-elevated); border: 1px solid var(--admin-border);"
+        >
+          <span style="font-size: 0.82rem; color: var(--admin-text-muted);">
+            Chargement des couleurs...
+          </span>
+        </div>
+      </div>
+
+      <div class="admin-field admin-field--full">
+        <label for="meuble-description" class="admin-label">Description</label>
+        <textarea
+          id="meuble-description"
+          rows="2"
+          class="admin-textarea"
+          placeholder="Description commerciale du meuble..."
+        ></textarea>
+      </div>
+
+      <!-- IMAGES EXISTANTES (EN MODE ÉDITION) -->
+      <div id="meuble-existing-images-block" class="admin-field admin-field--full" style="display: none;">
+        <span class="admin-label">Images enregistrées (suppression directe via API)</span>
+        <div
+          id="meuble-existing-images-list"
+          style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.35rem;"
+        ></div>
+      </div>
+
+      <!-- UPLOAD FICHIERS IMAGES (multipart/form-data) -->
+      <div class="admin-field admin-field--full">
+        <label for="meuble-files" id="meuble-files-label" class="admin-label">
+          Images (fichiers)
+        </label>
+        <input
+          type="file"
+          id="meuble-files"
+          name="files"
+          class="admin-input"
+          accept="image/*"
+          multiple
+        />
+      </div>
+
+      <div
+        class="admin-field admin-field--full"
+        style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 0.5rem;"
+      >
+        <button type="submit" id="btn-submit-meuble" class="admin-btn-primary">
+          Enregistrer
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- RECHERCHE, FILTRE & LISTE DES MEUBLES -->
+  <section aria-label="Liste des meubles">
+    <div class="admin-card" style="margin-bottom: 1rem;">
+      <div class="admin-form-grid" style="align-items: end;">
+        <div class="admin-field">
+          <label for="meuble-search" class="admin-label">Rechercher</label>
+          <input
+            type="search"
+            id="meuble-search"
+            class="admin-input"
+            placeholder="Nom, ID, forme ou finition..."
+          />
+        </div>
+
+        <div class="admin-field">
+          <label for="meuble-filter" class="admin-label">Filtrer par état / forme</label>
+          <select id="meuble-filter" class="admin-select">
+            <option value="all">Tous les meubles</option>
+            <option value="promo">En promotion uniquement</option>
+          </select>
+        </div>
+
+        <div
+          class="admin-field admin-field--full"
+          style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap;"
+        >
+          <span id="meuble-results-count" style="font-size: 0.82rem; color: var(--admin-text-muted);">
+            {initialMeubles.length} modèle(s) affiché(s)
+          </span>
+          <button
+            type="button"
+            id="btn-reset-meuble-filters"
+            class="admin-ghost-btn"
+            style="width: auto; padding: 0.35rem 0.7rem; font-size: 0.78rem;"
+          >
+            Réinitialiser les filtres
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Modèle</th>
+            <th>ID</th>
+            <th>Catégorie</th>
+            <th>Forme</th>
+            <th>Prix TTC</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="meubles-tbody">
+          {initialMeubles.map((item) => {
+            const finalPrice = computeFinalPrice(item);
+            const mainImg = getMainImage(item);
+            return (
+              <tr data-id={item.id}>
+                <td>
+                  <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    {mainImg && (
+                      <img
+                        src={mainImg}
+                        alt={item.nom}
+                        style="width: 48px; height: 36px; object-fit: cover; border-radius: 4px; border: 1px solid var(--admin-border);"
+                      />
+                    )}
+                    <strong>{item.nom}</strong>
+                  </div>
+                </td>
+                <td style="color: var(--admin-text-muted); font-family: monospace; font-size: 0.8rem;">
+                  {item.id}
+                </td>
+                <td style="color: var(--admin-text-muted); font-size: 0.84rem;">
+                  {item.categorie || 'Meubles'}
+                </td>
+                <td>
+                  <span class="admin-badge" style="margin-top: 0;">{item.forme || '—'}</span>
+                </td>
+                <td>
+                  {Number(item.reduction ?? 0) > 0 ? (
+                    <div>
+                      <span style="font-weight: 600; color: var(--admin-gold);">{finalPrice}</span>
+                      <span style="margin-left: 0.4rem; font-size: 0.75rem; color: var(--admin-text-muted); text-decoration: line-through;">
+                        {item.prixInitial}
+                      </span>
+                      <span style="margin-left: 0.35rem; font-size: 0.75rem; color: var(--admin-success);">
+                        -{item.reduction}%
+                      </span>
+                    </div>
+                  ) : (
+                    <span style="font-weight: 600;">{item.prixInitial}</span>
+                  )}
+                </td>
+                <td>
+                  <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <button
+                      type="button"
+                      class="admin-ghost-btn btn-edit-meuble"
+                      data-id={item.id}
+                      style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;"
+                    >
+                      Éditer
+                    </button>
+                    <a
+                      href={`/meuble/${String(item.id).toLowerCase()}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="admin-ghost-btn"
+                      style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;"
+                    >
+                      Voir ↗
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</AdminLayout>
+
+<script>
+  import {
+    getMeubles,
+    createMeuble,
+    updateMeuble,
+    deleteMeubleImage,
+  } from '../../services/meubleService';
+  import { getCouleurs } from '../../services/couleurService';
+  import type { MeubleDto } from '../../types/meuble';
+  import type { CouleurDto } from '../../types/couleur';
+
+  let meubles: MeubleDto[] = [];
+  let activeEditingItem: MeubleDto | null = null;
+  let availableColors: CouleurDto[] = [];
+
+  const tbody = document.getElementById('meubles-tbody');
+  const feedbackEl = document.getElementById('meuble-feedback');
+  const editorCard = document.getElementById('meuble-editor-card') as HTMLElement | null;
+  const editorHeading = document.getElementById('meuble-editor-heading');
+  const form = document.getElementById('meuble-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('btn-submit-meuble') as HTMLButtonElement | null;
+
+  const searchInput = document.getElementById('meuble-search') as HTMLInputElement | null;
+  const filterSelect = document.getElementById('meuble-filter') as HTMLSelectElement | null;
+  const resetFiltersBtn = document.getElementById('btn-reset-meuble-filters');
+  const resultsCountEl = document.getElementById('meuble-results-count');
+
+  const modeInput = document.getElementById('meuble-mode') as HTMLInputElement | null;
+  const idInput = document.getElementById('meuble-id') as HTMLInputElement | null;
+  const nomInput = document.getElementById('meuble-nom') as HTMLInputElement | null;
+  const categorieSelect = document.getElementById('meuble-categorie') as HTMLSelectElement | null;
+  const formeInput = document.getElementById('meuble-forme') as HTMLInputElement | null;
+  const prixInput = document.getElementById('meuble-prix') as HTMLInputElement | null;
+  const reductionInput = document.getElementById('meuble-reduction') as HTMLInputElement | null;
+
+  const hauteurInput = document.getElementById('meuble-hauteur') as HTMLInputElement | null;
+  const largeurInput = document.getElementById('meuble-largeur') as HTMLInputElement | null;
+  const profondeurInput = document.getElementById('meuble-profondeur') as HTMLInputElement | null;
+
+  const compositionListEl = document.getElementById('meuble-composition-list') as HTMLElement | null;
+  const addCompositionBtn = document.getElementById('btn-add-meuble-composition');
+
+  const caissonInput = document.getElementById('meuble-caisson') as HTMLInputElement | null;
+  const facadeInput = document.getElementById('meuble-facade') as HTMLInputElement | null;
+  const couleursCheckboxList = document.getElementById('meuble-couleurs-list') as HTMLElement | null;
+  const descriptionInput = document.getElementById('meuble-description') as HTMLTextAreaElement | null;
+
+  const existingImagesBlock = document.getElementById('meuble-existing-images-block') as HTMLElement | null;
+  const existingImagesList = document.getElementById('meuble-existing-images-list') as HTMLElement | null;
+  const filesLabel = document.getElementById('meuble-files-label');
+  const filesInput = document.getElementById('meuble-files') as HTMLInputElement | null;
+
+  const toNum = (val: unknown, fallback = 0): number => {
+    const num = typeof val === 'number' ? val : Number(val);
+    return Number.isFinite(num) ? num : fallback;
+  };
+
+  const showFeedback = (message: string, isError = false) => {
+    if (!feedbackEl) return;
+    feedbackEl.style.display = 'block';
+    feedbackEl.style.color = isError ? 'var(--admin-danger)' : 'var(--admin-gold)';
+    feedbackEl.style.borderColor = isError
+      ? 'rgba(248, 113, 113, 0.35)'
+      : 'var(--admin-border-gold)';
+    feedbackEl.textContent = message;
+  };
+
+  const renderColorCheckboxes = (selectedIds: number[] = []) => {
+    if (!couleursCheckboxList) return;
+
+    if (availableColors.length === 0) {
+      couleursCheckboxList.innerHTML = `
+        <span style="font-size: 0.82rem; color: var(--admin-text-muted);">
+          Aucune couleur disponible dans le nuancier.
+        </span>
+      `;
+      return;
+    }
+
+    const selectedSet = new Set(selectedIds);
+
+    couleursCheckboxList.innerHTML = availableColors
+      .map((couleur) => {
+        const checked = selectedSet.has(couleur.id) ? 'checked' : '';
+        const imgHtml = couleur.imagePresentationUrl
+          ? `<img src="${couleur.imagePresentationUrl}" alt="${couleur.nom}" style="width: 18px; height: 18px; border-radius: 3px; object-fit: cover; flex-shrink: 0;" />`
+          : '';
+        const swatch = couleur.codeCouleur
+          ? `<span style="width: 12px; height: 12px; border-radius: 50%; background: ${couleur.codeCouleur}; border: 1px solid rgba(255,255,255,0.25); display: inline-block; flex-shrink: 0;"></span>`
+          : '';
+
+        return `
+          <label
+            style="display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.35rem 0.65rem; border-radius: var(--admin-radius-sm); background: var(--admin-surface); border: 1px solid var(--admin-border); cursor: pointer; font-size: 0.84rem;"
+          >
+            <input
+              type="checkbox"
+              class="meuble-couleur-checkbox"
+              value="${couleur.id}"
+              ${checked}
+            />
+            ${imgHtml}
+            <!--${swatch}-->
+            <span>${couleur.nom}</span>
+          </label>
+        `;
+      })
+      .join('');
+  };
+
+  const getSelectedCouleurIds = (): number[] => {
+    if (!couleursCheckboxList) return [];
+    const checkedBoxes = couleursCheckboxList.querySelectorAll<HTMLInputElement>(
+      '.meuble-couleur-checkbox:checked'
+    );
+    return Array.from(checkedBoxes)
+      .map((cb) => Number(cb.value))
+      .filter((id) => Number.isInteger(id) && id > 0);
+  };
+
+  const addCompositionFieldRow = (value = '') => {
+    if (!compositionListEl) return;
+
+    const row = document.createElement('div');
+    row.className = 'composition-row';
+    row.style.cssText = 'display: flex; gap: 0.45rem; align-items: center;';
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'admin-input meuble-composition-input';
+    input.placeholder = 'ex: 3 tiroirs, Niche centrale, Portes battantes...';
+    input.value = value;
+
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.className = 'admin-btn-danger';
+    removeBtn.textContent = '×';
+    removeBtn.title = 'Supprimer ce champ';
+    removeBtn.style.cssText = 'padding: 0.55rem 0.7rem; font-size: 0.9rem; line-height: 1;';
+
+    removeBtn.addEventListener('click', () => {
+      if (compositionListEl.children.length > 1) {
+        row.remove();
+      } else {
+        input.value = '';
+      }
+    });
+
+    row.appendChild(input);
+    row.appendChild(removeBtn);
+    compositionListEl.appendChild(row);
+  };
+
+  const setCompositionFields = (rawComposition?: string) => {
+    if (!compositionListEl) return;
+    compositionListEl.innerHTML = '';
+
+    const parts = (rawComposition || '')
+      .split(',')
+      .map((part) => part.trim())
+      .filter(Boolean);
+
+    if (parts.length === 0) {
+      addCompositionFieldRow('');
+    } else {
+      for (const part of parts) {
+        addCompositionFieldRow(part);
+      }
+    }
+  };
+
+  const getCompositionJoined = (): string => {
+    if (!compositionListEl) return '';
+    const inputs = compositionListEl.querySelectorAll<HTMLInputElement>('.meuble-composition-input');
+    return Array.from(inputs)
+      .map((inp) => inp.value.trim())
+      .filter(Boolean)
+      .join(', ');
+  };
+
+  addCompositionBtn?.addEventListener('click', () => addCompositionFieldRow(''));
+
+  const getFinalPrice = (item: MeubleDto): number => {
+    const base: number = toNum(item.prixInitial, 0);
+    const red: number = toNum(item.reduction, 0);
+    if (red <= 0) return base;
+    const factor: number = 1 - red / 100;
+    return Math.round(base * factor);
+  };
+
+  const getMainImageUrl = (item: MeubleDto): string =>
+    item.images?.find((img) => img.estPrincipale)?.url ?? item.images?.[0]?.url ?? '';
+
+  const updateStats = () => {
+    const totalEl = document.getElementById('stat-total-meubles');
+    const promoEl = document.getElementById('stat-promo-meubles');
+
+    if (totalEl) totalEl.textContent = String(meubles.length);
+    if (promoEl) {
+      const promoCount = meubles.filter((m) => toNum(m.reduction, 0) > 0).length;
+      promoEl.textContent = String(promoCount);
+    }
+  };
+
+  const formatMeubleFormeLabel = (forme: string): string => {
+    const normalized = forme.trim().toLowerCase();
+    if (normalized === 'c') return 'meubles cuisines';
+    if (normalized === 'd') return 'meubles dressings';
+    return `Forme : ${forme}`;
+  };
+
+  const syncFormeFilterOptions = () => {
+    if (!filterSelect) return;
+    const currentVal = filterSelect.value;
+    const formes = Array.from(
+      new Set(
+        meubles
+          .map((m) => (m.forme || '').trim())
+          .filter(Boolean)
+      )
+    ).sort((a, b) => a.localeCompare(b, 'fr'));
+
+    filterSelect.innerHTML = `
+      <option value="all">Tous les meubles</option>
+      <option value="promo">En promotion uniquement</option>
+      ${formes
+        .map((forme) => `<option value="${forme}">${formatMeubleFormeLabel(forme)}</option>`)
+        .join('')}
+    `;
+
+    if (Array.from(filterSelect.options).some((opt) => opt.value === currentVal)) {
+      filterSelect.value = currentVal;
+    }
+  };
+
+  const getFilteredMeubles = (): MeubleDto[] => {
+    const query = (searchInput?.value || '').trim().toLowerCase();
+    const filterVal = filterSelect?.value || 'all';
+
+    return meubles.filter((item) => {
+      const hasPromo = toNum(item.reduction, 0) > 0;
+      if (filterVal === 'promo' && !hasPromo) return false;
+      if (
+        filterVal !== 'all' &&
+        filterVal !== 'promo' &&
+        (item.forme || '').trim().toLowerCase() !== filterVal.toLowerCase()
+      ) {
+        return false;
+      }
+
+      if (!query) return true;
+
+      const matchNom = (item.nom || '').toLowerCase().includes(query);
+      const matchId = String(item.id || '').toLowerCase().includes(query);
+      const matchCat = (item.categorie || '').toLowerCase().includes(query);
+      const matchForme = (item.forme || '').toLowerCase().includes(query);
+      const matchCaisson = (item.caracteristiquesTechniques?.caisson || '').toLowerCase().includes(query);
+      const matchFacade = (item.caracteristiquesTechniques?.facade || '').toLowerCase().includes(query);
+
+      return matchNom || matchId || matchCat || matchForme || matchCaisson || matchFacade;
+    });
+  };
+
+  const renderTable = () => {
+    if (!tbody) return;
+    const filtered = getFilteredMeubles();
+
+    if (resultsCountEl) {
+      resultsCountEl.textContent = `${filtered.length} modèle(s) affiché(s) sur ${meubles.length}`;
+    }
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="6" style="text-align: center; color: var(--admin-text-muted); padding: 1.75rem;">
+            ${meubles.length === 0 ? 'Aucun meuble trouvé depuis l\'API.' : 'Aucun meuble ne correspond à la recherche ou au filtre.'}
+          </td>
+        </tr>
+      `;
+      updateStats();
+      return;
+    }
+
+    const rowsHtml = filtered.map((item) => {
+      const finalPrice: number = getFinalPrice(item);
+      const reductionVal: number = toNum(item.reduction, 0);
+      const initialPriceVal: number = toNum(item.prixInitial, 0);
+      const hasPromo: boolean = reductionVal > 0;
+      const mainImg: string = getMainImageUrl(item);
+      const itemIdStr = String(item.id ?? '');
+      const itemNomStr = String(item.nom ?? '');
+      const itemCatStr = String(item.categorie || 'Meubles');
+      const itemFormeStr = String(item.forme || '—');
+
+      const imgHtml = mainImg
+        ? `<img src="${mainImg}" alt="${itemNomStr}" style="width: 48px; height: 36px; object-fit: cover; border-radius: 4px; border: 1px solid var(--admin-border);" />`
+        : '';
+
+      const priceHtml = hasPromo
+        ? `<div>
+             <span style="font-weight: 600; color: var(--admin-gold);">${finalPrice}</span>
+             <span style="margin-left: 0.4rem; font-size: 0.75rem; color: var(--admin-text-muted); text-decoration: line-through;">${initialPriceVal}</span>
+             <span style="margin-left: 0.35rem; font-size: 0.75rem; color: var(--admin-success);">-${reductionVal}%</span>
+           </div>`
+        : `<span style="font-weight: 600;">${initialPriceVal}</span>`;
+
+      return `
+        <tr data-id="${itemIdStr}">
+          <td>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              ${imgHtml}
+              <strong>${itemNomStr}</strong>
+            </div>
+          </td>
+          <td style="color: var(--admin-text-muted); font-family: monospace; font-size: 0.8rem;">${itemIdStr}</td>
+          <td style="color: var(--admin-text-muted); font-size: 0.84rem;">${itemCatStr}</td>
+          <td><span class="admin-badge" style="margin-top: 0;">${itemFormeStr}</span></td>
+          <td>${priceHtml}</td>
+          <td>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button
+                type="button"
+                class="admin-ghost-btn btn-edit-meuble"
+                data-id="${itemIdStr}"
+                style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;"
+              >
+                Éditer
+              </button>
+              <a
+                href="/meuble/${itemIdStr.toLowerCase()}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="admin-ghost-btn"
+                style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;"
+              >
+                Voir ↗
+              </a>
+            </div>
+          </td>
+        </tr>
+      `;
+    });
+
+    tbody.innerHTML = rowsHtml.join('');
+    updateStats();
+  };
+
+  const renderExistingImages = (item: MeubleDto | null) => {
+    if (!existingImagesBlock || !existingImagesList) return;
+
+    const imgs = item?.images ?? [];
+    if (!item || imgs.length === 0) {
+      existingImagesBlock.style.display = 'none';
+      existingImagesList.innerHTML = '';
+      return;
+    }
+
+    existingImagesBlock.style.display = 'block';
+    existingImagesList.innerHTML = imgs
+      .map(
+        (img) => `
+          <div
+            data-image-id="${img.id ?? ''}"
+            style="display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.6rem; border-radius: var(--admin-radius-sm); background: var(--admin-surface-elevated); border: 1px solid var(--admin-border);"
+          >
+            <img
+              src="${img.url}"
+              alt="Image ${img.id ?? ''}"
+              style="width: 44px; height: 34px; object-fit: cover; border-radius: 4px;"
+            />
+            <span style="font-size: 0.75rem; color: var(--admin-text-muted);">
+              #${img.id ?? '?'}${img.estPrincipale ? ' · Principale' : ''}
+            </span>
+            ${
+              img.id
+                ? `<button
+                    type="button"
+                    class="admin-btn-danger btn-delete-meuble-image"
+                    data-meuble-id="${item.id}"
+                    data-image-id="${img.id}"
+                    style="padding: 0.25rem 0.5rem; font-size: 0.75rem;"
+                  >
+                    Supprimer
+                  </button>`
+                : ''
+            }
+          </div>
+        `
+      )
+      .join('');
+  };
+
+  const openEditor = (item: MeubleDto | null) => {
+    if (!editorCard || !form) return;
+    activeEditingItem = item;
+    editorCard.style.display = 'block';
+    if (filesInput) filesInput.value = '';
+
+    if (item) {
+      if (editorHeading) editorHeading.textContent = `Modifier : ${item.nom}`;
+      if (modeInput) modeInput.value = 'edit';
+      if (idInput) {
+        idInput.value = String(item.id);
+        idInput.readOnly = true;
+      }
+      if (nomInput) nomInput.value = item.nom || '';
+      if (categorieSelect) categorieSelect.value = item.categorie || 'Meubles';
+      if (formeInput) formeInput.value = item.forme || '';
+      if (prixInput) prixInput.value = String(toNum(item.prixInitial, 0));
+      if (reductionInput) reductionInput.value = String(toNum(item.reduction, 0));
+
+      if (hauteurInput) hauteurInput.value = String(toNum(item.dimensions?.hauteur, 0));
+      if (largeurInput) largeurInput.value = String(toNum(item.dimensions?.largeur, 0));
+      if (profondeurInput) profondeurInput.value = String(toNum(item.dimensions?.profondeur, 0));
+
+      setCompositionFields(item.caracteristiquesTechniques?.compositionType || '');
+
+      if (caissonInput) caissonInput.value = item.caracteristiquesTechniques?.caisson || '';
+      if (facadeInput) facadeInput.value = item.caracteristiquesTechniques?.facade || '';
+
+      const itemColorIds = (item.couleurs ?? []).map((c) => c.id);
+      renderColorCheckboxes(itemColorIds);
+
+      if (descriptionInput) descriptionInput.value = item.description || '';
+      if (filesLabel) filesLabel.textContent = 'Nouvelles images à ajouter (optionnel)';
+      renderExistingImages(item);
+    } else {
+      form.reset();
+      if (editorHeading) editorHeading.textContent = 'Ajouter un meuble';
+      if (modeInput) modeInput.value = 'create';
+      if (idInput) idInput.readOnly = false;
+      if (categorieSelect) categorieSelect.value = 'Meubles';
+      if (reductionInput) reductionInput.value = '0';
+
+      setCompositionFields('');
+      renderColorCheckboxes([]);
+
+      if (filesLabel) filesLabel.textContent = 'Images (au moins 1 fichier requis)';
+      renderExistingImages(null);
+    }
+
+    editorCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+
+  const refreshMeubles = async () => {
+    try {
+      const [loadedMeubles, loadedCouleurs] = await Promise.all([
+        getMeubles(),
+        getCouleurs(),
+      ]);
+
+      meubles = Array.isArray(loadedMeubles) ? loadedMeubles : [];
+      availableColors = Array.isArray(loadedCouleurs) ? loadedCouleurs : [];
+    } catch (err) {
+      console.error('[meubles.astro] Erreur chargement données :', err);
+      availableColors = [];
+    }
+
+    syncFormeFilterOptions();
+    renderTable();
+
+    if (activeEditingItem) {
+      const updatedActive =
+        meubles.find((m) => String(m.id) === String(activeEditingItem?.id)) || null;
+      activeEditingItem = updatedActive;
+      renderColorCheckboxes((updatedActive?.couleurs ?? []).map((c) => c.id));
+      renderExistingImages(updatedActive);
+    } else if (editorCard && editorCard.style.display !== 'none') {
+      renderColorCheckboxes(getSelectedCouleurIds());
+    } else {
+      renderColorCheckboxes([]);
+    }
+  };
+
+  searchInput?.addEventListener('input', renderTable);
+  filterSelect?.addEventListener('change', renderTable);
+
+  resetFiltersBtn?.addEventListener('click', () => {
+    if (searchInput) searchInput.value = '';
+    if (filterSelect) filterSelect.value = 'all';
+    renderTable();
+  });
+
+  document.getElementById('btn-new-meuble')?.addEventListener('click', () => openEditor(null));
+
+  document.getElementById('btn-cancel-meuble')?.addEventListener('click', () => {
+    activeEditingItem = null;
+    if (editorCard) editorCard.style.display = 'none';
+  });
+
+  tbody?.addEventListener('click', (event) => {
+    const btn = event.target instanceof Element ? event.target.closest('.btn-edit-meuble') : null;
+    if (!btn) return;
+    const id = btn.getAttribute('data-id');
+    const found = meubles.find((m) => String(m.id) === String(id));
+    if (found) openEditor(found);
+  });
+
+  existingImagesList?.addEventListener('click', async (event) => {
+    const btn = event.target instanceof Element ? event.target.closest('.btn-delete-meuble-image') : null;
+    if (!btn) return;
+
+    const meubleId = btn.getAttribute('data-meuble-id');
+    const imageId = Number(btn.getAttribute('data-image-id'));
+    if (!meubleId || !imageId) return;
+
+    try {
+      (btn as HTMLButtonElement).disabled = true;
+      await deleteMeubleImage(meubleId, imageId);
+      showFeedback(`Image #${imageId} supprimée.`);
+      await refreshMeubles();
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Erreur lors de la suppression de l’image.';
+      showFeedback(msg, true);
+      (btn as HTMLButtonElement).disabled = false;
+    }
+  });
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!submitBtn) return;
+
+    const mode = modeInput?.value || 'create';
+    const id = (idInput?.value || '').trim();
+    const selectedFiles = filesInput?.files ? Array.from(filesInput.files) : [];
+
+    const basePayload = {
+      categorie: categorieSelect?.value || 'Meubles',
+      forme: (formeInput?.value || '').trim(),
+      nom: (nomInput?.value || '').trim(),
+      prixInitial: toNum(prixInput?.value, 0),
+      reduction: toNum(reductionInput?.value, 0),
+      description: (descriptionInput?.value || '').trim(),
+      hauteur: toNum(hauteurInput?.value, 0),
+      largeur: toNum(largeurInput?.value, 0),
+      profondeur: toNum(profondeurInput?.value, 0),
+      compositionType: getCompositionJoined(),
+      caisson: (caissonInput?.value || '').trim(),
+      facade: (facadeInput?.value || '').trim(),
+      couleurIds: getSelectedCouleurIds(),
+    };
+
+    try {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enregistrement...';
+
+      if (mode === 'create') {
+        if (selectedFiles.length === 0) {
+          throw new Error('Ajoute au moins une image.');
+        }
+        await createMeuble({
+          ...basePayload,
+          files: selectedFiles,
+        });
+        showFeedback(`Meuble "${basePayload.nom}" créé avec succès.`);
+      } else {
+        await updateMeuble(id, {
+          ...basePayload,
+          images: selectedFiles,
+        });
+        showFeedback(`Meuble "${basePayload.nom}" mis à jour avec succès.`);
+      }
+
+      activeEditingItem = null;
+      if (editorCard) editorCard.style.display = 'none';
+      await refreshMeubles();
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Erreur lors de l’enregistrement.';
+      showFeedback(msg, true);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enregistrer';
+    }
+  });
+
+  refreshMeubles();
+</script>

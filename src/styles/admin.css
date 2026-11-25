@@ -48,6 +48,7 @@ a {
 }
 
 /* ── SHELL GLOBAL ────────────────────────────────────────────────────────── */
+
 .admin-shell {
   display: flex;
   min-height: 100vh;
@@ -86,6 +87,14 @@ a {
   color: var(--admin-gold);
 }
 
+.logo-img {
+    width: 105px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    will-change: transform, opacity;
+}
+
 .admin-badge {
   display: inline-block;
   margin-top: 0.5rem;
@@ -95,8 +104,8 @@ a {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--admin-gold);
-  background-color: var(--admin-gold-soft);
-  border: 1px solid var(--admin-border-gold);
+  /*background-color: var(--admin-gold-soft);*/
+  /*border: 1px solid var(--admin-border-gold);*/
   border-radius: 999px;
 }
 
