@@ -1,0 +1,750 @@
+---
+// src/pages/admin/projets.astro
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { getProjets } from '../../services/projetService';
+import type { Projet } from '../../types/projet';
+
+let initialProjets: Projet[] = [];
+try {
+  initialProjets = await getProjets();
+} catch (err) {
+  console.error('[admin/projets.astro] Erreur chargement projets :', err);
+}
+
+const count3D = (p: Projet) => (p.images ?? []).filter((i) => i.est3D).length;
+const countReel = (p: Projet) => (p.images ?? []).filter((i) => !i.est3D).length;
+
+const getMainImage = (p: Projet) =>
+  p.images?.find((img) => img.estPrincipale)?.url ?? p.images?.[0]?.url ?? '';
+
+const total3D = initialProjets.reduce((sum, p) => sum + count3D(p), 0);
+const totalReel = initialProjets.reduce((sum, p) => sum + countReel(p), 0);
+---
+
+<AdminLayout
+  title="Gestion des Projets | Art Of Design"
+  pageTitle="Projets réalisés"
+  activeNav="projets"
+>
+  <div slot="actions">
+    <button type="button" id="btn-new-projet" class="admin-btn-primary">
+      + Nouveau projet
+    </button>
+  </div>
+
+  <!-- MESSAGE RETOUR API -->
+  <div
+    id="projet-feedback"
+    role="status"
+    aria-live="polite"
+    style="display: none; margin-bottom: 1.25rem; padding: 0.85rem 1rem; border-radius: var(--admin-radius-sm); border: 1px solid var(--admin-border-gold); background: var(--admin-surface); font-size: 0.88rem;"
+  ></div>
+
+  <!-- KPIs RAPIDES -->
+  <section class="admin-grid-stats" aria-label="Indicateurs projets">
+    <article class="admin-card">
+      <h2 class="admin-card-title">Projets publiés</h2>
+      <p class="admin-stat-value" id="stat-total-projets">{initialProjets.length}</p>
+      <p class="admin-stat-meta">Portfolio</p>
+    </article>
+
+    <article class="admin-card">
+      <h2 class="admin-card-title">Rendus 3D</h2>
+      <p class="admin-stat-value" id="stat-3d-projets">{total3D}</p>
+      <p class="admin-stat-meta">Images de conception</p>
+    </article>
+
+    <article class="admin-card">
+      <h2 class="admin-card-title">Photos réelles</h2>
+      <p class="admin-stat-value" id="stat-reel-projets">{totalReel}</p>
+      <p class="admin-stat-meta">Réalisations finales</p>
+    </article>
+  </section>
+
+  <!-- FORMULAIRE CRÉATION / ÉDITION -->
+  <section
+    id="projet-editor-card"
+    class="admin-card"
+    style="display: none; margin-bottom: 2rem; border-color: var(--admin-border-gold);"
+    aria-labelledby="editor-heading"
+  >
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+      <div>
+        <p class="admin-eyebrow" style="margin-bottom: 0.15rem;">Édition du portfolio</p>
+        <h2 id="editor-heading" style="margin: 0; font-size: 1.2rem;">Modifier un projet</h2>
+      </div>
+      <button type="button" id="btn-cancel-edit" class="admin-ghost-btn" style="width: auto;">
+        Fermer
+      </button>
+    </div>
+
+    <form id="projet-form" class="admin-form-grid">
+      <input type="hidden" id="projet-mode" value="edit" />
+
+      <!-- ID : généré côté serveur (slug), affiché seulement en édition -->
+      <div class="admin-field" id="projet-id-field" style="display: none;">
+        <label for="projet-id" class="admin-label">Identifiant (généré automatiquement)</label>
+        <input type="text" id="projet-id" class="admin-input" readonly />
+      </div>
+
+      <div class="admin-field">
+        <label for="projet-nom" class="admin-label">Nom du projet</label>
+        <input
+          type="text"
+          id="projet-nom"
+          name="nom"
+          class="admin-input"
+          placeholder="ex: Appartement Kram"
+          maxlength="200"
+          required
+        />
+      </div>
+
+      <div class="admin-field admin-field--full">
+        <label for="projet-description" class="admin-label">Description</label>
+        <textarea
+          id="projet-description"
+          rows="3"
+          class="admin-textarea"
+          maxlength="2000"
+          placeholder="ex: Transformation complète d'une cuisine 18m²..."
+        ></textarea>
+      </div>
+
+      <!-- IMAGES EXISTANTES (EN MODE ÉDITION) -->
+      <div id="existing-images-block" class="admin-field admin-field--full" style="display: none;">
+        <span class="admin-label">Images enregistrées (suppression directe via API)</span>
+        <div
+          id="existing-images-list"
+          style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.35rem;"
+        ></div>
+      </div>
+
+      <!-- UPLOAD : IMAGES 3D -->
+      <div class="admin-field">
+        <label for="projet-files-3d" id="projet-files-3d-label" class="admin-label">
+          Images 3D (conception)
+        </label>
+        <input
+          type="file"
+          id="projet-files-3d"
+          class="admin-input"
+          accept="image/jpeg,image/png,image/webp"
+          multiple
+        />
+        <div id="pending-3d-list" class="pending-files-list"></div>
+      </div>
+
+      <!-- UPLOAD : IMAGES RÉELLES -->
+      <div class="admin-field">
+        <label for="projet-files-reel" id="projet-files-reel-label" class="admin-label">
+          Images réelles (réalisation)
+        </label>
+        <input
+          type="file"
+          id="projet-files-reel"
+          class="admin-input"
+          accept="image/jpeg,image/png,image/webp"
+          multiple
+        />
+        <div id="pending-reel-list" class="pending-files-list"></div>
+      </div>
+
+      <p class="admin-field--full" style="margin: 0; font-size: 0.78rem; color: var(--admin-text-muted);">
+        Tu peux sélectionner plusieurs fichiers à la fois, et ajouter d'autres sélections ensuite : elles s'accumulent.
+        Les images sont classées par nom de fichier (ex : « 01 cuisine 3d1 », « 01 cuisine Reel2 »…).
+        JPEG, PNG ou WebP, 10 Mo max par image.
+      </p>
+
+      <div
+        class="admin-field admin-field--full"
+        style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 0.5rem;"
+      >
+        <button type="submit" id="btn-submit-projet" class="admin-btn-primary">
+          Enregistrer
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- RECHERCHE & LISTE DES PROJETS -->
+  <section aria-label="Liste des projets">
+    <div class="admin-card" style="margin-bottom: 1rem;">
+      <div class="admin-form-grid" style="align-items: end;">
+        <div class="admin-field">
+          <label for="projet-search" class="admin-label">Rechercher</label>
+          <input
+            type="search"
+            id="projet-search"
+            class="admin-input"
+            placeholder="Nom, ID ou description..."
+          />
+        </div>
+
+        <div
+          class="admin-field admin-field--full"
+          style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap;"
+        >
+          <span id="projet-results-count" style="font-size: 0.82rem; color: var(--admin-text-muted);">
+            {initialProjets.length} projet(s) affiché(s)
+          </span>
+          <button
+            type="button"
+            id="btn-reset-projet-filters"
+            class="admin-ghost-btn"
+            style="width: auto; padding: 0.35rem 0.7rem; font-size: 0.78rem;"
+          >
+            Réinitialiser la recherche
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Projet</th>
+            <th>ID</th>
+            <th>Images</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="projets-tbody">
+          {initialProjets.map((item) => {
+            const mainImg = getMainImage(item);
+            return (
+              <tr data-id={item.id}>
+                <td>
+                  <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    {mainImg && (
+                      <img
+                        src={mainImg}
+                        alt={item.nom}
+                        style="width: 48px; height: 36px; object-fit: cover; border-radius: 4px; border: 1px solid var(--admin-border);"
+                      />
+                    )}
+                    <strong>{item.nom}</strong>
+                  </div>
+                </td>
+                <td style="color: var(--admin-text-muted); font-family: monospace; font-size: 0.8rem;">
+                  {item.id}
+                </td>
+                <td>
+                  <span class="admin-badge" style="margin-top: 0;">3D : {count3D(item)}</span>
+                  <span class="admin-badge" style="margin-top: 0; margin-left: 0.35rem;">Réel : {countReel(item)}</span>
+                </td>
+                <td>
+                  <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <button
+                      type="button"
+                      class="admin-ghost-btn btn-edit-projet"
+                      data-id={item.id}
+                      style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;"
+                    >
+                      Éditer
+                    </button>
+                    <a
+                      href={`/projet/${item.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="admin-ghost-btn"
+                      style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;"
+                    >
+                      Voir ↗
+                    </a>
+                    <button
+                      type="button"
+                      class="admin-btn-danger btn-delete-projet"
+                      data-id={item.id}
+                      style="padding: 0.4rem 0.75rem; font-size: 0.8rem;"
+                    >
+                      Supprimer
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</AdminLayout>
+
+<script>
+  import {
+    getProjets,
+    createProjet,
+    updateProjet,
+    deleteProjet,
+    deleteImageProjet,
+  } from '../../services/projetService';
+  import type { Projet } from '../../types/projet';
+
+  const TAILLE_MAX = 10 * 1024 * 1024; // 10 Mo, aligné sur l'API
+  const TYPES_AUTORISES = ['image/jpeg', 'image/png', 'image/webp'];
+
+  let projets: Projet[] = [];
+  let activeEditingItem: Projet | null = null;
+
+  const tbody = document.getElementById('projets-tbody');
+  const feedbackEl = document.getElementById('projet-feedback');
+  const editorCard = document.getElementById('projet-editor-card') as HTMLElement | null;
+  const editorHeading = document.getElementById('editor-heading');
+  const form = document.getElementById('projet-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('btn-submit-projet') as HTMLButtonElement | null;
+
+  const searchInput = document.getElementById('projet-search') as HTMLInputElement | null;
+  const resetFiltersBtn = document.getElementById('btn-reset-projet-filters');
+  const resultsCountEl = document.getElementById('projet-results-count');
+
+  const modeInput = document.getElementById('projet-mode') as HTMLInputElement | null;
+  const idField = document.getElementById('projet-id-field') as HTMLElement | null;
+  const idInput = document.getElementById('projet-id') as HTMLInputElement | null;
+  const nomInput = document.getElementById('projet-nom') as HTMLInputElement | null;
+  const descriptionInput = document.getElementById('projet-description') as HTMLTextAreaElement | null;
+
+  const existingImagesBlock = document.getElementById('existing-images-block') as HTMLElement | null;
+  const existingImagesList = document.getElementById('existing-images-list') as HTMLElement | null;
+
+  const files3DLabel = document.getElementById('projet-files-3d-label');
+  const files3DInput = document.getElementById('projet-files-3d') as HTMLInputElement | null;
+  const filesReelLabel = document.getElementById('projet-files-reel-label');
+  const filesReelInput = document.getElementById('projet-files-reel') as HTMLInputElement | null;
+  const pending3DList = document.getElementById('pending-3d-list') as HTMLElement | null;
+  const pendingReelList = document.getElementById('pending-reel-list') as HTMLElement | null;
+
+  // Fichiers en attente d'envoi : un <input type="file"> remplace sa sélection
+  // à chaque ouverture, donc on accumule les fichiers nous-mêmes.
+  let pending3D: File[] = [];
+  let pendingReel: File[] = [];
+  const previewUrls = new Map<File, string>();
+
+  // Échappe le texte injecté dans innerHTML (noms, titres saisis par l'admin)
+  const esc = (value: unknown) =>
+    String(value ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+
+  const showFeedback = (message: string, isError = false) => {
+    if (!feedbackEl) return;
+    feedbackEl.style.display = 'block';
+    feedbackEl.style.color = isError ? 'var(--admin-danger)' : 'var(--admin-gold)';
+    feedbackEl.style.borderColor = isError
+      ? 'rgba(248, 113, 113, 0.35)'
+      : 'var(--admin-border-gold)';
+    feedbackEl.textContent = message;
+  };
+
+  const getMainImageUrl = (p: Projet) =>
+    p.images?.find((img) => img.estPrincipale)?.url ?? p.images?.[0]?.url ?? '';
+
+  const count3D = (p: Projet) => (p.images ?? []).filter((i) => i.est3D).length;
+  const countReel = (p: Projet) => (p.images ?? []).filter((i) => !i.est3D).length;
+
+  const fileKey = (f: File) => `${f.name}|${f.size}|${f.lastModified}`;
+
+  const getPreviewUrl = (f: File) => {
+    let url = previewUrls.get(f);
+    if (!url) {
+      url = URL.createObjectURL(f);
+      previewUrls.set(f, url);
+    }
+    return url;
+  };
+
+  const renderPendingList = (container: HTMLElement | null, files: File[], type: '3d' | 'reel') => {
+    if (!container) return;
+    if (files.length === 0) {
+      container.innerHTML = '';
+      return;
+    }
+    container.innerHTML = `
+      <span style="font-size: 0.75rem; color: var(--admin-text-muted);">${files.length} fichier(s) à envoyer</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.35rem;">
+        ${files
+          .map(
+            (f, i) => `
+              <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.5rem; border-radius: var(--admin-radius-sm); background: var(--admin-surface-elevated); border: 1px solid var(--admin-border);">
+                <img src="${getPreviewUrl(f)}" alt="" style="width: 36px; height: 28px; object-fit: cover; border-radius: 3px;" />
+                <span style="font-size: 0.72rem; max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${esc(f.name)}">${esc(f.name)}</span>
+                <button type="button" class="admin-btn-danger btn-remove-pending" data-type="${type}" data-index="${i}" style="padding: 0.15rem 0.45rem; font-size: 0.75rem; line-height: 1;">×</button>
+              </div>
+            `
+          )
+          .join('')}
+      </div>
+    `;
+  };
+
+  const renderPending = () => {
+    renderPendingList(pending3DList, pending3D, '3d');
+    renderPendingList(pendingReelList, pendingReel, 'reel');
+  };
+
+  const addFiles = (input: HTMLInputElement | null, type: '3d' | 'reel') => {
+    if (!input?.files) return;
+    const liste = type === '3d' ? pending3D : pendingReel;
+    const dejaLa = new Set(liste.map(fileKey));
+    for (const f of Array.from(input.files)) {
+      if (!dejaLa.has(fileKey(f))) liste.push(f);
+    }
+    input.value = ''; // permet de rouvrir le sélecteur et d'ajouter d'autres fichiers
+    renderPending();
+  };
+
+  const clearPending = () => {
+    previewUrls.forEach((url) => URL.revokeObjectURL(url));
+    previewUrls.clear();
+    pending3D = [];
+    pendingReel = [];
+    renderPending();
+  };
+
+  const removePending = (type: string, index: number) => {
+    const liste = type === '3d' ? pending3D : pendingReel;
+    const [retire] = liste.splice(index, 1);
+    if (retire) {
+      const url = previewUrls.get(retire);
+      if (url) URL.revokeObjectURL(url);
+      previewUrls.delete(retire);
+    }
+    renderPending();
+  };
+
+  const validerFichiers = (files: File[]): string | null => {
+    for (const f of files) {
+      if (f.size === 0 || f.size > TAILLE_MAX) return `« ${f.name} » est vide ou dépasse 10 Mo.`;
+      if (!TYPES_AUTORISES.includes(f.type)) return `« ${f.name} » doit être en JPEG, PNG ou WebP.`;
+    }
+    return null;
+  };
+
+  const updateStats = () => {
+    const totalEl = document.getElementById('stat-total-projets');
+    const el3D = document.getElementById('stat-3d-projets');
+    const elReel = document.getElementById('stat-reel-projets');
+
+    if (totalEl) totalEl.textContent = String(projets.length);
+    if (el3D) el3D.textContent = String(projets.reduce((s, p) => s + count3D(p), 0));
+    if (elReel) elReel.textContent = String(projets.reduce((s, p) => s + countReel(p), 0));
+  };
+
+  const getFilteredProjets = (): Projet[] => {
+    const query = (searchInput?.value || '').trim().toLowerCase();
+    if (!query) return projets;
+
+    return projets.filter((p) =>
+      (p.nom || '').toLowerCase().includes(query) ||
+      String(p.id || '').toLowerCase().includes(query) ||
+      (p.description || '').toLowerCase().includes(query)
+    );
+  };
+
+  const renderTable = () => {
+    if (!tbody) return;
+    const filtered = getFilteredProjets();
+
+    if (resultsCountEl) {
+      resultsCountEl.textContent = `${filtered.length} projet(s) affiché(s) sur ${projets.length}`;
+    }
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="4" style="text-align: center; color: var(--admin-text-muted); padding: 1.75rem;">
+            ${projets.length === 0 ? 'Aucun projet trouvé depuis l\'API.' : 'Aucun projet ne correspond à la recherche.'}
+          </td>
+        </tr>
+      `;
+      updateStats();
+      return;
+    }
+
+    tbody.innerHTML = filtered
+      .map((item) => {
+        const mainImg = getMainImageUrl(item);
+        const imgHtml = mainImg
+          ? `<img src="${esc(mainImg)}" alt="${esc(item.nom)}" style="width: 48px; height: 36px; object-fit: cover; border-radius: 4px; border: 1px solid var(--admin-border);" />`
+          : '';
+
+        return `
+          <tr data-id="${esc(item.id)}">
+            <td>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                ${imgHtml}
+                <strong>${esc(item.nom)}</strong>
+              </div>
+            </td>
+            <td style="color: var(--admin-text-muted); font-family: monospace; font-size: 0.8rem;">${esc(item.id)}</td>
+            <td>
+              <span class="admin-badge" style="margin-top: 0;">3D : ${count3D(item)}</span>
+              <span class="admin-badge" style="margin-top: 0; margin-left: 0.35rem;">Réel : ${countReel(item)}</span>
+            </td>
+            <td>
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <button
+                  type="button"
+                  class="admin-ghost-btn btn-edit-projet"
+                  data-id="${esc(item.id)}"
+                  style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;"
+                >
+                  Éditer
+                </button>
+                <a
+                  href="/projets"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="admin-ghost-btn"
+                  style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;"
+                >
+                  Voir ↗
+                </a>
+                <button
+                  type="button"
+                  class="admin-btn-danger btn-delete-projet"
+                  data-id="${esc(item.id)}"
+                  style="padding: 0.4rem 0.75rem; font-size: 0.8rem;"
+                >
+                  Supprimer
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      })
+      .join('');
+
+    updateStats();
+  };
+
+  const renderExistingImages = (item: Projet | null) => {
+    if (!existingImagesBlock || !existingImagesList) return;
+
+    const imgs = [...(item?.images ?? [])].sort((a, b) => a.ordreAffichage - b.ordreAffichage);
+    if (!item || imgs.length === 0) {
+      existingImagesBlock.style.display = 'none';
+      existingImagesList.innerHTML = '';
+      return;
+    }
+
+    existingImagesBlock.style.display = 'block';
+    existingImagesList.innerHTML = imgs
+      .map(
+        (img) => `
+          <div
+            data-image-id="${img.id}"
+            style="display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.6rem; border-radius: var(--admin-radius-sm); background: var(--admin-surface-elevated); border: 1px solid ${img.est3D ? 'var(--admin-border-gold)' : 'var(--admin-border)'};"
+          >
+            <img
+              src="${esc(img.url)}"
+              alt="${esc(img.title)}"
+              title="${esc(img.title)}"
+              style="width: 44px; height: 34px; object-fit: cover; border-radius: 4px;"
+            />
+            <span style="font-size: 0.75rem; color: var(--admin-text-muted);">
+              #${img.ordreAffichage} · ${img.est3D ? '3D' : 'Réel'}${img.estPrincipale ? ' · Principale' : ''}
+            </span>
+            <button
+              type="button"
+              class="admin-btn-danger btn-delete-image"
+              data-projet-id="${esc(item.id)}"
+              data-image-id="${img.id}"
+              style="padding: 0.25rem 0.5rem; font-size: 0.75rem;"
+            >
+              Supprimer
+            </button>
+          </div>
+        `
+      )
+      .join('');
+  };
+
+  const openEditor = (item: Projet | null) => {
+    if (!editorCard || !form) return;
+    activeEditingItem = item;
+    editorCard.style.display = 'block';
+    if (files3DInput) files3DInput.value = '';
+    if (filesReelInput) filesReelInput.value = '';
+    clearPending();
+
+    if (item) {
+      if (editorHeading) editorHeading.textContent = `Modifier : ${item.nom}`;
+      if (modeInput) modeInput.value = 'edit';
+      if (idField) idField.style.display = 'flex';
+      if (idInput) idInput.value = item.id;
+      if (nomInput) nomInput.value = item.nom || '';
+      if (descriptionInput) descriptionInput.value = item.description || '';
+      if (files3DLabel) files3DLabel.textContent = 'Nouvelles images 3D (optionnel)';
+      if (filesReelLabel) filesReelLabel.textContent = 'Nouvelles images réelles (optionnel)';
+      renderExistingImages(item);
+    } else {
+      form.reset();
+      if (editorHeading) editorHeading.textContent = 'Ajouter un projet';
+      if (modeInput) modeInput.value = 'create';
+      if (idField) idField.style.display = 'none';
+      if (idInput) idInput.value = '';
+      if (files3DLabel) files3DLabel.textContent = 'Images 3D (conception)';
+      if (filesReelLabel) filesReelLabel.textContent = 'Images réelles (réalisation)';
+      renderExistingImages(null);
+    }
+
+    editorCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+
+  const closeEditor = () => {
+    activeEditingItem = null;
+    clearPending();
+    if (editorCard) editorCard.style.display = 'none';
+  };
+
+  const refreshProjets = async () => {
+    try {
+      const loaded = await getProjets();
+      projets = Array.isArray(loaded) ? loaded : [];
+    } catch (err) {
+      console.error('[admin/projets.astro] Erreur chargement projets :', err);
+      showFeedback('Impossible de charger les projets depuis l\'API.', true);
+    }
+
+    renderTable();
+
+    if (activeEditingItem) {
+      const updatedActive = projets.find((p) => p.id === activeEditingItem?.id) || null;
+      activeEditingItem = updatedActive;
+      renderExistingImages(updatedActive);
+    }
+  };
+
+  // ---------- Événements ----------
+
+  searchInput?.addEventListener('input', renderTable);
+
+  files3DInput?.addEventListener('change', () => addFiles(files3DInput, '3d'));
+  filesReelInput?.addEventListener('change', () => addFiles(filesReelInput, 'reel'));
+
+  form?.addEventListener('click', (event) => {
+    const btn = event.target instanceof Element ? event.target.closest('.btn-remove-pending') : null;
+    if (!btn) return;
+    removePending(btn.getAttribute('data-type') || '', Number(btn.getAttribute('data-index')));
+  });
+
+  resetFiltersBtn?.addEventListener('click', () => {
+    if (searchInput) searchInput.value = '';
+    renderTable();
+  });
+
+  document.getElementById('btn-new-projet')?.addEventListener('click', () => openEditor(null));
+  document.getElementById('btn-cancel-edit')?.addEventListener('click', closeEditor);
+
+  // Éditer / supprimer un projet depuis le tableau
+  tbody?.addEventListener('click', async (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    if (!target) return;
+
+    const editBtn = target.closest('.btn-edit-projet');
+    if (editBtn) {
+      const found = projets.find((p) => p.id === editBtn.getAttribute('data-id'));
+      if (found) openEditor(found);
+      return;
+    }
+
+    const deleteBtn = target.closest('.btn-delete-projet') as HTMLButtonElement | null;
+    if (deleteBtn) {
+      const id = deleteBtn.getAttribute('data-id');
+      const projet = projets.find((p) => p.id === id);
+      if (!id || !projet) return;
+
+      const ok = confirm(
+        `Supprimer définitivement le projet « ${projet.nom} » et ses ${projet.images.length} image(s) ?\nCette action est irréversible.`
+      );
+      if (!ok) return;
+
+      try {
+        deleteBtn.disabled = true;
+        await deleteProjet(id);
+        if (activeEditingItem?.id === id) closeEditor();
+        showFeedback(`Projet « ${projet.nom} » supprimé.`);
+        await refreshProjets();
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : 'Erreur lors de la suppression du projet.';
+        showFeedback(msg, true);
+        deleteBtn.disabled = false;
+      }
+    }
+  });
+
+  // Supprimer une image existante
+  existingImagesList?.addEventListener('click', async (event) => {
+    const btn = event.target instanceof Element
+      ? (event.target.closest('.btn-delete-image') as HTMLButtonElement | null)
+      : null;
+    if (!btn) return;
+
+    const projetId = btn.getAttribute('data-projet-id');
+    const imageId = Number(btn.getAttribute('data-image-id'));
+    if (!projetId || !imageId) return;
+
+    if (!confirm('Supprimer cette image ? Cette action est irréversible.')) return;
+
+    try {
+      btn.disabled = true;
+      await deleteImageProjet(projetId, imageId);
+      showFeedback('Image supprimée.');
+      await refreshProjets();
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Erreur lors de la suppression de l\'image.';
+      showFeedback(msg, true);
+      btn.disabled = false;
+    }
+  });
+
+  // Création / mise à jour
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!submitBtn) return;
+
+    const mode = modeInput?.value || 'edit';
+    const id = (idInput?.value || '').trim();
+    const nom = (nomInput?.value || '').trim();
+    const description = (descriptionInput?.value || '').trim();
+    const images3D = [...pending3D];
+    const imagesReelles = [...pendingReel];
+
+    try {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enregistrement...';
+
+      if (!nom) throw new Error('Le nom du projet est obligatoire.');
+
+      const erreurFichiers = validerFichiers([...images3D, ...imagesReelles]);
+      if (erreurFichiers) throw new Error(erreurFichiers);
+
+      if (mode === 'create') {
+        if (images3D.length + imagesReelles.length === 0) {
+          throw new Error('Ajoute au moins une image (3D ou réelle).');
+        }
+        const cree = await createProjet({ nom, description, images3D, imagesReelles });
+        showFeedback(`Projet « ${cree.nom} » créé avec succès (ID : ${cree.id}).`);
+      } else {
+        await updateProjet(id, { nom, description, images3D, imagesReelles });
+        showFeedback(`Projet « ${nom} » mis à jour avec succès.`);
+      }
+
+      closeEditor();
+      await refreshProjets();
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Erreur lors de l\'enregistrement.';
+      showFeedback(msg, true);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enregistrer';
+    }
+  });
+
+  refreshProjets();
+</script>

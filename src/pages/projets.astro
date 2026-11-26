@@ -1,25 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Process from '../components/Process.astro';
 import ProjectCard, { type CatalogueItem } from '../components/ProjectCard.astro';
-import projetsData from '../data/projets.json';
 import ImageGallery from '../components/ImageGallery.astro';
 import '../styles/cuisines.css'; 
 import '../styles/projets.css'; 
 
+import { getProjets, getImagesReelles, getImagePrincipale } from '../services/projetService';
+import type { Projet } from '../types/projet';
+
+let projetsData: Projet[] = [];
+try {
+  projetsData = await getProjets();
+} catch (e) {
+  console.error('Impossible de charger les projets :', e);
+}
+
 const tousLesProjetsMixes = [...projetsData].sort(() => 0.5 - Math.random());
 
-// Extraction sécurisée des images réelles uniquement (avec correction du type TS)
-const galleryImages = tousLesProjetsMixes.flatMap((projet) => {
-  return ((projet.catalogue_images || []) as CatalogueItem[])
-    .filter((item): item is { image: string } => 'image' in item)
-    .map((item) => ({
-      src: item.image,
-      alt: `${projet.nom} - Photo du projet`,
+// Images réelles uniquement (est3D = false), dans l'ordre d'affichage
+const galleryImages = tousLesProjetsMixes.flatMap((projet) =>
+  getImagesReelles(projet)
+    .sort((a, b) => a.ordreAffichage - b.ordreAffichage)
+    .map((img) => ({
+      src: img.url,
+      alt: img.title || `${projet.nom} - Photo du projet`,
       title: projet.nom,
       category: projet.categorie || 'Projet Réel'
-    }));
-});
+    }))
+);
 ---
 
 <!-- Import du CSS Swiper au niveau global -->
@@ -69,7 +77,11 @@ const galleryImages = tousLesProjetsMixes.flatMap((projet) => {
                   nom={projet.nom}
                   description={projet.description}
                   categorie={projet.categorie}
-                  catalogue_images={projet.catalogue_images}
+                    catalogue_images={projet.images.map((img) =>
+                    img.est3D
+                      ? { titre: img.title, image3d: img.url }
+                      : { titre: img.title, image: img.url }
+                  )}
                 />
               </div>
             ))}

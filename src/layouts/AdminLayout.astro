@@ -5,7 +5,7 @@ import '../styles/admin.css';
 interface Props {
   title?: string;
   pageTitle?: string;
-  activeNav?: 'dashboard' | 'cuisines' | 'dressings' | 'meubles' | 'demandes' | 'couleurs';
+  activeNav?: 'dashboard' | 'cuisines' | 'dressings' | 'meubles' | 'projets' | 'demandes' | 'couleurs';
 }
 
 const {
@@ -19,6 +19,7 @@ const navItems = [
   { id: 'cuisines', label: 'Cuisines', href: '/admin/cuisines' },
   { id: 'dressings', label: 'Dressings', href: '/admin/dressings' },
   { id: 'meubles', label: 'Meubles', href: '/admin/meubles' },
+  { id: 'projets', label: 'Projets', href: '/admin/projets' },
   { id: 'couleurs', label: 'Nuancier & Couleurs', href: '/admin/couleurs' },
    { id: 'demandes', label: 'Études & Contacts', href: '/admin/demandes' },
 ] as const;
